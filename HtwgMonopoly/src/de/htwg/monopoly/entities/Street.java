@@ -6,16 +6,15 @@ import de.htwg.monopoly.util.MonopolyUtil;
 
 
 public class Street {
-	String name;
-	int priceForStreet;
-	Color color;
-	int rent;
-	int pricePerHotel;
-	int numberOfHotels;
+	private String name;
+	private int priceForStreet;
+	private Color color;
+	private int rent;
+	private int pricePerHotel;
+	private int numberOfHotels;
 
 	public Street(String name, int priceForStreet, Color color, int rent,
 			int pricePerHotel, int numberOfHotels) {
-		super();
 		this.name = name;
 		this.priceForStreet = priceForStreet;
 		this.color = color;
