@@ -16,10 +16,10 @@ public class CardTest {
 
 	@Test
 	public void testGetDescription() {
-		/* added for Findbugs: check if object exists */
-		if (card == null) {
-			card = new Card("description");
-		}
+//		/* added for Findbugs: check if object exists */
+//		if (card == null) {
+//			card = new Card("description");
+//		}
 		card.setDescription("Hello World");
 		assertEquals("Hello World", card.getDescription());
 		card.setDescription("");

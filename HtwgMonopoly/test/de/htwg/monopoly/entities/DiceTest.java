@@ -16,10 +16,10 @@ public class DiceTest {
 
 	@Test
 	public void testGetDice() {
-		/* added for Findbugs: check if object exists */
-		if (dice == null) {
-			dice = new Dice();
-		}
+//		/* added for Findbugs: check if object exists */
+//		if (dice == null) {
+//			dice = new Dice();  //reove because code coverage
+//		}
 		dice.setDice(1, 1);
 		assertEquals(1, dice.getDice());
 		dice.setDice(6, 6);
