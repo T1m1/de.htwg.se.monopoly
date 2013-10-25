@@ -12,12 +12,12 @@ public class PlayerTest {
 	}
 
 	@Test
-	public void testPlayer() {
+	public void testPlayerStringCharDoubleStringArrayInt() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testPlayerString() {
+	public void testPlayerStringCharDouble() {
 		fail("Not yet implemented");
 	}
 
@@ -28,6 +28,46 @@ public class PlayerTest {
 
 	@Test
 	public void testSetName() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetFigure() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetFigure() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetBudget() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetBudget() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetOwnership() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetOwnership() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetPosition() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetPosition() {
 		fail("Not yet implemented");
 	}
 
