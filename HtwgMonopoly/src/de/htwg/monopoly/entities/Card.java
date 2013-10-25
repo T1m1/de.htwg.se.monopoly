@@ -1,9 +1,9 @@
 package de.htwg.monopoly.entities;
 
-public class CommunityCard {
+public class Card {
 	private String description;
 	
-	public CommunityCard(String description) {
+	public Card(String description) {
 		setDescription(description);
 	}
 
@@ -14,5 +14,5 @@ public class CommunityCard {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 }

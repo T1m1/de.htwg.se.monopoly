@@ -1,3 +1,4 @@
+
 package de.htwg.monopoly.entities;
 
 import static org.junit.Assert.assertEquals;
