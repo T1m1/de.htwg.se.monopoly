@@ -1,9 +1,9 @@
 package de.htwg.monopoly.entities;
 
-public class ChanceCard {
+public class Card {
 	private String description;
 	
-	public ChanceCard(String description) {
+	public Card(String description) {
 		setDescription(description);
 	}
 

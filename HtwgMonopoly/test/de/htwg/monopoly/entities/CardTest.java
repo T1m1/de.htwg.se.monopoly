@@ -5,13 +5,13 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ChanceCardTest {
+public class CardTest {
 	
-	ChanceCard card;
+	Card card;
 
 	@Before
 	public void setUp() throws Exception {
-		card = new ChanceCard("description");
+		card = new Card("description");
 	}
 
 	@Test
