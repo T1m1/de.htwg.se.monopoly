@@ -1,13 +1,13 @@
 package de.htwg.monopoly.entities;
 
 public class Player {
-		String name;
-		char figure;
-		double budget;
-		String ownership[];
-		int position;
+		private String name;
+		private char figure;
+		private int budget;
+		private String ownership[];
+		private int position;
 		
-		public Player(String name, char figure, double budget,
+		public Player(String name, char figure, int budget,
 				String[] ownership, int position) {
 			super();
 			this.name = name;
@@ -17,7 +17,7 @@ public class Player {
 			this.position = position;
 		}
 		
-		public Player(String name, char figure, double budget) {
+		public Player(String name, char figure, int budget) {
 			this(name, figure, budget, null, 1);
 		}
 
@@ -37,11 +37,11 @@ public class Player {
 			this.figure = figure;
 		}
 
-		public double getBudget() {
+		public int getBudget() {
 			return budget;
 		}
 
-		public void setBudget(double budget) {
+		public void setBudget(int budget) {
 			this.budget = budget;
 		}
 
