@@ -2,7 +2,6 @@
 package de.htwg.monopoly.entities;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotSame;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -55,23 +54,23 @@ public class PlayerTest {
 		assertEquals(0, Double.compare(12345, player1.getBudget()));
 	}
 
-	@Test
-	public void testGetOwnership() {
-		String[] steets = { "Haus", "Mensa" };
-		player1.setOwnership(steets);
-		assertEquals(steets[0], player1.getOwnership()[0]);
-		assertEquals(steets[1], player1.getOwnership()[1]);
-		assertNotSame(steets[1], player1.getOwnership()[0]);
-	}
+//	@Test
+//	public void testGetOwnership() {
+//		String[] steets = { "Haus", "Mensa" };
+//		player1.setOwnership(steets);
+//		assertEquals(steets[0], player1.getOwnership()[0]);
+//		assertEquals(steets[1], player1.getOwnership()[1]);
+//		assertNotSame(steets[1], player1.getOwnership()[0]);
+//	}
 
-	@Test
-	public void testSetOwnership() {
-		String[] steets = { "Haus", "Mensa" };
-		player1.setOwnership(steets);
-		assertEquals(steets[0], player1.getOwnership()[0]);
-		assertEquals(steets[1], player1.getOwnership()[1]);
-		assertNotSame(steets[1], player1.getOwnership()[0]);
-	}
+//	@Test
+//	public void testSetOwnership() {
+//		String[] steets = { "Haus", "Mensa" };
+//		player1.setOwnership(steets);
+//		assertEquals(steets[0], player1.getOwnership()[0]);
+//		assertEquals(steets[1], player1.getOwnership()[1]);
+//		assertNotSame(steets[1], player1.getOwnership()[0]);
+//	}
 
 	@Test
 	public void testGetPosition() {

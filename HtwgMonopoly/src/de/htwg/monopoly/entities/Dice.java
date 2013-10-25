@@ -1,7 +1,7 @@
 package de.htwg.monopoly.entities;
 
 public class Dice {
-	private int dice;
+	private int dice = 0;
 
 	public Dice() {
 		setDice(1, 6);

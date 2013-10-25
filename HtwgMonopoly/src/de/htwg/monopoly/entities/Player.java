@@ -4,7 +4,7 @@ public class Player {
 		private String name;
 		private char figure;
 		private int budget;
-		private String ownership[];
+		// TODO: private String ownership[];
 		private int position;
 		
 		public Player(String name, char figure, int budget,
@@ -13,7 +13,6 @@ public class Player {
 			this.name = name;
 			this.figure = figure;
 			this.budget = budget;
-			this.ownership = ownership;
 			this.position = position;
 		}
 		
@@ -45,13 +44,7 @@ public class Player {
 			this.budget = budget;
 		}
 
-		public String[] getOwnership() {
-			return ownership;
-		}
 
-		public void setOwnership(String[] ownership) {
-			this.ownership = ownership;
-		}
 
 		public int getPosition() {
 			return position;

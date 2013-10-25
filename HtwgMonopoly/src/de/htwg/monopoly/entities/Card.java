@@ -1,7 +1,7 @@
 package de.htwg.monopoly.entities;
 
 public class Card {
-	private String description;
+	private String description = "";
 	
 	public Card(String description) {
 		setDescription(description);
