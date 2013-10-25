@@ -8,6 +8,7 @@ public class Dice {
 	}
 
 	public void setDice(int lowerBound, int upperBound) {
-		this.dice = dice;
+		upperBound++;
+		this.dice = (int) (Math.random() * (upperBound - lowerBound) + lowerBound );
 	}
 }
