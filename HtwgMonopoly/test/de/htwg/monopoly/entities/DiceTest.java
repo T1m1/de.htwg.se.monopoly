@@ -21,7 +21,9 @@ public class DiceTest {
 		dice.setDice(6, 6);
 		assertEquals(6, dice.getDice());
 		dice.setDice(2, 1);
-		assertTrue((dice.getDice() <=2) || (dice.getDice() >=1));
+		/* TODO: wie testen? */
+		
+
 	}
 
 }

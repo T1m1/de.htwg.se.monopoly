@@ -2,7 +2,7 @@ package de.htwg.monopoly.entities;
 
 import java.awt.Color;
 
-import de.htwg.monopoly.util.MonopolyUtil;
+import de.htwg.monopoly.util.IMonopolyUtil;
 
 
 public class Street {
@@ -25,11 +25,11 @@ public class Street {
 
 	public Street() {
 		this.name = "empty";
-		this.priceForStreet = MonopolyUtil.NULL;
+		this.priceForStreet = IMonopolyUtil.NULL;
 		this.color = Color.black;
-		this.rent = MonopolyUtil.NULL;
-		this.pricePerHotel = MonopolyUtil.NULL;
-		this.numberOfHotels = MonopolyUtil.NULL;
+		this.rent = IMonopolyUtil.NULL;
+		this.pricePerHotel = IMonopolyUtil.NULL;
+		this.numberOfHotels = IMonopolyUtil.NULL;
 	}
 
 	public String getName() {

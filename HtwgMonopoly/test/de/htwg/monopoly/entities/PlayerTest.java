@@ -7,8 +7,7 @@ import static org.junit.Assert.assertNotSame;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.monopoly.entities.Player;
-import de.htwg.monopoly.util.MonopolyUtil;
+import de.htwg.monopoly.util.IMonopolyUtil;
 
 public class PlayerTest {
 	Player player1;
@@ -20,18 +19,18 @@ public class PlayerTest {
 
 	@Test
 	public void testPlayerStringCharDoubleStringArrayInt() {
-		Player player3 = new Player("Kenny", 'K', MonopolyUtil.TEST_PRICE_ONE);
+		Player player3 = new Player("Kenny", 'K', IMonopolyUtil.TEST_PRICE_ONE);
 		assertEquals("Kenny", player3.getName());
 		assertEquals('K', player3.getFigure());
-		assertEquals(MonopolyUtil.TEST_PRICE_ONE, player3.getBudget());
+		assertEquals(IMonopolyUtil.TEST_PRICE_ONE, player3.getBudget());
 	}
 
 	@Test
 	public void testPlayerStringCharDouble() {
-		Player player2 = new Player("Manny", 'M', MonopolyUtil.TEST_PRICE_TWO);
+		Player player2 = new Player("Manny", 'M', IMonopolyUtil.TEST_PRICE_TWO);
 		assertEquals("Manny", player2.getName());
 		assertEquals('M', player2.getFigure());
-		assertEquals(MonopolyUtil.TEST_PRICE_TWO, player2.getBudget());
+		assertEquals(IMonopolyUtil.TEST_PRICE_TWO, player2.getBudget());
 	}
 
 	@Test
