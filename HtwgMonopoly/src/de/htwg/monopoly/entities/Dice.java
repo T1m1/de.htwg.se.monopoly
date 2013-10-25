@@ -7,7 +7,7 @@ public class Dice {
 		return dice;
 	}
 
-	public void setDice(int dice) {
+	public void setDice(int lowerBound, int upperBound) {
 		this.dice = dice;
 	}
 }
