@@ -9,6 +9,7 @@ public class PlayerTest {
 
 	@Before
 	public void setUp() throws Exception {
+		Player player1 = new Player("Udo", 'u', 10000);
 	}
 
 	@Test
@@ -23,7 +24,7 @@ public class PlayerTest {
 
 	@Test
 	public void testGetName() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
