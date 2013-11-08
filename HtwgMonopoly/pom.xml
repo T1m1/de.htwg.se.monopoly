@@ -4,7 +4,7 @@
 	<groupId>HtwgMonopoly</groupId>
 	<artifactId>HtwgMonopoly</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Monopoly</name>
+	<name>SE2013WS-02-HtwgMonopoly</name>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<testSourceDirectory>test</testSourceDirectory>
