@@ -21,7 +21,6 @@ public class Dice {
 	 */
 	public final void setDice(int lowerBound, int upperBound) {
 		assert lowerBound <= upperBound : "Wrong values for Dice";
-		upperBound++;
-		this.dice = (int) (Math.random() * (upperBound - lowerBound) + lowerBound );
+		this.dice = (int) (Math.random() * ((upperBound++) - lowerBound) + lowerBound );
 	}
 }
