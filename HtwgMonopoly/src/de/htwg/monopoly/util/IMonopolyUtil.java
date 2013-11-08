@@ -1,11 +1,11 @@
 package de.htwg.monopoly.util;
 
 public interface IMonopolyUtil {
-	final int NULL = 0;
-	final int ONE = 1;
-	final int TEST_PRICE_ONE = 250;
-	final int TEST_PRICE_TWO = 230;
-	final int TEST_PRICE_THREE = 50;
+	int NULL = 0;
+	int ONE = 1;
+	int TEST_PRICE_ONE = 250;
+	int TEST_PRICE_TWO = 230;
+	int TEST_PRICE_THREE = 50;
 	
 
 }
