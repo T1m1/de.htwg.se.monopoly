@@ -7,7 +7,9 @@
 	<packaging>pom</packaging>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
+	
 		<testSourceDirectory>test</testSourceDirectory>
+		<testOutputDirectory>bin</testOutputDirectory>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -20,6 +22,7 @@
 		</plugins>
 	</build>
 	<dependencies>
+	
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
