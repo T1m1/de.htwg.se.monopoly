@@ -4,7 +4,7 @@ public class Card {
 	private String description = "";
 	
 	public Card(String description) {
-		setDescription(description);
+		this.description = description;
 	}
 
 	public String getDescription() {

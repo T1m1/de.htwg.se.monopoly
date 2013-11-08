@@ -1,11 +1,15 @@
 package de.htwg.monopoly.entities;
 
+import de.htwg.monopoly.util.IMonopolyUtil;
+
 public class Dice {
+	
 	private int dice = 0;
 
 	public Dice() {
-		setDice(1, 6);
+		this.setDice(1, IMonopolyUtil.DICE);
 	}
+	
 	public int getDice() {
 		return dice;
 	}
@@ -15,14 +19,8 @@ public class Dice {
 	 * @param lowerBound
 	 * @param upperBound
 	 */
-	public void setDice(int lowerBound, int upperBound) {
-		/* if lowerBound is greater the upperBound, than switch the values */
-		if (lowerBound > upperBound) {
-			int a = lowerBound;
-			lowerBound = upperBound;
-			upperBound = a;
-		}			
-		upperBound++;
-		this.dice = (int) (Math.random() * (upperBound - lowerBound) + lowerBound );
+	public final void setDice(int lowerBound, int upperBound) {
+		assert lowerBound <= upperBound : "Wrong values for Dice";
+		this.dice = (int) (Math.random() * ((upperBound + 1) - lowerBound) + lowerBound );
 	}
 }

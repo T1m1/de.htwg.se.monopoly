@@ -4,12 +4,11 @@ public class Player {
 	private String name;
 	private char figure;
 	private int budget;
-	// TODO: private String ownership[];
+	// TODO: ownership
 	private int position;
 
-	public Player(String name, char figure, int budget, String[] ownership,
+	public Player(String name, char figure, int budget,
 			int position) {
-		super();
 		this.name = name;
 		this.figure = figure;
 		this.budget = budget;
@@ -17,7 +16,7 @@ public class Player {
 	}
 
 	public Player(String name, char figure, int budget) {
-		this(name, figure, budget, null, 1);
+		this(name, figure, budget, 1);
 	}
 
 	public String getName() {
