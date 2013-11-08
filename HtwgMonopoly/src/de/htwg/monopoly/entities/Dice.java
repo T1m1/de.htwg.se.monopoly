@@ -16,13 +16,7 @@ public class Dice {
 	 * @param upperBound
 	 */
 	public void setDice(int lowerBound, int upperBound) {
-		/* if lowerBound is greater the upperBound, than switch the values */
-		if (lowerBound > upperBound) {
-			int a = lowerBound;
-			lowerBound = upperBound;
-			upperBound = a;
-		}			
-		upperBound++;
-		this.dice = (int) (Math.random() * (upperBound - lowerBound) + lowerBound );
+		assert lowerBound < upperBound : "Wrong values for Dice";
+		this.dice = (int) (Math.random() * ((upperBound++) - lowerBound) + lowerBound );
 	}
 }
