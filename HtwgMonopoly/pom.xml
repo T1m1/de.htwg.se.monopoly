@@ -4,7 +4,6 @@
 	<groupId>de.htwg.se</groupId>
 	<artifactId>HtwgMonopoly</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
 	<name>HtwgMonopoly</name>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
