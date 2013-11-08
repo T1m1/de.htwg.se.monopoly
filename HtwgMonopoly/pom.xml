@@ -5,11 +5,10 @@
 	<artifactId>HtwgMonopoly</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	<name>HtwgMonopoly</name>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
-	
 		<testSourceDirectory>test</testSourceDirectory>
-		<testOutputDirectory>bin</testOutputDirectory>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -22,11 +21,16 @@
 		</plugins>
 	</build>
 	<dependencies>
-	
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.surefire</groupId>
+			<artifactId>common-junit48</artifactId>
+			<version>2.16</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
