@@ -1,13 +1,13 @@
-package de.htwg.monopoly.Cards;
+package de.htwg.monopoly.cards;
 
 import java.util.Deque;
 import java.util.LinkedList;
 
-public class ChanceCardsStack implements ICardStack {
-
+public class CommunityCardsStack implements ICardStack {
+	
 	private Deque<ICards> Cards = new LinkedList<ICards>();
-
-	public ChanceCardsStack() {
+	
+	public CommunityCardsStack() {
 		// Cards.push(new Card()); //TODO elemente und Inhalte (Texte)
 		// hinzufügen
 	}
@@ -18,4 +18,5 @@ public class ChanceCardsStack implements ICardStack {
 		Cards.offerLast(tmp);
 		return tmp;
 	}
+
 }

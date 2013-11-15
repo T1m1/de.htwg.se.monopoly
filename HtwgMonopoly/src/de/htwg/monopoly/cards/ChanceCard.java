@@ -1,4 +1,4 @@
-package de.htwg.monopoly.Cards;
+package de.htwg.monopoly.cards;
 
 public class ChanceCard implements ICards {
 
