@@ -1,6 +1,16 @@
 package de.htwg.monopoly.entities;
 
-public class CommunityCard implements ICards{
+public class CommunityCard implements ICards {
+
+	private String description;
+
+	public CommunityCard(String descr) {
+		this.description = descr;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 	@Override
 	public String getDescription() {

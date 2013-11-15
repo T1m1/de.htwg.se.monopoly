@@ -15,12 +15,7 @@ public interface ICards {
 	 * - The Player is transferred to another Place.
 	 */
 	String getActionType();
-	
-	/**
-	 * Return the type of the Card, weather its a Chance or a Community Chest Card
-	 */
-	String getType();
-	
+		
 	
 
 }

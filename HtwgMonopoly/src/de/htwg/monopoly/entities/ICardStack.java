@@ -1,6 +1,6 @@
 package de.htwg.monopoly.entities;
 
-public interface CardStack {
+public interface ICardStack {
 	
 	/**
 	 * Return the first Card off a cardstack and put it back under the
@@ -8,6 +8,6 @@ public interface CardStack {
 	 * 
 	 * @return Card
 	 */
-	Card getNextCard();
+	ICards getNextCard();
 
 }

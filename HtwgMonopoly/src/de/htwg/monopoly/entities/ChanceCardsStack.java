@@ -3,9 +3,9 @@ package de.htwg.monopoly.entities;
 import java.util.Deque;
 import java.util.LinkedList;
 
-public class ChanceCardsStack implements CardStack {
+public class ChanceCardsStack implements ICardStack {
 
-	private Deque<Card> Cards = new LinkedList<Card>();
+	private Deque<ICards> Cards = new LinkedList<ICards>();
 
 	public ChanceCardsStack() {
 		// Cards.push(new Card()); //TODO elemente und Inhalte (Texte)
@@ -13,8 +13,8 @@ public class ChanceCardsStack implements CardStack {
 	}
 
 	@Override
-	public Card getNextCard() {
-		Card tmp = Cards.pollFirst();
+	public ICards getNextCard() {
+		ICards tmp = Cards.pollFirst();
 		Cards.offerLast(tmp);
 		return tmp;
 	}
