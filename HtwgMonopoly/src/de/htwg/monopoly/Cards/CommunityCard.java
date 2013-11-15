@@ -1,10 +1,10 @@
-package de.htwg.monopoly.entities;
+package de.htwg.monopoly.Cards;
 
-public class ChanceCard implements ICards {
+public class CommunityCard implements ICards {
 
 	private String description;
 
-	public ChanceCard(String descr) {
+	public CommunityCard(String descr) {
 		this.description = descr;
 	}
 
@@ -14,8 +14,7 @@ public class ChanceCard implements ICards {
 
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.description;
 	}
 
 	@Override

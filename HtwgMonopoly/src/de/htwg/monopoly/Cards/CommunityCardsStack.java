@@ -1,4 +1,4 @@
-package de.htwg.monopoly.entities;
+package de.htwg.monopoly.Cards;
 
 import java.util.Deque;
 import java.util.LinkedList;
