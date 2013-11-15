@@ -11,11 +11,9 @@ public interface ICards {
 	/**
 	 * Return the type of action which will be performed by the controller.
 	 * There are two Types of Action: 
-	 * - Money is transferred to or from the Player. //TODO Boolean oder String als rückgabetyp??
-	 * - The Player is transferred to another Place.
+	 * - Money is transferred to or from the Player: "money"
+	 * - The Player is transferred to another Place: "move"
 	 */
 	String getActionType();
-		
 	
-
 }

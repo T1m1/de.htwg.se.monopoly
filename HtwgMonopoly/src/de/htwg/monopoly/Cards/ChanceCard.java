@@ -3,9 +3,13 @@ package de.htwg.monopoly.Cards;
 public class ChanceCard implements ICards {
 
 	private String description;
+	private String actionType;
 
-	public ChanceCard(String descr) {
+	public ChanceCard(String descr, String action) {
+		assert action.equalsIgnoreCase("move")
+				|| action.equalsIgnoreCase("money") : "Falsche Initialisierung von einer Karte";
 		this.description = descr;
+		this.actionType = action;
 	}
 
 	public void setDescription(String description) {
@@ -19,8 +23,7 @@ public class ChanceCard implements ICards {
 
 	@Override
 	public String getActionType() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.actionType;
 	}
 
 }
