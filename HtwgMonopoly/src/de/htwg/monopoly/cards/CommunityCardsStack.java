@@ -8,8 +8,8 @@ public class CommunityCardsStack implements ICardStack {
 	private Deque<ICards> Cards = new LinkedList<ICards>();
 	
 	public CommunityCardsStack() {
-		// Cards.push(new Card()); //TODO elemente und Inhalte (Texte)
-		// hinzufügen
+		Cards.push(new CommunityCard("Gehe in das Gefängnis" , "move")); //TODO elemente und Inhalte (Texte)
+		
 	}
 
 	@Override

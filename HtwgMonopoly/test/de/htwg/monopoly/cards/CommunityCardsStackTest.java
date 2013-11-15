@@ -6,19 +6,17 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class CommunityCardsStackTest {
+	
+	CommunityCardsStack stack;
 
 	@Before
 	public void setUp() throws Exception {
-	}
-
-	@Test
-	public void testCommunityCardsStack() {
-		fail("Not yet implemented");
+		stack = new CommunityCardsStack();
 	}
 
 	@Test
 	public void testGetNextCard() {
-		fail("Not yet implemented");
+		assertEquals(new CommunityCard("Gehe in das Gefängnis" , "move"), stack.getNextCard());
 	}
 
 }
