@@ -6,29 +6,25 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ChanceCardTest {
+	
+	ChanceCard card;
 
 	@Before
 	public void setUp() throws Exception {
-	}
-
-	@Test
-	public void testChanceCard() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetDescription() {
-		fail("Not yet implemented");
+		card = new ChanceCard("Beschreibung", "move");
 	}
 
 	@Test
 	public void testGetDescription() {
-		fail("Not yet implemented");
+		card.setDescription("foo");
+		assertEquals("foo", card.getDescription());
+		card.setDescription("bar");
+		assertEquals("bar", card.getDescription());
 	}
 
 	@Test
 	public void testGetActionType() {
-		fail("Not yet implemented");
+		assertEquals("move", card.getActionType());
 	}
 
 }
