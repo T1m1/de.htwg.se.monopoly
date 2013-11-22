@@ -1,5 +1,11 @@
-Z:\git\de.htwg.se.monopoly\HtwgMonopoly\src\de\htwg\monopoly\util\IMonopolyUtil.java
-Z:\git\de.htwg.se.monopoly\HtwgMonopoly\src\de\htwg\monopoly\entities\Dice.java
-Z:\git\de.htwg.se.monopoly\HtwgMonopoly\src\de\htwg\monopoly\entities\Card.java
-Z:\git\de.htwg.se.monopoly\HtwgMonopoly\src\de\htwg\monopoly\entities\Player.java
-Z:\git\de.htwg.se.monopoly\HtwgMonopoly\src\de\htwg\monopoly\entities\Street.java
+C:\Users\RuprechtT\git\de.htwg.se.monopoly_22_11_2013\HtwgMonopoly\src\de\htwg\monopoly\entities\Player.java
+C:\Users\RuprechtT\git\de.htwg.se.monopoly_22_11_2013\HtwgMonopoly\src\de\htwg\monopoly\entities\Dice.java
+C:\Users\RuprechtT\git\de.htwg.se.monopoly_22_11_2013\HtwgMonopoly\src\de\htwg\monopoly\cards\ChanceCard.java
+C:\Users\RuprechtT\git\de.htwg.se.monopoly_22_11_2013\HtwgMonopoly\src\de\htwg\monopoly\cards\CommunityCardsStack.java
+C:\Users\RuprechtT\git\de.htwg.se.monopoly_22_11_2013\HtwgMonopoly\src\de\htwg\monopoly\entities\Street.java
+C:\Users\RuprechtT\git\de.htwg.se.monopoly_22_11_2013\HtwgMonopoly\src\de\htwg\monopoly\cards\ICards.java
+C:\Users\RuprechtT\git\de.htwg.se.monopoly_22_11_2013\HtwgMonopoly\src\de\htwg\monopoly\cards\CommunityCard.java
+C:\Users\RuprechtT\git\de.htwg.se.monopoly_22_11_2013\HtwgMonopoly\src\de\htwg\monopoly\util\IMonopolyUtil.java
+C:\Users\RuprechtT\git\de.htwg.se.monopoly_22_11_2013\HtwgMonopoly\src\de\htwg\monopoly\controller\PlayerController.java
+C:\Users\RuprechtT\git\de.htwg.se.monopoly_22_11_2013\HtwgMonopoly\src\de\htwg\monopoly\cards\ICardStack.java
+C:\Users\RuprechtT\git\de.htwg.se.monopoly_22_11_2013\HtwgMonopoly\src\de\htwg\monopoly\cards\ChanceCardsStack.java
