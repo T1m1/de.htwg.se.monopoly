@@ -30,7 +30,8 @@ public class CommunityCardsStack implements ICardStack {
 	
 
 	@Override
-	public void shuffle() { //TODO Randomseed übergeben und überhaupt mal blicken was der seed macht... Bisher geht der Test nur mit einem Element auf dem Stack
+	public void shuffle() { 
+		//TODO Randomseed übergeben und überhaupt mal blicken was der seed macht... Bisher geht der Test nur mit einem Element auf dem Stack
 		Collections.shuffle((LinkedList<ICards>) this.cards);
 	}
 

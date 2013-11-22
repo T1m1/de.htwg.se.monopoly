@@ -20,7 +20,6 @@ public class Dice {
 	 * @param upperBound
 	 */
 	public final void setDice(int lowerBound, int upperBound) {
-		assert (lowerBound <= upperBound) : "Wrong values for Dice"; //TODO assert testen ??
 		this.dice = (int) (Math.random() * ((upperBound + 1) - lowerBound) + lowerBound );
 	}
 }
