@@ -1,5 +1,7 @@
 package de.htwg.monopoly.entities;
 
+import de.htwg.monopoly.util.IMonopolyUtil;
+
 public class Player {
 	private String name;
 	private char figure;
@@ -8,7 +10,7 @@ public class Player {
 	private int position;
 
 	public Player() {
-		this("player", 'p', 2000000);
+		this("player", 'p', IMonopolyUtil.INITIAL_MONEY);
 	}
 	public Player(String name, char figure, int budget,
 			int position) {

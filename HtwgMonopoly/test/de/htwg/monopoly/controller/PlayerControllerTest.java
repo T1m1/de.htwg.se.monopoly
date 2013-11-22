@@ -31,6 +31,17 @@ public class PlayerControllerTest {
 		assertEquals("Peter", player1.getName());
 	}
 	
+	@Test
+	public void testGetNextPlayerSecondBranch() {
+		players = new PlayerController(2);
+		Player player1 = players.getNextPlayer();
+		player1.setName("Peter");
+		player1 = players.getNextPlayer();
+		player1.setName("Jürgen");
+		player1 = players.getNextPlayer();
+		assertEquals("Peter", player1.getName());
+	}
+	
 
 
 }

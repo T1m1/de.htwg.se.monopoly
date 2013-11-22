@@ -10,9 +10,9 @@ import de.htwg.monopoly.util.IMonopolyUtil;
  */
 public class PlayerController {
 	
-	Player[] players;
-	int numberOfPlayer;
-	int currentPlayer;
+	private Player[] players;
+	private int numberOfPlayer;
+	private int currentPlayer;
 	
 	/**
 	 * Constructor

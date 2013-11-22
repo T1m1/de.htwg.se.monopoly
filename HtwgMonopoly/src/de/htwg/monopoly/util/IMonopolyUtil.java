@@ -8,6 +8,7 @@ public interface IMonopolyUtil {
 	int TEST_PRICE_THREE = 50;
 	int DICE = 6;
 	int FIRST_PLAYER = 0;
+	int INITIAL_MONEY = 600;
 	
 
 }
