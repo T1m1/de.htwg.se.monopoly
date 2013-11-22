@@ -10,17 +10,17 @@ public class Dice {
 		this.setDice(1, IMonopolyUtil.DICE);
 	}
 	
-	public int getDice() {
+	public int throwDice() {
 		return dice;
 	}
 
 	/**
-	 * Set the dice with a random number between lowerbound and upperbound (inclusive)
+	 * Set (throw) the dice with a random number between lowerbound (1) and upperbound (6) (inclusive)
 	 * @param lowerBound
 	 * @param upperBound
 	 */
 	public final void setDice(int lowerBound, int upperBound) {
-		assert lowerBound <= upperBound : "Wrong values for Dice";
+		assert (lowerBound <= upperBound) : "Wrong values for Dice"; //TODO assert testen ??
 		this.dice = (int) (Math.random() * ((upperBound + 1) - lowerBound) + lowerBound );
 	}
 }

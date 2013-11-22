@@ -17,9 +17,9 @@ public class DiceTest {
 	@Test
 	public void testGetDice() {
 		dice.setDice(1, 1);
-		assertEquals(1, dice.getDice());
+		assertEquals(1, dice.throwDice());
 		dice.setDice(6, 6);
-		assertEquals(6, dice.getDice());
+		assertEquals(6, dice.throwDice());
 	}
 
 }
