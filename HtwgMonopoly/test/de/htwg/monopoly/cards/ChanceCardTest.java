@@ -6,25 +6,19 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ChanceCardTest {
-	
+
 	ChanceCard card;
 
 	@Before
 	public void setUp() throws Exception {
-		card = new ChanceCard("Beschreibung", "move");
+		card = new ChanceCard("Gehe in das Gefängnis", "move");
 	}
+	
 
 	@Test
-	public void testGetDescription() {
-		card.setDescription("foo");
-		assertEquals("foo", card.getDescription());
-		card.setDescription("bar");
-		assertEquals("bar", card.getDescription());
-	}
-
-	@Test
-	public void testGetActionType() {
-		assertEquals("move", card.getActionType());
+	public void testCommunityCard() {
+		ChanceCard card2 = new ChanceCard("Gehe in das Gefängnis", "move");
+		assertEquals("Gehe in das Gefängnis",card2.getDescription());
 	}
 
 }
