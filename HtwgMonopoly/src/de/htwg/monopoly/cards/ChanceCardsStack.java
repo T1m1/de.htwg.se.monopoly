@@ -10,7 +10,7 @@ public class ChanceCardsStack implements ICardStack {
 
 	public ChanceCardsStack() {
 		Cards.push(new CommunityCard("Gehe in das Gefängnis" , "move"));
-		// Cards.push(new Card()); //TODO elemente und Inhalte (Texte)
+		//TODO elemente und Inhalte (Texte) siehe CommunityCardsStack
 		// hinzufügen
 	}
 
