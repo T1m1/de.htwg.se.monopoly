@@ -5,19 +5,25 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CommunityCardsStackTest {
-
-	CommunityCardsStack stack;
+public class CardsStackTest {
 	
+	CommunityCardsStack stack;
+
 	@Before
 	public void setUp() throws Exception {
 		stack = new CommunityCardsStack();
-		stack.pushOnTop(new ChanceCard("Gehe in das Gefängnis", "move"));
+		stack.pushOnTop(new CommunityCard("Gehe in das Gefängnis" , "move"));
 	}
 
 	@Test
-	public void testCommunityCardsStack() {
+	public void testGetNextCard() {
 		assertEquals("Gehe in das Gefängnis", stack.getNextCard().getDescription());
 	}
-
+	
+	@Test
+	public void testShuffle() {
+		stack.shuffle();
+		assertEquals("Gehe in das Gefängnis", stack.getNextCard().getDescription());
+	
+	}
 }
