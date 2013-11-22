@@ -6,19 +6,26 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ChanceCardsStackTest {
+	
+	ChanceCardsStack stack;
 
 	@Before
 	public void setUp() throws Exception {
-	}
-
-	@Test
-	public void testChanceCardsStack() {
-		fail("Not yet implemented");
+		stack = new ChanceCardsStack();
+		stack.pushOnTop(new CommunityCard("Gehe in das Gefängnis" , "move"));
 	}
 
 	@Test
 	public void testGetNextCard() {
-		fail("Not yet implemented");
+		//assertThat(new CommunityCard("Gehe in das Gefängnis" , "move").getClass(), stack.getNextCard().getClass());
+		assertEquals("Gehe in das Gefängnis", stack.getNextCard().getDescription());
+	}
+	
+	@Test
+	public void testShuffle() {
+		stack.shuffle();
+		assertEquals("Gehe in das Gefängnis", stack.getNextCard().getDescription());
+	
 	}
 
 }
