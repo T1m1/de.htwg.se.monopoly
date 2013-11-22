@@ -7,6 +7,9 @@ public class Player {
 	// TODO: ownership
 	private int position;
 
+	public Player() {
+		this("player", 'p', 2000000);
+	}
 	public Player(String name, char figure, int budget,
 			int position) {
 		this.name = name;
