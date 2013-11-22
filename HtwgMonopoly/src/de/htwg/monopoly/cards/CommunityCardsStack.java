@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 public class CommunityCardsStack implements ICardStack {
 	
-	private Deque<ICards> Cards = new LinkedList<ICards>();
+	private Deque<ICards> cards = new LinkedList<ICards>();
 	
 	public CommunityCardsStack() {
 		// Idee: For-Schleife über ein bestimmtes FILE und dann pushOnTop() entweder hier oder im Controller
@@ -17,21 +17,21 @@ public class CommunityCardsStack implements ICardStack {
 
 	@Override
 	public ICards getNextCard() {
-		ICards tmp = Cards.pollFirst();
-		Cards.offerLast(tmp);
+		ICards tmp = cards.pollFirst();
+		cards.offerLast(tmp);
 		return tmp;
 	}
 	
 	@Override
 	public void pushOnTop(ICards newCard)
 	{
-		Cards.push(newCard);
+		cards.push(newCard);
 	}
 	
 
 	@Override
 	public void shuffle() { //TODO Randomseed übergeben und überhaupt mal blicken was der seed macht... Bisher geht der Test nur mit einem Element auf dem Stack
-		Collections.shuffle((LinkedList<ICards>) this.Cards);
+		Collections.shuffle((LinkedList<ICards>) this.cards);
 	}
 
 }
