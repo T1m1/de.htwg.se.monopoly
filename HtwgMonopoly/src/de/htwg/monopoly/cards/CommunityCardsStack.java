@@ -13,8 +13,6 @@ public class CommunityCardsStack implements ICardStack {
 		pushOnTop(new CommunityCard("Gehe in das Gefängnis" , "move")); //TODO elemente und Inhalte (Texte)
 		//TODO generelle Frage: Werden die Karteninhalte am Anfang eingelesen, oder hardcodiert von vornerein drin?
 		// denn dann muss evtl die Fehlerbehandlung erweitert werden.
-		// Meine Empfehlung ist hardcodiert einbauen, dann muss keine abartige Fehlerbehandlung gemacht werden.
-		// Wird wohl aber notwendig sein um gescheite Tests zu bauen und um shuffle gescheit auszuführen.
 	}
 
 	@Override
@@ -32,7 +30,7 @@ public class CommunityCardsStack implements ICardStack {
 	
 
 	@Override
-	public void shuffle() { //TODO Randomseed übergeben und überhaupt mal blicken was der seed macht...
+	public void shuffle() { //TODO Randomseed übergeben und überhaupt mal blicken was der seed macht... Bisher geht der Test nur mit einem Element auf dem Stack
 		Collections.shuffle((LinkedList<ICards>) this.Cards);
 	}
 	
