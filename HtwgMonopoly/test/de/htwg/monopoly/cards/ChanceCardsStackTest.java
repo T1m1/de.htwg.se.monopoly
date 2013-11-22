@@ -17,7 +17,6 @@ public class ChanceCardsStackTest {
 
 	@Test
 	public void testGetNextCard() {
-		//assertThat(new CommunityCard("Gehe in das Gefängnis" , "move").getClass(), stack.getNextCard().getClass());
 		assertEquals("Gehe in das Gefängnis", stack.getNextCard().getDescription());
 	}
 	

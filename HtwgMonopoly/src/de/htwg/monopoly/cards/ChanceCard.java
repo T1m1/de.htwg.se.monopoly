@@ -13,8 +13,6 @@ public class ChanceCard implements ICards {
 	 * @param action
 	 */
 	public ChanceCard(String descr, String action) {
-		assert action.equalsIgnoreCase("move") : "Falsche Initialisierung von einer Karte";
-		assert action.equalsIgnoreCase("money") : "Falsche Initialisierung von einer Karte";
 		this.description = descr;
 		this.actionType = action;
 	}

@@ -29,7 +29,7 @@ public class ChanceCardsStack implements ICardStack {
 	
 
 	@Override
-	public void shuffle() { //TODO Randomseed übergeben und überhaupt mal blicken was der seed macht...
+	public void shuffle() { 
 		Collections.shuffle((LinkedList<ICards>) this.Cards);
 	}
 }
