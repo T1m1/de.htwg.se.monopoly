@@ -1,11 +1,11 @@
-de\htwg\monopoly\entities\Player.class
-de\htwg\monopoly\cards\ICardStack.class
 de\htwg\monopoly\controller\PlayerController.class
 de\htwg\monopoly\cards\ChanceCardsStack.class
 de\htwg\monopoly\util\IMonopolyUtil.class
+de\htwg\monopoly\entities\Dice.class
+de\htwg\monopoly\cards\CommunityCard.class
+de\htwg\monopoly\entities\Player.class
+de\htwg\monopoly\cards\ICardStack.class
 de\htwg\monopoly\entities\Street.class
 de\htwg\monopoly\cards\CommunityCardsStack.class
-de\htwg\monopoly\entities\Dice.class
 de\htwg\monopoly\cards\ICards.class
 de\htwg\monopoly\cards\ChanceCard.class
-de\htwg\monopoly\cards\CommunityCard.class
