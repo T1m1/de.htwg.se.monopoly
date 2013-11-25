@@ -6,20 +6,22 @@ import de.htwg.monopoly.util.IMonopolyUtil;
 
 /**
  * class to represent a street
+ * 
  * @author RuprechtT
- *
+ * 
  */
 public class Street {
-	/* street atributes */
+	/* street attributes */
 	private String name;
 	private int priceForStreet;
 	private Color color;
 	private int rent;
 	private int pricePerHotel;
 	private int numberOfHotels;
+	private boolean sold = false;
 
 	/***
-	 * Constructor 
+	 * Constructor
 	 * 
 	 * @param name
 	 * @param priceForStreet
@@ -52,6 +54,7 @@ public class Street {
 
 	/**
 	 * get name of street
+	 * 
 	 * @return
 	 */
 	public String getName() {
@@ -60,6 +63,7 @@ public class Street {
 
 	/**
 	 * set name of street
+	 * 
 	 * @param name
 	 */
 	public void setName(String name) {
@@ -68,6 +72,7 @@ public class Street {
 
 	/**
 	 * get price of street
+	 * 
 	 * @return
 	 */
 	public int getPriceForStreet() {
@@ -76,6 +81,7 @@ public class Street {
 
 	/**
 	 * set price of street
+	 * 
 	 * @param priceForStreet
 	 */
 	public void setPriceForStreet(int priceForStreet) {
@@ -84,6 +90,7 @@ public class Street {
 
 	/**
 	 * get color of street
+	 * 
 	 * @return
 	 */
 	public Color getColor() {
@@ -92,6 +99,7 @@ public class Street {
 
 	/**
 	 * set color of street
+	 * 
 	 * @param color
 	 */
 	public void setColor(Color color) {
@@ -100,6 +108,7 @@ public class Street {
 
 	/**
 	 * get rent of street
+	 * 
 	 * @return
 	 */
 	public int getRent() {
@@ -108,6 +117,7 @@ public class Street {
 
 	/**
 	 * set rent of street
+	 * 
 	 * @param rent
 	 */
 	public void setRent(int rent) {
@@ -116,6 +126,7 @@ public class Street {
 
 	/**
 	 * get price per hotel
+	 * 
 	 * @return
 	 */
 	public int getPricePerHotel() {
@@ -124,6 +135,7 @@ public class Street {
 
 	/**
 	 * set price per hotel
+	 * 
 	 * @param pricePerHotel
 	 */
 	public void setPricePerHotel(int pricePerHotel) {
@@ -132,19 +144,38 @@ public class Street {
 
 	/**
 	 * get number of hotels contains the street
+	 * 
 	 * @return
 	 */
 	public int getNumberOfHotels() {
 		return numberOfHotels;
 	}
-	
 
 	/**
 	 * set number of hotels
+	 * 
 	 * @param numberOfHotels
 	 */
 	public void setNumberOfHotels(int numberOfHotels) {
 		this.numberOfHotels = numberOfHotels;
+	}
+
+	/**
+	 * check if street is sold
+	 * 
+	 * @return
+	 */
+	public boolean isSold() {
+		return sold;
+	}
+
+	/**
+	 * set sold
+	 * 
+	 * @param sold
+	 */
+	public void setSold(boolean sold) {
+		this.sold = sold;
 	}
 
 }
