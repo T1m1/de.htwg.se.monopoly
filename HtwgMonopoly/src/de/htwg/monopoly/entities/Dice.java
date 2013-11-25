@@ -10,6 +10,11 @@ public class Dice {
 		this.setDice(1, IMonopolyUtil.DICE);
 	}
 	
+	/**
+	 * for now, this method only returns a new value, when the method setDice is called before. Going to fix that
+	 * 
+	 * @return
+	 */
 	public int throwDice() {
 		return dice;
 	}

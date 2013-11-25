@@ -52,7 +52,7 @@ public class PlayerController {
 	 * @return player
 	 */
 	public Player getNextPlayer() {
-		currentPlayer++;
+		currentPlayer++; //wie wäre es mit modulo?
 		/* set to first player, if all player on turn */
 		if (currentPlayer >= numberOfPlayer) {
 			currentPlayer = IMonopolyUtil.FIRST_PLAYER;
