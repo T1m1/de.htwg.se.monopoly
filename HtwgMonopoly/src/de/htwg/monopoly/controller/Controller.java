@@ -18,5 +18,9 @@ public class Controller {
 		
 	}
 	
+	public void buyStreet() {
+		
+	}
+	
 	
 }
