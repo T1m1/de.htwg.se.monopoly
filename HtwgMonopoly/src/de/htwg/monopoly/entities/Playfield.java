@@ -19,5 +19,9 @@ public class Playfield {
 		// return true, if the Player went over or stays on "Los"
 		return (position < currentPlayer.getPosition());		
 	}
+
+	public IFieldObject getCurrentFieldObject() {
+		return currentFieldObject;
+	}
 	
 }
