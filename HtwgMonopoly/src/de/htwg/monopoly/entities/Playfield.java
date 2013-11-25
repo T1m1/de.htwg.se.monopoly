@@ -8,16 +8,16 @@ public class Playfield {
 	
 	public void initialize() {
 		//initialize the playfield. set the size, fill it with streets and card stacks etc.
-		//TODO actual initializing
+		//TODO actual initializing, dabei muss evtl beachtet werden, dass es alles irgendwie variable sein sollte. Stichwort: skalierbarkeit
 		this.playfield = new IFieldObject[IMonopolyUtil.TEST_PLAYFIELD_SIZE];
 		
 	}
 	
 	/**
-	 * Move the Player to the new Field.
+	 * Move the Player to the new Field according to the result of the dice roll
 	 * 
-	 * @param currentPlayer
-	 * @param diceResult
+	 * @param currentPlayer which will be moved
+	 * @param diceResult: a Number between 2 and 12;
 	 * @return true if Player moved over or stays on "Los" otherwise return false 
 	 */
 	public boolean movePlayer(Player currentPlayer, int diceResult) {
@@ -33,9 +33,9 @@ public class Playfield {
 	}
 	
 	/**
-	 * Get the current Field where the Player is standing on
+	 * Get the current Field where the Player is standing on.
 	 * 
-	 * @param currentPosition
+	 * @param currentPlayer
 	 * @return An Object of Type IFieldObject
 	 */
 	public IFieldObject getCurrentField(Player currentPlayer) {
