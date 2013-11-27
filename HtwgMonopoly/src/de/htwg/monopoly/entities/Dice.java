@@ -6,6 +6,9 @@ public class Dice {
 	
 	private int dice = 0;
 
+	/**
+	 *  calls the setDice method with 1 (lowerbound) and 6 (upperbound)
+	 */
 	public Dice() {
 		this.setDice(1, IMonopolyUtil.DICE);
 	}
