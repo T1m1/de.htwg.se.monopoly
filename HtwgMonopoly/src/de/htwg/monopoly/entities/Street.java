@@ -170,7 +170,7 @@ public class Street {
 	}
 
 	/**
-	 * set sold
+	 * set the sold-status of this street. True means the street has been sold.
 	 * 
 	 * @param sold
 	 */

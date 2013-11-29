@@ -1,6 +1,6 @@
 package de.htwg.monopoly.entities;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.awt.Color;
 
@@ -79,6 +79,12 @@ public class StreetTest {
 		assertEquals(IMonopolyUtil.NULL, street1.getNumberOfHotels());
 		street1.setNumberOfHotels(IMonopolyUtil.TEST_PRICE_TWO);
 		assertEquals(IMonopolyUtil.TEST_PRICE_TWO, street1.getNumberOfHotels());
+	}
+	
+	@Test
+	public void testIsSold() {
+		street1.setSold(true);
+		assertTrue(street1.isSold());
 	}
 
 }

@@ -1,4 +1,4 @@
-package de.htwg.monopoly.controller;
+package de.htwg.monopoly.controller.impl;
 
 import static org.junit.Assert.*;
 
@@ -41,6 +41,14 @@ public class PlayerControllerTest {
 		player1.setName("Jürgen");
 		player1 = players.getNextPlayer();
 		assertEquals("Peter", player1.getName());
+	}
+	
+	@Test
+	public void testCurrentPlayer() {
+		players = new PlayerController(1);
+		Player player1 = players.getNextPlayer();
+		player1.setName("Peter");
+		assertEquals("Peter", players.currentPlayer().getName());
 	}
 	
 

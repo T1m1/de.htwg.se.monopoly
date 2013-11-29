@@ -18,6 +18,10 @@ public class PlayerController {
 	//Idee: mit Stack arbeiten, dann braucht man auch keinen index, sondern der player wo "oben" liegt ist dran.
 	private int currentPlayer;
 
+	public Player currentPlayer() {
+		return players[currentPlayer];
+	}
+
 	/**
 	 * Constructor
 	 * 
