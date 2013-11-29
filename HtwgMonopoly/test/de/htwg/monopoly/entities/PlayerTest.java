@@ -1,7 +1,7 @@
 
 package de.htwg.monopoly.entities;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -76,6 +76,30 @@ public class PlayerTest {
 	public void testGetPosition() {
 		player1.setPosition(5);
 		assertEquals(5, player1.getPosition());
+	}
+	
+	@Test
+	public void testGetPrisonRound() {
+		player1.setPrisonRound(1);
+		assertEquals(1, player1.getPrisonRound());
+	}
+	
+	@Test
+	public void testIncrementPrisonRound() {
+		player1.setPrisonRound(3);
+		player1.incrementPrisonRound();
+		assertEquals(0, player1.getPrisonRound());
+		assertFalse(player1.isInPrison());
+		player1.setPrisonRound(2);
+		player1.incrementPrisonRound();
+		assertTrue(player1.isInPrison());
+		
+	}
+	@Test
+	
+	public void testIsInPrison() {
+		player1.setInPrison(true);
+		assertTrue(player1.isInPrison());
 	}
 
 }

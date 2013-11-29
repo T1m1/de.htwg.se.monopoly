@@ -20,7 +20,7 @@ public class Controller {
 			Dice.throwDice();
 			field.movePlayer(currentplayer, (Dice.dice1 + Dice.dice2));
 		}
-		notifyObserver();
+		//notifyObserver();
 	}
 
 	public void rollDice() {

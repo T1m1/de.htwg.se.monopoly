@@ -12,8 +12,8 @@ public class Player {
 	private int budget;
 	// ownership ?
 	private int position;
-	private int prisonRound;
-	private boolean inPrison;
+	private int prisonRound = 0;
+	private boolean inPrison = false;
 
 	/**
 	 * default player constructor
