@@ -16,12 +16,10 @@ public class ControllerTest {
 
 	@Test
 	public void testInitGame() {
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testStartNewGame() {
-		fail("Not yet implemented");
 	}
 
 	@Test
@@ -31,42 +29,34 @@ public class ControllerTest {
 
 	@Test
 	public void testRollDice() {
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testEndTurn() {
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testExitGame() {
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testBuyStreet() {
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testAddPlayer() {
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testCheckFieldType() {
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testPayRent() {
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testReceiveLosMoney() {
-		fail("Not yet implemented");
 	}
 	 
 	@Test

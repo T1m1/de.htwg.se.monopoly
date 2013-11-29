@@ -10,7 +10,7 @@ import de.htwg.monopoly.util.IMonopolyUtil;
  * @author RuprechtT
  * 
  */
-public class Street {
+public class Street implements IFieldObject{
 	/* street attributes */
 	private String name;
 	private int priceForStreet;
@@ -19,6 +19,7 @@ public class Street {
 	private int pricePerHotel;
 	private int numberOfHotels;
 	private boolean sold = false;
+	private Player owner = null;
 
 	/***
 	 * Constructor
@@ -178,4 +179,17 @@ public class Street {
 		this.sold = sold;
 	}
 
+	@Override
+	public Object getType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Player getOwner() {
+		return this.owner;
+	}
+	
+	public void setOwner(Player newOwner) {
+		this.owner = newOwner;
+	}
 }

@@ -6,6 +6,10 @@ public class Playfield {
 	
 	private IFieldObject[] playfield;
 	
+	public Playfield() {
+		initialize();
+	}
+	
 	public void initialize() {
 		//initialize the playfield. set the size, fill it with streets and card stacks etc.
 		//TODO actual initializing, dabei muss evtl beachtet werden, dass es alles irgendwie variabel sein sollte. Stichwort: skalierbarkeit
