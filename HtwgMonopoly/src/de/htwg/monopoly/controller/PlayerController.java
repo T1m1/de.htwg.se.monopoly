@@ -10,12 +10,11 @@ import de.htwg.monopoly.util.IMonopolyUtil;
  * 
  */
 public class PlayerController {
-
 	/* array with player objects */
 	private Player[] players;
 	/* number of player in game */
 	private int numberOfPlayer;
-	/* index of current player */
+	/* index of current player */ //Idee: mit Stack arbeiten, dann braucht man auch keinen index, sondern der player wo "oben" liegt ist dran.
 	private int currentPlayer;
 
 	/**
@@ -24,6 +23,7 @@ public class PlayerController {
 	 * @param numberOfPlayer
 	 */
 	public PlayerController(int numberOfPlayer) {
+		
 		/* create array with commited number of players */
 		this.players = new Player[numberOfPlayer];
 		this.numberOfPlayer = numberOfPlayer;
@@ -52,7 +52,9 @@ public class PlayerController {
 	 * @return player
 	 */
 	public Player getNextPlayer() {
-		currentPlayer++; //wie wäre es mit modulo?
+		
+		currentPlayer++; 
+		//wie wäre es mit modulo?
 		/* set to first player, if all player on turn */
 		if (currentPlayer >= numberOfPlayer) {
 			currentPlayer = IMonopolyUtil.FIRST_PLAYER;
@@ -60,5 +62,7 @@ public class PlayerController {
 		/* return current player object */
 		return players[currentPlayer];
 	}
+	
+	
 
 }

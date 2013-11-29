@@ -12,6 +12,8 @@ public class Player {
 	private int budget;
 	// ownership ?
 	private int position;
+	private int prisonRound;
+	private boolean inPrison;
 
 	/**
 	 * default player constructor
@@ -106,9 +108,9 @@ public class Player {
 		this.budget = budget;
 	}
 
-	/* ??????????????????????????? -> Controler? */
+	/* ??????????????????????????? -> Controller? */
 	/**
-	 * get current positin of player
+	 * get current position of player
 	 * 
 	 * @return
 	 */
@@ -117,12 +119,64 @@ public class Player {
 	}
 
 	/**
-	 * set postion
+	 * set position
 	 * 
 	 * @param position
 	 */
 	public void setPosition(int position) {
 		this.position = position;
+	}
+
+	/**
+	 * get the current number of rounds in prison of this player. If the
+	 * returning number is 0, the current player is not in prison.
+	 * 
+	 * @return integer;
+	 */
+	public int getPrisonRound() {
+		return prisonRound;
+	}
+
+	/**
+	 * Increment the prisonRound Number. If three is incremented, the value is
+	 * set to 0 and the inPrison status is set to false. 0 means the Player is
+	 * not in prison. 1-3 means the Player is in prison and number indicate the
+	 * round.
+	 * 
+	 * @param prisonRound
+	 */
+	public void incrementPrisonRound() {
+		this.prisonRound = (prisonRound + 1) % 4;
+		this.inPrison = (prisonRound != 0);
+	}
+
+	/**
+	 * Set the Number of Rounds in prison of this player; 0 means the Player is
+	 * not in prison. 1-3 means the Player is in prison and number indicate the
+	 * round
+	 * 
+	 * @param roundNumber
+	 */
+	public void setPrisonRound(int roundNumber) {
+		this.prisonRound = roundNumber;
+	}
+
+	/**
+	 * If the Player is in prison this method returns true, otherwise false.
+	 * 
+	 * @return
+	 */
+	public boolean isInPrison() {
+		return inPrison;
+	}
+
+	/**
+	 * Put the Player in prison if true.
+	 * 
+	 * @param inPrison
+	 */
+	public void setInPrison(boolean inPrison) {
+		this.inPrison = inPrison;
 	}
 
 }

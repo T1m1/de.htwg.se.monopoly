@@ -14,12 +14,23 @@ public class DiceTest {
 		dice = new Dice();
 	}
 
+	/**
+	 * only needed if the getDice method is public and not private
+	 */
+//	@Test
+//	public void testGetDice() {
+//		dice.setDice(1, 1);
+//		assertEquals(1, dice.setDice(1,1));
+//		dice.setDice(6, 6);
+//		assertEquals(6, dice.setDice(6,6));
+//	}
+	
 	@Test
-	public void testGetDice() {
-		dice.setDice(1, 1);
-		assertEquals(1, dice.throwDice());
-		dice.setDice(6, 6);
-		assertEquals(6, dice.throwDice());
+	public void testThrowDice() {
+		Dice.throwDice();
+		assertTrue(Dice.dice1<=6);
+		assertFalse(Dice.dice1>6);
+		
 	}
 
 }
