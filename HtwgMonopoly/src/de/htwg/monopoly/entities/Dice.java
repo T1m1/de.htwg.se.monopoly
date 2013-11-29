@@ -4,13 +4,10 @@ import de.htwg.monopoly.util.IMonopolyUtil;
 
 public final class Dice {
 	
+	protected Dice() { }
+	
 	public static int dice1 = 0;
 	public static int dice2 = 0;
-
-	/**
-	 *  calls the setDice method with 1 (lowerbound) and 6 (upperbound)
-	 */
-	public Dice() {	}
 	
 	/**
 	 * for now, this method only returns a new value, when the method setDice is called before. Going to fix that

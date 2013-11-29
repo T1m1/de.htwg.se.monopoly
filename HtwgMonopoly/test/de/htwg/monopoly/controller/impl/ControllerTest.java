@@ -57,6 +57,7 @@ public class ControllerTest {
 
 	@Test
 	public void testReceiveLosMoney() {
+		
 	}
 	 
 	@Test

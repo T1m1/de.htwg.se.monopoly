@@ -11,7 +11,7 @@ public class DiceTest {
 
 	@Before
 	public void setUp() throws Exception {
-		dice = new Dice();
+		
 	}
 
 	/**
