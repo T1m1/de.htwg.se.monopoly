@@ -14,6 +14,7 @@ public interface IMonopolyUtil {
 	int DICE = 6;
 	int FIRST_PLAYER = 0;
 	int INITIAL_MONEY = 600;
+	int MAX_PRISON_ROUND = 4;
 	
 	/***
 	 * Magic number for Tests

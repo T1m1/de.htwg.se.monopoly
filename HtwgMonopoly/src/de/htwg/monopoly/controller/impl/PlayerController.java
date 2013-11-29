@@ -1,4 +1,4 @@
-package de.htwg.monopoly.controller;
+package de.htwg.monopoly.controller.impl;
 
 import de.htwg.monopoly.entities.Player;
 import de.htwg.monopoly.util.IMonopolyUtil;
@@ -14,7 +14,8 @@ public class PlayerController {
 	private Player[] players;
 	/* number of player in game */
 	private int numberOfPlayer;
-	/* index of current player */ //Idee: mit Stack arbeiten, dann braucht man auch keinen index, sondern der player wo "oben" liegt ist dran.
+	/* index of current player */ 
+	//Idee: mit Stack arbeiten, dann braucht man auch keinen index, sondern der player wo "oben" liegt ist dran.
 	private int currentPlayer;
 
 	/**

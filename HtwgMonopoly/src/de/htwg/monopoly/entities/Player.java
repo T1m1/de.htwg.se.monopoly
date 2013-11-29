@@ -146,7 +146,7 @@ public class Player {
 	 * @param prisonRound
 	 */
 	public void incrementPrisonRound() {
-		this.prisonRound = (prisonRound + 1) % 4;
+		this.prisonRound = (prisonRound + 1) % IMonopolyUtil.MAX_PRISON_ROUND;
 		this.inPrison = (prisonRound != 0);
 	}
 

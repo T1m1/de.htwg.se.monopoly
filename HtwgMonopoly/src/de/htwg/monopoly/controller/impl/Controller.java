@@ -1,12 +1,13 @@
-package de.htwg.monopoly.controller;
+package de.htwg.monopoly.controller.impl;
 
+import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.entities.Dice;
 import de.htwg.monopoly.entities.Player;
 import de.htwg.monopoly.entities.Playfield;
 
-public class Controller {
-	PlayerController players;
-	Playfield field;
+public class Controller implements IController{
+	private PlayerController players;
+	private Playfield field;
 
 	public void startNewGame() {
 
