@@ -57,12 +57,12 @@ public class Controller implements IController {
 	}
 
 	@Override
-	public void addPlayer(String Name) {
+	public void addPlayer(String name) {
 		// Frage: wird wirklich jeder player erreicht, oder etwa der erste
 		// übersprungen?
-		Player currentPlayer = players.getNextPlayer();
-		currentPlayer.setName(Name);
-		currentPlayer.setBudget(IMonopolyUtil.INITIAL_MONEY);
+		Player player = players.getNextPlayer();
+		player.setName(name);
+		player.setBudget(IMonopolyUtil.INITIAL_MONEY);
 		// TODO Character checking
 		// notifyObserver
 	}

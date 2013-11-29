@@ -1,6 +1,6 @@
 package de.htwg.monopoly.entities;
 
-public class Bank {
+public final class Bank {
 
 	/**
 	 * The current Player pays the rent of the current Street to its owner. Note

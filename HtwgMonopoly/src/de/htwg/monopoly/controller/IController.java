@@ -21,7 +21,7 @@ public interface IController {
 	
 	void initGame(int numberOfPlayer);
 	
-	void addPlayer(String Name);
+	void addPlayer(String name);
 
 	void endTurn();
 
