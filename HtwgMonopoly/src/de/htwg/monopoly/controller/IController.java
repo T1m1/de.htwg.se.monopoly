@@ -35,15 +35,18 @@ public interface IController {
 	 * end the turn of the current Player.
 	 */
 	void endTurn();
-	
+
 	/**
-	 * the current player buys the street, where he is standing on.
-	 * @return true if the purchase was successful and false if the current player has not enough money
+	 * the current player buys the street, where he is standing on. (This method
+	 * checks not if the player is really standing on a street)
+	 * 
+	 * @return true if the purchase was successful and false if the current
+	 *         player has not enough money
 	 */
 	boolean buyStreet();
 
 	void checkFieldType();
-	
+
 	/**
 	 * exit the game.
 	 */
