@@ -30,6 +30,10 @@ public class DiceTest {
 		Dice.throwDice();
 		assertTrue(Dice.dice1<=6);
 		assertFalse(Dice.dice1>6);
+		assertFalse(Dice.dice2>6);
+		assertTrue(Dice.dice2<=6);
+		assertTrue(Dice.dice1>0);
+		assertFalse(Dice.dice1<=0);
 		
 	}
 

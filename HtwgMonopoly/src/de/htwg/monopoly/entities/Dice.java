@@ -4,7 +4,7 @@ import de.htwg.monopoly.util.IMonopolyUtil;
 
 public final class Dice {
 	
-	protected Dice() { }
+	private Dice() { }
 	
 	public static int dice1 = 0;
 	public static int dice2 = 0;

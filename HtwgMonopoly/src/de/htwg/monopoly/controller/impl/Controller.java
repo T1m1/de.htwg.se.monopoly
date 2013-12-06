@@ -5,6 +5,7 @@ import de.htwg.monopoly.entities.Bank;
 import de.htwg.monopoly.entities.Dice;
 import de.htwg.monopoly.entities.Player;
 import de.htwg.monopoly.entities.Playfield;
+import de.htwg.monopoly.entities.Street;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
 public class Controller implements IController {
@@ -52,7 +53,14 @@ public class Controller implements IController {
 	}
 
 	@Override
-	public void buyStreet() {
+	public boolean buyStreet() {
+		Street currentStreet = (Street) field.getCurrentField(currentPlayer);
+		if (currentStreet.getPriceForStreet() < currentPlayer.getBudget()) {
+			currentPlayer.setBudget(currentPlayer.getBudget() - currentStreet.getPriceForStreet());
+			currentStreet.setOwner(currentPlayer);
+			return true;
+		}
+		return false;
 
 	}
 
@@ -87,7 +95,7 @@ public class Controller implements IController {
 	}
 
 	@Override
-	public void receiveLosMoney() {
+	public void receiveGoMoney() {
 		Bank.receiveMoney(currentPlayer, IMonopolyUtil.LOS_MONEY);
 		//notifyObserver
 	}
