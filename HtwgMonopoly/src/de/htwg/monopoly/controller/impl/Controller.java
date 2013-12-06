@@ -13,6 +13,16 @@ public class Controller implements IController {
 	private Playfield field;
 	private Player currentPlayer;
 
+	public Controller() {
+		this(0);
+	}
+
+	public Controller(int numberOfPlayer) {
+		/* TODO anzahl spieler initialisieren */
+		players = new PlayerController(numberOfPlayer);
+		field = new Playfield();
+	}
+
 	@Override
 	public void initGame(int numberOfPlayer) {
 		players = new PlayerController(numberOfPlayer);
@@ -90,14 +100,14 @@ public class Controller implements IController {
 	@Override
 	public void payRent() {
 		Bank.payRent(currentPlayer, field.getCurrentField(currentPlayer));
-		//notifyObserver
+		// notifyObserver
 
 	}
 
 	@Override
 	public void receiveGoMoney() {
 		Bank.receiveMoney(currentPlayer, IMonopolyUtil.LOS_MONEY);
-		//notifyObserver
+		// notifyObserver
 	}
 
 	public PlayerController getPlayers() {
