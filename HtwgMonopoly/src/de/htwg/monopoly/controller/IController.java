@@ -28,6 +28,7 @@ public interface IController {
 	 * 
 	 * @param name
 	 *            of the player
+	 * 
 	 */
 	void addPlayer(String name);
 

@@ -118,4 +118,7 @@ public class Controller implements IController {
 		return field;
 	}
 
+	public Player getCurrentPlayer() {
+		return currentPlayer;
+	}
 }

@@ -11,7 +11,7 @@ public class Player {
 	private char figure;
 	private int budget;
 	// ownership ?
-	private int position;
+	private int position = 0;
 	private int prisonRound = 0;
 	private boolean inPrison = false;
 

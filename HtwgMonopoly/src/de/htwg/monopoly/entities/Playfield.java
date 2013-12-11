@@ -1,5 +1,7 @@
 package de.htwg.monopoly.entities;
 
+import java.awt.Color;
+
 import de.htwg.monopoly.util.IMonopolyUtil;
 
 public class Playfield {
@@ -14,6 +16,7 @@ public class Playfield {
 		//initialize the playfield. set the size, fill it with streets and card stacks etc.
 		//TODO actual initializing, dabei muss evtl beachtet werden, dass es alles irgendwie variabel sein sollte. Stichwort: skalierbarkeit
 		this.playfield = new IFieldObject[IMonopolyUtil.TEST_PLAYFIELD_SIZE];
+		playfield[1] = new Street("Test", IMonopolyUtil.TEST_PRICE_ONE, Color.black, IMonopolyUtil.TEST_PRICE_ONE, IMonopolyUtil.TEST_PRICE_ONE, IMonopolyUtil.TEST_PRICE_ONE);
 		
 	}
 	
