@@ -27,25 +27,22 @@ public class PlayerController {
 	 * 
 	 * @param numberOfPlayer
 	 */
-	public PlayerController(int numberOfPlayer) {
-
-		/* create array with commited number of players */
-		this.players = new Player[numberOfPlayer];
-		this.numberOfPlayer = numberOfPlayer;
+	public PlayerController() {
+		in = new Scanner(System.in);
+		
+	}
+	
+	/**
+	 * initialize player array with this.numberOfPlayer
+	 */
+	private void init() {
+		/* create array with number from method readNumberOfPlayer() */
+		this.players = new Player[this.numberOfPlayer];
 		/*
 		 * set current player to the last index, that function getNextPlayer
 		 * return the first player by initial call
 		 */
-		this.currentPlayer = numberOfPlayer;
-		in = new Scanner(System.in);
-		/* function to init players */
-		init();
-	}
-
-	/**
-	 * initialize player array
-	 */
-	private void init() {
+		this.currentPlayer = this.numberOfPlayer;
 		/* loop to create player objects with default values */
 		for (int i = 0; i < numberOfPlayer; i++) {
 			players[i] = new Player();
@@ -95,6 +92,7 @@ public class PlayerController {
 
 		/* if scanned number correct, save it */
 		this.numberOfPlayer = numberOfPlayer;
+		init();
 		return true;
 	}
 

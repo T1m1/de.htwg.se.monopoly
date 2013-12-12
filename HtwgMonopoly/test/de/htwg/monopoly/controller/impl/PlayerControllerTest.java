@@ -13,12 +13,12 @@ public class PlayerControllerTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		players = new PlayerController(3);
+		players = new PlayerController();
 	}
 
 	@Test
 	public void testPlayerController() {
-		PlayerController playersController = new PlayerController(3);
+		PlayerController playersController = new PlayerController();
 		Player player1 = playersController.getNextPlayer();
 		player1.setName("Peter");
 		assertEquals("Peter", player1.getName());
@@ -26,7 +26,7 @@ public class PlayerControllerTest {
 
 	@Test
 	public void testGetNextPlayer() {
-		players = new PlayerController(4);
+		players = new PlayerController();
 		Player player1 = players.getNextPlayer();
 		player1.setName("Peter");
 		assertEquals("Peter", player1.getName());
@@ -34,7 +34,7 @@ public class PlayerControllerTest {
 	
 	@Test
 	public void testGetNextPlayerSecondBranch() {
-		players = new PlayerController(2);
+		players = new PlayerController();
 		Player player1 = players.getNextPlayer();
 		player1.setName("Peter");
 		player1 = players.getNextPlayer();
@@ -45,7 +45,7 @@ public class PlayerControllerTest {
 	
 	@Test
 	public void testCurrentPlayer() {
-		players = new PlayerController(1);
+		players = new PlayerController();
 		Player player1 = players.getNextPlayer();
 		player1.setName("Peter");
 		assertEquals("Peter", players.currentPlayer().getName());

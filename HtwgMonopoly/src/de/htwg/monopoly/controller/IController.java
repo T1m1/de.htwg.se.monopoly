@@ -75,4 +75,9 @@ public interface IController extends IObservable {
 	 * @return
 	 */
 	PlayerController getPlayers();
+
+	boolean setNumberofPlayer();
+
+	boolean setNameofPlayer(int i);
+
 }

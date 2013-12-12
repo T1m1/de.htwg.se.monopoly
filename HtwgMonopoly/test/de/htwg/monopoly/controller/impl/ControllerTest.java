@@ -13,7 +13,6 @@ public class ControllerTest {
 	@Before
 	public void setUp() throws Exception {		
 		controller = new Controller();
-		controller = new Controller(2);
 		controller.initGame(2);
 		controller.startNewGame();
 	}

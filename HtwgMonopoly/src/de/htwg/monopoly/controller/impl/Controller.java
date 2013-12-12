@@ -15,20 +15,23 @@ public class Controller extends Observable implements IController {
 	private Player currentPlayer;
 
 	public Controller() {
-		this(0);
+		this.players = new PlayerController();
+		this.field = new Playfield();
 	}
-
-	public Controller(int numberOfPlayer) {
-		/* TODO anzahl spieler initialisieren */
-		players = new PlayerController(numberOfPlayer);
-		field = new Playfield();
-		notifyObservers();
+	
+	@Override
+	public boolean setNumberofPlayer() {
+		return players.readNumberOfPlayer();
 	}
-
+	
+	@Override
+	public boolean setNameofPlayer(int i) {
+		return players.readNameOfPlayer(i);
+	}
+	
 	@Override
 	public void initGame(int numberOfPlayer) {
-		players = new PlayerController(numberOfPlayer);
-		field = new Playfield();
+		//TODO initialize Gamefield. Streets etc.
 		notifyObservers();
 	}
 
@@ -123,4 +126,7 @@ public class Controller extends Observable implements IController {
 	public Player getCurrentPlayer() {
 		return currentPlayer;
 	}
+
+	
+
 }
