@@ -18,6 +18,7 @@ public class CommunityCardsStackTest {
 	@Test
 	public void testCommunityCardsStack() {
 		assertEquals("Gehe in das Gefängnis", stack.getNextCard().getDescription());
+		assertEquals('g', stack.getType());
 	}
 
 }

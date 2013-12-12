@@ -18,6 +18,7 @@ public class ChanceCardsStackTest {
 	@Test
 	public void testChanceCardsStack() {
 		assertEquals("Gehe in das Gefängnis", stack.getNextCard().getDescription());
+		assertEquals('e', stack.getType());
 	}
 
 }

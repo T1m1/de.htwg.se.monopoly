@@ -18,6 +18,7 @@ public interface IMonopolyUtil {
 	int INITIAL_MONEY = 600;
 	int MAX_PRISON_ROUND = 4;
 	int LOS_MONEY = 2000;
+	int FIELD_SIZE = 40;
 	
 	/***
 	 * Magic number for Tests
@@ -25,7 +26,7 @@ public interface IMonopolyUtil {
 	int TEST_PRICE_ONE = 250;
 	int TEST_PRICE_TWO = 230;
 	int TEST_PRICE_THREE = 50;
-	int TEST_PLAYFIELD_SIZE = 20;
+	int TEST_PLAYFIELD_SIZE = 2;
 
 	/* Strings */
 	String gameName = "HTWG Monopoly";

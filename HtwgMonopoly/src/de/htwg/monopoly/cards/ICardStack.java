@@ -1,5 +1,6 @@
 package de.htwg.monopoly.cards;
 
+
 public interface ICardStack {
 	
 	/**

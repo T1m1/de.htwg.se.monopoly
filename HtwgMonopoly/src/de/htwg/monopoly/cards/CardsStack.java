@@ -4,7 +4,9 @@ import java.util.Collections;
 import java.util.Deque;
 import java.util.LinkedList;
 
-public abstract class CardsStack implements ICardStack {
+import de.htwg.monopoly.entities.IFieldObject;
+
+public abstract class CardsStack implements ICardStack, IFieldObject  {
 
 	private Deque<ICards> cards = new LinkedList<ICards>();
 

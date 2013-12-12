@@ -60,7 +60,7 @@ public class Player {
 	 * @return
 	 */
 	public String getName() {
-		return name;
+		return this.toString();
 	}
 
 	/**

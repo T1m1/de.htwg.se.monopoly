@@ -16,8 +16,8 @@ public class Street implements IFieldObject{
 	private int priceForStreet;
 	private Color color;
 	private int rent;
-	private int pricePerHotel;
-	private int numberOfHotels;
+	private int pricePerHotel; // was ist mit pricePerHouse?
+	private int numberOfHotels = 0;
 	private boolean sold = false;
 	private Player owner = null;
 
@@ -29,16 +29,14 @@ public class Street implements IFieldObject{
 	 * @param color
 	 * @param rent
 	 * @param pricePerHotel
-	 * @param numberOfHotels
 	 */
 	public Street(String name, int priceForStreet, Color color, int rent,
-			int pricePerHotel, int numberOfHotels) {
+			int pricePerHotel) {
 		this.name = name;
 		this.priceForStreet = priceForStreet;
 		this.color = color;
 		this.rent = rent;
 		this.pricePerHotel = pricePerHotel;
-		this.numberOfHotels = numberOfHotels;
 	}
 
 	/**
@@ -180,9 +178,9 @@ public class Street implements IFieldObject{
 	}
 
 	@Override
-	public Object getType() {
-		// TODO Auto-generated method stub
-		return null;
+	public char getType() {
+		// s wie Straﬂe.
+		return 's';
 	}
 
 	public Player getOwner() {

@@ -16,7 +16,7 @@ public class PlayfieldTest {
 	@Before
 	public void setUp() throws Exception {
 		field = new Playfield();
-		field.initialize();
+		field.initialize(1);
 		testplayer = new Player();
 		// initialize testObject;
 	}

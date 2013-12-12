@@ -25,7 +25,7 @@ public interface IController extends IObservable {
 	 * 
 	 * @param numberOfPlayer
 	 */
-	void initGame();
+	void initGame(int fieldSize);
 
 	/**
 	 * adds a Player to the game.

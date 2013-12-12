@@ -16,12 +16,15 @@ public class ControllerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		ByteArrayInputStream in = new ByteArrayInputStream(IMonopolyUtil.testInputStream.getBytes());
-		System.setIn(in);
+		ByteArrayInputStream testStream = new ByteArrayInputStream(IMonopolyUtil.testInputStream.getBytes());
+		System.setIn(testStream);
 		testController = new Controller();
-		testController.setNameofPlayer(2);
 		testController.setNumberofPlayer();
+		testController.setNameofPlayer(0);
+		testController.setNameofPlayer(1);
+		testController.initGame(IMonopolyUtil.TEST_PLAYFIELD_SIZE);
 		testController.startNewGame();
+		System.setIn(System.in);		
 	}
 
 	@Test

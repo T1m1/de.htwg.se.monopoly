@@ -6,7 +6,7 @@ public interface IFieldObject {
 	 * Return the type of this field. For example: Street, train station etc.
 	 * @return TODO: enum, string oder Object??
 	 */
-	Object getType();
+	char getType();
 	
 	
 

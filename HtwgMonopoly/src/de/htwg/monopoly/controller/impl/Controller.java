@@ -30,8 +30,9 @@ public class Controller extends Observable implements IController {
 	}
 	
 	@Override
-	public void initGame() {
+	public void initGame(int fieldSize) {
 		//TODO initialize Gamefield. Streets etc.
+		this.field.initialize(fieldSize);
 	}
 
 	@Override

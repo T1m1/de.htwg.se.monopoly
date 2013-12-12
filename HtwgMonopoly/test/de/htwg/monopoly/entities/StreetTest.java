@@ -30,7 +30,7 @@ public class StreetTest {
 	@Test
 	public void testStreetConstructorAll() {
 		Street street2 = new Street( "Bart", IMonopolyUtil.TEST_PRICE_ONE, Color.red, IMonopolyUtil.TEST_PRICE_TWO,
-				IMonopolyUtil.TEST_PRICE_THREE, IMonopolyUtil.NULL);
+				IMonopolyUtil.TEST_PRICE_THREE);
 		assertEquals("Bart", street2.getName());
 		assertEquals(IMonopolyUtil.TEST_PRICE_ONE, street2.getPriceForStreet());
 		assertEquals(Color.red, street2.getColor());
@@ -85,6 +85,7 @@ public class StreetTest {
 	public void testIsSold() {
 		street1.setSold(true);
 		assertTrue(street1.isSold());
+		assertEquals('s', street1.getType());
 	}
 
 }

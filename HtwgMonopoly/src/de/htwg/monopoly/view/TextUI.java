@@ -16,7 +16,7 @@ public class TextUI implements IObserver {
 	public void startGame() {
 		printInitialisation();
 		logger.info(IMonopolyUtil.start);
-		controller.initGame();
+		controller.initGame(IMonopolyUtil.FIELD_SIZE);
 		controller.startNewGame();
 	}
 
