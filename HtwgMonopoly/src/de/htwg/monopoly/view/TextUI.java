@@ -2,25 +2,35 @@ package de.htwg.monopoly.view;
 
 import java.util.logging.Logger;
 
+import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.controller.impl.Controller;
+import de.htwg.monopoly.observer.Event;
+import de.htwg.monopoly.observer.IObserver;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
-public class TextUI {
+public class TextUI implements IObserver {
+	
 	private Logger logger = Logger.getLogger("de.htwg.monopoly.view.tui");
 
-	Controller controller;
-
-	public TextUI() {
-		controller = new Controller();
+	private IController controller;
+	
+	public TextUI(IController controller) {
+		this.controller = controller;
+		controller.addObserver(this);
 		printInitialisation();
 		logger.info(IMonopolyUtil.start);
 		controller.startNewGame();
 	}
+	
+	@Override
+	public void update(Event e) {
+		printTUI();		
+	}	
 
 	public void printInitialisation() {
 		logger.info(IMonopolyUtil.gameName);
 		readNumberOfPlayer();
-		controller = new Controller(controller.getPlayers().getNumberOfPlayer());
+		controller = new Controller(controller.getPlayers().getNumberOfPlayer()); // geht nicht, da es immer das gleiche controller object für gui und tui sein muss. Deshalb kann man nciht auf halber strecke ein neuen controller erstellen
 		readNameOfPlayer();
 	}
 
@@ -43,6 +53,11 @@ public class TextUI {
 				continue;
 			}
 		}
+	}
+
+	private void printTUI() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

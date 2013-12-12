@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import de.htwg.monopoly.entities.Street;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
 public class ControllerTest {
@@ -56,6 +54,8 @@ public class ControllerTest {
 
 	@Test
 	public void testCheckFieldType() {
+		controller.checkFieldType();
+		
 	}
 
 	@Test
@@ -65,6 +65,8 @@ public class ControllerTest {
 		controller.startTurn();
 		controller.getPlayers().currentPlayer().setPosition(1);
 		controller.payRent();
+		controller.getField();
+		
 	}
 
 	@Test

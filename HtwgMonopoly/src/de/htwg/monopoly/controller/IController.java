@@ -1,6 +1,9 @@
 package de.htwg.monopoly.controller;
 
-public interface IController {
+import de.htwg.monopoly.controller.impl.PlayerController;
+import de.htwg.monopoly.observer.IObservable;
+
+public interface IController extends IObservable {
 
 	/**
 	 * start the actual Gameplay
@@ -64,4 +67,12 @@ public interface IController {
 	 * pass the GO field
 	 */
 	void receiveGoMoney();
+
+	/**
+	 * Return a Object which control all the players
+	 * 
+	 * 
+	 * @return
+	 */
+	PlayerController getPlayers();
 }

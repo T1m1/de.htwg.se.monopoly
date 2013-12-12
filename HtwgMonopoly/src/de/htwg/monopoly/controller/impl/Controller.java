@@ -6,9 +6,10 @@ import de.htwg.monopoly.entities.Dice;
 import de.htwg.monopoly.entities.Player;
 import de.htwg.monopoly.entities.Playfield;
 import de.htwg.monopoly.entities.Street;
+import de.htwg.monopoly.observer.impl.Observable;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
-public class Controller implements IController {
+public class Controller extends Observable implements IController {
 	private PlayerController players;
 	private Playfield field;
 	private Player currentPlayer;
@@ -21,13 +22,14 @@ public class Controller implements IController {
 		/* TODO anzahl spieler initialisieren */
 		players = new PlayerController(numberOfPlayer);
 		field = new Playfield();
+		notifyObservers();
 	}
 
 	@Override
 	public void initGame(int numberOfPlayer) {
 		players = new PlayerController(numberOfPlayer);
 		field = new Playfield();
-		// notifyObserver
+		notifyObservers();
 	}
 
 	@Override
@@ -44,7 +46,7 @@ public class Controller implements IController {
 			Dice.throwDice();
 			field.movePlayer(currentPlayer, (Dice.dice1 + Dice.dice2));
 		}
-		// notifyObserver
+		notifyObservers();
 	}
 
 	@Override
@@ -87,7 +89,7 @@ public class Controller implements IController {
 
 	@Override
 	public void checkFieldType() {
-		field.getCurrentField(null);
+		field.getCurrentField(currentPlayer);
 		// pseudo
 		/*
 		 * switsch fieldobject case street case ereignis case gemeinschaft case
@@ -100,14 +102,14 @@ public class Controller implements IController {
 	@Override
 	public void payRent() {
 		Bank.payRent(currentPlayer, field.getCurrentField(currentPlayer));
-		// notifyObserver
+		notifyObservers();
 
 	}
 
 	@Override
 	public void receiveGoMoney() {
 		Bank.receiveMoney(currentPlayer, IMonopolyUtil.LOS_MONEY);
-		// notifyObserver
+		notifyObservers();
 	}
 
 	public PlayerController getPlayers() {
