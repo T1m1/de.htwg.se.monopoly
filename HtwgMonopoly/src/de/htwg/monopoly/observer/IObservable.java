@@ -14,14 +14,14 @@ public interface IObservable {
 	 * 
 	 * @param s
 	 */
-	void removeOberserver(IObserver s);
+	void removeObserver(IObserver s);
 
 	/**
 	 * clear the list with all Observer in it.
 	 * 
 	 * 
 	 */
-	void removeAllObserver();
+	void removeAllObservers();
 
 	/**
 	 * calls the method notifyObservers(Event e) with argument null

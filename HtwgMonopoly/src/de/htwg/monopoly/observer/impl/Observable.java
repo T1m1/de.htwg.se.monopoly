@@ -17,12 +17,12 @@ public class Observable implements IObservable {
 	}
 
 	@Override
-	public void removeOberserver(IObserver s) {
+	public void removeObserver(IObserver s) {
 		obsList.remove(s);
 	}
 
 	@Override
-	public void removeAllObserver() {
+	public void removeAllObservers() {
 		obsList.clear();
 	}
 

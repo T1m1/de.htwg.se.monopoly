@@ -14,12 +14,16 @@ public class TextUI implements IObserver {
 
 	private IController controller;
 	
-	public TextUI(IController controller) {
-		this.controller = controller;
-		controller.addObserver(this);
+	public void startGame() {
 		printInitialisation();
 		logger.info(IMonopolyUtil.start);
 		controller.startNewGame();
+	}
+	
+	
+	public TextUI(IController controller) {
+		this.controller = controller;
+		controller.addObserver(this);
 	}
 	
 	@Override
@@ -56,7 +60,8 @@ public class TextUI implements IObserver {
 	}
 
 	private void printTUI() {
-		// TODO Auto-generated method stub
+
+		System.out.println("NOTIFYYYYYY!!!!");
 		
 	}
 
