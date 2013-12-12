@@ -3,6 +3,7 @@ package de.htwg.monopoly.view;
 import java.util.logging.Logger;
 
 import de.htwg.monopoly.controller.IController;
+import de.htwg.monopoly.entities.Dice;
 import de.htwg.monopoly.observer.Event;
 import de.htwg.monopoly.observer.IObserver;
 import de.htwg.monopoly.util.IMonopolyUtil;
@@ -16,7 +17,8 @@ public class TextUI implements IObserver {
 	public void startGame() {
 		printInitialisation();
 		logger.info(IMonopolyUtil.start);
-		controller.initGame(IMonopolyUtil.FIELD_SIZE);
+		controller.initGame(2);
+		// print feld? abfragen wer startet? ansonsten gehts los.
 		controller.startNewGame();
 	}
 
@@ -55,8 +57,10 @@ public class TextUI implements IObserver {
 	}
 
 	private void printTUI() {
-
-		System.out.println("NOTIFYYYYYY!!!!");
+		System.out.println("<Ich repräsentiere das Feld>");
+		System.out.printf("%s hat %d gewürfelt und steht nun auf Feld %d\n", controller.getCurrentPlayer(), Dice.dice1+Dice.dice2, controller.getCurrentPlayer().getPosition());
+		System.out.println("Deswegen musst du jetz dieses oder jenes machen....");
+		System.out.printf("nachdem du jetzt fertig bist, willste noch was machen? \n");
 		
 	}
 	

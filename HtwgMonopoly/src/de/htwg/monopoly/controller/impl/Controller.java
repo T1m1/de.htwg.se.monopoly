@@ -31,7 +31,6 @@ public class Controller extends Observable implements IController {
 	
 	@Override
 	public void initGame(int fieldSize) {
-		//TODO initialize Gamefield. Streets etc.
 		this.field.initialize(fieldSize);
 	}
 
@@ -47,7 +46,7 @@ public class Controller extends Observable implements IController {
 			currentPlayer.incrementPrisonRound();
 		} else {
 			Dice.throwDice();
-			field.movePlayer(currentPlayer, (1));
+			field.movePlayer(currentPlayer, (Dice.dice1 + Dice.dice2));
 		}
 		notifyObservers();
 	}
@@ -77,17 +76,6 @@ public class Controller extends Observable implements IController {
 		}
 		return false;
 
-	}
-
-	@Override
-	public void addPlayer(String name) {
-		// Frage: wird wirklich jeder player erreicht, oder etwa der erste
-		// übersprungen?
-		Player player = players.getNextPlayer();
-		player.setName(name);
-		player.setBudget(IMonopolyUtil.INITIAL_MONEY);
-		// TODO Character checking
-		// notifyObserver
 	}
 
 	@Override
