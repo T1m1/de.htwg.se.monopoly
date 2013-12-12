@@ -42,7 +42,7 @@ public class PlayerController {
 		 * set current player to the last index, that function getNextPlayer
 		 * return the first player by initial call
 		 */
-		this.currentPlayer = this.numberOfPlayer;
+		this.currentPlayer = this.numberOfPlayer-1;
 		/* loop to create player objects with default values */
 		for (int i = 0; i < numberOfPlayer; i++) {
 			players[i] = new Player();

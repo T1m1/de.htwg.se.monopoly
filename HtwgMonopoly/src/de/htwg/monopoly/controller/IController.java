@@ -1,6 +1,7 @@
 package de.htwg.monopoly.controller;
 
 import de.htwg.monopoly.controller.impl.PlayerController;
+import de.htwg.monopoly.entities.Player;
 import de.htwg.monopoly.observer.IObservable;
 
 public interface IController extends IObservable {
@@ -24,7 +25,7 @@ public interface IController extends IObservable {
 	 * 
 	 * @param numberOfPlayer
 	 */
-	void initGame(int numberOfPlayer);
+	void initGame();
 
 	/**
 	 * adds a Player to the game.
@@ -79,5 +80,7 @@ public interface IController extends IObservable {
 	boolean setNumberofPlayer();
 
 	boolean setNameofPlayer(int i);
+
+	Player getCurrentPlayer();
 
 }

@@ -30,9 +30,8 @@ public class Controller extends Observable implements IController {
 	}
 	
 	@Override
-	public void initGame(int numberOfPlayer) {
+	public void initGame() {
 		//TODO initialize Gamefield. Streets etc.
-		notifyObservers();
 	}
 
 	@Override
@@ -47,7 +46,7 @@ public class Controller extends Observable implements IController {
 			currentPlayer.incrementPrisonRound();
 		} else {
 			Dice.throwDice();
-			field.movePlayer(currentPlayer, (Dice.dice1 + Dice.dice2));
+			field.movePlayer(currentPlayer, (1));
 		}
 		notifyObservers();
 	}

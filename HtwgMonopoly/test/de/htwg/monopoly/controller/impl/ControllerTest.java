@@ -2,29 +2,36 @@ package de.htwg.monopoly.controller.impl;
 
 import static org.junit.Assert.*;
 
+import java.io.ByteArrayInputStream;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import de.htwg.monopoly.util.IMonopolyUtil;
 
 public class ControllerTest {
 	
-	Controller controller;
+	private Controller testController;
+	
 
 	@Before
-	public void setUp() throws Exception {		
-		controller = new Controller();
-		controller.initGame(2);
-		controller.startNewGame();
+	public void setUp() throws Exception {
+		ByteArrayInputStream in = new ByteArrayInputStream(IMonopolyUtil.testInputStream.getBytes());
+		System.setIn(in);
+		testController = new Controller();
+		testController.setNameofPlayer(2);
+		testController.setNumberofPlayer();
+		testController.startNewGame();
 	}
 
 	@Test
 	public void testStartTurn() {
-		controller.getCurrentPlayer().setInPrison(true);
-		controller.startTurn();
-		assertTrue(!controller.getCurrentPlayer().isInPrison());
-		assertTrue(controller.getCurrentPlayer().getPosition() != 0);
-		controller.startTurn();
-		assertTrue(controller.getCurrentPlayer().isInPrison());
+		testController.getCurrentPlayer().setInPrison(true);
+		testController.startTurn();
+		assertTrue(!testController.getCurrentPlayer().isInPrison());
+		assertTrue(testController.getCurrentPlayer().getPosition() != 0);
+		testController.startTurn();
+		assertTrue(testController.getCurrentPlayer().isInPrison());
 	}
 
 	@Test
@@ -41,10 +48,10 @@ public class ControllerTest {
 
 	@Test
 	public void testBuyStreet() {
-		controller.getCurrentPlayer().setPosition(1);
-		assertTrue(controller.buyStreet());
-		controller.getCurrentPlayer().setBudget(0);
-		assertFalse(controller.buyStreet());
+		testController.getCurrentPlayer().setPosition(1);
+		assertTrue(testController.buyStreet());
+		testController.getCurrentPlayer().setBudget(0);
+		assertFalse(testController.buyStreet());
 	}
 
 	@Test
@@ -53,25 +60,25 @@ public class ControllerTest {
 
 	@Test
 	public void testCheckFieldType() {
-		controller.checkFieldType();
+		testController.checkFieldType();
 		
 	}
 
 	@Test
 	public void testPayRent() {
-		controller.getPlayers().currentPlayer().setPosition(1);
-		controller.buyStreet();
-		controller.startTurn();
-		controller.getPlayers().currentPlayer().setPosition(1);
-		controller.payRent();
-		controller.getField();
+		testController.getPlayers().currentPlayer().setPosition(1);
+		testController.buyStreet();
+		testController.startTurn();
+		testController.getPlayers().currentPlayer().setPosition(1);
+		testController.payRent();
+		testController.getField();
 		
 	}
 
 	@Test
 	public void testReceiveLosMoney() {
-		controller.receiveGoMoney();
-		assertEquals(IMonopolyUtil.LOS_MONEY+IMonopolyUtil.INITIAL_MONEY, controller.getCurrentPlayer().getBudget());
+		testController.receiveGoMoney();
+		assertEquals(IMonopolyUtil.LOS_MONEY+IMonopolyUtil.INITIAL_MONEY, testController.getCurrentPlayer().getBudget());
 	}
 	 
 	@Test

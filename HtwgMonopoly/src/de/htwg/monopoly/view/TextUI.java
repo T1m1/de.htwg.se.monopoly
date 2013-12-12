@@ -16,6 +16,7 @@ public class TextUI implements IObserver {
 	public void startGame() {
 		printInitialisation();
 		logger.info(IMonopolyUtil.start);
+		controller.initGame();
 		controller.startNewGame();
 	}
 
@@ -27,7 +28,7 @@ public class TextUI implements IObserver {
 	
 	@Override
 	public void update(Event e) {
-		printTUI();		
+		printTUI();
 	}
 	
 	public void printInitialisation() {
