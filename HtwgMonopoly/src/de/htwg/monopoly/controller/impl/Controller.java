@@ -1,5 +1,8 @@
 package de.htwg.monopoly.controller.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.entities.Bank;
 import de.htwg.monopoly.entities.Dice;
@@ -41,13 +44,15 @@ public class Controller extends Observable implements IController {
 
 	@Override
 	public void startTurn() {
-		this.currentPlayer = players.getNextPlayer();
+		this.currentPlayer = players.currentPlayer();
 		if (currentPlayer.isInPrison()) {
 			currentPlayer.incrementPrisonRound();
 		} else {
 			Dice.throwDice();
 			field.movePlayer(currentPlayer, (Dice.dice1 + Dice.dice2));
 		}
+		// überprüfen auf was fürn feldobjek
+		// dementsprechend notify
 		notifyObservers();
 	}
 
@@ -58,7 +63,7 @@ public class Controller extends Observable implements IController {
 
 	@Override
 	public void endTurn() {
-
+		this.currentPlayer = players.getNextPlayer();
 	}
 
 	@Override
@@ -113,6 +118,21 @@ public class Controller extends Observable implements IController {
 
 	public Player getCurrentPlayer() {
 		return currentPlayer;
+	}
+
+	@Override
+	public List<String> getOptions() {
+
+		List<String> options = new ArrayList<String>();
+		
+		options.add("d - Würfeln");
+		options.add("x - Beenden");
+		/**
+		 * checkt optionen:
+		 *  - case im Gefängnis
+		 *  - case NICHT im Gefägnis
+		 */
+		return options;
 	}
 
 	

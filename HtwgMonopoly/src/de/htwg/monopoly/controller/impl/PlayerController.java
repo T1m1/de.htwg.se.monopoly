@@ -111,5 +111,9 @@ public class PlayerController {
 		return true;
 
 	}
+	
+	public Player getPlayer(int i) {
+		return this.players[i];
+	}
 
 }

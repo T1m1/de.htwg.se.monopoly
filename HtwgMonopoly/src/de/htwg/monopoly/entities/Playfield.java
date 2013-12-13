@@ -22,7 +22,6 @@ public class Playfield {
 		// stacks etc.
 		// TODO actual initializing, dabei muss evtl beachtet werden, dass es
 		// alles irgendwie variabel sein sollte. Stichwort: skalierbarkeit
-		
 		this.playfield = new IFieldObject[fieldSize];
 		this.commStack = new CommunityCardsStack();
 		this.chanStack = new ChanceCardsStack();
