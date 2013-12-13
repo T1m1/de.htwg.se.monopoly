@@ -39,7 +39,10 @@ public class TextUI implements IObserver {
 		logger.info("Sie sind auf dem Spielfeld: "
 				+ controller.getField().getCurrentField(
 						controller.getCurrentPlayer()) + " gelandet.");
-
+	}
+	
+	public void printAction() {
+		logger.info(controller.getMessage());
 	}
 
 	public void printInitialisation() {
@@ -100,6 +103,11 @@ public class TextUI implements IObserver {
 
 	}
 
+	/**
+	 * TODO: evtl. auf Java 6 umbauen? Nötig?
+	 * @param line
+	 * @return
+	 */
 	public boolean processInputLine(String line) {
 		boolean status = true;
 		switch (line) {
@@ -109,6 +117,11 @@ public class TextUI implements IObserver {
 			break;
 		case "x":
 			status = false;
+			break;
+		case "y":
+			
+			break;
+		case "n":
 			break;
 		default:
 			System.out.println("Wrong Input!");

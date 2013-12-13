@@ -1,5 +1,8 @@
 package de.htwg.monopoly.entities;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import de.htwg.monopoly.util.IMonopolyUtil;
 
 public class Player {
@@ -14,6 +17,7 @@ public class Player {
 	private int position = 0;
 	private int prisonRound = 0;
 	private boolean inPrison = false;
+	private List<String> ownership;
 
 	/**
 	 * default player constructor
@@ -25,7 +29,15 @@ public class Player {
 		this.name = "player" + number;
 		this.figure = (char) number;
 		this.budget = IMonopolyUtil.INITIAL_MONEY;
+		ownership = new LinkedList<String>();
+	}
 
+	public List<String> getOwnership() {
+		return ownership;
+	}
+
+	public void setOwnership(String street) {
+		ownership.add(street);
 	}
 
 	/**

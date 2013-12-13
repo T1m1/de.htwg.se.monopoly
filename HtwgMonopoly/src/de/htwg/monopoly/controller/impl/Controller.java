@@ -16,6 +16,7 @@ public class Controller extends Observable implements IController {
 	private PlayerController players;
 	private Playfield field;
 	private Player currentPlayer;
+	private String message;
 
 	public Controller() {
 		this.players = new PlayerController();
@@ -134,7 +135,9 @@ public class Controller extends Observable implements IController {
 		 */
 		return options;
 	}
-
+	public String getMessage() {
+		return this.message;
+	}
 	
 
 }

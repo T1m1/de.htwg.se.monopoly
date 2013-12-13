@@ -81,5 +81,7 @@ public interface IController extends IObservable {
 
 	List<String> getOptions();
 
+	String getMessage();
+
 
 }
