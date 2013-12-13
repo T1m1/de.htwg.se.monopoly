@@ -18,7 +18,7 @@ public class TextUI implements IObserver {
 	public void startGame() {
 		printInitialisation();
 		logger.info(IMonopolyUtil.start);
-		controller.initGame(2); // <-- noch ist das Feld nur 2 groß!!
+		controller.initGame(4); // <-- noch ist das Feld nur 2 groß!!
 		// print feld? abfragen wer startet? ansonsten gehts los.
 		controller.startNewGame();
 
@@ -35,6 +35,20 @@ public class TextUI implements IObserver {
 		startTurn();
 	}
 
+	@Override
+	public void update(int e) {
+		if (e == 1) {
+			onField();
+			printAction();
+			startTurn();
+			
+		} else {
+			printTUI();
+			startTurn();
+		}
+		
+	}
+	
 	public void onField() {
 		logger.info("Sie sind auf dem Spielfeld: "
 				+ controller.getField().getCurrentField(
@@ -91,7 +105,7 @@ public class TextUI implements IObserver {
 		for (int i = 0; i < controller.getPlayers().getNumberOfPlayer(); i++) {
 			Player player = controller.getPlayers().getPlayer(i);
 			sb.append(player.getName() + "\t|" + player.getBudget() + "\t|"
-					+ "[Strassen...]\n");
+					+ player.getOwnership()+"\n");
 		}
 
 		sb.append("\nSpielfeld [--------------------]");
@@ -115,11 +129,24 @@ public class TextUI implements IObserver {
 			// roll dice
 			controller.startTurn();
 			break;
+		case "b":
+			// zug beenden
+			controller.endTurn();
+			printTUI();
+			startTurn();
+			break;
 		case "x":
 			status = false;
 			break;
 		case "y":
-			
+			if(controller.buyStreet()){
+				System.out.println("Erfolgreich gekauft!");
+			} else {
+				System.out.println("Du hast nicht genug Geld :P");
+			}
+			controller.endTurn();
+			printTUI();
+			startTurn();
 			break;
 		case "n":
 			break;
@@ -129,5 +156,7 @@ public class TextUI implements IObserver {
 		return status;
 
 	}
+
+
 
 }

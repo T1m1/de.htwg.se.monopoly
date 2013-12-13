@@ -9,5 +9,6 @@ public interface IObserver {
 	 * @param e
 	 */
 	void update(Event e);
+	void update(int e);
 
 }

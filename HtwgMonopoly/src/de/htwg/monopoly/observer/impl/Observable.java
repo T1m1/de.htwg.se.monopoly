@@ -37,5 +37,11 @@ public class Observable implements IObservable {
 			current.update(e);
 		}
 	}
+	
+	public void notifyObservers(int e) {
+		for (IObserver current: obsList) {
+			current.update(e);
+		}
+	}
 
 }

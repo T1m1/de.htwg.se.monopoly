@@ -19,6 +19,12 @@ public class ObservableTest {
 			ping = true;
 
 		}
+
+		@Override
+		public void update(int e) {
+			// TODO Auto-generated method stub
+			
+		}
 	}
 
 	@Before

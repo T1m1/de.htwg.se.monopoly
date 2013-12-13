@@ -17,7 +17,7 @@ public class Player {
 	private int position = 0;
 	private int prisonRound = 0;
 	private boolean inPrison = false;
-	private List<String> ownership;
+	private List<IFieldObject> ownership;
 
 	/**
 	 * default player constructor
@@ -29,10 +29,8 @@ public class Player {
 		this.name = "player" + number;
 		this.figure = (char) number;
 		this.budget = IMonopolyUtil.INITIAL_MONEY;
-		ownership = new LinkedList<String>();
+		ownership = new LinkedList<IFieldObject>();
 	}
-
-
 
 	/**
 	 * constructor for player
@@ -184,17 +182,17 @@ public class Player {
 	public void setInPrison(boolean inPrison) {
 		this.inPrison = inPrison;
 	}
-	
+
 	@Override
 	public String toString() {
 		return this.name;
 	}
-	
-	public List<String> getOwnership() {
+
+	public List<IFieldObject> getOwnership() {
 		return ownership;
 	}
 
-	public void setOwnership(String street) {
+	public void setOwnership(IFieldObject street) {
 		ownership.add(street);
 	}
 
