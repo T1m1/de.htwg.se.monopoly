@@ -6,8 +6,6 @@ import java.io.ByteArrayInputStream;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import de.htwg.monopoly.entities.Dice;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
 public class ControllerTest {
@@ -32,9 +30,8 @@ public class ControllerTest {
 	public void testStartTurn() {
 		testController.getCurrentPlayer().setInPrison(true);
 		testController.startTurn();
-		assertFalse(testController.getCurrentPlayer().isInPrison());
-		testController.startTurn();
 		assertTrue(testController.getCurrentPlayer().isInPrison());
+		testController.startTurn();
 	
 	}
 
@@ -44,6 +41,8 @@ public class ControllerTest {
 
 	@Test
 	public void testEndTurn() {
+		testController.endTurn();
+		assertEquals("2", testController.getCurrentPlayer().getName());
 	}
 
 	@Test

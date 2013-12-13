@@ -8,6 +8,7 @@ public final class Dice {
 	
 	public static int dice1 = 0;
 	public static int dice2 = 0;
+	public static int resultDice = dice1 + dice2;
 	
 	/**
 	 * for now, this method only returns a new value, when the method setDice is called before. Going to fix that

@@ -32,13 +32,7 @@ public class Player {
 		ownership = new LinkedList<String>();
 	}
 
-	public List<String> getOwnership() {
-		return ownership;
-	}
 
-	public void setOwnership(String street) {
-		ownership.add(street);
-	}
 
 	/**
 	 * constructor for player
@@ -194,6 +188,14 @@ public class Player {
 	@Override
 	public String toString() {
 		return this.name;
+	}
+	
+	public List<String> getOwnership() {
+		return ownership;
+	}
+
+	public void setOwnership(String street) {
+		ownership.add(street);
 	}
 
 }

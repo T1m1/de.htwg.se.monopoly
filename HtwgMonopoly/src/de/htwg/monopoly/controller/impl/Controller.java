@@ -50,7 +50,7 @@ public class Controller extends Observable implements IController {
 			currentPlayer.incrementPrisonRound();
 		} else {
 			Dice.throwDice();
-			field.movePlayer(currentPlayer, (Dice.dice1 + Dice.dice2));
+			field.movePlayer(currentPlayer, (Dice.resultDice));
 		}
 		// überprüfen auf was fürn feldobjek
 		// dementsprechend notify

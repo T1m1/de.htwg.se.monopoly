@@ -24,7 +24,11 @@ public interface IMonopolyFields {
 	Integer[] pricePerHotel = new Integer[IMonopolyUtil.FIELD_SIZE];
 	Integer[] pricePerHouse = new Integer[IMonopolyUtil.FIELD_SIZE];
 	
-	// For Tests in case the field contains only 2 field objects
+	/** Test Cases **/
+	/**
+	 * Test 1: Contains only 2 Object: Go field and a street.
+	 * 
+	 */
 	String[] name = { "Go", "Firststreet" };
 	Integer[] rent = { 0, 100 };
 	Integer[] hotel = { 0, 100 };

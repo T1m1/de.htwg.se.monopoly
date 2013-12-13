@@ -20,6 +20,7 @@ public class StreetTest {
 	@Test
 	public void testStreet() {
 		assertEquals("empty", street1.getName());
+		assertEquals("empty", street1.toString());
 		assertEquals(IMonopolyUtil.NULL, street1.getPriceForStreet());
 		assertEquals(Color.black, street1.getColor());
 		assertEquals(IMonopolyUtil.NULL, street1.getPricePerHotel());
