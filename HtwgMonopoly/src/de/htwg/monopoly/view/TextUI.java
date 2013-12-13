@@ -18,7 +18,7 @@ public class TextUI implements IObserver {
 	public void startGame() {
 		printInitialisation();
 		logger.info(IMonopolyUtil.start);
-		controller.initGame(2); // <-- noch ist das Feld nur 2 groß!!
+		controller.initGame(4); // <-- noch ist das Feld nur 2 groß!!
 		// print feld? abfragen wer startet? ansonsten gehts los.
 		controller.startNewGame();
 
@@ -105,7 +105,7 @@ public class TextUI implements IObserver {
 		for (int i = 0; i < controller.getPlayers().getNumberOfPlayer(); i++) {
 			Player player = controller.getPlayers().getPlayer(i);
 			sb.append(player.getName() + "\t|" + player.getBudget() + "\t|"
-					+ "[Strassen...]\n");
+					+ player.getOwnership()+"\n");
 		}
 
 		sb.append("\nSpielfeld [--------------------]");
@@ -145,6 +145,8 @@ public class TextUI implements IObserver {
 				System.out.println("Du hast nicht genug Geld :P");
 			}
 			controller.endTurn();
+			printTUI();
+			startTurn();
 			break;
 		case "n":
 			break;
