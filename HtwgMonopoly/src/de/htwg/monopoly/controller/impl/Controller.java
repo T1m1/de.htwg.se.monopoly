@@ -6,6 +6,7 @@ import java.util.List;
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.entities.Bank;
 import de.htwg.monopoly.entities.Dice;
+import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.Player;
 import de.htwg.monopoly.entities.Playfield;
 import de.htwg.monopoly.entities.Street;
@@ -16,23 +17,25 @@ public class Controller extends Observable implements IController {
 	private PlayerController players;
 	private Playfield field;
 	private Player currentPlayer;
-	private String message;
+	private IFieldObject currentField;
+	private StringBuilder message;
 
 	public Controller() {
 		this.players = new PlayerController();
 		this.field = new Playfield();
+		this.message = new StringBuilder();
 	}
-	
+
 	@Override
 	public boolean setNumberofPlayer() {
 		return players.readNumberOfPlayer();
 	}
-	
+
 	@Override
 	public boolean setNameofPlayer(int i) {
 		return players.readNameOfPlayer(i);
 	}
-	
+
 	@Override
 	public void initGame(int fieldSize) {
 		this.field.initialize(fieldSize);
@@ -50,7 +53,26 @@ public class Controller extends Observable implements IController {
 			currentPlayer.incrementPrisonRound();
 		} else {
 			Dice.throwDice();
-			field.movePlayer(currentPlayer, (Dice.resultDice));
+			if (field.movePlayer(currentPlayer, (Dice.resultDice))) {
+				receiveGoMoney();
+				message.append("Sie erhalten mehr Geld wegen dem Los-Feld :)");
+			}
+			if (currentField.getType() == 's') {
+				Street street = (Street) currentField;
+				if (street.getOwner() == null || !street.getOwner().equals(currentPlayer)) {
+					message.append(
+							"Diese Straße ist frei. Wollen sie die Straße für ")
+							.append(street.getPriceForStreet())
+							.append(" kaufen\n");
+				} else if (street.getOwner().equals(currentPlayer)) {
+					
+				} else {
+					message.append("Diese Straße gehört ")
+							.append(street.getOwner())
+							.append(".\nSie müssen ihm jetzt ")
+							.append(street.getRent()).append(" Miete zahlen.\n");
+				}
+			}
 		}
 		// überprüfen auf was fürn feldobjek
 		// dementsprechend notify
@@ -76,7 +98,8 @@ public class Controller extends Observable implements IController {
 	public boolean buyStreet() {
 		Street currentStreet = (Street) field.getCurrentField(currentPlayer);
 		if (currentStreet.getPriceForStreet() < currentPlayer.getBudget()) {
-			currentPlayer.setBudget(currentPlayer.getBudget() - currentStreet.getPriceForStreet());
+			currentPlayer.setBudget(currentPlayer.getBudget()
+					- currentStreet.getPriceForStreet());
 			currentStreet.setOwner(currentPlayer);
 			return true;
 		}
@@ -125,19 +148,17 @@ public class Controller extends Observable implements IController {
 	public List<String> getOptions() {
 
 		List<String> options = new ArrayList<String>();
-		
+
 		options.add("d - Würfeln");
 		options.add("x - Beenden");
 		/**
-		 * checkt optionen:
-		 *  - case im Gefängnis
-		 *  - case NICHT im Gefägnis
+		 * checkt optionen: - case im Gefängnis - case NICHT im Gefägnis
 		 */
 		return options;
 	}
+
 	public String getMessage() {
-		return this.message;
+		return this.message.toString();
 	}
-	
 
 }
