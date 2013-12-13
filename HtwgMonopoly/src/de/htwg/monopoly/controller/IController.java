@@ -79,7 +79,7 @@ public interface IController extends IObservable {
 	
 	Playfield getField();
 
-	List<String> getOptions();
+	List<String> getOptions(int chooseOption);
 
 	String getMessage();
 

@@ -61,6 +61,8 @@ public class Controller extends Observable implements IController {
 			
 			message.append(field.appendInfo(currentField, currentPlayer));
 			
+		
+				
 		}
 		// überprüfen auf was fürn feldobjek
 		// dementsprechend notify
@@ -136,13 +138,21 @@ public class Controller extends Observable implements IController {
 	}
 
 	@Override
-	public List<String> getOptions() {
+	public List<String> getOptions(int chooseOption) {
 
 		List<String> options = new ArrayList<String>();
 
-		options.add("d - Würfeln");
-		options.add("x - Beenden");
-		options.add("b - Zug beenden");
+		switch (chooseOption) {
+		case 1:
+			options.add("d - Würfeln");
+			break;
+		case 2:
+			options.add("y - kaufen");
+			options.add("b - Zug Beenden");
+		default:
+			break;
+		}
+		options.add("x - Spiel Beenden");
 		/**
 		 * checkt optionen: - case im Gefängnis - case NICHT im Gefägnis
 		 */

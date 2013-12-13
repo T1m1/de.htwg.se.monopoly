@@ -40,7 +40,7 @@ public class TextUI implements IObserver {
 		if (e == 1) {
 			onField();
 			printAction();
-			startTurn();
+			printOptions(2);
 			
 		} else {
 			printTUI();
@@ -50,14 +50,29 @@ public class TextUI implements IObserver {
 	}
 	
 	public void onField() {
-		logger.info("Sie sind auf dem Spielfeld: "
+		StringBuilder sb = new StringBuilder();
+		sb.append("Sie sind auf dem Spielfeld: "
 				+ controller.getField().getCurrentField(
-						controller.getCurrentPlayer()) + " gelandet.");
+						controller.getCurrentPlayer()) + " gelandet.\n");
+		
+		
+		logger.info(sb.toString());
 	}
 	
+	private void printOptions(int choose) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Sie haben folgende Optionen:\n");
+		for (String option : controller.getOptions(2)) {
+			sb.append(option);
+			sb.append("\n");
+
+		}
+		logger.info(sb.toString());
+	}
 	public void printAction() {
 		logger.info(controller.getMessage());
 	}
+
 
 	public void printInitialisation() {
 		logger.info(IMonopolyUtil.gameName);
@@ -70,7 +85,7 @@ public class TextUI implements IObserver {
 		sb.append("Spieler " + controller.getCurrentPlayer().getName()
 				+ " sie sind dran.\n");
 		sb.append("Sie haben folgende Optionen:\n");
-		for (String option : controller.getOptions()) {
+		for (String option : controller.getOptions(1)) {
 			sb.append(option);
 			sb.append("\n");
 
