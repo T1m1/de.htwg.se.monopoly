@@ -120,6 +120,8 @@ public class TextUI implements IObserver {
 	private void printTUI() {
 		/* TODO: Ausgabe formatieren */
 		StringBuilder sb = new StringBuilder();
+		StringBuilder streets = new StringBuilder();
+		
 		sb.append("\n_________________________________\n");
 		sb.append("Spieler\t|Budget\t|Besitz\n");
 		sb.append("-------\t|------\t|--------------\n");
@@ -129,18 +131,25 @@ public class TextUI implements IObserver {
 					+ player.getOwnership() + "\n");
 		}
 
-		sb.append("\nSpielfeld [--------------------]");
 		String[] zeichen = new String[5];
-		zeichen[0]="________";
-		zeichen[1]="|___%d____";
-		zeichen[2]="|		";
+		zeichen[0]="|-------";
+		zeichen[1]="|___x___";
+		zeichen[2]="|       ";
 		zeichen[3]="|_______";
-
-		for (int zeile = 0; zeile < zeichen.length; zeile++) {
+		String x = "x";
+		for (int zeile = 0; zeile < zeichen.length-1; zeile++) {
+			sb.append("\n");
 			for (int i = 0; i < controller.getField().getfieldSize(); i++) {
-
+				if (zeile == 1) {
+					zeichen[1] =zeichen[1].replace(x,new Integer(i).toString());
+					x = new Integer(i).toString();
+				}
+					sb.append(zeichen[zeile]);
 			}
+			sb.append("|");
+			
 		}
+		
 
 		logger.info(sb.toString());
 
