@@ -85,7 +85,7 @@ public class PlayerController {
 			}
 		}
 
-		if (numberOfPlayer < IMonopolyUtil.MIN_NUMBER_OF_PLAYER
+		if (numberOfPlayer < IMonopolyUtil.MIN_NUMBER_OF_PLAYER 
 				|| numberOfPlayer > IMonopolyUtil.MAX_NUMBER_OF_PLAYER) {
 			return false;
 		}
@@ -101,13 +101,11 @@ public class PlayerController {
 	}
 
 	public boolean readNameOfPlayer(int i) {
-		try {
-			if (in.hasNext()) {
+			if (in.hasNext()) { // wann zur hölle is das nicht wahr? also testbar?
 				this.players[i].setName(in.nextLine());
+			} else {
+				return false;
 			}
-		} catch (Exception e) {
-			return false;
-		}
 		return true;
 
 	}

@@ -6,8 +6,6 @@ import java.io.ByteArrayInputStream;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import de.htwg.monopoly.entities.Dice;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
 public class ControllerTest {
