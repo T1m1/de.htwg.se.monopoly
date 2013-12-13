@@ -53,6 +53,7 @@ public class Controller extends Observable implements IController {
 		//this.currentPlayer = players.currentPlayer();
 		if (currentPlayer.isInPrison()) {
 			currentPlayer.incrementPrisonRound();
+			message.append("Sie stecken im Bsys Labor fest\n");
 		} else {
 			Dice.throwDice();
 			field.movePlayer(currentPlayer, (Dice.resultDice % field.getfieldSize()));

@@ -54,9 +54,9 @@ public class Playfield {
 			case 'n':
 
 			case 'p':
-				playfield[i] = new FieldObject("Gehe in das Gefängnis",
+				playfield[i] = new FieldObject("Gehe in das BsysLabor",
 						IMonopolyFields.typ[i], 0);
-
+				break;
 			case 'f':
 			}
 
@@ -66,15 +66,14 @@ public class Playfield {
 
 	/**
 	 * Move the Player to the new Field according to the result of the dice
-	 * roll. If the Playfield is smaller then 12, there might be a chance the
-	 * player goes over los and doesn't get money :)
+	 * roll.
 	 * 
 	 * @param currentPlayer
 	 *            which will be moved
 	 * @param diceResult
-	 *            : a Number between 2 and 12;
+	 *            : a Number between 2 and 12 modulo the playfield size.
 	 * @return true if Player moved over or stays on "Los" otherwise return
-	 *         false
+	 *         false.
 	 */
 	public void movePlayer(Player currentPlayer, int diceResult) {
 		// calculate the new position of the player within the playfield range
@@ -113,8 +112,6 @@ public class Playfield {
 		if (wentOverGo) {
 			sb.append("Sie sind über Los gegangen und erhalten Geld\n");
 			Bank.receiveMoney(currentPlayer, IMonopolyUtil.LOS_MONEY);
-			// TODO evtl bekommt er zu viel geld wenn er zusätzlich auf Los
-			// steht
 		}
 		switch (currentField.getType()) {
 		case 's':
@@ -132,8 +129,9 @@ public class Playfield {
 			}
 			break;
 		case 'l':
+			sb.delete(0, sb.length());
 			sb.append("Sie stehen auf Los und erhalten sehr viel Geld\n");
-			Bank.receiveMoney(currentPlayer, 2 * IMonopolyUtil.LOS_MONEY);
+			Bank.receiveMoney(currentPlayer, IMonopolyUtil.LOS_MONEY);
 			break;
 		case 'z':
 			FieldObject field = (FieldObject) currentField;
@@ -142,7 +140,7 @@ public class Playfield {
 			Bank.receiveMoney(currentPlayer, -field.getPriceToPay());
 			break;
 		case 'p':
-			sb.append("Sie müssen in das Gefängnis :(\n");
+			sb.append("Sie müssen jetzt in das Bsys Labor und setzen verdammt lang aus :(\n");
 			currentPlayer.setInPrison(true);
 			break;
 		case 'e':
