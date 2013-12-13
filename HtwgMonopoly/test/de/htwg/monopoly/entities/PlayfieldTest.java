@@ -15,14 +15,14 @@ public class PlayfieldTest {
 	@Before
 	public void setUp() throws Exception {
 		field = new Playfield();
-		field.initialize(4);
+		field.initialize(6);
 		testplayer = new Player();
 		// initialize testObject;
 	}
 
 	@Test
 	public void testMovePlayer() {
-		testplayer.setPosition(4);
+		testplayer.setPosition(6);
 		field.movePlayer(testplayer, 1);
 		testplayer.setPosition(1);
 		field.movePlayer(testplayer, 1);
@@ -30,7 +30,7 @@ public class PlayfieldTest {
 	
 	@Test
 	public void testGetFieldSize() {
-		assertEquals(4 , field.getfieldSize());
+		assertEquals(6 , field.getfieldSize());
 	}
 
 	@Test
