@@ -93,4 +93,9 @@ public class ControllerTest {
 	public void testGetField() {
 		
 	}
+	
+	@Test 
+	public void testGetOptions() {
+		
+	}
 }

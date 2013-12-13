@@ -1,11 +1,9 @@
 package de.htwg.monopoly.entities;
 
-import java.awt.Color;
 
 import de.htwg.monopoly.cards.ChanceCardsStack;
 import de.htwg.monopoly.cards.CommunityCardsStack;
 import de.htwg.monopoly.util.IMonopolyFields;
-import de.htwg.monopoly.util.IMonopolyUtil;
 
 public class Playfield {
 
@@ -36,9 +34,9 @@ public class Playfield {
 			case 's':
 				playfield[i] = new Street(IMonopolyFields.name[i],
 						IMonopolyFields.prizeForStreet[i],
-						Color.black,
-						IMonopolyUtil.TEST_PRICE_ONE,
-						IMonopolyUtil.TEST_PRICE_ONE);
+						IMonopolyFields.coulor[i],
+						IMonopolyFields.rent[i],
+						IMonopolyFields.hotel[i]);
 				break;
 			case 'g':
 				playfield[i] = this.commStack;

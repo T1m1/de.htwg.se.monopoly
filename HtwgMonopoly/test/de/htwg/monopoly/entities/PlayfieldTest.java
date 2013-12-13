@@ -16,7 +16,7 @@ public class PlayfieldTest {
 	@Before
 	public void setUp() throws Exception {
 		field = new Playfield();
-		field.initialize(1);
+		field.initialize(4);
 		testplayer = new Player();
 		// initialize testObject;
 	}
@@ -24,20 +24,25 @@ public class PlayfieldTest {
 	@Test
 	public void testMovePlayer() {
 		/* TODO: Wieso 2 ? */
-		testplayer.setPosition(IMonopolyUtil.TEST_PLAYFIELD_SIZE);
+		testplayer.setPosition(4);
 		assertTrue(field.movePlayer(testplayer, 1));
-		testplayer.setPosition(0);
+		testplayer.setPosition(1);
 		assertFalse(field.movePlayer(testplayer, 1));
 	}
 	
 	@Test
 	public void testGetFieldSize() {
-		assertEquals(1,field.getfieldSize());
+		assertEquals(4 , field.getfieldSize());
 	}
 
 	@Test
 	public void testGetCurrentField() {
 		assertEquals('l', field.getCurrentField(testplayer).getType());
+	}
+	
+	@Test
+	public void testInitialize() {
+		
 	}
 
 }
