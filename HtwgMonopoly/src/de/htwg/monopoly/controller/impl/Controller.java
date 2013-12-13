@@ -22,17 +22,17 @@ public class Controller extends Observable implements IController {
 		this.players = new PlayerController();
 		this.field = new Playfield();
 	}
-	
+
 	@Override
 	public boolean setNumberofPlayer() {
 		return players.readNumberOfPlayer();
 	}
-	
+
 	@Override
 	public boolean setNameofPlayer(int i) {
 		return players.readNameOfPlayer(i);
 	}
-	
+
 	@Override
 	public void initGame(int fieldSize) {
 		this.field.initialize(fieldSize);
@@ -40,14 +40,14 @@ public class Controller extends Observable implements IController {
 
 	@Override
 	public void startNewGame() {
-		//startTurn();
+		// startTurn();
 		this.currentPlayer = players.currentPlayer();
 		notifyObservers(0);
 	}
 
 	@Override
 	public void startTurn() {
-		//this.currentPlayer = players.currentPlayer();
+		// this.currentPlayer = players.currentPlayer();
 		if (currentPlayer.isInPrison()) {
 			currentPlayer.incrementPrisonRound();
 		} else {
@@ -57,7 +57,7 @@ public class Controller extends Observable implements IController {
 		// überprüfen auf was fürn feldobjek
 		// dementsprechend notify
 		notifyObservers(1);
-		//notifyObservers();
+		// notifyObservers();
 	}
 
 	@Override
@@ -79,7 +79,8 @@ public class Controller extends Observable implements IController {
 	public boolean buyStreet() {
 		Street currentStreet = (Street) field.getCurrentField(currentPlayer);
 		if (currentStreet.getPriceForStreet() < currentPlayer.getBudget()) {
-			currentPlayer.setBudget(currentPlayer.getBudget() - currentStreet.getPriceForStreet());
+			currentPlayer.setBudget(currentPlayer.getBudget()
+					- currentStreet.getPriceForStreet());
 			currentStreet.setOwner(currentPlayer);
 			currentPlayer.setOwnership(currentStreet);
 			return true;
@@ -126,23 +127,28 @@ public class Controller extends Observable implements IController {
 	}
 
 	@Override
-	public List<String> getOptions() {
+	public List<String> getOptions(int chooseOption) {
 
 		List<String> options = new ArrayList<String>();
-		
-		options.add("d - Würfeln");
-		options.add("x - Beenden");
-		options.add("b - Zug beenden");
+
+		switch (chooseOption) {
+		case 1:
+			options.add("d - Würfeln");
+			break;
+		case 2:
+			options.add("y - kaufen");
+		default:
+			break;
+		}
+		options.add("x - Spiel Beenden");
 		/**
-		 * checkt optionen:
-		 *  - case im Gefängnis
-		 *  - case NICHT im Gefägnis
+		 * checkt optionen: - case im Gefängnis - case NICHT im Gefägnis
 		 */
 		return options;
 	}
+
 	public String getMessage() {
 		return this.message;
 	}
-	
 
 }

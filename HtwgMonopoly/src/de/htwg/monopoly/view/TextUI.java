@@ -70,7 +70,7 @@ public class TextUI implements IObserver {
 		sb.append("Spieler " + controller.getCurrentPlayer().getName()
 				+ " sie sind dran.\n");
 		sb.append("Sie haben folgende Optionen:\n");
-		for (String option : controller.getOptions()) {
+		for (String option : controller.getOptions(1)) {
 			sb.append(option);
 			sb.append("\n");
 
