@@ -12,6 +12,7 @@ public class Playfield {
 	private IFieldObject[] playfield;
 	private CommunityCardsStack commStack;
 	private ChanceCardsStack chanStack;
+	private int fieldSize;
 
 	public Playfield() {
 
@@ -20,10 +21,11 @@ public class Playfield {
 	public final void initialize(int fieldSize) {
 		// initialize the playfield. set the size, fill it with streets and card
 		// stacks etc.
-		// TODO actual initializing, dabei muss evtl beachtet werden, dass es
+		// TODO actual initializing. dabei muss evtl beachtet werden, dass es
 		// alles irgendwie variabel sein sollte. Stichwort: skalierbarkeit
 		
 		this.playfield = new IFieldObject[fieldSize];
+		this.fieldSize = fieldSize;
 		this.commStack = new CommunityCardsStack();
 		this.chanStack = new ChanceCardsStack();
 		for (int i = 0; i < fieldSize; i++) {
@@ -91,5 +93,10 @@ public class Playfield {
 	 */
 	public IFieldObject getCurrentField(Player currentPlayer) {
 		return playfield[currentPlayer.getPosition()];
+	}
+
+	public int getfieldSize() {
+		// TODO Auto-generated method stub
+		return this.fieldSize;
 	}
 }
