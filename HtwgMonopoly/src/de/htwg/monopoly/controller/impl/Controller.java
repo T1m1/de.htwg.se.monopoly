@@ -40,12 +40,14 @@ public class Controller extends Observable implements IController {
 
 	@Override
 	public void startNewGame() {
-		startTurn();
+		//startTurn();
+		this.currentPlayer = players.currentPlayer();
+		notifyObservers(0);
 	}
 
 	@Override
 	public void startTurn() {
-		this.currentPlayer = players.currentPlayer();
+		//this.currentPlayer = players.currentPlayer();
 		if (currentPlayer.isInPrison()) {
 			currentPlayer.incrementPrisonRound();
 		} else {
@@ -54,7 +56,8 @@ public class Controller extends Observable implements IController {
 		}
 		// überprüfen auf was fürn feldobjek
 		// dementsprechend notify
-		notifyObservers();
+		notifyObservers(1);
+		//notifyObservers();
 	}
 
 	@Override
@@ -78,6 +81,7 @@ public class Controller extends Observable implements IController {
 		if (currentStreet.getPriceForStreet() < currentPlayer.getBudget()) {
 			currentPlayer.setBudget(currentPlayer.getBudget() - currentStreet.getPriceForStreet());
 			currentStreet.setOwner(currentPlayer);
+			currentPlayer.setOwnership(currentStreet);
 			return true;
 		}
 		return false;
@@ -128,6 +132,7 @@ public class Controller extends Observable implements IController {
 		
 		options.add("d - Würfeln");
 		options.add("x - Beenden");
+		options.add("b - Zug beenden");
 		/**
 		 * checkt optionen:
 		 *  - case im Gefängnis

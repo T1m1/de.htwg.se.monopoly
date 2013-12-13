@@ -35,6 +35,20 @@ public class TextUI implements IObserver {
 		startTurn();
 	}
 
+	@Override
+	public void update(int e) {
+		if (e == 1) {
+			onField();
+			printAction();
+			startTurn();
+			
+		} else {
+			printTUI();
+			startTurn();
+		}
+		
+	}
+	
 	public void onField() {
 		logger.info("Sie sind auf dem Spielfeld: "
 				+ controller.getField().getCurrentField(
@@ -115,11 +129,22 @@ public class TextUI implements IObserver {
 			// roll dice
 			controller.startTurn();
 			break;
+		case "b":
+			// zug beenden
+			controller.endTurn();
+			printTUI();
+			startTurn();
+			break;
 		case "x":
 			status = false;
 			break;
 		case "y":
-			
+			if(controller.buyStreet()){
+				System.out.println("Erfolgreich gekauft!");
+			} else {
+				System.out.println("Du hast nicht genug Geld :P");
+			}
+			controller.endTurn();
 			break;
 		case "n":
 			break;
@@ -129,5 +154,7 @@ public class TextUI implements IObserver {
 		return status;
 
 	}
+
+
 
 }

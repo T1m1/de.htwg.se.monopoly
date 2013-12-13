@@ -16,9 +16,11 @@ public class Monopoly {
 		scanner = new Scanner(System.in);
 
 		tui.startGame();
+		
 		boolean run = true;
 		while (run) {
 			run = tui.processInputLine(scanner.next());
 		}
+		System.out.println("Spiel beendet!");
 	}
 }
