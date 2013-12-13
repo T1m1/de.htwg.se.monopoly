@@ -60,9 +60,6 @@ public class Controller extends Observable implements IController {
 			this.currentField = field.getCurrentField(currentPlayer);
 			
 			message.append(field.appendInfo(currentField, currentPlayer));
-			
-		
-				
 		}
 		// überprüfen auf was fürn feldobjek
 		// dementsprechend notify

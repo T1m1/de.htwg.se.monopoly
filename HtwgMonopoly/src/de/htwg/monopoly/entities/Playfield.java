@@ -43,7 +43,7 @@ public class Playfield {
 				playfield[i] = this.commStack;
 				break;
 			case 'z':
-
+				playfield[i] = new FieldObject("Zusatzsteuer", IMonopolyFields.typ[i], 100);
 			case 'b':
 
 			case 'e':
@@ -105,7 +105,8 @@ public class Playfield {
 		if (wentOverGo) {
 			sb.append("Sie sind über Los gegangen und erhalten Geld\n");
 			Bank.receiveMoney(currentPlayer, IMonopolyUtil.LOS_MONEY);
-			// TODO evtl bekommt er zu viel geld wenn er zusätzlich auf Los steht
+			// TODO evtl bekommt er zu viel geld wenn er zusätzlich auf Los
+			// steht
 		}
 		switch (currentField.getType()) {
 		case 's':
@@ -114,20 +115,23 @@ public class Playfield {
 				sb.append("Diese Straße ist frei. Wollen sie die Straße für ")
 						.append(street.getPriceForStreet()).append(" kaufen\n");
 			} else if (street.getOwner().equals(currentPlayer)) {
-
+				sb.append("Ihnen gehört die Straße. Gut gemacht\n");
 			} else {
-				sb.append("Diese Straße gehört ")
-						.append(street.getOwner())
+				sb.append("Diese Straße gehört ").append(street.getOwner())
 						.append(".\nSie müssen ihm jetzt ")
 						.append(street.getRent()).append(" Miete zahlen.\n");
 				Bank.payRent(currentPlayer, currentField);
 			}
 			break;
-		case 'l' :
+		case 'l':
 			sb.append("Sie stehen auf Los und erhalten sehr viel Geld\n");
-			Bank.receiveMoney(currentPlayer, 2*IMonopolyUtil.LOS_MONEY);
+			Bank.receiveMoney(currentPlayer, 2 * IMonopolyUtil.LOS_MONEY);
 			break;
-			
+		case 'z':
+			FieldObject field = (FieldObject) currentField;
+			sb.append("Sie müssen ").append(field.getPriceToPay()).append(" Zusatzsteuer zahlen\n");
+			Bank.receiveMoney(currentPlayer, -field.getPriceToPay());
+			break;
 
 		}
 		return sb.toString();

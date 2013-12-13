@@ -19,6 +19,11 @@ public class CommunityCardsStack extends CardsStack  {
 		// g wie Gemeinschaftsfeld.
 		return 'g';
 	}
+	
+	@Override
+	public String toString() {
+		return "Gemeinschaftsfeld";
+	}
 
 	
 

@@ -19,5 +19,9 @@ public class ChanceCardsStack extends CardsStack {
 		// e wie ereignisfeld.
 		return 'e';
 	}
+	
+	public String toString() {
+		return "Ereignisfeld";
+	}
 
 }
