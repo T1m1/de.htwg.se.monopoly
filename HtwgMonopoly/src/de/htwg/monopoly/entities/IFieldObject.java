@@ -8,6 +8,9 @@ public interface IFieldObject {
 	 */
 	char getType();
 	
+	@Override
+	String toString();
+	
 	
 
 }
