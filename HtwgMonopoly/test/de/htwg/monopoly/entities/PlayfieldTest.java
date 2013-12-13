@@ -23,9 +23,9 @@ public class PlayfieldTest {
 	@Test
 	public void testMovePlayer() {
 		testplayer.setPosition(4);
-		assertTrue(field.movePlayer(testplayer, 1));
+		field.movePlayer(testplayer, 1);
 		testplayer.setPosition(1);
-		assertFalse(field.movePlayer(testplayer, 1));
+		field.movePlayer(testplayer, 1);
 	}
 	
 	@Test
