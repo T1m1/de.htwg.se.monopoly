@@ -6,6 +6,7 @@ import java.util.List;
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.entities.Bank;
 import de.htwg.monopoly.entities.Dice;
+import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.Player;
 import de.htwg.monopoly.entities.Playfield;
 import de.htwg.monopoly.entities.Street;
@@ -16,11 +17,13 @@ public class Controller extends Observable implements IController {
 	private PlayerController players;
 	private Playfield field;
 	private Player currentPlayer;
-	private String message;
+	private IFieldObject currentField;
+	private StringBuilder message;
 
 	public Controller() {
 		this.players = new PlayerController();
 		this.field = new Playfield();
+		this.message = new StringBuilder();
 	}
 
 	@Override
@@ -40,24 +43,43 @@ public class Controller extends Observable implements IController {
 
 	@Override
 	public void startNewGame() {
-		// startTurn();
+		//startTurn();
 		this.currentPlayer = players.currentPlayer();
 		notifyObservers(0);
 	}
 
 	@Override
 	public void startTurn() {
-		// this.currentPlayer = players.currentPlayer();
+		//this.currentPlayer = players.currentPlayer();
 		if (currentPlayer.isInPrison()) {
 			currentPlayer.incrementPrisonRound();
 		} else {
 			Dice.throwDice();
-			field.movePlayer(currentPlayer, (Dice.resultDice));
+			if (field.movePlayer(currentPlayer, (Dice.resultDice))) {
+				receiveGoMoney();
+				message.append("Sie erhalten mehr Geld wegen dem Los-Feld :)");
+			}
+			if (currentField.getType() == 's') {
+				Street street = (Street) currentField;
+				if (street.getOwner() == null || !street.getOwner().equals(currentPlayer)) {
+					message.append(
+							"Diese Straße ist frei. Wollen sie die Straße für ")
+							.append(street.getPriceForStreet())
+							.append(" kaufen\n");
+				} else if (street.getOwner().equals(currentPlayer)) {
+					
+				} else {
+					message.append("Diese Straße gehört ")
+							.append(street.getOwner())
+							.append(".\nSie müssen ihm jetzt ")
+							.append(street.getRent()).append(" Miete zahlen.\n");
+				}
+			}
 		}
 		// überprüfen auf was fürn feldobjek
 		// dementsprechend notify
 		notifyObservers(1);
-		// notifyObservers();
+		//notifyObservers();
 	}
 
 	@Override
@@ -148,7 +170,7 @@ public class Controller extends Observable implements IController {
 	}
 
 	public String getMessage() {
-		return this.message;
+		return this.message.toString();
 	}
 
 }

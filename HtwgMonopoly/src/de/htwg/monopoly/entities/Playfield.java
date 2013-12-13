@@ -1,6 +1,5 @@
 package de.htwg.monopoly.entities;
 
-
 import de.htwg.monopoly.cards.ChanceCardsStack;
 import de.htwg.monopoly.cards.CommunityCardsStack;
 import de.htwg.monopoly.util.IMonopolyFields;
@@ -21,7 +20,7 @@ public class Playfield {
 		// stacks etc.
 		// TODO actual initializing. dabei muss evtl beachtet werden, dass es
 		// alles irgendwie variabel sein sollte. Stichwort: skalierbarkeit
-		
+
 		this.playfield = new IFieldObject[fieldSize];
 		this.fieldSize = fieldSize;
 		this.commStack = new CommunityCardsStack();
@@ -29,13 +28,13 @@ public class Playfield {
 		for (int i = 0; i < fieldSize; i++) {
 			switch (IMonopolyFields.typ[i]) {
 			case 'l':
-				playfield[i] = new FieldObject(IMonopolyFields.name[i], IMonopolyFields.typ[i], 0);
+				playfield[i] = new FieldObject(IMonopolyFields.name[i],
+						IMonopolyFields.typ[i], 0);
 				break;
 			case 's':
 				playfield[i] = new Street(IMonopolyFields.name[i],
 						IMonopolyFields.prizeForStreet[i],
-						IMonopolyFields.coulor[i],
-						IMonopolyFields.rent[i],
+						IMonopolyFields.coulor[i], IMonopolyFields.rent[i],
 						IMonopolyFields.hotel[i]);
 				break;
 			case 'g':
@@ -60,7 +59,9 @@ public class Playfield {
 	}
 
 	/**
-	 * Move the Player to the new Field according to the result of the dice roll
+	 * Move the Player to the new Field according to the result of the dice
+	 * roll. If the Playfield is smaller then 12, there might be a chance the
+	 * player goes over los and doesn't get money :)
 	 * 
 	 * @param currentPlayer
 	 *            which will be moved

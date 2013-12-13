@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.monopoly.util.IMonopolyUtil;
 
 public class PlayfieldTest {
 	
@@ -23,7 +22,6 @@ public class PlayfieldTest {
 
 	@Test
 	public void testMovePlayer() {
-		/* TODO: Wieso 2 ? */
 		testplayer.setPosition(4);
 		assertTrue(field.movePlayer(testplayer, 1));
 		testplayer.setPosition(1);
