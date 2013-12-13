@@ -12,13 +12,11 @@ import de.htwg.monopoly.util.IMonopolyUtil;
 public class TextUI implements IObserver {
 
 	private Logger logger = Logger.getLogger("de.htwg.monopoly.view.tui");
-	private Scanner in;
 
 	private IController controller;
 
 	public void startGame() {
 		printInitialisation();
-		in = new Scanner(System.in);
 		logger.info(IMonopolyUtil.start);
 		controller.initGame(2); // <-- noch ist das Feld nur 2 groß!!
 		// print feld? abfragen wer startet? ansonsten gehts los.
@@ -41,7 +39,7 @@ public class TextUI implements IObserver {
 		logger.info("Sie sind auf dem Spielfeld: "
 				+ controller.getField().getCurrentField(
 						controller.getCurrentPlayer()) + " gelandet.");
-		
+
 	}
 
 	public void printInitialisation() {
@@ -61,33 +59,6 @@ public class TextUI implements IObserver {
 
 		}
 		logger.info(sb.toString());
-
-//		String line;
-//		boolean status = true;
-//		while (status) {
-//			System.out.println("huhu");
-//			try {
-//				if (in.hasNext()) {
-//					line = in.nextLine();
-//					char[] choose = line.toCharArray();
-//					char c = choose[0];
-//					switch (c) {
-//					case 'd':
-//						controller.startTurn();
-//						status = false;
-//						break;
-//					case 'x':
-//						return;
-//					default:
-//						System.out.println("wrong input: try again\n");
-//					}
-//				}
-//
-//			} catch (Exception e) {
-//
-//			}
-//		}
-//		System.out.println("hallo");
 
 	}
 
@@ -119,10 +90,30 @@ public class TextUI implements IObserver {
 			sb.append(player.getName() + "\t|" + player.getBudget() + "\t|"
 					+ "[Strassen...]\n");
 		}
-		
-//		for(int i; i < controller.getField())
-//		sb.append("\nSpielfeld [--------------------]");
-//		logger.info(sb.toString());
+
+		sb.append("\nSpielfeld [--------------------]");
+		for (int i = 0; i < controller.getField().getfieldSize(); i++) {
+			// TODO GUI zeichnen
+		}
+
+		logger.info(sb.toString());
+
+	}
+
+	public boolean processInputLine(String line) {
+		boolean status = true;
+		switch (line) {
+		case "d":
+			// roll dice
+			controller.startTurn();
+			break;
+		case "x":
+			status = false;
+			break;
+		default:
+			System.out.println("Wrong Input!");
+		}
+		return status;
 
 	}
 
