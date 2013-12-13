@@ -55,13 +55,14 @@ public class Controller extends Observable implements IController {
 			currentPlayer.incrementPrisonRound();
 		} else {
 			Dice.throwDice();
-			if (field.movePlayer(currentPlayer, (Dice.resultDice))) {
+			if (field.movePlayer(currentPlayer, (Dice.resultDice % field.getfieldSize()))) {
 				receiveGoMoney();
 				message.append("Sie erhalten mehr Geld wegen dem Los-Feld :)");
 			}
+			currentField = field.getCurrentField(currentPlayer);
 			if (currentField.getType() == 's') {
 				Street street = (Street) currentField;
-				if (street.getOwner() == null || !street.getOwner().equals(currentPlayer)) {
+				if (street.getOwner() == null) {
 					message.append(
 							"Diese Straße ist frei. Wollen sie die Straße für ")
 							.append(street.getPriceForStreet())
@@ -89,6 +90,7 @@ public class Controller extends Observable implements IController {
 
 	@Override
 	public void endTurn() {
+		message.delete(0, message.length());
 		this.currentPlayer = players.getNextPlayer();
 	}
 
@@ -159,6 +161,7 @@ public class Controller extends Observable implements IController {
 			break;
 		case 2:
 			options.add("y - kaufen");
+			options.add("b - Zug Beenden");
 		default:
 			break;
 		}
