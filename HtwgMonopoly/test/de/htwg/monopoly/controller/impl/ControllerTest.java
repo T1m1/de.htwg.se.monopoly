@@ -7,6 +7,7 @@ import java.io.ByteArrayInputStream;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.htwg.monopoly.entities.Dice;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
 public class ControllerTest {
@@ -31,10 +32,10 @@ public class ControllerTest {
 	public void testStartTurn() {
 		testController.getCurrentPlayer().setInPrison(true);
 		testController.startTurn();
-		assertTrue(!testController.getCurrentPlayer().isInPrison());
-		assertTrue(testController.getCurrentPlayer().getPosition() != 0);
+		assertFalse(testController.getCurrentPlayer().isInPrison());
 		testController.startTurn();
 		assertTrue(testController.getCurrentPlayer().isInPrison());
+	
 	}
 
 	@Test

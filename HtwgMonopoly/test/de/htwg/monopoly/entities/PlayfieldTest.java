@@ -23,6 +23,7 @@ public class PlayfieldTest {
 
 	@Test
 	public void testMovePlayer() {
+		/* TODO: Wieso 2 ? */
 		testplayer.setPosition(IMonopolyUtil.TEST_PLAYFIELD_SIZE);
 		assertTrue(field.movePlayer(testplayer, 1));
 		testplayer.setPosition(0);
