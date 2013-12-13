@@ -120,9 +120,9 @@ public class TextUI implements IObserver {
 					+ "[Strassen...]\n");
 		}
 		
-		for(int i; i < controller.getField())
-		sb.append("\nSpielfeld [--------------------]");
-		logger.info(sb.toString());
+//		for(int i; i < controller.getField())
+//		sb.append("\nSpielfeld [--------------------]");
+//		logger.info(sb.toString());
 
 	}
 
