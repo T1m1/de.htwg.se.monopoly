@@ -12,10 +12,12 @@ import de.htwg.monopoly.util.IMonopolyUtil;
 public class TextUI implements IObserver {
 
 	private Logger logger = Logger.getLogger("de.htwg.monopoly.view.tui");
+	
 
 	private IController controller;
 
 	public void startGame() {
+
 		printInitialisation();
 		logger.info(IMonopolyUtil.start);
 		controller.initGame(6); // <-- noch ist das Feld nur 2 groß!!
