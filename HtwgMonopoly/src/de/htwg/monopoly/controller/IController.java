@@ -1,5 +1,7 @@
 package de.htwg.monopoly.controller;
 
+import java.util.List;
+
 import de.htwg.monopoly.controller.impl.PlayerController;
 import de.htwg.monopoly.entities.Player;
 import de.htwg.monopoly.entities.Playfield;
@@ -76,5 +78,8 @@ public interface IController extends IObservable {
 	Player getCurrentPlayer();
 	
 	Playfield getField();
+
+	List<String> getOptions();
+
 
 }

@@ -34,6 +34,7 @@ public class PlayerControllerTest {
 	public void testCurrentPlayer() {
 		assertEquals("2", players.currentPlayer().getName());
 		assertEquals(2, players.getNumberOfPlayer());
+		assertEquals("2", players.getPlayer(1).getName());
 	}
 	
 	@Test
@@ -47,7 +48,8 @@ public class PlayerControllerTest {
 	@Test
 	public void testReadNumberofPlayer() {
 		players = new PlayerController();
-		ByteArrayInputStream testStream = new ByteArrayInputStream("\n".getBytes());
+		String testString = "Hello World";
+		ByteArrayInputStream testStream = new ByteArrayInputStream(testString.getBytes());
 		System.setIn(testStream);
 		assertFalse(players.readNumberOfPlayer());
 		ByteArrayInputStream testStream2 = new ByteArrayInputStream("10\n".getBytes());

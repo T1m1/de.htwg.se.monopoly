@@ -190,4 +190,8 @@ public class Street implements IFieldObject{
 	public void setOwner(Player newOwner) {
 		this.owner = newOwner;
 	}
+	@Override
+	public String toString () {
+		return this.name;
+	}
 }

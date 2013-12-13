@@ -11,7 +11,6 @@ public class Monopoly {
 		TextUI tui = new TextUI(controller);
 		
 		tui.startGame();
-
+		
 	}
-
 }
