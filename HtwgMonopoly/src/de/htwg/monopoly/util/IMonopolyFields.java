@@ -10,7 +10,7 @@ public interface IMonopolyFields {
 	 * frei parken
 	 * 
 	 */
-	char[] typ = { 'l', 's', 'g', 'e', 'z', 'b', 's', 'e', 's', 's', 'n', 's',
+	char[] typ = { 'l', 's', 'g', 'e', 'z', 'p', 'b', 'e', 's', 's', 'n', 's',
 			'w', 's', 's', 'b', 's', 'g', 's', 's', 'f', 's', 'e', 's', 's',
 			'b', 's', 's', 'w', 's', 'p', 's', 's', 'g', 's', 'b', 'e', 's',
 			'z', 's' };

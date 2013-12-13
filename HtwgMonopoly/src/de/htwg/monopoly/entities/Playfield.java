@@ -43,7 +43,9 @@ public class Playfield {
 				playfield[i] = this.commStack;
 				break;
 			case 'z':
-				playfield[i] = new FieldObject("Zusatzsteuer", IMonopolyFields.typ[i], 100);
+				playfield[i] = new FieldObject("Zusatzsteuer",
+						IMonopolyFields.typ[i], 100);
+				break;
 			case 'b':
 
 			case 'e':
@@ -52,6 +54,8 @@ public class Playfield {
 			case 'n':
 
 			case 'p':
+				playfield[i] = new FieldObject("Gehe in das Gefängnis",
+						IMonopolyFields.typ[i], 0);
 
 			case 'f':
 			}
@@ -96,6 +100,10 @@ public class Playfield {
 		return playfield[currentPlayer.getPosition()];
 	}
 
+	public String getFieldNameAtIndex(int i) {
+		return playfield[i].toString();
+	}
+
 	public int getfieldSize() {
 		return this.fieldSize;
 	}
@@ -129,9 +137,21 @@ public class Playfield {
 			break;
 		case 'z':
 			FieldObject field = (FieldObject) currentField;
-			sb.append("Sie müssen ").append(field.getPriceToPay()).append(" Zusatzsteuer zahlen\n");
+			sb.append("Sie müssen ").append(field.getPriceToPay())
+					.append(" Zusatzsteuer zahlen\n");
 			Bank.receiveMoney(currentPlayer, -field.getPriceToPay());
 			break;
+		case 'p':
+			sb.append("Sie müssen in das Gefängnis :(\n");
+			currentPlayer.setInPrison(true);
+			break;
+		case 'e':
+			sb.append("Auf der Karte steht: ").append(
+					this.chanStack.getNextCard().getDescription());
+			break;
+		case 'g':
+			sb.append("Auf der Karte steht: ").append(
+					this.commStack.getNextCard().getDescription());
 
 		}
 		return sb.toString();

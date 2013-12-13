@@ -18,7 +18,7 @@ public class TextUI implements IObserver {
 	public void startGame() {
 		printInitialisation();
 		logger.info(IMonopolyUtil.start);
-		controller.initGame(5); // <-- noch ist das Feld nur 2 groß!!
+		controller.initGame(6); // <-- noch ist das Feld nur 2 groß!!
 		// print feld? abfragen wer startet? ansonsten gehts los.
 		controller.startNewGame();
 
