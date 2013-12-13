@@ -147,10 +147,12 @@ public class TextUI implements IObserver {
 					sb.append(zeichen[zeile]);
 			}
 			sb.append("|");
-			
+		}
+		for (int i = 0; i < controller.getField().getfieldSize(); i++) {
+			streets.append(i).append("=").append(controller.getField().getFieldNameAtIndex(i)).append("\t");
 		}
 		
-
+		sb.append("\n").append(streets);
 		logger.info(sb.toString());
 
 	}
