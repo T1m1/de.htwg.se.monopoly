@@ -3,6 +3,7 @@ package de.htwg.monopoly.entities;
 import de.htwg.monopoly.cards.ChanceCardsStack;
 import de.htwg.monopoly.cards.CommunityCardsStack;
 import de.htwg.monopoly.util.IMonopolyFields;
+import de.htwg.monopoly.util.IMonopolyUtil;
 
 public class Playfield {
 
@@ -10,6 +11,7 @@ public class Playfield {
 	private CommunityCardsStack commStack;
 	private ChanceCardsStack chanStack;
 	private int fieldSize;
+	private boolean wentOverGo = false;
 
 	public Playfield() {
 
@@ -70,7 +72,7 @@ public class Playfield {
 	 * @return true if Player moved over or stays on "Los" otherwise return
 	 *         false
 	 */
-	public boolean movePlayer(Player currentPlayer, int diceResult) {
+	public void movePlayer(Player currentPlayer, int diceResult) {
 		// calculate the new position of the player within the playfield range
 		// and save its old position
 		int position = (currentPlayer.getPosition() + diceResult)
@@ -80,8 +82,8 @@ public class Playfield {
 		// Move the player
 		currentPlayer.setPosition(position);
 
-		// return true, if the Player went over or stays on "Los"
-		return (position < oldPosition);
+		// saves true, if the Player went over or stays on "Los"
+		wentOverGo = (position < oldPosition);
 	}
 
 	/**
@@ -95,7 +97,39 @@ public class Playfield {
 	}
 
 	public int getfieldSize() {
-		// TODO Auto-generated method stub
 		return this.fieldSize;
+	}
+
+	public String appendInfo(IFieldObject currentField, Player currentPlayer) {
+		StringBuilder sb = new StringBuilder();
+		if (wentOverGo) {
+			sb.append("Sie sind über Los gegangen und erhalten Geld\n");
+			Bank.receiveMoney(currentPlayer, IMonopolyUtil.LOS_MONEY);
+			// TODO evtl bekommt er zu viel geld wenn er zusätzlich auf Los steht
+		}
+		switch (currentField.getType()) {
+		case 's':
+			Street street = (Street) currentField;
+			if (street.getOwner() == null) {
+				sb.append("Diese Straße ist frei. Wollen sie die Straße für ")
+						.append(street.getPriceForStreet()).append(" kaufen\n");
+			} else if (street.getOwner().equals(currentPlayer)) {
+
+			} else {
+				sb.append("Diese Straße gehört ")
+						.append(street.getOwner())
+						.append(".\nSie müssen ihm jetzt ")
+						.append(street.getRent()).append(" Miete zahlen.\n");
+				Bank.payRent(currentPlayer, currentField);
+			}
+			break;
+		case 'l' :
+			sb.append("Sie stehen auf Los und erhalten sehr viel Geld\n");
+			Bank.receiveMoney(currentPlayer, 2*IMonopolyUtil.LOS_MONEY);
+			break;
+			
+
+		}
+		return sb.toString();
 	}
 }

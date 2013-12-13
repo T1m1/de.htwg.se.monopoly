@@ -55,26 +55,12 @@ public class Controller extends Observable implements IController {
 			currentPlayer.incrementPrisonRound();
 		} else {
 			Dice.throwDice();
-			if (field.movePlayer(currentPlayer, (Dice.resultDice))) {
-				receiveGoMoney();
-				message.append("Sie erhalten mehr Geld wegen dem Los-Feld :)");
-			}
-			if (currentField.getType() == 's') {
-				Street street = (Street) currentField;
-				if (street.getOwner() == null || !street.getOwner().equals(currentPlayer)) {
-					message.append(
-							"Diese Straße ist frei. Wollen sie die Straße für ")
-							.append(street.getPriceForStreet())
-							.append(" kaufen\n");
-				} else if (street.getOwner().equals(currentPlayer)) {
-					
-				} else {
-					message.append("Diese Straße gehört ")
-							.append(street.getOwner())
-							.append(".\nSie müssen ihm jetzt ")
-							.append(street.getRent()).append(" Miete zahlen.\n");
-				}
-			}
+			field.movePlayer(currentPlayer, (Dice.resultDice % field.getfieldSize()));
+			
+			this.currentField = field.getCurrentField(currentPlayer);
+			
+			message.append(field.appendInfo(currentField, currentPlayer));
+			
 		}
 		// überprüfen auf was fürn feldobjek
 		// dementsprechend notify
@@ -89,6 +75,7 @@ public class Controller extends Observable implements IController {
 
 	@Override
 	public void endTurn() {
+		this.message.delete(0, this.message.length());
 		this.currentPlayer = players.getNextPlayer();
 	}
 

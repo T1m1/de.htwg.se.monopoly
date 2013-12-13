@@ -35,5 +35,10 @@ public abstract class Card implements ICards {
 	public String getActionType() {
 		return this.actionType;
 	}
+	
+	@Override
+	public String toString() {
+		return getDescription();
+	}
 
 }
