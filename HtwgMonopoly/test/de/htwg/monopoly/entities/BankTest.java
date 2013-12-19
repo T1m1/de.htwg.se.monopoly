@@ -31,5 +31,15 @@ public class BankTest {
 		Bank.receiveMoney(testPlayer, 200);
 		assertEquals(250, testPlayer.getBudget());
 	}
+	
+	@Test
+	public void testGetParkingMoney() {
+		Bank.setParkingMoney(100);
+		assertEquals(100, Bank.getParkingMoney());
+		Bank.addParkingMoney(100);
+		assertEquals(200, Bank.getParkingMoney());
+	}
+	
+	
 
 }
