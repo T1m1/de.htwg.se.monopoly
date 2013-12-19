@@ -52,12 +52,16 @@ public class Playfield {
 				playfield[i] = this.chanStack;
 				break;
 			case 'n':
+				playfield[i] = new FieldObject("Bsys Labor: nur zu Besuch",
+						IMonopolyFields.typ[i], 0);
 
 			case 'p':
-				playfield[i] = new FieldObject("Gehe in das BsysLabor",
+				playfield[i] = new FieldObject("Gehe in das Bsys Labor",
 						IMonopolyFields.typ[i], 0);
 				break;
 			case 'f':
+				playfield[i] = new FieldObject("Mensa", IMonopolyFields.typ[i],
+						0);
 			}
 
 		}
@@ -117,14 +121,14 @@ public class Playfield {
 		case 's':
 			Street street = (Street) currentField;
 			if (street.getOwner() == null) {
-				sb.append("Diese Straße ist frei. Wollen sie die Straße für ")
-						.append(street.getPriceForStreet()).append(" kaufen\n");
+				sb.append("Diese Straße ist frei. Wollen sie die Straße für "
+						+ street.getPriceForStreet() + "€ kaufen\n");
 			} else if (street.getOwner().equals(currentPlayer)) {
 				sb.append("Ihnen gehört die Straße. Gut gemacht\n");
 			} else {
-				sb.append("Diese Straße gehört ").append(street.getOwner())
-						.append(".\nSie müssen ihm jetzt ")
-						.append(street.getRent()).append(" Miete zahlen.\n");
+				sb.append("Diese Straße gehört " + street.getOwner()
+						+ ".\nSie müssen ihm jetzt " + street.getRent()
+						+ "€ Miete zahlen.\n");
 				Bank.payRent(currentPlayer, currentField);
 			}
 			break;
@@ -135,21 +139,32 @@ public class Playfield {
 			break;
 		case 'z':
 			FieldObject field = (FieldObject) currentField;
-			sb.append("Sie müssen ").append(field.getPriceToPay())
-					.append(" Zusatzsteuer zahlen\n");
+			sb.append("Sie müssen " + field.getPriceToPay()
+					+ "€ Zusatzsteuer zahlen\n");
 			Bank.receiveMoney(currentPlayer, -field.getPriceToPay());
+			Bank.addParkingMoney(field.getPriceToPay());
 			break;
 		case 'p':
-			sb.append("Sie müssen jetzt in das Bsys Labor und setzen verdammt lang aus :(\n");
+			sb.append("Sie müssen jetzt in das Bsys Labor und setzen verdammt lang aus, weil sie lernen müssen. :(\n");
 			currentPlayer.setInPrison(true);
 			break;
 		case 'e':
-			sb.append("Auf der Karte steht: ").append(
-					this.chanStack.getNextCard().getDescription());
+			sb.append("Auf der Karte steht: " + this.chanStack.getNextCard().getDescription() + "\n");
+			// perform action.
 			break;
 		case 'g':
-			sb.append("Auf der Karte steht: ").append(
-					this.commStack.getNextCard().getDescription());
+			sb.append("Auf der Karte steht: " +	this.commStack.getNextCard().getDescription() + "\n");
+			// perform action.
+			break;
+		case 'n':
+			sb.append("Sie schauen nur kurz im Bsys Labor vorbei und bemitleiden die armen Schweine. Danach gehen Sie einfach weiter\n");
+			break;
+		case 'f':
+			sb.append("Sie sind in der Mensa gelandet. Wenn sie Glück haben ist noch Essen übrig, was Sie geschenkt bekommen.\nSie erhalten "
+					+ Bank.getParkingMoney() + "€\n");
+			Bank.receiveMoney(currentPlayer, Bank.getParkingMoney());
+			Bank.setParkingMoney(0);
+			break;
 
 		}
 		return sb.toString();

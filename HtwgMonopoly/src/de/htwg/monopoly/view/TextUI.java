@@ -18,7 +18,7 @@ public class TextUI implements IObserver {
 	public void startGame() {
 		printInitialisation();
 		logger.info(IMonopolyUtil.start);
-		controller.initGame(6); // <-- noch ist das Feld nur 2 groß!!
+		controller.initGame(8); // <-- noch ist das Feld nur 2 groß!!
 		// print feld? abfragen wer startet? ansonsten gehts los.
 		controller.startNewGame();
 
@@ -69,9 +69,7 @@ public class TextUI implements IObserver {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Sie haben folgende Optionen:\n");
 		for (String option : controller.getOptions(2)) {
-			sb.append(option);
-			sb.append("\n");
-
+			sb.append(option + "\n");
 		}
 		logger.info(sb.toString());
 	}

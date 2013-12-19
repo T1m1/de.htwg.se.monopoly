@@ -3,6 +3,7 @@ package de.htwg.monopoly.controller.impl;
 import static org.junit.Assert.*;
 
 import java.io.ByteArrayInputStream;
+import java.io.UnsupportedEncodingException;
 
 import org.junit.Before;
 import org.junit.Test;

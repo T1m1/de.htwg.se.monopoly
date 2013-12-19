@@ -1,6 +1,5 @@
 package de.htwg.monopoly.cards;
 
-import java.util.Collections;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -28,11 +27,5 @@ public abstract class CardsStack implements ICardStack, IFieldObject  {
 	public void pushOnTop(ICards newCard)
 	{
 		cards.push(newCard);
-	}
-	
-
-	@Override
-	public void shuffle() { 
-		Collections.shuffle((LinkedList<ICards>) this.cards);
 	}
 }

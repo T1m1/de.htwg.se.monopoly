@@ -12,11 +12,6 @@ public interface ICardStack {
 	ICards getNextCard();
 	
 	/**
-	 * Shuffles the Stack.
-	 */
-	void shuffle();
-	
-	/**
 	 * Push a new card on top of the Stack.
 	 * @param newCard
 	 */

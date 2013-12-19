@@ -2,6 +2,8 @@ package de.htwg.monopoly.entities;
 
 public final class Bank {
 	
+	private static int parkingMoney = 0;
+
 	private Bank() { }
 
 	/**
@@ -31,4 +33,15 @@ public final class Bank {
 		currentPlayer.setBudget(currentPlayer.getBudget() + money);
 	}
 
+	public static int getParkingMoney() {
+		return parkingMoney;
+	}
+
+	public static void setParkingMoney(int i) {
+		parkingMoney = i;		
+	}
+
+	public static void addParkingMoney(int priceToPay) {
+		parkingMoney += priceToPay;
+	}
 }

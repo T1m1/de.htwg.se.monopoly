@@ -19,11 +19,4 @@ public class CardsStackTest {
 	public void testGetNextCard() {
 		assertEquals("Gehe in das Gefängnis", stack.getNextCard().getDescription());
 	}
-	
-	@Test
-	public void testShuffle() {
-		stack.shuffle();
-		assertEquals("Gehe in das Gefängnis", stack.getNextCard().getDescription());
-	
-	}
 }

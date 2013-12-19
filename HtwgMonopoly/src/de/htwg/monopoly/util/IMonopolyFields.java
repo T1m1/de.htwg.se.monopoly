@@ -10,10 +10,10 @@ public interface IMonopolyFields {
 	 * frei parken
 	 * 
 	 */
-	char[] typ = { 'l', 's', 'g', 'e', 'z', 'p', 'b', 'e', 's', 's', 'n', 's',
+	char[] typ = { 'l', 's', 'g', 'e', 'z', 'p', 'f', 'n', 'b', 'e', 's', 's', 'n', 's',
 			'w', 's', 's', 'b', 's', 'g', 's', 's', 'f', 's', 'e', 's', 's',
 			'b', 's', 's', 'w', 's', 'p', 's', 's', 'g', 's', 'b', 'e', 's',
-			'z', 's' };
+			'z', 's'};
 	//Anmerkung zu typ: die Reihenfolge stimmt nicht mehr. muss am schluss wieder in richtige reiheinfolge gebracht werden
 	Integer[] prizeForStreet = { 0, 60, 0, 60, 100, 200, 100, 0, 100, 120, 0,
 			140, 150, 140, 160, 200, 180, 0, 180, 200, 0, 220, 0, 220, 240,
