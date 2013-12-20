@@ -56,7 +56,7 @@ public class Controller extends Observable implements IController {
 			message.append("Sie stecken im Bsys Labor fest\n");
 		} else {
 			Dice.throwDice();
-			field.movePlayer(currentPlayer, (Dice.resultDice % field.getfieldSize()));
+			field.movePlayer(currentPlayer, (Dice.getResultDice() % field.getfieldSize()));
 			
 			this.currentField = field.getCurrentField(currentPlayer);
 			

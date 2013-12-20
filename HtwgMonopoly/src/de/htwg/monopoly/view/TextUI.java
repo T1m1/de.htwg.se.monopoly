@@ -51,7 +51,7 @@ public class TextUI implements IObserver {
 	}
 
 	private void printRoll() {
-		logger.info("Sie haben " + Dice.resultDice
+		logger.info("Sie haben " + Dice.getResultDice()
 				% controller.getField().getfieldSize() + " gewürfelt!");
 
 	}
