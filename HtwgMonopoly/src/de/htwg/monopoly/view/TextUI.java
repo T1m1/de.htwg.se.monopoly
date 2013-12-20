@@ -12,7 +12,6 @@ import de.htwg.monopoly.util.IMonopolyUtil;
 public class TextUI implements IObserver {
 
 	private Logger logger = Logger.getLogger("de.htwg.monopoly.view.tui");
-	
 
 	private IController controller;
 
@@ -23,7 +22,6 @@ public class TextUI implements IObserver {
 		controller.initGame(IMonopolyUtil.TUI_FIELD_SIZE);
 		// print feld? abfragen wer startet? ansonsten gehts los.
 		controller.startNewGame();
-
 	}
 
 	public TextUI(IController controller) {
@@ -121,7 +119,7 @@ public class TextUI implements IObserver {
 		/* TODO: Ausgabe formatieren */
 		StringBuilder sb = new StringBuilder();
 		StringBuilder streets = new StringBuilder();
-		
+
 		sb.append("\n_________________________________\n");
 		sb.append("Spieler\t|Budget\t|Besitz\n");
 		sb.append("-------\t|------\t|--------------\n");
@@ -134,27 +132,29 @@ public class TextUI implements IObserver {
 		int z = IMonopolyUtil.TUI_HIGH;
 		String[] zeichen = new String[z];
 		z = 0;
-		zeichen[z]="|-------";
-		zeichen[++z]="|___x___";
-		zeichen[++z]="|       ";
-		zeichen[++z]="|_______";
-		
+		zeichen[z] = "|-------";
+		zeichen[++z] = "|___x___";
+		zeichen[++z] = "|       ";
+		zeichen[++z] = "|_______";
+
 		String x = "x";
-		for (int zeile = 0; zeile < zeichen.length-1; zeile++) {
+		for (int zeile = 0; zeile < zeichen.length - 1; zeile++) {
 			sb.append("\n");
 			for (int i = 0; i < controller.getField().getfieldSize(); i++) {
 				if (zeile == 1) {
-					zeichen[1] =zeichen[1].replace(x,""+i);
-					x =  "" + i; 
+					zeichen[1] = zeichen[1].replace(x, "" + i);
+					x = "" + i;
 				}
-					sb.append(zeichen[zeile]);
+				sb.append(zeichen[zeile]);
 			}
 			sb.append("|");
 		}
 		for (int i = 0; i < controller.getField().getfieldSize(); i++) {
-			streets.append(i).append("=").append(controller.getField().getFieldNameAtIndex(i)).append("\t");
+			streets.append(i).append("=")
+					.append(controller.getField().getFieldNameAtIndex(i))
+					.append("\t");
 		}
-		
+
 		sb.append("\n").append(streets);
 		logger.info(sb.toString());
 
@@ -203,7 +203,5 @@ public class TextUI implements IObserver {
 			System.out.println("Wrong Input!");
 		}
 		return status;
-
 	}
-
 }

@@ -3,8 +3,6 @@ package de.htwg.monopoly.cards;
 import java.util.Deque;
 import java.util.LinkedList;
 
-import de.htwg.monopoly.entities.IFieldObject;
-
 public abstract class CardsStack implements ICardStack {
 
 	private Deque<ICards> cards = new LinkedList<ICards>();
