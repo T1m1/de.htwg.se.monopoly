@@ -43,14 +43,14 @@ public class Controller extends Observable implements IController {
 
 	@Override
 	public void startNewGame() {
-		//startTurn();
+		//startTurn..(..
 		this.currentPlayer = players.currentPlayer();
 		notifyObservers(0);
 	}
 
 	@Override
 	public void startTurn() {
-		//this.currentPlayer = players.currentPlayer();
+		//this currentPlayer   players.currentPlayer  
 		if (currentPlayer.isInPrison()) {
 			currentPlayer.incrementPrisonRound();
 			message.append("Sie stecken im Bsys Labor fest\n");
@@ -65,7 +65,7 @@ public class Controller extends Observable implements IController {
 		// überprüfen auf was fürn feldobjek
 		// dementsprechend notify
 		notifyObservers(1);
-		//notifyObservers();
+		//notifyObservers
 	}
 
 	@Override

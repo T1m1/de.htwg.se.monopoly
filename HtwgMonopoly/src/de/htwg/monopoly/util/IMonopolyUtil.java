@@ -29,14 +29,15 @@ public interface IMonopolyUtil {
 	int TEST_PLAYFIELD_SIZE = 2;
 
 	/* Strings */
-	String gameName = "HTWG Monopoly";
-	String qNumberOfPlayer = "Bitte Anzahl der Spieler eingeben: ";
-	String qNamePlayer = "bitte Name eingeben: ";
-	String start = "Los gehts!";
+	String GAME_NAME = "HTWG Monopoly";
+	String Q_NUMBER_OF_PLAYER = "Bitte Anzahl der Spieler eingeben: ";
+	String Q_NAME_PLAYER = "bitte Name eingeben: ";
+	String START = "Los gehts!";
 	
-	String errNumberOfPlayer = "Ungültige Anzahl von Spieler eingegeben (2 - 6)";
-	String errNameOfPlayer = "Kann das passieren?";
-	String testInputStream = "2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n";
+	String ERR_NUMBER_OF_PLAYER = "Ungültige Anzahl von Spieler eingegeben (2 - 6)";
+	String ERR_NAME_OF_PLAYER = "Kann das passieren?";
+	String TEST_INPUT_STREAM = "2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n";
+	int ZUSATZSTEUER = 100;
 	
 
 }

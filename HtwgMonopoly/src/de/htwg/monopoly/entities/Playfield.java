@@ -28,23 +28,23 @@ public class Playfield {
 		this.commStack = new CommunityCardsStack();
 		this.chanStack = new ChanceCardsStack();
 		for (int i = 0; i < fieldSize; i++) {
-			switch (IMonopolyFields.typ[i]) {
+			switch (IMonopolyFields.TYP[i]) {
 			case 'l':
-				playfield[i] = new FieldObject(IMonopolyFields.name[i],
-						IMonopolyFields.typ[i], 0);
+				playfield[i] = new FieldObject(IMonopolyFields.NAME[i],
+						IMonopolyFields.TYP[i], 0);
 				break;
 			case 's':
-				playfield[i] = new Street(IMonopolyFields.name[i],
-						IMonopolyFields.prizeForStreet[i],
-						IMonopolyFields.coulor[i], IMonopolyFields.rent[i],
-						IMonopolyFields.hotel[i]);
+				playfield[i] = new Street(IMonopolyFields.NAME[i],
+						IMonopolyFields.PRICE_FOR_STREET[i],
+						IMonopolyFields.COLOUR[i], IMonopolyFields.RENT[i],
+						IMonopolyFields.HOTEL[i]);
 				break;
 			case 'g':
 				playfield[i] = this.commStack;
 				break;
 			case 'z':
 				playfield[i] = new FieldObject("Zusatzsteuer",
-						IMonopolyFields.typ[i], 100);
+						IMonopolyFields.TYP[i], IMonopolyUtil.ZUSATZSTEUER);
 				break;
 			case 'b':
 
@@ -53,14 +53,14 @@ public class Playfield {
 				break;
 			case 'n':
 				playfield[i] = new FieldObject("Bsys Labor: nur zu Besuch",
-						IMonopolyFields.typ[i], 0);
+						IMonopolyFields.TYP[i], 0);
 
 			case 'p':
 				playfield[i] = new FieldObject("Gehe in das Bsys Labor",
-						IMonopolyFields.typ[i], 0);
+						IMonopolyFields.TYP[i], 0);
 				break;
 			case 'f':
-				playfield[i] = new FieldObject("Mensa", IMonopolyFields.typ[i],
+				playfield[i] = new FieldObject("Mensa", IMonopolyFields.TYP[i],
 						0);
 			}
 

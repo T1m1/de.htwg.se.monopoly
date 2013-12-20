@@ -72,12 +72,12 @@ public class PlayerController {
 
 	public boolean readNumberOfPlayer() {
 
-		int numberOfPlayer = 0;
+		int l_NumberOfPlayer = 0;
 
 		if (in.hasNext()) {
 			/* check if input an integer and in right interval */
 			if (in.hasNextInt()) {
-				numberOfPlayer = in.nextInt();
+				l_NumberOfPlayer = in.nextInt();
 				in.nextLine();
 			} else {
 				in.nextLine();
@@ -85,13 +85,13 @@ public class PlayerController {
 			}
 		}
 
-		if (numberOfPlayer < IMonopolyUtil.MIN_NUMBER_OF_PLAYER 
-				|| numberOfPlayer > IMonopolyUtil.MAX_NUMBER_OF_PLAYER) {
+		if (l_NumberOfPlayer < IMonopolyUtil.MIN_NUMBER_OF_PLAYER 
+				|| l_NumberOfPlayer > IMonopolyUtil.MAX_NUMBER_OF_PLAYER) {
 			return false;
 		}
 
 		/* if scanned number correct, save it */
-		this.numberOfPlayer = numberOfPlayer;
+		this.numberOfPlayer = l_NumberOfPlayer;
 		init();
 		return true;
 	}
@@ -101,7 +101,8 @@ public class PlayerController {
 	}
 
 	public boolean readNameOfPlayer(int i) {
-			if (in.hasNext()) { // wann zur hölle is das nicht wahr? also testbar?
+		// wann zur hölle is das nicht wahr? also testbar?
+			if (in.hasNext()) { 
 				this.players[i].setName(in.nextLine());
 			} else {
 				return false;

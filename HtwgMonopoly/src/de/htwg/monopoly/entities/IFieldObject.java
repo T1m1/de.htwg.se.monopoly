@@ -10,7 +10,4 @@ public interface IFieldObject {
 	
 	@Override
 	String toString();
-	
-	
-
 }

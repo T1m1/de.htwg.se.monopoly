@@ -16,7 +16,7 @@ public class PlayerControllerTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		ByteArrayInputStream testStream = new ByteArrayInputStream(IMonopolyUtil.testInputStream.getBytes());
+		ByteArrayInputStream testStream = new ByteArrayInputStream(IMonopolyUtil.TEST_INPUT_STREAM.getBytes());
 		System.setIn(testStream);
 		players = new PlayerController();
 		players.readNumberOfPlayer();

@@ -1,15 +1,16 @@
 package de.htwg.monopoly.cards;
 
+import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.util.IMonopolyCards;
 
 
 
-public class ChanceCardsStack extends CardsStack {
+public class ChanceCardsStack extends CardsStack implements IFieldObject {
 
 	public ChanceCardsStack() {
 		super();
 		
-		for (String descr: IMonopolyCards.descrChance) {
+		for (String descr: IMonopolyCards.DESCR_CHANCE) {
 			pushOnTop(new ChanceCard(descr, null));
 		}
 	}

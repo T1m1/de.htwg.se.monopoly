@@ -8,6 +8,6 @@ public interface IMonopolyCards {
 	 * 
 	 * 
 	 */
-	String[] descrChance = {"Gehe in das Gefängnis!!", "Du gewinnst bei einem Schönheitswettbewerb"};
-	String[] descrCommu = {"Du kommst aus dem Gefängnis frei", "Rücke vor auf Los" };
+	String[] DESCR_CHANCE = {"Gehe in das Gefängnis!!", "Du gewinnst bei einem Schönheitswettbewerb"};
+	String[] DESCR_COMMU = {"Du kommst aus dem Gefängnis frei", "Rücke vor auf Los" };
 }

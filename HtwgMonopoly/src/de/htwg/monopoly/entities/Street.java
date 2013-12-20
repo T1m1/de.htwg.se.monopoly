@@ -16,7 +16,7 @@ public class Street implements IFieldObject{
 	private int priceForStreet;
 	private Color color;
 	private int rent;
-	private int pricePerHotel; // was ist mit pricePerHouse?
+	private int pricePerHotel;
 	private int numberOfHotels = 0;
 	private boolean sold = false;
 	private Player owner = null;

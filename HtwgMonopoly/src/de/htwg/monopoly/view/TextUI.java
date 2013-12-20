@@ -19,7 +19,7 @@ public class TextUI implements IObserver {
 	public void startGame() {
 
 		printInitialisation();
-		logger.info(IMonopolyUtil.start);
+		logger.info(IMonopolyUtil.START);
 		controller.initGame(8); // <-- noch ist das Feld nur 2 groß!!
 		// print feld? abfragen wer startet? ansonsten gehts los.
 		controller.startNewGame();
@@ -81,7 +81,7 @@ public class TextUI implements IObserver {
 	}
 
 	public void printInitialisation() {
-		logger.info(IMonopolyUtil.gameName);
+		logger.info(IMonopolyUtil.GAME_NAME);
 		setNumberOfPlayer();
 		setNameOfPlayers();
 	}
@@ -101,17 +101,17 @@ public class TextUI implements IObserver {
 	}
 
 	private void setNumberOfPlayer() {
-		logger.info(IMonopolyUtil.qNumberOfPlayer);
+		logger.info(IMonopolyUtil.Q_NUMBER_OF_PLAYER);
 		while (!controller.setNumberofPlayer()) {
-			logger.info(IMonopolyUtil.errNumberOfPlayer);
+			logger.info(IMonopolyUtil.ERR_NUMBER_OF_PLAYER);
 		}
 	}
 
 	private void setNameOfPlayers() {
 		for (int i = 0; i < controller.getPlayers().getNumberOfPlayer(); i++) {
-			logger.info("Player " + (i + 1) + " " + IMonopolyUtil.qNamePlayer);
+			logger.info("Player " + (i + 1) + " " + IMonopolyUtil.Q_NAME_PLAYER);
 			while (!controller.setNameofPlayer(i)) {
-				logger.info(IMonopolyUtil.errNameOfPlayer);
+				logger.info(IMonopolyUtil.ERR_NAME_OF_PLAYER);
 			}
 		}
 
@@ -142,7 +142,7 @@ public class TextUI implements IObserver {
 			for (int i = 0; i < controller.getField().getfieldSize(); i++) {
 				if (zeile == 1) {
 					zeichen[1] =zeichen[1].replace(x,new Integer(i).toString());
-					x = new Integer(i).toString();
+					x =  "" + i; 
 				}
 					sb.append(zeichen[zeile]);
 			}
@@ -165,39 +165,40 @@ public class TextUI implements IObserver {
 	 */
 	public boolean processInputLine(String line) {
 		boolean status = true;
-//		switch (line) {
-//		case "d":
-//			// roll dice
-//			controller.startTurn();
-//
-//			break;
-//		case "b":
-//			// zug beenden
-//			controller.endTurn();
-//			printTUI();
-//			startTurn();
-//			break;
-//		case "x":
-//			status = false;
-//			break;
-//		case "y":
-//			if (controller.buyStreet()) {
-//				System.out.println("Erfolgreich gekauft!");
-//			} else {
-//				System.out.println("Du hast nicht genug Geld :P");
-//			}
-//			controller.endTurn();
-//			printTUI();
-//			startTurn();
-//			break;
-//		case "n":
-//			controller.endTurn();
-//			printTUI();
-//			startTurn();
-//			break;
-//		default:
-//			System.out.println("Wrong Input!");
-//		}
+		char[] l = line.toCharArray();
+		switch (l[0]) {
+		case 'd':
+			// roll dice
+			controller.startTurn();
+
+			break;
+		case 'b':
+			// zug beenden
+			controller.endTurn();
+			printTUI();
+			startTurn();
+			break;
+		case 'x':
+			status = false;
+			break;
+		case 'y':
+			if (controller.buyStreet()) {
+				System.out.println("Erfolgreich gekauft!");
+			} else {
+				System.out.println("Du hast nicht genug Geld :P");
+			}
+			controller.endTurn();
+			printTUI();
+			startTurn();
+			break;
+		case 'n':
+			controller.endTurn();
+			printTUI();
+			startTurn();
+			break;
+		default:
+			System.out.println("Wrong Input!");
+		}
 		return status;
 
 	}
