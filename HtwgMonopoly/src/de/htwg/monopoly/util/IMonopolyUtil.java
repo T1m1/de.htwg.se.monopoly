@@ -19,6 +19,8 @@ public interface IMonopolyUtil {
 	int MAX_PRISON_ROUND = 4;
 	int LOS_MONEY = 2000;
 	int FIELD_SIZE = 40;
+	int ZUSATZSTEUER = 100;
+	int TUI_FIELD_SIZE = 8;
 	
 	/***
 	 * Magic number for Tests
@@ -37,7 +39,8 @@ public interface IMonopolyUtil {
 	String ERR_NUMBER_OF_PLAYER = "Ungültige Anzahl von Spieler eingegeben (2 - 6)";
 	String ERR_NAME_OF_PLAYER = "Kann das passieren?";
 	String TEST_INPUT_STREAM = "2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n";
-	int ZUSATZSTEUER = 100;
+	int TUI_HIGH = 5;
+
 	
 
 }

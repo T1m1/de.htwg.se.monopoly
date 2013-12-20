@@ -20,7 +20,7 @@ public class TextUI implements IObserver {
 
 		printInitialisation();
 		logger.info(IMonopolyUtil.START);
-		controller.initGame(8); // <-- noch ist das Feld nur 2 groß!!
+		controller.initGame(IMonopolyUtil.TUI_FIELD_SIZE);
 		// print feld? abfragen wer startet? ansonsten gehts los.
 		controller.startNewGame();
 
@@ -131,17 +131,20 @@ public class TextUI implements IObserver {
 					+ player.getOwnership() + "\n");
 		}
 
-		String[] zeichen = new String[5];
-		zeichen[0]="|-------";
-		zeichen[1]="|___x___";
-		zeichen[2]="|       ";
-		zeichen[3]="|_______";
+		int z = IMonopolyUtil.TUI_HIGH;
+		String[] zeichen = new String[z];
+		z = 0;
+		zeichen[z]="|-------";
+		zeichen[++z]="|___x___";
+		zeichen[++z]="|       ";
+		zeichen[++z]="|_______";
+		
 		String x = "x";
 		for (int zeile = 0; zeile < zeichen.length-1; zeile++) {
 			sb.append("\n");
 			for (int i = 0; i < controller.getField().getfieldSize(); i++) {
 				if (zeile == 1) {
-					zeichen[1] =zeichen[1].replace(x,new Integer(i).toString());
+					zeichen[1] =zeichen[1].replace(x,""+i);
 					x =  "" + i; 
 				}
 					sb.append(zeichen[zeile]);
@@ -183,9 +186,9 @@ public class TextUI implements IObserver {
 			break;
 		case 'y':
 			if (controller.buyStreet()) {
-				System.out.println("Erfolgreich gekauft!");
+				logger.info("Erfolgreich gekauft");
 			} else {
-				System.out.println("Du hast nicht genug Geld :P");
+				logger.info("Du hast nicht genug Geld!");
 			}
 			controller.endTurn();
 			printTUI();

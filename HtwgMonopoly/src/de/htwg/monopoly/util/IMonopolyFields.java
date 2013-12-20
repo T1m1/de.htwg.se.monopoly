@@ -19,7 +19,7 @@ public interface IMonopolyFields {
 			140, 150, 140, 160, 200, 180, 0, 180, 200, 0, 220, 0, 220, 240,
 			200, 260, 260, 150, 280, 0, 300, 300, 0, 320, 200, 0, 350, 100, 400 };
 	
-	String[] Names = new String[IMonopolyUtil.FIELD_SIZE];
+	String[] NAMES = new String[IMonopolyUtil.FIELD_SIZE];
 	Color[] COLOR = new Color[IMonopolyUtil.FIELD_SIZE];
 	Integer[] RENT_FOR_STREET = new Integer[IMonopolyUtil.FIELD_SIZE];
 	Integer[] PRICE_PER_HOTEL = new Integer[IMonopolyUtil.FIELD_SIZE];
