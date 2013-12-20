@@ -167,39 +167,39 @@ public class TextUI implements IObserver {
 	 */
 	public boolean processInputLine(String line) {
 		boolean status = true;
-		switch (line) {
-		case "d":
-			// roll dice
-			controller.startTurn();
-
-			break;
-		case "b":
-			// zug beenden
-			controller.endTurn();
-			printTUI();
-			startTurn();
-			break;
-		case "x":
-			status = false;
-			break;
-		case "y":
-			if (controller.buyStreet()) {
-				System.out.println("Erfolgreich gekauft!");
-			} else {
-				System.out.println("Du hast nicht genug Geld :P");
-			}
-			controller.endTurn();
-			printTUI();
-			startTurn();
-			break;
-		case "n":
-			controller.endTurn();
-			printTUI();
-			startTurn();
-			break;
-		default:
-			System.out.println("Wrong Input!");
-		}
+//		switch (line) {
+//		case "d":
+//			// roll dice
+//			controller.startTurn();
+//
+//			break;
+//		case "b":
+//			// zug beenden
+//			controller.endTurn();
+//			printTUI();
+//			startTurn();
+//			break;
+//		case "x":
+//			status = false;
+//			break;
+//		case "y":
+//			if (controller.buyStreet()) {
+//				System.out.println("Erfolgreich gekauft!");
+//			} else {
+//				System.out.println("Du hast nicht genug Geld :P");
+//			}
+//			controller.endTurn();
+//			printTUI();
+//			startTurn();
+//			break;
+//		case "n":
+//			controller.endTurn();
+//			printTUI();
+//			startTurn();
+//			break;
+//		default:
+//			System.out.println("Wrong Input!");
+//		}
 		return status;
 
 	}
