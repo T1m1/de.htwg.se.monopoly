@@ -12,10 +12,12 @@ import de.htwg.monopoly.util.IMonopolyUtil;
 public class TextUI implements IObserver {
 
 	private Logger logger = Logger.getLogger("de.htwg.monopoly.view.tui");
+	
 
 	private IController controller;
 
 	public void startGame() {
+
 		printInitialisation();
 		logger.info(IMonopolyUtil.start);
 		controller.initGame(8); // <-- noch ist das Feld nur 2 groß!!
@@ -163,39 +165,39 @@ public class TextUI implements IObserver {
 	 */
 	public boolean processInputLine(String line) {
 		boolean status = true;
-		switch (line) {
-		case "d":
-			// roll dice
-			controller.startTurn();
-
-			break;
-		case "b":
-			// zug beenden
-			controller.endTurn();
-			printTUI();
-			startTurn();
-			break;
-		case "x":
-			status = false;
-			break;
-		case "y":
-			if (controller.buyStreet()) {
-				System.out.println("Erfolgreich gekauft!");
-			} else {
-				System.out.println("Du hast nicht genug Geld :P");
-			}
-			controller.endTurn();
-			printTUI();
-			startTurn();
-			break;
-		case "n":
-			controller.endTurn();
-			printTUI();
-			startTurn();
-			break;
-		default:
-			System.out.println("Wrong Input!");
-		}
+//		switch (line) {
+//		case "d":
+//			// roll dice
+//			controller.startTurn();
+//
+//			break;
+//		case "b":
+//			// zug beenden
+//			controller.endTurn();
+//			printTUI();
+//			startTurn();
+//			break;
+//		case "x":
+//			status = false;
+//			break;
+//		case "y":
+//			if (controller.buyStreet()) {
+//				System.out.println("Erfolgreich gekauft!");
+//			} else {
+//				System.out.println("Du hast nicht genug Geld :P");
+//			}
+//			controller.endTurn();
+//			printTUI();
+//			startTurn();
+//			break;
+//		case "n":
+//			controller.endTurn();
+//			printTUI();
+//			startTurn();
+//			break;
+//		default:
+//			System.out.println("Wrong Input!");
+//		}
 		return status;
 
 	}
