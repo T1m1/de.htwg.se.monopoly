@@ -15,11 +15,11 @@ public interface IMonopolyUtil {
 	int FIRST_PLAYER = 0;
 	int MIN_NUMBER_OF_PLAYER = 2;
 	int MAX_NUMBER_OF_PLAYER = 6;
-	int INITIAL_MONEY = 600;
+	int INITIAL_MONEY = 6000;
 	int MAX_PRISON_ROUND = 4;
 	int LOS_MONEY = 2000;
 	int FIELD_SIZE = 40;
-	int ZUSATZSTEUER = 100;
+	int ZUSATZSTEUER = 1000;
 	int TUI_FIELD_SIZE = 8;
 	
 	/***
@@ -40,6 +40,7 @@ public interface IMonopolyUtil {
 	String ERR_NAME_OF_PLAYER = "Kann das passieren?";
 	String TEST_INPUT_STREAM = "2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n";
 	int TUI_HIGH = 5;
+	int FREIKAUFEN = 500;
 
 	
 

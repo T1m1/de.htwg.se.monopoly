@@ -19,7 +19,8 @@ public class Controller extends Observable implements IController {
 	private Player currentPlayer;
 	private IFieldObject currentField;
 	private StringBuilder message;
-
+	private int lastChooseOption;
+	
 	public Controller() {
 		this.players = new PlayerController();
 		this.field = new Playfield();
@@ -43,8 +44,8 @@ public class Controller extends Observable implements IController {
 
 	@Override
 	public void startNewGame() {
-		//startTurn..(..
-		this.currentPlayer = players.currentPlayer();
+		// TODO ZufallsSpieler auswählen
+		this.currentPlayer = players.getNextPlayer();
 		notifyObservers(0);
 	}
 
@@ -56,7 +57,7 @@ public class Controller extends Observable implements IController {
 			message.append("Sie stecken im Bsys Labor fest\n");
 		} else {
 			Dice.throwDice();
-			field.movePlayer(currentPlayer, (Dice.getResultDice() % field.getfieldSize()));
+			field.movePlayer(currentPlayer, (Dice.getResultDice() % field.getfieldSize() +1));
 			
 			this.currentField = field.getCurrentField(currentPlayer);
 			
@@ -138,23 +139,52 @@ public class Controller extends Observable implements IController {
 	@Override
 	public List<String> getOptions(int chooseOption) {
 
+		/* TODO INfos selber suchen und zusammenbauen */
+		
+		
 		List<String> options = new ArrayList<String>();
 
 		switch (chooseOption) {
 		case 1:
-			options.add("d - Würfeln");
+			if (currentPlayer.isInPrison()) {
+				options.add("(f) Freikaufen (" + IMonopolyUtil.FREIKAUFEN +")");
+				options.add("(3) Drei Versuche für Pasch");
+				// TODO check if contains free park card
+			} else {
+				options.add("(d) Würfeln");
+			}
+			
+			
 			break;
 		case 2:
-			options.add("y - kaufen");
-			options.add("b - Zug Beenden");
+			/* if current field a steet */
+			if (currentField.getType() == 's') {
+				Street s = (Street) currentField;
+				if (s.getOwner() == null) {
+					options.add("(y) Kaufen & Zug beenden");
+				}
+			}
+			// NO BREAK
+		case 3:
+			options.add("(b) Zug Beenden");
 		default:
 			break;
 		}
-		options.add("x - Spiel Beenden");
-		/**
-		 * checkt optionen: - case im Gefängnis - case NICHT im Gefägnis
-		 */
+		this.lastChooseOption = chooseOption;
+		options.add("(x) Aufgeben");
 		return options;
+	}
+	
+	public boolean isCorrectOption(String chooseOption) {
+		List<String> options = new ArrayList<String>();
+		options = getOptions(this.lastChooseOption);
+		String strChooseOptions = "(" + chooseOption + ")";
+		for (String tmp : options) {
+			if(tmp.contains(strChooseOptions)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public String getMessage() {

@@ -54,7 +54,7 @@ public class Playfield {
 			case 'n':
 				playfield[i] = new FieldObject("Bsys Labor: nur zu Besuch",
 						IMonopolyFields.TYP[i], 0);
-
+				break;
 			case 'p':
 				playfield[i] = new FieldObject("Gehe in das Bsys Labor",
 						IMonopolyFields.TYP[i], 0);

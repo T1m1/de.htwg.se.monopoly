@@ -1,6 +1,7 @@
 package de.htwg.monopoly.view;
 
-import java.util.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.entities.Dice;
@@ -11,7 +12,8 @@ import de.htwg.monopoly.util.IMonopolyUtil;
 
 public class TextUI implements IObserver {
 
-	private Logger logger = Logger.getLogger("de.htwg.monopoly.view.tui");
+	//private Logger logger = Logger.getLogger("de.htwg.monopoly.view.tui");
+	private static final Logger logger = LogManager.getLogger("UI");
 
 	private IController controller;
 
@@ -41,18 +43,21 @@ public class TextUI implements IObserver {
 			printRoll();
 			onField();
 			printAction();
+			
 			printOptions(2);
 
-		} else {
+		} if (e == 0 ){
 			printTUI();
 			startTurn();
+		} else {
+			
 		}
 
 	}
 
 	private void printRoll() {
-		logger.info("Sie haben " + Dice.getResultDice()
-				% controller.getField().getfieldSize() + " gewürfelt!");
+		logger.info("Sie haben " + (Dice.getResultDice()
+				% controller.getField().getfieldSize() +1 )+ " gewürfelt!");
 
 	}
 
@@ -152,7 +157,7 @@ public class TextUI implements IObserver {
 		for (int i = 0; i < controller.getField().getfieldSize(); i++) {
 			streets.append(i).append("=")
 					.append(controller.getField().getFieldNameAtIndex(i))
-					.append("\t");
+					.append("\n");
 		}
 
 		sb.append("\n").append(streets);
@@ -161,7 +166,6 @@ public class TextUI implements IObserver {
 	}
 
 	/**
-	 * TODO: evtl. auf Java 6 umbauen? Nötig?
 	 * 
 	 * @param line
 	 * @return
@@ -169,6 +173,10 @@ public class TextUI implements IObserver {
 	public boolean processInputLine(String line) {
 		boolean status = true;
 		char[] l = line.toCharArray();
+		if(!controller.isCorrectOption(line)) {
+			System.out.print("\nWrong Option! Try again: ");
+			return status;
+		}
 		switch (l[0]) {
 		case 'd':
 			// roll dice

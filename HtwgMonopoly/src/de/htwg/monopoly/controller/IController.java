@@ -83,5 +83,7 @@ public interface IController extends IObservable {
 
 	String getMessage();
 
+	boolean isCorrectOption(String l);
+
 
 }

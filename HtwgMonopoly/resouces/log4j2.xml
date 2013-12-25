@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+        <Appenders>
+                <Console name="Console" target="SYSTEM_OUT">
+                        <PatternLayout pattern="%d{dd.MM.yy HH:mm:ss} %-5level [%t] (%F:%L) - %m%n" />
+                </Console>
+                <Console name="ConsoleUI" target="SYSTEM_OUT">
+                        <PatternLayout pattern="%msg%n" />
+                </Console>
+                <File name="File" fileName="htwgMonopoly.log">
+                        <PatternLayout pattern="%d{dd.MM.yy HH:mm:ss} %-5level [%t] (%F:%L) - %m%n" />
+                </File>
+        </Appenders>
+        <Loggers>
+                <Root level="DEBUG">
+                        <AppenderRef ref="Console" />
+                        <AppenderRef ref="File" />
+                </Root>
+                <Logger name="UI" level="info" additivity='false'>
+                        <AppenderRef ref="ConsoleUI" />
+                </Logger>
+        </Loggers>
+</Configuration>
