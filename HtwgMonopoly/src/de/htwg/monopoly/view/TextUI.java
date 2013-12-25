@@ -1,5 +1,9 @@
 package de.htwg.monopoly.view;
 
+import java.text.MessageFormat;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,8 +16,11 @@ import de.htwg.monopoly.util.IMonopolyUtil;
 
 public class TextUI implements IObserver {
 
-	//private Logger logger = Logger.getLogger("de.htwg.monopoly.view.tui");
+	/* logger */
 	private static final Logger logger = LogManager.getLogger("UI");
+	/* internationalization */
+	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
+			Locale.GERMAN);
 
 	private IController controller;
 
@@ -22,7 +29,7 @@ public class TextUI implements IObserver {
 		printInitialisation();
 		logger.info(IMonopolyUtil.START);
 		controller.initGame(IMonopolyUtil.TUI_FIELD_SIZE);
-		// print feld? abfragen wer startet? ansonsten gehts los.
+		// TODO start -> random player
 		controller.startNewGame();
 	}
 
@@ -43,38 +50,40 @@ public class TextUI implements IObserver {
 			printRoll();
 			onField();
 			printAction();
-			
 			printOptions(2);
 
-		} if (e == 0 ){
+		}
+		if (e == 0) {
 			printTUI();
 			startTurn();
 		} else {
-			
+
 		}
 
 	}
 
 	private void printRoll() {
-		logger.info("Sie haben " + (Dice.getResultDice()
-				% controller.getField().getfieldSize() +1 )+ " gewürfelt!");
-
+		int diceResult = Dice.getResultDice()
+				% controller.getField().getfieldSize() + 1;
+		String out = MessageFormat.format(bundle.getString("tui_dice"),
+				diceResult);
+		logger.info(out);
 	}
 
 	public void onField() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("Sie sind auf dem Spielfeld: "
-				+ controller.getField().getCurrentField(
-						controller.getCurrentPlayer()) + " gelandet.\n");
-
-		logger.info(sb.toString());
+		String currentFile = controller.getField()
+				.getCurrentField(controller.getCurrentPlayer()).toString();
+		String out = MessageFormat.format(bundle.getString("tui_playfield"),
+				currentFile);
+		logger.info(out);
 	}
 
 	private void printOptions(int choose) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Sie haben folgende Optionen:\n");
+		sb.append(bundle.getString("tui_options"));
 		for (String option : controller.getOptions(2)) {
-			sb.append(option + "\n");
+			sb.append("\n");
+			sb.append(option);
 		}
 		logger.info(sb.toString());
 	}
@@ -91,12 +100,15 @@ public class TextUI implements IObserver {
 
 	public void startTurn() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Spieler " + controller.getCurrentPlayer().getName()
-				+ " sie sind dran.\n");
-		sb.append("Sie haben folgende Optionen:\n");
+		String currentPlayer = controller.getCurrentPlayer().getName();
+
+		sb.append(MessageFormat.format(bundle.getString("tui_player"),
+				currentPlayer));
+
+		sb.append(bundle.getString("tui_options"));
 		for (String option : controller.getOptions(1)) {
-			sb.append(option);
 			sb.append("\n");
+			sb.append(option);
 
 		}
 		logger.info(sb.toString());
@@ -126,7 +138,8 @@ public class TextUI implements IObserver {
 		StringBuilder streets = new StringBuilder();
 
 		sb.append("\n_________________________________\n");
-		sb.append("Spieler\t|Budget\t|Besitz\n");
+		sb.append(bundle.getString("player") + "\t|Budget\t|"
+				+ bundle.getString("own") + "\n");
 		sb.append("-------\t|------\t|--------------\n");
 		for (int i = 0; i < controller.getPlayers().getNumberOfPlayer(); i++) {
 			Player player = controller.getPlayers().getPlayer(i);
@@ -173,15 +186,14 @@ public class TextUI implements IObserver {
 	public boolean processInputLine(String line) {
 		boolean status = true;
 		char[] l = line.toCharArray();
-		if(!controller.isCorrectOption(line)) {
-			System.out.print("\nWrong Option! Try again: ");
+		if (!controller.isCorrectOption(line)) {
+			logger.info(bundle.getString("tui_wrong_input"));
 			return status;
 		}
 		switch (l[0]) {
 		case 'd':
 			// roll dice
 			controller.startTurn();
-
 			break;
 		case 'b':
 			// zug beenden
@@ -194,9 +206,9 @@ public class TextUI implements IObserver {
 			break;
 		case 'y':
 			if (controller.buyStreet()) {
-				logger.info("Erfolgreich gekauft");
+				logger.info(bundle.getString("tui_buy"));
 			} else {
-				logger.info("Du hast nicht genug Geld!");
+				logger.info(bundle.getString("tui_no_money"));
 			}
 			controller.endTurn();
 			printTUI();
@@ -208,7 +220,7 @@ public class TextUI implements IObserver {
 			startTurn();
 			break;
 		default:
-			System.out.println("Wrong Input!");
+			logger.info(bundle.getString("tui_wrong_input"));
 		}
 		return status;
 	}
