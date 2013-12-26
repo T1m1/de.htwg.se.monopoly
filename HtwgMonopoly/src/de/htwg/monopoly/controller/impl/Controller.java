@@ -179,7 +179,7 @@ public class Controller extends Observable implements IController {
 				}
 			}
 			// NO BREAK
-		case 3:
+		case IMonopolyUtil.OPTION_FINISH:
 			options.add("(b) " + bundle.getString("contr_finish"));
 		default:
 			break;

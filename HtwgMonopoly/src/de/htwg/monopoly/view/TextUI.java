@@ -57,8 +57,6 @@ public class TextUI implements IObserver {
 		if (e == 0) {
 			printTUI();
 			startTurn();
-		} else {
-
 		}
 	}
 
@@ -84,7 +82,7 @@ public class TextUI implements IObserver {
 	private void printOptions(int choose) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(bundle.getString("tui_options"));
-		for (String option : controller.getOptions(2)) {
+		for (String option : controller.getOptions(choose)) {
 			sb.append("\n");
 			sb.append(option);
 		}

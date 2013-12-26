@@ -37,10 +37,6 @@ public final class Bank {
 		return parkingMoney;
 	}
 
-//	public static void setParkingMoney(int i) {
-//		parkingMoney = i;		
-//	}
-
 	public static void addParkingMoney(int priceToPay) {
 		parkingMoney += priceToPay;
 	}
