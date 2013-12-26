@@ -182,19 +182,34 @@ public class Player {
 		this.inPrison = inPrison;
 	}
 
+	/**
+	 * override to string method to return the name of the player
+	 */
 	@Override
 	public String toString() {
 		return this.name;
 	}
 
+	/**
+	 * 
+	 * @return a list with the ownership of player
+	 */
 	public List<IFieldObject> getOwnership() {
 		return ownership;
 	}
 
-	public void setOwnership(IFieldObject street) {
+	/**
+	 * add a new ownership for player e.g. a street
+	 * @param street
+	 */
+	public void addOwnership(IFieldObject street) {
 		ownership.add(street);
 	}
 
+	/**
+	 * decremt money of player e.g. to buy a street 
+	 * @param freikaufen
+	 */
 	public void decrementMoney(int freikaufen) {
 		this.budget -= freikaufen;
 	}

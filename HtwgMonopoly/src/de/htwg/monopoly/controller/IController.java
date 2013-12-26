@@ -71,18 +71,50 @@ public interface IController extends IObservable {
 	 */
 	PlayerController getPlayers();
 
+	/***
+	 * set number of player
+	 * @return status
+	 */
 	boolean setNumberofPlayer();
 
+	/**
+	 * set name of player i
+	 * @param i -> number of player to set name for it
+	 * @return status
+	 */
 	boolean setNameofPlayer(int i);
 
+	/**
+	 * return object from current player
+	 * @return
+	 */
 	Player getCurrentPlayer();
 	
+	/**
+	 * 
+	 * @return object of monopoly field
+	 */
 	Playfield getField();
 
+	/**
+	 * for tui, to show which option user can choose
+	 * @param chooseOption
+	 * @return a list with all option
+	 */
 	List<String> getOptions(int chooseOption);
 
+	/**
+	 * 
+	 * @return a string with information of current turn
+	 */
 	String getMessage();
 
+	/**
+	 * function to check if user have the correct options choose
+	 * correct options are options they are contains in list of function getOption
+	 * @param l
+	 * @return
+	 */
 	boolean isCorrectOption(String l);
 
 

@@ -183,10 +183,18 @@ public class Street implements IFieldObject{
 		return 's';
 	}
 
+	/**
+	 * 
+	 * @return owner
+	 */
 	public Player getOwner() {
 		return this.owner;
 	}
 	
+	/**
+	 * set owner of street
+	 * @param newOwner
+	 */
 	public void setOwner(Player newOwner) {
 		this.owner = newOwner;
 	}

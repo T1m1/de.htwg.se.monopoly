@@ -1,5 +1,9 @@
 package de.htwg.monopoly.entities;
 
+import java.text.MessageFormat;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import de.htwg.monopoly.cards.ChanceCardsStack;
 import de.htwg.monopoly.cards.CommunityCardsStack;
 import de.htwg.monopoly.util.IMonopolyFields;
@@ -12,6 +16,10 @@ public class Playfield {
 	private ChanceCardsStack chanStack;
 	private int fieldSize;
 	private boolean wentOverGo = false;
+
+	/* internationalization */
+	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
+			Locale.GERMAN);
 
 	public Playfield() {
 
@@ -27,45 +35,55 @@ public class Playfield {
 		this.fieldSize = fieldSize;
 		this.commStack = new CommunityCardsStack();
 		this.chanStack = new ChanceCardsStack();
+
 		for (int i = 0; i < fieldSize; i++) {
-			switch (IMonopolyFields.TYP[i]) {
-			case 'l':
-				playfield[i] = new FieldObject(IMonopolyFields.NAME[i],
-						IMonopolyFields.TYP[i], 0);
-				break;
-			case 's':
-				playfield[i] = new Street(IMonopolyFields.NAME[i],
-						IMonopolyFields.PRICE_FOR_STREET[i],
-						IMonopolyFields.COLOUR[i], IMonopolyFields.RENT[i],
-						IMonopolyFields.HOTEL[i]);
-				break;
-			case 'g':
-				playfield[i] = this.commStack;
-				break;
-			case 'z':
-				playfield[i] = new FieldObject("Zusatzsteuer",
-						IMonopolyFields.TYP[i], IMonopolyUtil.ZUSATZSTEUER);
-				break;
-			case 'b':
-
-			case 'e':
-				playfield[i] = this.chanStack;
-				break;
-			case 'n':
-				playfield[i] = new FieldObject("Bsys Labor: nur zu Besuch",
-						IMonopolyFields.TYP[i], 0);
-				break;
-			case 'p':
-				playfield[i] = new FieldObject("Gehe in das Bsys Labor",
-						IMonopolyFields.TYP[i], 0);
-				break;
-			case 'f':
-				playfield[i] = new FieldObject("Mensa", IMonopolyFields.TYP[i],
-						0);
-			}
-
+			createField(i);
 		}
 
+	}
+
+	/**
+	 * TODO for each case statement a new function!!! -> MAYBE
+	 * 
+	 * @param i
+	 */
+	private void createField(int i) {
+		switch (IMonopolyFields.TYP[i]) {
+		case 'l':
+			playfield[i] = new FieldObject(IMonopolyFields.NAME[i],
+					IMonopolyFields.TYP[i], 0);
+			break;
+		case 's':
+			playfield[i] = new Street(IMonopolyFields.NAME[i],
+					IMonopolyFields.PRICE_FOR_STREET[i],
+					IMonopolyFields.COLOUR[i], IMonopolyFields.RENT[i],
+					IMonopolyFields.HOTEL[i]);
+			break;
+		case 'g':
+			playfield[i] = this.commStack;
+			break;
+		case 'z':
+			playfield[i] = new FieldObject("Zusatzsteuer",
+					IMonopolyFields.TYP[i], IMonopolyUtil.ZUSATZSTEUER);
+			break;
+		case 'b':
+
+		case 'e':
+			playfield[i] = this.chanStack;
+			break;
+		case 'n':
+			/* BSYS -> zu besuch */
+			playfield[i] = new FieldObject("Bsys Labor: nur zu Besuch",
+					IMonopolyFields.TYP[i], 0);
+			break;
+		case 'p':
+			/* gehe ins Bsys labor */
+			playfield[i] = new FieldObject("Gehe in das Bsys Labor",
+					IMonopolyFields.TYP[i], 0);
+			break;
+		case 'f':
+			playfield[i] = new FieldObject("Mensa", IMonopolyFields.TYP[i], 0);
+		}
 	}
 
 	/**
@@ -113,59 +131,73 @@ public class Playfield {
 
 	public String appendInfo(IFieldObject currentField, Player currentPlayer) {
 		StringBuilder sb = new StringBuilder();
+		String out;
 		if (wentOverGo) {
-			sb.append("Sie sind über Los gegangen und erhalten Geld\n");
+			sb.append(bundle.getString("play_over_los"));
 			Bank.receiveMoney(currentPlayer, IMonopolyUtil.LOS_MONEY);
 		}
 		switch (currentField.getType()) {
 		case 's':
-			Street street = (Street) currentField;
-			if (street.getOwner() == null) {
-				sb.append("Diese Straße ist frei. Wollen sie die Straße für "
-						+ street.getPriceForStreet() + "€ kaufen\n");
-			} else if (street.getOwner().equals(currentPlayer)) {
-				sb.append("Ihnen gehört die Straße. Gut gemacht\n");
-			} else {
-				sb.append("Diese Straße gehört " + street.getOwner()
-						+ ".\nSie müssen ihm jetzt " + street.getRent()
-						+ "€ Miete zahlen.\n");
-				Bank.payRent(currentPlayer, currentField);
-			}
+			sb.append(addStreetInfo(currentField, currentPlayer));
 			break;
 		case 'l':
 			sb.delete(0, sb.length());
-			sb.append("Sie stehen auf Los und erhalten sehr viel Geld\n");
+			sb.append(bundle.getString("play_los"));
 			Bank.receiveMoney(currentPlayer, IMonopolyUtil.LOS_MONEY);
 			break;
 		case 'z':
 			FieldObject field = (FieldObject) currentField;
-			sb.append("Sie müssen " + field.getPriceToPay()
-					+ "€ Zusatzsteuer zahlen\n");
+			out = MessageFormat.format(bundle.getString("play_pay"),
+					field.getPriceToPay());
+			sb.append(out);
 			Bank.receiveMoney(currentPlayer, -field.getPriceToPay());
 			Bank.addParkingMoney(field.getPriceToPay());
 			break;
 		case 'p':
-			sb.append("Sie müssen jetzt in das Bsys Labor und setzen verdammt lang aus, weil sie lernen müssen. :(\n");
+			sb.append(bundle.getString("play_bsys"));
 			currentPlayer.setInPrison(true);
 			break;
 		case 'e':
-			sb.append("Auf der Karte steht: " + this.chanStack.getNextCard().getDescription() + "\n");
+			out = MessageFormat.format(bundle.getString("play_card"),
+					this.chanStack.getNextCard().getDescription());
+			sb.append(out);
 			// perform action.
 			break;
 		case 'g':
-			sb.append("Auf der Karte steht: " +	this.commStack.getNextCard().getDescription() + "\n");
+			out = MessageFormat.format(bundle.getString("play_card"),
+					this.commStack.getNextCard().getDescription());
+			sb.append(out);
 			// perform action.
 			break;
 		case 'n':
-			sb.append("Sie schauen nur kurz im Bsys Labor vorbei und bemitleiden die armen Schweine. Danach gehen Sie einfach weiter\n");
+			sb.append(bundle.getString("play_look"));
 			break;
 		case 'f':
-			sb.append("Sie sind in der Mensa gelandet. Wenn sie Glück haben ist noch Essen übrig, was Sie geschenkt bekommen.\nSie erhalten "
-					+ Bank.getParkingMoney() + "€\n");
+			out = MessageFormat.format(bundle.getString("play_mensa"),
+					Bank.getParkingMoney());
+			sb.append(out);
 			Bank.receiveMoney(currentPlayer, Bank.getParkingMoney());
-
 			break;
 
+		}
+		return sb.toString();
+	}
+
+	private String addStreetInfo(IFieldObject currentField, Player currentPlayer) {
+		StringBuilder sb = new StringBuilder();
+		String out;
+		Street street = (Street) currentField;
+		if (street.getOwner() == null) {
+			out = MessageFormat.format(bundle.getString("play_street_free"),
+					street.getPriceForStreet());
+			sb.append(out);
+		} else if (street.getOwner().equals(currentPlayer)) {
+			sb.append(bundle.getString("play_street_own"));
+		} else {
+			out = MessageFormat.format(bundle.getString("play_street_busy"),
+					street.getOwner(), street.getRent());
+			sb.append(out);
+			Bank.payRent(currentPlayer, currentField);
 		}
 		return sb.toString();
 	}

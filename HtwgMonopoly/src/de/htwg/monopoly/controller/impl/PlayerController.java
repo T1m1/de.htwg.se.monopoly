@@ -29,9 +29,9 @@ public class PlayerController {
 	 */
 	public PlayerController() {
 		in = new Scanner(System.in);
-		
+
 	}
-	
+
 	/**
 	 * initialize player array with this.numberOfPlayer
 	 */
@@ -42,7 +42,7 @@ public class PlayerController {
 		 * set current player to the last index, that function getNextPlayer
 		 * return the first player by initial call
 		 */
-		this.currentPlayer = this.numberOfPlayer-1;
+		this.currentPlayer = this.numberOfPlayer - 1;
 		/* loop to create player objects with default values */
 		for (int i = 0; i < numberOfPlayer; i++) {
 			players[i] = new Player();
@@ -85,7 +85,8 @@ public class PlayerController {
 			}
 		}
 
-		if (tmpNumberOfPlayer < IMonopolyUtil.MIN_NUMBER_OF_PLAYER 
+		/* check if input smaller as maximum of player and bigger as minimum */
+		if (tmpNumberOfPlayer < IMonopolyUtil.MIN_NUMBER_OF_PLAYER
 				|| tmpNumberOfPlayer > IMonopolyUtil.MAX_NUMBER_OF_PLAYER) {
 			return false;
 		}
@@ -101,16 +102,20 @@ public class PlayerController {
 	}
 
 	public boolean readNameOfPlayer(int i) {
-		// wann zur hölle is das nicht wahr? also testbar?
-			if (in.hasNext()) { 
-				this.players[i].setName(in.nextLine());
-			} else {
-				return false;
-			}
+		// S: wann zur hölle is das nicht wahr? also testbar?
+		// T: ich denke NIE
+		if (in.hasNext()) {
+			this.players[i].setName(in.nextLine());
+		}
 		return true;
 
 	}
-	
+
+	/**
+	 * returns a player object
+	 * @param i
+	 * @return
+	 */
 	public Player getPlayer(int i) {
 		return this.players[i];
 	}
