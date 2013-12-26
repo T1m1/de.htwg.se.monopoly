@@ -177,7 +177,7 @@ public class Controller extends Observable implements IController {
 			break;
 		case 2:
 			/* add options if user on a street object */
-			options.add(getOptionOnStreet());
+			options.addAll(getOptionOnStreet());
 			// NO BREAK
 		case IMonopolyUtil.OPTION_FINISH:
 			options.add("(b) " + bundle.getString("contr_finish"));
@@ -195,17 +195,18 @@ public class Controller extends Observable implements IController {
 		return options;
 	}
 
-	private String getOptionOnStreet() {
+	private List<String> getOptionOnStreet() {
+		List<String> options = new ArrayList<String>();
 		/* if current field a steet */
 		if (currentField.getType() == 's') {
 			Street s = (Street) currentField;
 			/* check if street have a owner */
 			if (s.getOwner() == null) {
 				/* if not -> add option to buy street */
-				return ("(y) " + bundle.getString("contr_buy"));
+				options.add("(y) " + bundle.getString("contr_buy"));
 			}
 		}
-		return null;
+		return options;
 	}
 
 	private List<String> getOptionPrison() {
