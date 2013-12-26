@@ -21,6 +21,10 @@ public interface IMonopolyUtil {
 	int FIELD_SIZE = 40;
 	int ZUSATZSTEUER = 1000;
 	int TUI_FIELD_SIZE = 8;
+	int TUI_HIGH = 5;
+	int FREIKAUFEN = 500;
+	int OPTION_FINISH = 3;
+
 	
 	/***
 	 * Magic number for Tests
@@ -39,8 +43,6 @@ public interface IMonopolyUtil {
 	String ERR_NUMBER_OF_PLAYER = "Ungültige Anzahl von Spieler eingegeben (2 - 6)";
 	String ERR_NAME_OF_PLAYER = "Kann das passieren?";
 	String TEST_INPUT_STREAM = "2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n";
-	int TUI_HIGH = 5;
-	int FREIKAUFEN = 500;
 
 	
 
