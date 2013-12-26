@@ -163,7 +163,7 @@ public class Playfield {
 			sb.append("Sie sind in der Mensa gelandet. Wenn sie Glück haben ist noch Essen übrig, was Sie geschenkt bekommen.\nSie erhalten "
 					+ Bank.getParkingMoney() + "€\n");
 			Bank.receiveMoney(currentPlayer, Bank.getParkingMoney());
-			Bank.setParkingMoney(0);
+
 			break;
 
 		}

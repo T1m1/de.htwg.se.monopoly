@@ -112,7 +112,6 @@ public class Player {
 		this.budget = budget;
 	}
 
-	/* ??????????????????????????? -> Controller? */
 	/**
 	 * get current position of player
 	 * 
@@ -194,6 +193,10 @@ public class Player {
 
 	public void setOwnership(IFieldObject street) {
 		ownership.add(street);
+	}
+
+	public void decrementMoney(int freikaufen) {
+		this.budget -= freikaufen;
 	}
 
 }

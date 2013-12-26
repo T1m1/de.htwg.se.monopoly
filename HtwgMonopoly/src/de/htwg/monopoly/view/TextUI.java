@@ -17,7 +17,8 @@ import de.htwg.monopoly.util.IMonopolyUtil;
 public class TextUI implements IObserver {
 
 	/* logger */
-	private static final Logger logger = LogManager.getLogger("UI");
+	private final Logger logger = LogManager.getLogger("htwgMonopoly");
+
 	/* internationalization */
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
@@ -59,9 +60,11 @@ public class TextUI implements IObserver {
 		} else {
 
 		}
-
 	}
 
+	/**
+	 * print information about dice
+	 */
 	private void printRoll() {
 		int diceResult = Dice.getResultDice()
 				% controller.getField().getfieldSize() + 1;
@@ -129,9 +132,11 @@ public class TextUI implements IObserver {
 				logger.info(IMonopolyUtil.ERR_NAME_OF_PLAYER);
 			}
 		}
-
 	}
 
+	/**
+	 * print TUI
+	 */
 	private void printTUI() {
 		/* TODO: Ausgabe formatieren */
 		StringBuilder sb = new StringBuilder();
@@ -139,7 +144,7 @@ public class TextUI implements IObserver {
 
 		sb.append("\n_________________________________\n");
 		sb.append(bundle.getString("player") + "\t|Budget\t|"
-				+ bundle.getString("own") + "\n");
+				+ bundle.getString("ownership") + "\n");
 		sb.append("-------\t|------\t|--------------\n");
 		for (int i = 0; i < controller.getPlayers().getNumberOfPlayer(); i++) {
 			Player player = controller.getPlayers().getPlayer(i);
@@ -179,7 +184,7 @@ public class TextUI implements IObserver {
 	}
 
 	/**
-	 * 
+	 * handle user input
 	 * @param line
 	 * @return
 	 */
@@ -215,6 +220,17 @@ public class TextUI implements IObserver {
 			startTurn();
 			break;
 		case 'n':
+			controller.endTurn();
+			printTUI();
+			startTurn();
+			break;
+		case 'f':
+			/* temporary */
+			/* TODO check if enough money */
+			controller.getCurrentPlayer().decrementMoney(
+					IMonopolyUtil.FREIKAUFEN);
+			controller.getCurrentPlayer().setInPrison(false);
+			// zug beenden
 			controller.endTurn();
 			printTUI();
 			startTurn();
