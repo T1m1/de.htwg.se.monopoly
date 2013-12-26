@@ -72,12 +72,12 @@ public class PlayerController {
 
 	public boolean readNumberOfPlayer() {
 
-		int l_NumberOfPlayer = 0;
+		int tmpNumberOfPlayer = 0;
 
 		if (in.hasNext()) {
 			/* check if input an integer and in right interval */
 			if (in.hasNextInt()) {
-				l_NumberOfPlayer = in.nextInt();
+				tmpNumberOfPlayer = in.nextInt();
 				in.nextLine();
 			} else {
 				in.nextLine();
@@ -85,13 +85,13 @@ public class PlayerController {
 			}
 		}
 
-		if (l_NumberOfPlayer < IMonopolyUtil.MIN_NUMBER_OF_PLAYER 
-				|| l_NumberOfPlayer > IMonopolyUtil.MAX_NUMBER_OF_PLAYER) {
+		if (tmpNumberOfPlayer < IMonopolyUtil.MIN_NUMBER_OF_PLAYER 
+				|| tmpNumberOfPlayer > IMonopolyUtil.MAX_NUMBER_OF_PLAYER) {
 			return false;
 		}
 
 		/* if scanned number correct, save it */
-		this.numberOfPlayer = l_NumberOfPlayer;
+		this.numberOfPlayer = tmpNumberOfPlayer;
 		init();
 		return true;
 	}
