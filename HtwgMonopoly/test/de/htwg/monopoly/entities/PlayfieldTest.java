@@ -15,7 +15,7 @@ public class PlayfieldTest {
 	@Before
 	public void setUp() throws Exception {
 		field = new Playfield();
-		field.initialize(6);
+		field.initialize(10);
 		testplayer = new Player();
 		// initialize testObject;
 	}
@@ -26,21 +26,76 @@ public class PlayfieldTest {
 		field.movePlayer(testplayer, 1);
 		testplayer.setPosition(1);
 		field.movePlayer(testplayer, 1);
+		field.movePlayer(testplayer, 88);
 	}
 	
 	@Test
 	public void testGetFieldSize() {
-		assertEquals(6 , field.getfieldSize());
+		assertNotEquals(6 , field.getfieldSize());
 	}
 
 	@Test
 	public void testGetCurrentField() {
 		assertEquals('l', field.getCurrentField(testplayer).getType());
+		field.getFieldNameAtIndex(1);
+		
 	}
 	
 	@Test
-	public void testInitialize() {
+	public void testNotMyStree2t() {
 		
+		Player andererPlayer = new Player("hhh", 'm', 2000);
+		field.appendInfo(field.getCurrentField(testplayer), testplayer);
+		
+		field.movePlayer(testplayer, 1);
+		Street a = (Street) field.getCurrentField(testplayer);
+		a.setOwner(andererPlayer);
+		field.appendInfo(field.getCurrentField(testplayer), testplayer);
+		field.movePlayer(testplayer, 1);
+	}
+	
+	@Test
+	public void testNotMyStreet() {
+		field.appendInfo(field.getCurrentField(testplayer), testplayer);
+		
+		field.movePlayer(testplayer, 1);
+		field.appendInfo(field.getCurrentField(testplayer), testplayer);
+		field.movePlayer(testplayer, 1);
+	}
+	@Test
+	public void testInitialize() {
+		field.appendInfo(field.getCurrentField(testplayer), testplayer);
+		
+		field.movePlayer(testplayer, 1);
+		Street a = (Street) field.getCurrentField(testplayer);
+		a.setOwner(testplayer);
+		field.appendInfo(field.getCurrentField(testplayer), testplayer);
+		field.movePlayer(testplayer, 1);
+
+		field.appendInfo(field.getCurrentField(testplayer), testplayer);
+		field.movePlayer(testplayer, 1);
+		field.appendInfo(field.getCurrentField(testplayer), testplayer);
+		field.movePlayer(testplayer, 1);
+		field.appendInfo(field.getCurrentField(testplayer), testplayer);
+		field.movePlayer(testplayer, 1);
+		field.appendInfo(field.getCurrentField(testplayer), testplayer);
+		field.movePlayer(testplayer, 1);
+		field.appendInfo(field.getCurrentField(testplayer), testplayer);
+		field.movePlayer(testplayer, 1);
+		field.appendInfo(field.getCurrentField(testplayer), testplayer);
+		field.movePlayer(testplayer, 1);
+		field.appendInfo(field.getCurrentField(testplayer), testplayer);
+		field.movePlayer(testplayer, 1);
+		field.appendInfo(field.getCurrentField(testplayer), testplayer);
+		field.movePlayer(testplayer, 1);
+		field.appendInfo(field.getCurrentField(testplayer), testplayer);
+		field.movePlayer(testplayer, 1);
+		field.appendInfo(field.getCurrentField(testplayer), testplayer);
+		field.movePlayer(testplayer, 1);
+		
+
+		
+
 	}
 
 }

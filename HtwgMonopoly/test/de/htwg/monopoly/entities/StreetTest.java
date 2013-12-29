@@ -88,5 +88,12 @@ public class StreetTest {
 		assertTrue(street1.isSold());
 		assertEquals('s', street1.getType());
 	}
+	
+	@Test
+	public void testStreetOwner() {
+		Player newOwner = new Player("ll", 'p', 3330);
+		street1.setOwner(newOwner);
+		assertEquals("ll", street1.getOwner().getName());
+	}
 
 }

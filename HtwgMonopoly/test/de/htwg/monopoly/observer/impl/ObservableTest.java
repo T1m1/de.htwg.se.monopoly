@@ -54,7 +54,10 @@ public class ObservableTest {
 		assertFalse(ping);
         testObservable.removeAllObservers();
         testObservable.notifyObservers();
+        testObservable.notifyObservers(2);
+        
         assertFalse(ping);
+        
 	}
 
 }

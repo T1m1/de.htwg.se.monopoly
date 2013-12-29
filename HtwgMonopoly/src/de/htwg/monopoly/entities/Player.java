@@ -45,6 +45,7 @@ public class Player {
 		this.figure = figure;
 		this.budget = budget;
 		this.position = position;
+		ownership = new LinkedList<IFieldObject>();
 	}
 
 	/**

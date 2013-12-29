@@ -14,6 +14,8 @@ public class PlayerTest {
 	@Before
 	public void setUp() throws Exception {
 		player1 = new Player("lala", 'U', 0);
+		Player player2 = new Player();
+		player2.decrementMoney(1);
 	}
 
 	@Test
@@ -22,6 +24,7 @@ public class PlayerTest {
 		assertEquals("Kenny", player3.getName());
 		assertEquals('K', player3.getFigure());
 		assertEquals(IMonopolyUtil.TEST_PRICE_ONE, player3.getBudget());
+	
 	}
 
 	@Test
@@ -102,4 +105,13 @@ public class PlayerTest {
 		assertTrue(player1.isInPrison());
 	}
 
+	@Test
+	public void testMoney() {
+		player1.decrementMoney(2);
+		Street a = new Street("huhu", 200, null, 200, 100);
+		player1.addOwnership(a);
+		player1.getOwnership();
+		
+		
+	}
 }

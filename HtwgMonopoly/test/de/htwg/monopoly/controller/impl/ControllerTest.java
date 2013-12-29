@@ -1,6 +1,8 @@
 package de.htwg.monopoly.controller.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
@@ -12,7 +14,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.htwg.monopoly.entities.FieldObject;
-import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.Street;
 import de.htwg.monopoly.util.IMonopolyFields;
 import de.htwg.monopoly.util.IMonopolyUtil;
@@ -165,5 +166,15 @@ public class ControllerTest {
 	@Test 
 	public void testGetMessage() {
 		testController.getMessage();
+	}
+	
+	@Test 
+	public void testNumberOfPlayer() {
+		testController.getNumberOfPlayer();
+	}
+	
+	@Test 
+	public void testGetPlayer() {
+		testController.getPlayer(0);
 	}
 }
