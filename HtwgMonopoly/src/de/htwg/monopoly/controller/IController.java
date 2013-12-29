@@ -62,13 +62,6 @@ public interface IController extends IObservable {
 	 */
 	void receiveGoMoney();
 
-	/**
-	 * Return a Object which control all the players
-	 * 
-	 * 
-	 * @return
-	 */
-//	PlayerController getPlayers();
 
 	/***
 	 * set number of player
