@@ -19,7 +19,7 @@ public class TextUI implements IObserver {
 	/* logger */
 	private final Logger logger = LogManager.getLogger("htwgMonopoly");
 
-	/* internationalization */
+	/* internationalization */ 
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
 
@@ -27,6 +27,9 @@ public class TextUI implements IObserver {
 
 	public void startGame() {
 
+		/*TODO ist glaub nicht gut die anzahl der spieler hier einzulesen... 
+		 * namen etc. müssen ja auch in GUI änderbar sein.
+		 * */
 		printInitialisation();
 		logger.info(IMonopolyUtil.START);
 		controller.initGame(IMonopolyUtil.TUI_FIELD_SIZE);
@@ -124,7 +127,7 @@ public class TextUI implements IObserver {
 	}
 
 	private void setNameOfPlayers() {
-		for (int i = 0; i < controller.getPlayers().getNumberOfPlayer(); i++) {
+		for (int i = 0; i < controller.getNumberOfPlayer(); i++) {
 			logger.info("Player " + (i + 1) + " " + IMonopolyUtil.Q_NAME_PLAYER);
 			while (!controller.setNameofPlayer(i)) {
 				logger.info(IMonopolyUtil.ERR_NAME_OF_PLAYER);
@@ -144,8 +147,8 @@ public class TextUI implements IObserver {
 		sb.append(bundle.getString("player") + "\t|Budget\t|"
 				+ bundle.getString("ownership") + "\n");
 		sb.append("-------\t|------\t|--------------\n");
-		for (int i = 0; i < controller.getPlayers().getNumberOfPlayer(); i++) {
-			Player player = controller.getPlayers().getPlayer(i);
+		for (int i = 0; i < controller.getNumberOfPlayer(); i++) {
+			Player player = controller.getPlayer(i);
 			sb.append(player.getName() + "\t|" + player.getBudget() + "\t|"
 					+ player.getOwnership() + "\n");
 		}

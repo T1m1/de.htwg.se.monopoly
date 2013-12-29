@@ -1,10 +1,9 @@
 package de.htwg.monopoly.cards;
 
-import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.util.IMonopolyCards;
 
 
-public class CommunityCardsStack extends CardsStack implements IFieldObject {
+public class CommunityCardsStack extends CardsStack{
 
 	
 	public CommunityCardsStack() {
@@ -15,7 +14,7 @@ public class CommunityCardsStack extends CardsStack implements IFieldObject {
 		}
 	}
 
-	@Override
+//	@Override
 	public char getType() {
 		// g wie Gemeinschaftsfeld.
 		return 'g';

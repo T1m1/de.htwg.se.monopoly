@@ -1,11 +1,10 @@
 package de.htwg.monopoly.cards;
 
-import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.util.IMonopolyCards;
 
 
 
-public class ChanceCardsStack extends CardsStack implements IFieldObject {
+public class ChanceCardsStack extends CardsStack {
 
 	public ChanceCardsStack() {
 		super();
@@ -15,7 +14,7 @@ public class ChanceCardsStack extends CardsStack implements IFieldObject {
 		}
 	}
 
-	@Override
+//	@Override
 	public char getType() {
 		// e wie ereignisfeld.
 		return 'e';

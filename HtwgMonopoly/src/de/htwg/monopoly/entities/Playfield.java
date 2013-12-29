@@ -69,7 +69,7 @@ public class Playfield {
 		case 'b':
 
 		case 'e':
-			playfield[i] = this.chanStack;
+			playfield[i] = (IFieldObject) this.chanStack;
 			break;
 		case 'n':
 			/* BSYS -> zu besuch */

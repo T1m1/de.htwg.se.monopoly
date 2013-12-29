@@ -251,4 +251,14 @@ public class Controller extends Observable implements IController {
 		return this.message.toString();
 	}
 
+	@Override
+	public int getNumberOfPlayer() {
+		return players.getNumberOfPlayer();
+	}
+
+	@Override
+	public Player getPlayer(int i) {
+		return players.getPlayer(i);
+	}
+
 }
