@@ -25,7 +25,7 @@ public final class Bank {
 	}
 
 	/**
-	 * The current Player receives money. It is possible, that the amount of
+	 * The current Player receives money from the Bank. It is possible, that the amount of
 	 * money is negative. In that case, the player pays money to the Bank.
 	 * 
 	 * @param currentPlayer
@@ -36,12 +36,14 @@ public final class Bank {
 	}
 
 	/**
-	 * Return the Money which is was payed in the "middle" of the playfield
+	 * Returns and "removes" the money in the middle of the playfield.
 	 * 
 	 * @return int
 	 */
 	public static int getParkingMoney() {
-		return parkingMoney;
+		int returnvalue = parkingMoney;
+		parkingMoney = 0;
+		return returnvalue;
 	}
 
 	/**
