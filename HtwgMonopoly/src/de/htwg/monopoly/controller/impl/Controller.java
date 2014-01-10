@@ -113,10 +113,25 @@ public class Controller extends Observable implements IController {
 		return sb.toString();
 	}
 
+	/**
+	 * Does the same as performCommCardAction() except, for a Chance Card
+	 * 
+	 * @return
+	 */
 	private String performChanceCardAction() {
 		ICards currentChanceCard = field.getChanStack().getNextCard();
+		StringBuilder sb = new StringBuilder();
 
-		return null;
+		sb.append(MessageFormat.format(bundle.getString("play_card"),
+				currentChanceCard.getDescription()));
+
+		if (currentChanceCard.getActionType().equals("move")) {
+			sb.append(field.movePlayerTo(currentPlayer,
+					currentChanceCard.getTarget()));
+		} else {
+			players.transferMoney(currentPlayer, currentChanceCard);
+		}
+		return sb.toString();
 	}
 
 	/**
@@ -171,18 +186,6 @@ public class Controller extends Observable implements IController {
 		/* TODO: not enough money!! -> end of game? */
 		return false;
 
-	}
-
-	@Override
-	public void checkFieldType() {
-		field.getCurrentField(currentPlayer);
-		// pseudo
-		/*
-		 * switsch fieldobject case street case ereignis case gemeinschaft case
-		 * los case frei parken case gehe ins gefängnis case zu besuch im
-		 * gefängnis case bahnhof case elektrowerk case wasserwerk case
-		 * steuerfeld notifyObserver
-		 */
 	}
 
 	@Override

@@ -37,7 +37,6 @@ public interface IController extends IObservable {
 	 */
 	boolean buyStreet();
 
-	void checkFieldType();
 
 	/**
 	 * exit the game.

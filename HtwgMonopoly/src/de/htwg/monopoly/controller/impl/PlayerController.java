@@ -115,6 +115,7 @@ public class PlayerController {
 
 	/**
 	 * returns a player object
+	 * 
 	 * @param i
 	 * @return
 	 */
@@ -123,7 +124,7 @@ public class PlayerController {
 	}
 
 	/**
-	 * Performs money transfer according to the drawn card. There are two types: 
+	 * Performs money transfer according to the drawn card. There are two types:
 	 * Money is transferred to/from bank or all the other players.
 	 * 
 	 * @param currentCard
@@ -133,9 +134,9 @@ public class PlayerController {
 		if (currentCard.isReceiveFromToBank()) {
 			Bank.receiveMoney(currentPlayer, currentCard.getMoney());
 		} else {
-			for (Player player: players) {
-				Bank.receiveMoney(player, currentCard.getMoney());
-				Bank.receiveMoney(currentPlayer, currentCard.getMoney());
+			for (Player player : players) {
+				Bank.receiveMoneyFromPlayer(currentPlayer, player,
+						currentCard.getMoney());
 			}
 		}
 	}

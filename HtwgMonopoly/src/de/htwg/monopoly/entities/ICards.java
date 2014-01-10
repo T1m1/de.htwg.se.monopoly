@@ -24,7 +24,7 @@ public interface ICards {
 	 * 
 	 * @return int
 	 */
-	public int getMoney();
+	int getMoney();
 	
 
 	/**
@@ -32,20 +32,20 @@ public interface ICards {
 	 * 
 	 * @return int
 	 */
-	public int getMove();
+	int getMove();
 
 	/**
 	 * Checks if the money is transferred from/to Bank OR to the other Players
 	 * 
 	 * @return boolean
 	 */
-	public boolean isReceiveFromToBank();
+	boolean isReceiveFromToBank();
 
 	/**
 	 * Return the Target, where the Player has to move.
 	 * 
 	 * @return String
 	 */
-	public String getTarget();
+	String getTarget();
 
 }

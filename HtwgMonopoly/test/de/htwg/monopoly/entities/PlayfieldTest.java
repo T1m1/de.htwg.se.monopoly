@@ -92,10 +92,30 @@ public class PlayfieldTest {
 		field.movePlayer(testplayer, 1);
 		field.appendInfo(field.getCurrentField(testplayer), testplayer);
 		field.movePlayer(testplayer, 1);
-		
-
-		
-
+	}
+	
+	@Test
+	public void testGetStack() {
+		assertEquals('e', field.getChanStack().getType());
+		assertEquals('g', field.getCommStack().getType());
+	}
+	
+	@Test
+	public void testMovePlayerTo() {
+		field.movePlayerTo(testplayer, "prison");
+		assertTrue(testplayer.isInPrison());
+		testplayer.setInPrison(false);
+		testplayer.setPosition(5);
+		field.movePlayerTo(testplayer, "go" );
+		assertEquals(0, testplayer.getPosition());
+		field.movePlayerTo(testplayer, "firststreet");
+		assertEquals(1, testplayer.getPosition());
+	}
+	
+	@Test(expected = AssertionError.class)
+	public void secondTestMovePlayerTo() {
+		field.initialize(0);
+		field.movePlayerTo(testplayer, "go" );
 	}
 
 }

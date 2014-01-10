@@ -30,6 +30,10 @@ public class Playfield {
 		}
 	}
 	
+	/**
+	 * help function for testing, later it will be replaced by google juice (maybe)
+	 * @param size
+	 */
 	public void initialize(int size) {
 		this.fieldSize = size;
 		this.playfield = new IFieldObject[fieldSize];
@@ -215,12 +219,13 @@ public class Playfield {
 			return bundle.getString("play_bsys");
 		}
 
-		for (int i = 0; i < fieldSize; i++) {
+		for (int i = 0; i < fieldSize; ++i) {
 			if (playfield[i].toString().equalsIgnoreCase(target)) {
 				position = i;
 				break;
 			}
 		}
+		
 		if (position == -1) {
 			throw new AssertionError("Gefordertes Feld existiert nicht");
 		}

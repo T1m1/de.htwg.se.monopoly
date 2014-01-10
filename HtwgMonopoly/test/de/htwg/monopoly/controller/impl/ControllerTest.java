@@ -27,7 +27,7 @@ public class ControllerTest {
 	public void setUp() throws Exception {
 		ByteArrayInputStream testStream = new ByteArrayInputStream(
 				IMonopolyUtil.TEST_INPUT_STREAM.getBytes());
-		/* internationalization */
+		/* Initialization */
 
 		System.setIn(testStream);
 		testController = new Controller();
@@ -59,6 +59,11 @@ public class ControllerTest {
 	}
 
 	@Test
+	public void testPerformCommCardAction() {
+		
+		
+	}
+	@Test
 	public void testExitGame() {
 		testController.exitGame();
 	}
@@ -75,11 +80,7 @@ public class ControllerTest {
 	public void testAddPlayer() {
 	}
 
-	@Test
-	public void testCheckFieldType() {
-		testController.checkFieldType();
-
-	}
+	
 
 	@Test
 	public void testPayRent() {

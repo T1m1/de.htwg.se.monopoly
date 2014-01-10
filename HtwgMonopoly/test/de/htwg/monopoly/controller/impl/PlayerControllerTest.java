@@ -11,6 +11,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.htwg.monopoly.controller.impl.PlayerController;
+import de.htwg.monopoly.entities.Card;
+import de.htwg.monopoly.entities.CommunityCard;
+import de.htwg.monopoly.entities.Player;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
 public class PlayerControllerTest {
@@ -79,6 +82,21 @@ public class PlayerControllerTest {
 		players.readNumberOfPlayer();
 		robot.keyPress(KeyEvent.VK_2);
 		robot.keyPress(KeyEvent.VK_2);
+	}
+	
+	@Test
+	public void testTransferMoney() {
+		Card testCard1 = new CommunityCard("Zahle geld an Bank", "money", null, -100, 0, true);
+		Card testCard2 = new CommunityCard("bekomme geld von alle Spieler", "money", null, 100, 0, false);
+		Player testplayer = players.getNextPlayer();
+		testplayer.setBudget(100);
+		players.transferMoney(testplayer, testCard1);
+		assertEquals(0,testplayer.getBudget());
+		
+		players.transferMoney(testplayer, testCard2);
+		assertEquals(100, testplayer.getBudget());
+		
+		
 	}
 
 }
