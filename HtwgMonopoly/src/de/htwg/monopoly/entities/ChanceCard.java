@@ -1,4 +1,4 @@
-package de.htwg.monopoly.cards;
+package de.htwg.monopoly.entities;
 
 public class ChanceCard extends Card {
 

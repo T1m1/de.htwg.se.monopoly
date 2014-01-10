@@ -4,8 +4,6 @@ import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import de.htwg.monopoly.cards.ChanceCardsStack;
-import de.htwg.monopoly.cards.CommunityCardsStack;
 import de.htwg.monopoly.util.IMonopolyFields;
 import de.htwg.monopoly.util.IMonopolyUtil;
 

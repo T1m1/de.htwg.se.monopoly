@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.htwg.monopoly.entities.ChanceCard;
+import de.htwg.monopoly.entities.CommunityCardsStack;
+
 public class CommunityCardsStackTest {
 
 	CommunityCardsStack stack;

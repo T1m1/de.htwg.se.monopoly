@@ -29,6 +29,9 @@ public class TextUI implements IObserver {
 
 		/*TODO ist glaub nicht gut die anzahl der spieler hier einzulesen... 
 		 * namen etc. müssen ja auch in GUI änderbar sein.
+		 * 
+		 * Lösung: in der GUI verlange, dass Spieleranzahl in den Optionen angegeben werden muss oder so
+		 * 
 		 * */
 		printInitialisation();
 		logger.info(IMonopolyUtil.START);

@@ -1,9 +1,7 @@
-package de.htwg.monopoly.cards;
+package de.htwg.monopoly.entities;
 
 import java.util.Deque;
 import java.util.LinkedList;
-
-import de.htwg.monopoly.entities.IFieldObject;
 
 public abstract class CardsStack implements ICardStack, IFieldObject {
 
@@ -11,9 +9,9 @@ public abstract class CardsStack implements ICardStack, IFieldObject {
 
 	public CardsStack() {
 		// Idee: For-Schleife über ein bestimmtes FILE und dann pushOnTop() entweder hier oder im Controller
-				//TODO elemente und Inhalte (Texte)
-				//TODO generelle Frage: Werden die Karteninhalte am Anfang eingelesen, oder hardcodiert von vornerein drin?
-				// denn dann muss evtl die Fehlerbehandlung erweitert werden.
+		//TODO elemente und Inhalte (Texte)
+		//TODO generelle Frage: Werden die Karteninhalte am Anfang eingelesen, oder hardcodiert von vornerein drin?
+		// denn dann muss evtl die Fehlerbehandlung erweitert werden.
 	}
 
 	@Override
