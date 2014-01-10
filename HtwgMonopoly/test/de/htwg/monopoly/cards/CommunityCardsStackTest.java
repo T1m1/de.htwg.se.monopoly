@@ -11,19 +11,21 @@ import de.htwg.monopoly.entities.CommunityCardsStack;
 public class CommunityCardsStackTest {
 
 	CommunityCardsStack stack;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		stack = new CommunityCardsStack();
-		stack.pushOnTop(new ChanceCard("Gehe in das Gefängnis", "move"));
+		stack.pushOnTop(new ChanceCard("Gehe in das Gefängnis", "move", null,
+				0, 0, false));
 	}
 
 	@Test
 	public void testCommunityCardsStack() {
-		assertEquals("Gehe in das Gefängnis", stack.getNextCard().getDescription());
+		assertEquals("Gehe in das Gefängnis", stack.getNextCard()
+				.getDescription());
 		assertEquals('g', stack.getType());
 	}
-	
+
 	@Test
 	public void testToString() {
 		assertEquals("Gemeinschaftsfeld", stack.toString());

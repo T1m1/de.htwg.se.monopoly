@@ -1,5 +1,6 @@
 package de.htwg.monopoly.entities;
 
+import java.util.Collections;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -8,9 +9,11 @@ public abstract class CardsStack implements ICardStack, IFieldObject {
 	private Deque<ICards> cards = new LinkedList<ICards>();
 
 	public CardsStack() {
-		// Idee: For-Schleife über ein bestimmtes FILE und dann pushOnTop() entweder hier oder im Controller
-		//TODO elemente und Inhalte (Texte)
-		//TODO generelle Frage: Werden die Karteninhalte am Anfang eingelesen, oder hardcodiert von vornerein drin?
+		// Idee: For-Schleife über ein bestimmtes FILE und dann pushOnTop()
+		// entweder hier oder im Controller
+		// TODO elemente und Inhalte (Texte)
+		// TODO generelle Frage: Werden die Karteninhalte am Anfang eingelesen,
+		// oder hardcodiert von vornerein drin?
 		// denn dann muss evtl die Fehlerbehandlung erweitert werden.
 	}
 
@@ -22,8 +25,12 @@ public abstract class CardsStack implements ICardStack, IFieldObject {
 	}
 
 	@Override
-	public void pushOnTop(ICards newCard)
-	{
+	public void pushOnTop(ICards newCard) {
 		cards.push(newCard);
+	}
+
+	@Override
+	public void shuffle() {
+		Collections.shuffle((LinkedList<ICards>) this.cards);
 	}
 }

@@ -13,7 +13,7 @@ public class CardTest {
 
 	@Before
 	public void setUp() throws Exception {
-		card = new CommunityCard("Beschreibung", "move");
+		card = new CommunityCard("Beschreibung", "move", null, 0, 0, false);
 	}
 
 	@Test
@@ -28,7 +28,7 @@ public class CardTest {
 	public void testGetActionType() {
 		assertEquals("move", card.getActionType());
 	}
-	
+
 	@Test
 	public void testToString() {
 		card.setDescription("bar");

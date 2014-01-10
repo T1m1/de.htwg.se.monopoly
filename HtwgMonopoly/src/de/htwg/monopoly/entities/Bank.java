@@ -25,7 +25,8 @@ public final class Bank {
 	}
 
 	/**
-	 * The current Player receives money.
+	 * The current Player receives money. It is possible, that the amount of money is negative.
+	 * In that case, the player pays money to the Bank.
 	 * 
 	 * @param currentPlayer
 	 * @param money
@@ -34,10 +35,22 @@ public final class Bank {
 		currentPlayer.setBudget(currentPlayer.getBudget() + money);
 	}
 
+	/**
+	 * Return the Money which is was payed in the "middle" of the playfield
+	 * 
+	 * @return int
+	 */
 	public static int getParkingMoney() {
 		return parkingMoney;
 	}
 
+	/**
+	 * priceToPay is added to the parking Money (Which is in the "middle" of the playfield)
+	 * 
+	 * 
+	 * @param priceToPay
+	 * @return void
+	 */
 	public static void addParkingMoney(int priceToPay) {
 		parkingMoney += priceToPay;
 	}

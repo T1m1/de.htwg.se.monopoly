@@ -13,14 +13,15 @@ public class ChanceCardTest {
 
 	@Before
 	public void setUp() throws Exception {
-		card = new ChanceCard("Gehe in das Gefängnis", "move");
+		card = new ChanceCard("Gehe in das Gefängnis", "move", null, 0, 0,
+				false);
 	}
-	
 
 	@Test
 	public void testCommunityCard() {
-		ChanceCard card2 = new ChanceCard("Gehe in das Gefängnis", "move");
-		assertEquals("Gehe in das Gefängnis",card2.getDescription());
+		ChanceCard card2 = new ChanceCard("Gehe in das Gefängnis", "move",
+				null, 0, 0, false);
+		assertEquals("Gehe in das Gefängnis", card2.getDescription());
 	}
 
 }

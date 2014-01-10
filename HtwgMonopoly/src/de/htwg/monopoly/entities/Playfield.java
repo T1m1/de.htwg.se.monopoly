@@ -4,8 +4,6 @@ import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-
-
 import de.htwg.monopoly.util.IMonopolyFields;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
@@ -22,24 +20,25 @@ public class Playfield {
 			Locale.GERMAN);
 
 	public Playfield() {
-		initialize(IMonopolyUtil.TUI_FIELD_SIZE);
-	}
-
-	public final void initialize(int fieldSize) {
-		// initialize the playfield. set the size, fill it with streets and card
-		// stacks etc.
-		// TODO actual initializing. dabei muss evtl beachtet werden, dass es
-		// alles irgendwie variabel sein sollte. Stichwort: skalierbarkeit
-
+		this.fieldSize = IMonopolyUtil.TUI_FIELD_SIZE;
 		this.playfield = new IFieldObject[fieldSize];
-		this.fieldSize = fieldSize;
 		this.commStack = new CommunityCardsStack();
 		this.chanStack = new ChanceCardsStack();
 
 		for (int i = 0; i < fieldSize; i++) {
 			createField(i);
 		}
+	}
+	
+	public void initialize(int size) {
+		this.fieldSize = size;
+		this.playfield = new IFieldObject[fieldSize];
+		this.commStack = new CommunityCardsStack();
+		this.chanStack = new ChanceCardsStack();
 
+		for (int i = 0; i < fieldSize; i++) {
+			createField(i);
+		}
 	}
 
 	/**
@@ -131,7 +130,7 @@ public class Playfield {
 
 	public String appendInfo(IFieldObject currentField, Player currentPlayer) {
 		StringBuilder sb = new StringBuilder();
-		String out;
+		String output;
 		if (wentOverGo) {
 			sb.append(bundle.getString("play_over_los"));
 			Bank.receiveMoney(currentPlayer, IMonopolyUtil.LOS_MONEY);
@@ -147,9 +146,9 @@ public class Playfield {
 			break;
 		case 'z':
 			FieldObject field = (FieldObject) currentField;
-			out = MessageFormat.format(bundle.getString("play_pay"),
+			output = MessageFormat.format(bundle.getString("play_pay"),
 					field.getPriceToPay());
-			sb.append(out);
+			sb.append(output);
 			Bank.receiveMoney(currentPlayer, -field.getPriceToPay());
 			Bank.addParkingMoney(field.getPriceToPay());
 			break;
@@ -159,25 +158,25 @@ public class Playfield {
 			break;
 		case 'e':
 			ICards currentChanceCard = this.chanStack.getNextCard();
-			out = MessageFormat.format(bundle.getString("play_card"),
+			output = MessageFormat.format(bundle.getString("play_card"),
 					currentChanceCard.getDescription());
-			sb.append(out);
+			sb.append(output);
 			Action.perform(currentChanceCard, currentPlayer);
 			break;
 		case 'g':
 			ICards currentCommCard = this.commStack.getNextCard();
-			out = MessageFormat.format(bundle.getString("play_card"),
+			output = MessageFormat.format(bundle.getString("play_card"),
 					currentCommCard.getDescription());
-			sb.append(out);
+			sb.append(output);
 			Action.perform(currentCommCard, currentPlayer);
 			break;
 		case 'n':
 			sb.append(bundle.getString("play_look"));
 			break;
 		case 'f':
-			out = MessageFormat.format(bundle.getString("play_mensa"),
+			output = MessageFormat.format(bundle.getString("play_mensa"),
 					Bank.getParkingMoney());
-			sb.append(out);
+			sb.append(output);
 			Bank.receiveMoney(currentPlayer, Bank.getParkingMoney());
 			break;
 
@@ -202,5 +201,51 @@ public class Playfield {
 			Bank.payRent(currentPlayer, currentField);
 		}
 		return sb.toString();
+	}
+
+	public CommunityCardsStack getCommStack() {
+		return commStack;
+	}
+
+	public ChanceCardsStack getChanStack() {
+		return chanStack;
+	}
+
+	/**
+	 * Moves the current Player to the field according to the String target. If
+	 * the player went over or stays on Go, he gets money, but not if he goes in Prison
+	 * 
+	 * @param currentPlayer
+	 * @param target
+	 * @throws AssertionError
+	 *             if target doesn't exist
+	 */
+	public String movePlayerTo(Player currentPlayer, String target) {
+		int oldPosition = currentPlayer.getPosition();
+		int position = -1;
+		
+		if (target.equalsIgnoreCase("prison")) {
+			currentPlayer.setInPrison(true);
+			return bundle.getString("play_bsys");
+		}
+
+		for (int i = 0; i < fieldSize; i++) {
+			if (playfield[i].toString().equalsIgnoreCase(target)) {
+				position = i;
+				break;
+			}
+		}
+		if (position == -1) {
+			throw new AssertionError("Gefordertes Feld existiert nicht");
+		}
+
+		// Move the player
+		currentPlayer.setPosition(position);
+
+		// saves true, if the Player went over or stays on "Los"
+		wentOverGo = (position < oldPosition);
+		
+		// Important: the new position must not be a Stack !!! (for now....)
+		return appendInfo(playfield[position], currentPlayer);
 	}
 }

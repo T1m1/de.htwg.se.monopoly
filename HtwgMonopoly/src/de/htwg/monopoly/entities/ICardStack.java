@@ -17,4 +17,6 @@ public interface ICardStack {
 	 */
 	void pushOnTop(ICards newCard);
 
+	void shuffle();
+
 }
