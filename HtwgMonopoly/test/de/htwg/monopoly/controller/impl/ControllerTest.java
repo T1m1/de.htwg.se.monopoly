@@ -34,7 +34,6 @@ public class ControllerTest {
 		testController.setNumberofPlayer();
 		testController.setNameofPlayer(0);
 		testController.setNameofPlayer(1);
-		testController.initGame(IMonopolyUtil.TEST_PLAYFIELD_SIZE);
 		testController.startNewGame();
 		System.setIn(System.in);
 	}

@@ -45,12 +45,6 @@ public class Controller extends Observable implements IController {
 	}
 
 	@Override
-	public void initGame(int fieldSize) {
-		
-		this.field.initialize(fieldSize);
-	}
-
-	@Override
 	public void startNewGame() {
 		// TODO ZufallsSpieler auswählen
 		this.currentPlayer = players.getNextPlayer();

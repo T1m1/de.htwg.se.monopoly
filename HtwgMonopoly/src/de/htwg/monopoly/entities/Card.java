@@ -1,10 +1,14 @@
-package de.htwg.monopoly.entities.cards;
+package de.htwg.monopoly.entities;
 
 
 public abstract class Card implements ICards {
 
 	private String description;
 	private String actionType;
+	private int money;
+	private int move;
+	private boolean receiveFromBank;
+	private boolean payBank;
 
 	/**
 	 * Create a new Card with the text on it. The parameter "action" defines the

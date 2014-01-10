@@ -24,12 +24,6 @@ public interface IController extends IObservable {
 	void rollDice();
 
 	/**
-	 * 
-	 * @param numberOfPlayer
-	 */
-	void initGame(int fieldSize);
-
-	/**
 	 * end the turn of the current Player.
 	 */
 	void endTurn();

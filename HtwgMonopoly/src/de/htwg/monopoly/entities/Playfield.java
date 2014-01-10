@@ -4,8 +4,8 @@ import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import de.htwg.monopoly.entities.cards.ChanceCardsStack;
-import de.htwg.monopoly.entities.cards.CommunityCardsStack;
+
+
 import de.htwg.monopoly.util.IMonopolyFields;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
@@ -22,7 +22,7 @@ public class Playfield {
 			Locale.GERMAN);
 
 	public Playfield() {
-
+		initialize(IMonopolyUtil.TUI_FIELD_SIZE);
 	}
 
 	public final void initialize(int fieldSize) {
@@ -158,16 +158,18 @@ public class Playfield {
 			currentPlayer.setInPrison(true);
 			break;
 		case 'e':
+			ICards currentChanceCard = this.chanStack.getNextCard();
 			out = MessageFormat.format(bundle.getString("play_card"),
-					this.chanStack.getNextCard().getDescription());
+					currentChanceCard.getDescription());
 			sb.append(out);
-			// perform action.
+			Action.perform(currentChanceCard, currentPlayer);
 			break;
 		case 'g':
+			ICards currentCommCard = this.commStack.getNextCard();
 			out = MessageFormat.format(bundle.getString("play_card"),
-					this.commStack.getNextCard().getDescription());
+					currentCommCard.getDescription());
 			sb.append(out);
-			// perform action.
+			Action.perform(currentCommCard, currentPlayer);
 			break;
 		case 'n':
 			sb.append(bundle.getString("play_look"));

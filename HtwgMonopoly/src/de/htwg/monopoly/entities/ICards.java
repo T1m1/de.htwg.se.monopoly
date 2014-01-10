@@ -1,4 +1,4 @@
-package de.htwg.monopoly.entities.cards;
+package de.htwg.monopoly.entities;
 
 public interface ICards {
 

@@ -1,4 +1,4 @@
-package de.htwg.monopoly.entities.cards;
+package de.htwg.monopoly.entities;
 
 import de.htwg.monopoly.util.IMonopolyCards;
 
@@ -10,7 +10,7 @@ public class CommunityCardsStack extends CardsStack{
 		super();
 		
 		for (String descr: IMonopolyCards.DESCR_COMMU) {
-			pushOnTop(new ChanceCard(descr, null));
+			pushOnTop(new CommunityCard(descr, null));
 		}
 	}
 
