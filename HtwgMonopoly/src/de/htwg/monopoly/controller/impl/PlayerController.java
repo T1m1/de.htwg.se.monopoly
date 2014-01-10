@@ -10,7 +10,6 @@ import de.htwg.monopoly.util.IMonopolyUtil;
 /**
  * Controller for player
  * 
- * @author RuprechtT
  * 
  */
 public class PlayerController {

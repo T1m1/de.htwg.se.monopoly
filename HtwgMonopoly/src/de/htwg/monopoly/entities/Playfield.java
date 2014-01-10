@@ -29,9 +29,11 @@ public class Playfield {
 			createField(i);
 		}
 	}
-	
+
 	/**
-	 * help function for testing, later it will be replaced by google juice (maybe)
+	 * help function for testing, later it will be replaced by google juice
+	 * (maybe)
+	 * 
 	 * @param size
 	 */
 	public void initialize(int size) {
@@ -174,6 +176,14 @@ public class Playfield {
 		return sb.toString();
 	}
 
+	/**
+	 * Builds and returns a String for the output depending on the status of the
+	 * Street the current Player is standing on.
+	 * 
+	 * @param currentField
+	 * @param currentPlayer
+	 * @return String
+	 */
 	private String addStreetInfo(IFieldObject currentField, Player currentPlayer) {
 		StringBuilder sb = new StringBuilder();
 		String out;
@@ -193,17 +203,10 @@ public class Playfield {
 		return sb.toString();
 	}
 
-	public CommunityCardsStack getCommStack() {
-		return commStack;
-	}
-
-	public ChanceCardsStack getChanStack() {
-		return chanStack;
-	}
-
 	/**
 	 * Moves the current Player to the field according to the String target. If
-	 * the player went over or stays on Go, he gets money, but not if he goes in Prison
+	 * the player went over or stays on Go, he gets money, but not if he goes in
+	 * Prison
 	 * 
 	 * @param currentPlayer
 	 * @param target
@@ -213,7 +216,7 @@ public class Playfield {
 	public String movePlayerTo(Player currentPlayer, String target) {
 		int oldPosition = currentPlayer.getPosition();
 		int position = -1;
-		
+
 		if (target.equalsIgnoreCase("prison")) {
 			currentPlayer.setInPrison(true);
 			return bundle.getString("play_bsys");
@@ -225,7 +228,7 @@ public class Playfield {
 				break;
 			}
 		}
-		
+
 		if (position == -1) {
 			throw new AssertionError("Gefordertes Feld existiert nicht");
 		}
@@ -235,8 +238,26 @@ public class Playfield {
 
 		// saves true, if the Player went over or stays on "Los"
 		wentOverGo = (position < oldPosition);
-		
+
 		// Important: the new position must not be a Stack !!! (for now....)
 		return appendInfo(playfield[position], currentPlayer);
+	}
+
+	/**
+	 * Returns the Community Cards Stack
+	 * 
+	 * @return
+	 */
+	public CommunityCardsStack getCommStack() {
+		return commStack;
+	}
+
+	/**
+	 * Returns the Chance Cards Stack
+	 * 
+	 * @return
+	 */
+	public ChanceCardsStack getChanStack() {
+		return chanStack;
 	}
 }
