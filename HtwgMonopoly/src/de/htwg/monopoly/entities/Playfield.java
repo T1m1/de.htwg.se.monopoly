@@ -156,20 +156,6 @@ public class Playfield {
 			sb.append(bundle.getString("play_bsys"));
 			currentPlayer.setInPrison(true);
 			break;
-		case 'e':
-			ICards currentChanceCard = this.chanStack.getNextCard();
-			output = MessageFormat.format(bundle.getString("play_card"),
-					currentChanceCard.getDescription());
-			sb.append(output);
-			Action.perform(currentChanceCard, currentPlayer);
-			break;
-		case 'g':
-			ICards currentCommCard = this.commStack.getNextCard();
-			output = MessageFormat.format(bundle.getString("play_card"),
-					currentCommCard.getDescription());
-			sb.append(output);
-			Action.perform(currentCommCard, currentPlayer);
-			break;
 		case 'n':
 			sb.append(bundle.getString("play_look"));
 			break;
