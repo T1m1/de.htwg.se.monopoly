@@ -1,5 +1,6 @@
 package de.htwg.monopoly.entities;
 
+
 public final class Bank {
 	
 	private static int parkingMoney = 0;

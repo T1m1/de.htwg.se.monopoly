@@ -1,5 +1,6 @@
 package de.htwg.monopoly.entities;
 
+
 public class FieldObject implements IFieldObject {
 
 	private int priceToPay;

@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.monopoly.entities.CommunityCard;
-import de.htwg.monopoly.entities.CommunityCardsStack;
+import de.htwg.monopoly.entities.cards.CommunityCard;
+import de.htwg.monopoly.entities.cards.CommunityCardsStack;
 
 public class CardsStackTest {
 	

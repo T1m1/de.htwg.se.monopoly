@@ -1,7 +1,9 @@
-package de.htwg.monopoly.entities;
+package de.htwg.monopoly.entities.cards;
 
 import java.util.Deque;
 import java.util.LinkedList;
+
+import de.htwg.monopoly.entities.IFieldObject;
 
 public abstract class CardsStack implements ICardStack, IFieldObject {
 
