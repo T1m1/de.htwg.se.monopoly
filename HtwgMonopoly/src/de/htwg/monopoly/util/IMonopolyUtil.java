@@ -43,6 +43,9 @@ public interface IMonopolyUtil {
 	String ERR_NUMBER_OF_PLAYER = "Ungültige Anzahl von Spieler eingegeben (2 - 6)";
 	String ERR_NAME_OF_PLAYER = "Kann das passieren?";
 	String TEST_INPUT_STREAM = "2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n";
+	
+	/* GUI */
+	int COLORSIZE = 20;
 
 	
 

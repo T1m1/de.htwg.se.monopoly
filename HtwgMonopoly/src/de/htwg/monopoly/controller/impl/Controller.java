@@ -93,6 +93,8 @@ public class Controller extends Observable implements IController {
 	public void endTurn() {
 		this.message.delete(0, this.message.length());
 		this.currentPlayer = players.getNextPlayer();
+		
+		notifyObservers(0);
 	}
 
 	@Override
