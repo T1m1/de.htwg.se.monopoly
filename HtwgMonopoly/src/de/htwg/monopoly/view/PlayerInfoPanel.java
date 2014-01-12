@@ -93,8 +93,20 @@ public class PlayerInfoPanel extends JPanel implements ActionListener {
 		}
 
 	}
+	
+	private void updateUserInformations() {
+		for (int i = 0; i < contr.getNumberOfPlayer(); i++) {
+			lbsPlayersMoney.get(i).setText("Money:   "+contr.getPlayer(i).getBudget());
+			lbsPlayersOwnership.get(i).setText("Ownership: "+contr.getPlayer(i).getOwnership());
+		}
+	}
 
 	public void actionPerformed(ActionEvent e) {
 
+	}
+
+	public void update() {
+		updateUserInformations();
+		
 	}
 }

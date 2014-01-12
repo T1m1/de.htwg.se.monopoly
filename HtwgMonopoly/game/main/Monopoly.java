@@ -14,12 +14,14 @@ public class Monopoly {
 	public static void main(String[] args) {
 		IController controller = new Controller();
 		TextUI tui = new TextUI(controller);
-;
+
 		scanner = new Scanner(System.in);
-		
+
 		tui.startGame();
-		
+
 		GraphicUserInterface gui = new GraphicUserInterface(controller);
+		gui.run();
+
 		boolean run = true;
 		while (run) {
 			run = tui.processInputLine(scanner.next());

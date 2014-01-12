@@ -3,11 +3,9 @@ package de.htwg.monopoly.view;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -17,10 +15,11 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 import de.htwg.monopoly.controller.IController;
-import de.htwg.monopoly.controller.impl.Controller;
 import de.htwg.monopoly.entities.Dice;
 
 public class OptionPanel extends JPanel implements ActionListener {
+
+	private static final long serialVersionUID = 5849970700974325497L;
 
 	private IController contr;
 
@@ -81,11 +80,12 @@ public class OptionPanel extends JPanel implements ActionListener {
 			contr.startTurn();
 			int diceResult = Dice.getResultDice()
 					% contr.getField().getfieldSize() + 1;
-			JOptionPane.showMessageDialog(this, "Sie haben "+diceResult+" gewürfelt");
+			JOptionPane.showMessageDialog(this, "Sie haben " + diceResult
+					+ " gewürfelt");
 
 			// TODO in check enable status method
 			buttonZugBeenden.setEnabled(true);
-			//checkEnableStatus();
+			checkEnableStatus(1);
 
 			/* button to exit current draw */
 		} else if (e.getSource() == buttonZugBeenden) {
@@ -97,16 +97,14 @@ public class OptionPanel extends JPanel implements ActionListener {
 			buttonWuerfeln.setEnabled(true);
 		}
 
-		
-
 		// notifyAll
 
 	}
 
 	private void checkEnableStatus(int chooseOption) {
 		contr.getOptions(chooseOption);
-		
-		//parse options and set buttons enable
+
+		// parse options and set buttons enable
 
 	}
 }

@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import de.htwg.monopoly.controller.IController;
@@ -40,7 +41,13 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 
 	public GraphicUserInterface(IController controller) {
 		this.controller = controller;
+		this.controller.addObserver(this);
 		initUI();
+	}
+
+	public void run() {
+
+		setVisible(true);
 	}
 
 	private void initUI() {
@@ -89,22 +96,23 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 		int baseSize = controller.getField().getfieldSize();
 		setSize(baseSize * DISPLAY_FIELD_SIZE + BUFFER, baseSize
 				* DISPLAY_FIELD_SIZE);
-		// setPreferredSize(new Dimension(950,800));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 
-		setVisible(true);
 	}
 
 	@Override
 	public void update(Event e) {
-		// TODO Auto-generated method stub
+		
+		
 	}
 
 	@Override
 	public void update(int e) {
 		// TODO Auto-generated method stub
-
+		pnlOutput.update();
+		pnlPlayerInfo.update();
+		
 	}
 
 }
