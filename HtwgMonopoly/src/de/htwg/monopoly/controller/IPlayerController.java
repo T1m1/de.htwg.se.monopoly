@@ -43,7 +43,7 @@ public interface IPlayerController {
 	 * @param i
 	 * @return
 	 */
-	public Player getPlayer(int i);
+	Player getPlayer(int i);
 
 	/**
 	 * Performs money transfer according to the drawn card. There are two types:
