@@ -4,6 +4,9 @@ import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
+
 import de.htwg.monopoly.controller.IPlayfield;
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Bank;
@@ -19,10 +22,9 @@ public class Playfield implements IPlayfield {
 
 	private IFieldObject[] playfield;
 	private CommunityCardsStack commStack;
-	private ChanceCardsStack chanStack;
-	//@Inject
-	//private @Named("FieldSize") int fieldSize;
-	private int fieldSize;
+	private ChanceCardsStack chanStack;	
+	@Inject @Named("FieldSize") private int fieldSize;
+	//private int fieldSize;
 	private boolean wentOverGo = false;
 
 	/* internationalization */
@@ -30,8 +32,8 @@ public class Playfield implements IPlayfield {
 			Locale.GERMAN);
 
 	public Playfield() {
-		this.fieldSize = IMonopolyUtil.TUI_FIELD_SIZE;
-		this.playfield = new IFieldObject[fieldSize];
+		//this.fieldSize = IMonopolyUtil.TUI_FIELD_SIZE;
+		this.playfield = new IFieldObject[this.fieldSize];
 		this.commStack = new CommunityCardsStack();
 		this.chanStack = new ChanceCardsStack();
 
