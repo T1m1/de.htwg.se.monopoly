@@ -1,4 +1,6 @@
-package de.htwg.monopoly.entities;
+package de.htwg.monopoly.entities.impl;
+
+import de.htwg.monopoly.entities.IFieldObject;
 
 public final class Bank {
 

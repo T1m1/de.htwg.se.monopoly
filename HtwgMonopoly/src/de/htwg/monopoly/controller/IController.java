@@ -2,8 +2,8 @@ package de.htwg.monopoly.controller;
 
 import java.util.List;
 
-import de.htwg.monopoly.entities.Player;
-import de.htwg.monopoly.entities.Playfield;
+import de.htwg.monopoly.controller.impl.Playfield;
+import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.observer.IObservable;
 
 public interface IController extends IObservable {

@@ -2,9 +2,9 @@ package de.htwg.monopoly.controller.impl;
 
 import java.util.Scanner;
 
-import de.htwg.monopoly.entities.Bank;
 import de.htwg.monopoly.entities.ICards;
-import de.htwg.monopoly.entities.Player;
+import de.htwg.monopoly.entities.impl.Bank;
+import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
 /**

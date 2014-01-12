@@ -6,6 +6,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.htwg.monopoly.entities.impl.Player;
+import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
 public class PlayerTest {

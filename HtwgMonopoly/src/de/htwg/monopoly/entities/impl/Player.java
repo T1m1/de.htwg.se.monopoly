@@ -1,8 +1,9 @@
-package de.htwg.monopoly.entities;
+package de.htwg.monopoly.entities.impl;
 
 import java.util.LinkedList;
 import java.util.List;
 
+import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
 public class Player {

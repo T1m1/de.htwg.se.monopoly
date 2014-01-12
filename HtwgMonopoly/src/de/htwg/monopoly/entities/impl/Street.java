@@ -1,7 +1,8 @@
-package de.htwg.monopoly.entities;
+package de.htwg.monopoly.entities.impl;
 
 import java.awt.Color;
 
+import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
 /**
