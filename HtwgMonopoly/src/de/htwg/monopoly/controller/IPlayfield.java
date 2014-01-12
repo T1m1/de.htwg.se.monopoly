@@ -13,13 +13,6 @@ import de.htwg.monopoly.entities.impl.Player;
  *
  */
 public interface IPlayfield {
-	/**
-	 * help function for testing, later it will be replaced by google juice
-	 * (maybe)
-	 * 
-	 * @param size
-	 */
-	void initialize(int size);
 
 	/**
 	 * Move the Player to the new Field according to the result of the dice
@@ -40,12 +33,32 @@ public interface IPlayfield {
 	 * @param currentPlayer
 	 * @return An Object of Type IFieldObject
 	 */
-	public IFieldObject getCurrentField(Player currentPlayer);
+	IFieldObject getCurrentField(Player currentPlayer);
 
+	/**
+	 * Return the name of the Field at index i *
+	 * 
+	 * @param i
+	 * @return String
+	 */
 	String getFieldNameAtIndex(int i);
 
+	/**
+	 * Return the size of the playfield.
+	 * 
+	 * @return int
+	 */
 	int getfieldSize();
 
+	/**
+	 * Build and return a String, depending on the field, the current player is
+	 * standing on. In addition, this method performs this action.
+	 * 
+	 * 
+	 * @param currentField
+	 * @param currentPlayer
+	 * @return
+	 */
 	String appendInfo(IFieldObject currentField, Player currentPlayer);
 
 	/**
