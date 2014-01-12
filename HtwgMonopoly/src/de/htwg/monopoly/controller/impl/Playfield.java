@@ -20,6 +20,8 @@ public class Playfield implements IPlayfield {
 	private IFieldObject[] playfield;
 	private CommunityCardsStack commStack;
 	private ChanceCardsStack chanStack;
+	//@Inject
+	//private @Named("FieldSize") int fieldSize;
 	private int fieldSize;
 	private boolean wentOverGo = false;
 
