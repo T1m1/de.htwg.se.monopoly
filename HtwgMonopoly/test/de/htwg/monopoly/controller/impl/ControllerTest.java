@@ -36,6 +36,7 @@ public class ControllerTest {
 
 		System.setIn(testStream);
 		Injector injector = Guice.createInjector(new TestMonopolyModule());
+		
 
 		testController = injector.getInstance(IController.class);
 		

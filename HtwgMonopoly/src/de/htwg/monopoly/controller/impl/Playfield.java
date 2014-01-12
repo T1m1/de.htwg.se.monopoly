@@ -22,15 +22,16 @@ public class Playfield implements IPlayfield {
 
 	private IFieldObject[] playfield;
 	private CommunityCardsStack commStack;
-	private ChanceCardsStack chanStack;	
-	@Inject @Named("FieldSize") private int fieldSize;
-	//private int fieldSize;
+	private ChanceCardsStack chanStack;
+	
+	//@Inject @Named("FieldSize") private int fieldSize;
+	private int fieldSize = 8;
 	private boolean wentOverGo = false;
 
 	/* internationalization */
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
-
+	
 	public Playfield() {
 		//this.fieldSize = IMonopolyUtil.TUI_FIELD_SIZE;
 		this.playfield = new IFieldObject[this.fieldSize];

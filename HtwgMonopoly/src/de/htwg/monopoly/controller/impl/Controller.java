@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import com.google.inject.Inject;
+
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.entities.ICards;
 import de.htwg.monopoly.entities.IFieldObject;
@@ -15,6 +17,7 @@ import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.observer.impl.Observable;
 import de.htwg.monopoly.util.IMonopolyUtil;
+
 
 public class Controller extends Observable implements IController {
 	private PlayerController players;
@@ -29,6 +32,7 @@ public class Controller extends Observable implements IController {
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
 
+	@Inject
 	public Controller() {
 		this.players = new PlayerController();
 		this.field = new Playfield();
