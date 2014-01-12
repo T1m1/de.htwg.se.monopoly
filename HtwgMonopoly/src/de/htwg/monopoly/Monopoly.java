@@ -13,6 +13,7 @@ public class Monopoly {
 	private static Scanner scanner;
 	private static Monopoly instance = null;
 	private IController controller;
+	private static TextUI tui;
 
 	private static Monopoly getInstance() {
 		if (instance == null) instance = new Monopoly();
@@ -26,7 +27,7 @@ public class Monopoly {
 
 		this.controller = injector.getInstance(IController.class);
 		
-		TextUI tui = new TextUI(controller);
+		tui = new TextUI(controller);
 		tui.startGame();
 	}
 

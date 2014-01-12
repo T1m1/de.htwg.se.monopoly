@@ -1,8 +1,8 @@
 package de.htwg.monopoly;
 
-import java.lang.annotation.*;
 
-import com.google.inject.BindingAnnotation;
+import com.google.inject.AbstractModule;
+import com.google.inject.name.Names;
 
 import de.htwg.monopoly.controller.IController;
 
@@ -11,7 +11,7 @@ public class TestMonopolyModule extends AbstractModule  {
 	@Override
 	protected void configure()  {
 		
-		bindConstant().annotatedWith(@Names.named("FieldSize")).to("1");
+		bindConstant().annotatedWith(Names.named("FieldSize")).to("1");
 		bind(IController.class).to(de.htwg.monopoly.controller.impl.Controller.class);
 		
 	}

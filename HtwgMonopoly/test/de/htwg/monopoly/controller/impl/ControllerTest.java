@@ -13,7 +13,9 @@ import java.util.ResourceBundle;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.monopoly.Injector;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
 import de.htwg.monopoly.TestMonopolyModule;
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.entities.impl.FieldObject;
