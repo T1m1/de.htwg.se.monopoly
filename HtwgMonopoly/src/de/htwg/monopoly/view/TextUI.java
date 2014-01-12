@@ -19,7 +19,7 @@ public class TextUI implements IObserver {
 	/* logger */
 	private final Logger logger = LogManager.getLogger("htwgMonopoly");
 
-	/* internationalization */ 
+	/* internationalization */
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
 
@@ -27,12 +27,22 @@ public class TextUI implements IObserver {
 
 	public void startGame() {
 
-		/*TODO ist glaub nicht gut die anzahl der spieler hier einzulesen... 
+		/*
+		 * TODO ist glaub nicht gut die anzahl der spieler hier einzulesen...
 		 * namen etc. müssen ja auch in GUI änderbar sein.
-		 * */
+		 * 
+		 * Lösung: in der GUI verlange, dass Spieleranzahl in den Optionen
+		 * angegeben werden muss oder so
+		 * 
+		 * 
+		 * 
+		 * TODO GANZ WICHTIG!!! -> JEDES MAL WENN SPIELER EIGNABE BETÄTIGT (GUI)
+		 * BLEIBT DAS SPIEL AN DER STELLE STEHEN.. ES WIRD ZWAR NE NEUE UPDATE
+		 * METHODE AUFGERUFEN ABER DIESE WIRD NICHT GANZ ZUENDE GEFÜHRT
+		 * LSÖUNG: TUI SO UMSCHREIBEN DAS ZUG IMMER BEENDET WIRD
+		 */
 		printInitialisation();
 		logger.info(IMonopolyUtil.START);
-		controller.initGame(IMonopolyUtil.TUI_FIELD_SIZE);
 		// TODO start -> random player
 		controller.startNewGame();
 	}
@@ -186,6 +196,7 @@ public class TextUI implements IObserver {
 
 	/**
 	 * handle user input
+	 * 
 	 * @param line
 	 * @return
 	 */

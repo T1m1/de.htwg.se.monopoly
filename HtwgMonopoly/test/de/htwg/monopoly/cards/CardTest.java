@@ -5,13 +5,15 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.htwg.monopoly.entities.CommunityCard;
+
 public class CardTest {
 
 	CommunityCard card;
 
 	@Before
 	public void setUp() throws Exception {
-		card = new CommunityCard("Beschreibung", "move");
+		card = new CommunityCard("Beschreibung", "move", "prison", 0, 0, false);
 	}
 
 	@Test
@@ -26,11 +28,22 @@ public class CardTest {
 	public void testGetActionType() {
 		assertEquals("move", card.getActionType());
 	}
-	
+
 	@Test
 	public void testToString() {
 		card.setDescription("bar");
 		assertEquals("bar", card.toString());
+	}
+	
+	@Test
+	public void testGetMove() {
+		assertEquals(0, card.getMove());
+	}
+	
+	@Test
+	public void testGetTarget() {
+		assertEquals("prison", card.getTarget());
+		
 	}
 
 }

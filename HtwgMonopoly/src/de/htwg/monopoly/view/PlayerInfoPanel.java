@@ -1,17 +1,14 @@
 package de.htwg.monopoly.view;
 
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.border.Border;
 
 import de.htwg.monopoly.controller.IController;
@@ -19,38 +16,39 @@ import de.htwg.monopoly.entities.Player;
 
 public class PlayerInfoPanel extends JPanel implements ActionListener {
 
+	/**
+	 * automatic generated serial version UDI
+	 */
+	private static final long serialVersionUID = 8915051809291223084L;
+	private final static int LABEL_DIMENSION_Y = 10;
+	private final static int LABEL_DIMENSION_X = 20;
+
 	private IController contr;
-
-	private JButton buttonZugBeenden;
-	private JButton buttonKaufen;
-	private JButton buttonHotelBauen;
-
-	private JTextArea taAusgabe;
 
 	JPanel pnLabels;
 
-	private LinkedList<JLabel> lbsPlayer;
 	private LinkedList<Player> player;
+
+	private LinkedList<JPanel> pnPlayers = new LinkedList<JPanel>();
+	private LinkedList<JLabel> lbsPlayersMoney = new LinkedList<JLabel>();
+	private LinkedList<JLabel> lbsPlayersOwnership = new LinkedList<JLabel>();
 
 	public PlayerInfoPanel(IController controller) {
 		contr = controller;
 
 		pnLabels = new JPanel();
 
-		/**
-		 * TODO alles zu beginn initialisiern
-		 */
 		createPlayerPanels();
 
 		Border border = BorderFactory.createTitledBorder("Player Information");
 		JPanel pSuchenLoeschen = new JPanel();
 		pSuchenLoeschen.setBorder(border);
 		pSuchenLoeschen.setLayout(new BoxLayout(pSuchenLoeschen,
-				BoxLayout.LINE_AXIS));
+				BoxLayout.X_AXIS));
 
 		pSuchenLoeschen.add(pnLabels);
 
-		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		this.add(pSuchenLoeschen);
 
 	}
@@ -58,23 +56,40 @@ public class PlayerInfoPanel extends JPanel implements ActionListener {
 	private void createPlayerPanels() {
 
 		player = new LinkedList<Player>();
-		lbsPlayer = new LinkedList<JLabel>();
+
+		pnPlayers = new LinkedList<JPanel>();
+		lbsPlayersMoney = new LinkedList<JLabel>();
+		lbsPlayersOwnership = new LinkedList<JLabel>();
 
 		/* create panels with all information about player */
 		for (int i = 0; i < contr.getNumberOfPlayer(); i++) {
 			player.add(contr.getPlayer(i));
-			lbsPlayer.add(new JLabel("Player:   \t" + player.get(i).getName()));
-			lbsPlayer
-					.add(new JLabel("Money:    \t" + player.get(i).getBudget()));
-			lbsPlayer.add(new JLabel("Ownership:\t"
+
+			lbsPlayersMoney.add(new JLabel("Money:   "
+					+ player.get(i).getBudget()));
+			lbsPlayersOwnership.add(new JLabel("Ownership: "
 					+ player.get(i).getOwnership()));
+			Border border = BorderFactory.createTitledBorder(player.get(i)
+					.getName());
+			pnPlayers.add(new JPanel());
+			pnPlayers.get(i).setBorder(border);
+			pnPlayers.get(i).setLayout(
+					new BoxLayout(pnPlayers.get(i), BoxLayout.Y_AXIS));
+
 		}
-		pnLabels.setLayout(new GridLayout(contr.getNumberOfPlayer() * 3, 1));
+		pnLabels.setLayout(new BoxLayout(pnLabels, BoxLayout.Y_AXIS));
 
 		/* add panels to labels */
-		for (int i = 0; i < lbsPlayer.size(); i++) {
-			lbsPlayer.get(i).setMinimumSize(new Dimension(20, 10));
-			pnLabels.add(lbsPlayer.get(i));
+		for (int i = 0; i < contr.getNumberOfPlayer(); i++) {
+			lbsPlayersMoney.get(i).setMinimumSize(
+					new Dimension(LABEL_DIMENSION_X, LABEL_DIMENSION_Y));
+			lbsPlayersOwnership.get(i).setMinimumSize(
+					new Dimension(LABEL_DIMENSION_X, LABEL_DIMENSION_Y));
+			pnPlayers.get(i).add(lbsPlayersMoney.get(i));
+			pnPlayers.get(i).add(lbsPlayersOwnership.get(i));
+			/* empty panel to jerk layout manager -> full width */
+			pnPlayers.get(i).add(new JPanel());
+			pnLabels.add(pnPlayers.get(i));
 		}
 
 	}

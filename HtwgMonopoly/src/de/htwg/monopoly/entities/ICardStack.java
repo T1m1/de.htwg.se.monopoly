@@ -1,4 +1,4 @@
-package de.htwg.monopoly.cards;
+package de.htwg.monopoly.entities;
 
 
 public interface ICardStack {
@@ -16,5 +16,7 @@ public interface ICardStack {
 	 * @param newCard
 	 */
 	void pushOnTop(ICards newCard);
+
+	void shuffle();
 
 }

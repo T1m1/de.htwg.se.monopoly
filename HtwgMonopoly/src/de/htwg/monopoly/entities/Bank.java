@@ -1,10 +1,11 @@
 package de.htwg.monopoly.entities;
 
 public final class Bank {
-	
+
 	private static int parkingMoney = 0;
 
-	private Bank() { }
+	private Bank() {
+	}
 
 	/**
 	 * The current Player pays the rent of the current Street to its owner. Note
@@ -24,7 +25,8 @@ public final class Bank {
 	}
 
 	/**
-	 * The current Player receives money.
+	 * The current Player receives money from the Bank. It is possible, that the amount of
+	 * money is negative. In that case, the player pays money to the Bank.
 	 * 
 	 * @param currentPlayer
 	 * @param money
@@ -33,11 +35,40 @@ public final class Bank {
 		currentPlayer.setBudget(currentPlayer.getBudget() + money);
 	}
 
+	/**
+	 * Returns and "removes" the money in the middle of the playfield.
+	 * 
+	 * @return int
+	 */
 	public static int getParkingMoney() {
-		return parkingMoney;
+		int returnvalue = parkingMoney;
+		parkingMoney = 0;
+		return returnvalue;
 	}
 
+	/**
+	 * priceToPay is added to the parking Money (Which is in the "middle" of the
+	 * playfield)
+	 * 
+	 * 
+	 * @param priceToPay
+	 * @return void
+	 */
 	public static void addParkingMoney(int priceToPay) {
 		parkingMoney += priceToPay;
+	}
+
+	/**
+	 * Money is transferred from [receive] to [send]. If Money is a negative
+	 * number, its the other way.
+	 * 
+	 * @param receive
+	 * @param send
+	 * @param money
+	 */
+	public static void receiveMoneyFromPlayer(Player receive, Player send,
+			int money) {
+		receive.setBudget(receive.getBudget() + money);
+		send.setBudget(send.getBudget() - money);
 	}
 }

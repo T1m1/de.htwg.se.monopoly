@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.controller.impl.Controller;
-import de.htwg.monopoly.view.GraphicUI;
+import de.htwg.monopoly.view.GraphicUserInterface;
 import de.htwg.monopoly.view.TextUI;
 
 public class Monopoly {
@@ -19,7 +19,7 @@ public class Monopoly {
 		
 		tui.startGame();
 		
-		GraphicUI gui = new GraphicUI(controller);
+		GraphicUserInterface gui = new GraphicUserInterface(controller);
 		boolean run = true;
 		while (run) {
 			run = tui.processInputLine(scanner.next());

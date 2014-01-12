@@ -1,25 +1,23 @@
-package de.htwg.monopoly.cards;
+package de.htwg.monopoly.entities;
 
 import de.htwg.monopoly.util.IMonopolyCards;
-
-
 
 public class ChanceCardsStack extends CardsStack {
 
 	public ChanceCardsStack() {
 		super();
-		
-		for (String descr: IMonopolyCards.DESCR_CHANCE) {
-			pushOnTop(new ChanceCard(descr, null));
+
+		for (String descr : IMonopolyCards.DESCR_CHANCE) {
+			pushOnTop(new ChanceCard(descr, null, null, 0, 0, false));
 		}
 	}
 
-//	@Override
+	// @Override
 	public char getType() {
 		// e wie ereignisfeld.
 		return 'e';
 	}
-	
+
 	public String toString() {
 		return "Ereignisfeld";
 	}

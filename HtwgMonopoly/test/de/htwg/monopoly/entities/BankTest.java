@@ -37,7 +37,7 @@ public class BankTest {
 		Bank.addParkingMoney(100);
 		assertEquals(100, Bank.getParkingMoney());
 		Bank.addParkingMoney(100);
-		assertEquals(200, Bank.getParkingMoney());
+		assertEquals(100, Bank.getParkingMoney());
 	}
 	
 	

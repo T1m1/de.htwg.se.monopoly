@@ -1,5 +1,6 @@
 package de.htwg.monopoly.controller.impl;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -8,6 +9,7 @@ import java.util.ResourceBundle;
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.entities.Bank;
 import de.htwg.monopoly.entities.Dice;
+import de.htwg.monopoly.entities.ICards;
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.Player;
 import de.htwg.monopoly.entities.Playfield;
@@ -45,11 +47,6 @@ public class Controller extends Observable implements IController {
 	}
 
 	@Override
-	public void initGame(int fieldSize) {
-		this.field.initialize(fieldSize);
-	}
-
-	@Override
 	public void startNewGame() {
 		// TODO ZufallsSpieler auswählen
 		this.currentPlayer = players.getNextPlayer();
@@ -73,14 +70,86 @@ public class Controller extends Observable implements IController {
 
 	private void turn() {
 		rollDice();
+
 		/* move player -> max number to dice is fieldSize */
 		field.movePlayer(currentPlayer,
 				(Dice.getResultDice() % field.getfieldSize() + 1));
+
 		/* set current field */
 		this.currentField = field.getCurrentField(currentPlayer);
-		/* add information on whith field is current user */
-		message.append(field.appendInfo(currentField, currentPlayer));
 
+		/*
+		 * perform action depending on the field, the current player is standing
+		 * on
+		 */
+		if (fieldIsACommStack()) {
+			message.append(performCommCardAction());
+		} else if (fieldIsAChanceStack()) {
+			message.append(performChanceCardAction());
+		} else {
+			message.append(field.appendInfo(currentField, currentPlayer));
+		}
+	}
+
+	/**
+	 * Perform the action according to the text on the card. It depends if the
+	 * player has to move or money is transferred.
+	 * 
+	 * @return
+	 */
+	private String performCommCardAction() {
+		ICards currentCommCard = field.getCommStack().getNextCard();
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(MessageFormat.format(bundle.getString("play_card"),
+				currentCommCard.getDescription()));
+
+		if (currentCommCard.getActionType().equals("move")) {
+			sb.append(field.movePlayerTo(currentPlayer,
+					currentCommCard.getTarget()));
+		} else {
+			players.transferMoney(currentPlayer, currentCommCard);
+		}
+		return sb.toString();
+	}
+
+	/**
+	 * Does the same as performCommCardAction() except, for a Chance Card
+	 * 
+	 * @return
+	 */
+	private String performChanceCardAction() {
+		ICards currentChanceCard = field.getChanStack().getNextCard();
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(MessageFormat.format(bundle.getString("play_card"),
+				currentChanceCard.getDescription()));
+
+		if (currentChanceCard.getActionType().equals("move")) {
+			sb.append(field.movePlayerTo(currentPlayer,
+					currentChanceCard.getTarget()));
+		} else {
+			players.transferMoney(currentPlayer, currentChanceCard);
+		}
+		return sb.toString();
+	}
+
+	/**
+	 * Checks if the current Field is a Stack of Community Cards
+	 * 
+	 * @return
+	 */
+	private boolean fieldIsACommStack() {
+		return (currentField.getType() == 'g');
+	}
+
+	/**
+	 * Checks if the current Field is a Stack of Chance Cards
+	 * 
+	 * @return
+	 */
+	private boolean fieldIsAChanceStack() {
+		return (currentField.getType() == 'e');
 	}
 
 	@Override
@@ -119,18 +188,6 @@ public class Controller extends Observable implements IController {
 		/* TODO: not enough money!! -> end of game? */
 		return false;
 
-	}
-
-	@Override
-	public void checkFieldType() {
-		field.getCurrentField(currentPlayer);
-		// pseudo
-		/*
-		 * switsch fieldobject case street case ereignis case gemeinschaft case
-		 * los case frei parken case gehe ins gefängnis case zu besuch im
-		 * gefängnis case bahnhof case elektrowerk case wasserwerk case
-		 * steuerfeld notifyObserver
-		 */
 	}
 
 	@Override

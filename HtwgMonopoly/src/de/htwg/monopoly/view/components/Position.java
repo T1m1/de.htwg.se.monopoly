@@ -20,11 +20,14 @@ public class Position {
 		this.street = street;
 		this.anzahlFelderReihe = anzahlFelderReihe;
 		this.differenc = differenc;
-		calculate();
+		calculateGuiPositions();
 	}
 
-	private void calculate() {
+	
+	private void calculateGuiPositions() {
+		
 		if (street < anzahlFelderReihe) {
+			/* if street position {NORTH} */
 			this.y = 0;
 			this.x = street * differenc;
 			this.with = differenc;
@@ -32,6 +35,7 @@ public class Position {
 			this.stringX = this.x + differenc/4;
 			this.stringY =  this.y + IMonopolyUtil.COLORSIZE *2;
 		} else if (street < anzahlFelderReihe * 2 - 1) {
+			/* if street position {EAST} */
 			this.y = street % (anzahlFelderReihe - 1) * differenc;
 			this.x = anzahlFelderReihe * differenc - IMonopolyUtil.COLORSIZE;
 			this.with = IMonopolyUtil.COLORSIZE;
@@ -39,6 +43,7 @@ public class Position {
 			this.stringX = this.x - IMonopolyUtil.COLORSIZE*2 ;
 			this.stringY =  this.y+ IMonopolyUtil.COLORSIZE  ;
 		} else if (street < anzahlFelderReihe * 3 - 2) {
+			/* if street position {SOUTH} */
 			this.y = anzahlFelderReihe * differenc - IMonopolyUtil.COLORSIZE;
 			this.x = ((anzahlFelderReihe * differenc) - ((street
 					% (anzahlFelderReihe - 1) + 1) * differenc));
@@ -47,6 +52,7 @@ public class Position {
 			this.stringX = this.x + differenc/4;
 			this.stringY =  this.y - IMonopolyUtil.COLORSIZE *3 / 2;
 		} else {
+			/* if street position {WEST} */
 			this.y = ((anzahlFelderReihe - 1) * 4 - street) * differenc;
 			this.x = 0;
 			this.with = IMonopolyUtil.COLORSIZE;
