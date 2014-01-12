@@ -9,10 +9,10 @@
 		<sourceDirectory>src</sourceDirectory>
 		<testSourceDirectory>test</testSourceDirectory>
 		<resources>
-            <resource>
-                <directory>resources</directory>
-            </resource>
-        </resources>
+			<resource>
+				<directory>resources</directory>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -48,5 +48,6 @@
 			<artifactId>guice</artifactId>
 			<version>3.0</version>
 		</dependency>
+
 	</dependencies>
 </project>
