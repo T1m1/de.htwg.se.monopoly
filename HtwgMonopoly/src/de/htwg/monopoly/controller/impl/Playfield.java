@@ -4,6 +4,7 @@ import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import de.htwg.monopoly.controller.IPlayfield;
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Bank;
 import de.htwg.monopoly.entities.impl.ChanceCardsStack;
@@ -14,7 +15,7 @@ import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.util.IMonopolyFields;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
-public class Playfield {
+public class Playfield implements IPlayfield {
 
 	private IFieldObject[] playfield;
 	private CommunityCardsStack commStack;
