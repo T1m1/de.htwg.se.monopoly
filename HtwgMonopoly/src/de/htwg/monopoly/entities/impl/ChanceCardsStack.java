@@ -8,7 +8,7 @@ public class ChanceCardsStack extends CardsStack {
 		super();
 
 		for (String descr : IMonopolyCards.DESCR_CHANCE) {
-			pushOnTop(new ChanceCard(descr, null, null, 0, 0, false));
+			pushOnTop(new ChanceCard(descr, null, null, false));
 		}
 	}
 

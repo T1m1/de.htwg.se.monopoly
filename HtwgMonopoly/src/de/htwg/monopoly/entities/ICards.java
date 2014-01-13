@@ -17,22 +17,6 @@ public interface ICards {
 	 * Player: "money" - The Player is transferred to another Place: "move"
 	 */
 	String getActionType();
-	
-	/**
-	 * Return the amount of money the current player has to pay. It may be a
-	 * negative integer in that case, the player receive this amount of money.
-	 * 
-	 * @return int
-	 */
-	int getMoney();
-	
-
-	/**
-	 * Return a number of fields, which the current Player has to move.
-	 * 
-	 * @return int
-	 */
-	int getMove();
 
 	/**
 	 * Checks if the money is transferred from/to Bank OR to the other Players
@@ -42,7 +26,8 @@ public interface ICards {
 	boolean isReceiveFromToBank();
 
 	/**
-	 * Return the Target, where the Player has to move.
+	 * Return the Target, where the Player has to move or an Integer which
+	 * indicate the money, that the player receives or has to pay.
 	 * 
 	 * @return String
 	 */

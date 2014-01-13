@@ -95,7 +95,6 @@ public class ControllerTest {
 	public void testPayRent() {
 		testController.getPlayers().currentPlayer().setPosition(1);
 		testController.buyStreet();
-		testController.startTurn();
 		testController.getPlayers().currentPlayer().setPosition(1);
 		testController.payRent();
 		testController.getField();

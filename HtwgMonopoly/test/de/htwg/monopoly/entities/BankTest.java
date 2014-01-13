@@ -34,7 +34,7 @@ public class BankTest {
 	}
 	
 	@Test(expected = AssertionError.class)
-	public void testPayRent2() {
+	public void testPayRentError() {
 		Bank.payRent(testPlayer, testNotStreet);
 	}
 
@@ -52,6 +52,24 @@ public class BankTest {
 		assertEquals(100, Bank.getParkingMoney());
 	}
 	
+	@Test
+	public void testGetMoneyFromPlayer() {
+		testPlayer.setBudget(0);
+		testOwner.setBudget(100);
+		Bank.receiveMoneyFromPlayer(testPlayer, testOwner, 100);
+		assertEquals(100, testPlayer.getBudget());
+		assertEquals(0, testOwner.getBudget());
+	}
+	
+	@Test(expected = AssertionError.class)
+	public void testReceiveMoneyError1() {
+		Bank.receiveMoney(testPlayer, "NotANumber");
+	}
+	
+	@Test(expected = AssertionError.class)
+	public void testReceiveMoneyError2() {
+		Bank.receiveMoneyFromPlayer(testPlayer, testOwner, "NotANumber");
+	}
 	
 
 }
