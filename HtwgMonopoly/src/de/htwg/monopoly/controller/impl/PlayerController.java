@@ -76,6 +76,7 @@ public class PlayerController implements IPlayerController {
 				tmpNumberOfPlayer = in.nextInt();
 				in.nextLine();
 			} else {
+				/* TODO: alles weg*/
 				in.nextLine();
 				return false;
 			}

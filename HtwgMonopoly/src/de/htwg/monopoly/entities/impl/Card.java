@@ -20,11 +20,15 @@ public abstract class Card implements ICards {
 	 * @param descr
 	 * @param action
 	 */
-	public Card(String descr, String action, String target, boolean toFromBank) {
+	public Card(String descr, String action, String target, boolean toFromBank) { 
 		this.description = descr;
 		this.actionType = action;
 		this.moneyTransferredToFromBank = toFromBank;
 		this.target = target;
+		if (true) {
+			/*TODO: DIE PARAMETER WERDEN IRGENDWIE FALSCH GESETZT... auf einmal ist move und target vertauscht*/
+		 //System.out.println("FICK SONAR");
+		}
 	}
 
 	/**

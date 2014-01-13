@@ -17,15 +17,15 @@ public class CommunityCardsStack extends CardsStack {
 		pushOnTop(new CommunityCard(bundle.getString("comm_3"),
 				bundle.getString("comm_3.1"), "move", false));
 		pushOnTop(new CommunityCard(bundle.getString("comm_4"),
-				bundle.getString("comm_4.1"), "move", false));
+				bundle.getString("comm_4.1"), "money", false));
 		pushOnTop(new CommunityCard(bundle.getString("comm_5"),
-				bundle.getString("comm_5.1"), "move", false));
+				bundle.getString("comm_5.1"), "money", false));
 		pushOnTop(new CommunityCard(bundle.getString("comm_6"),
-				bundle.getString("comm_6.1"), "move", false));
+				bundle.getString("comm_6.1"), "money", false));
 		pushOnTop(new CommunityCard(bundle.getString("comm_7"),
-				bundle.getString("comm_7.1"), "move", false));
+				bundle.getString("comm_7.1"), "money", false));
 		pushOnTop(new CommunityCard(bundle.getString("comm_8"),
-				bundle.getString("comm_8.1"), "move", false));
+				bundle.getString("comm_8.1"), "money", false));
 		pushOnTop(new CommunityCard(bundle.getString("comm_9"),
 				bundle.getString("comm_9.1"), "move", false));
 		pushOnTop(new CommunityCard(bundle.getString("comm_10"),
