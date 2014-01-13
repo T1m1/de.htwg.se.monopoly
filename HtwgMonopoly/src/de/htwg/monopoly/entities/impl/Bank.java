@@ -42,6 +42,16 @@ public final class Bank {
 	public static void receiveMoney(Player currentPlayer, int money) {
 		currentPlayer.setBudget(currentPlayer.getBudget() + money);
 	}
+	
+	public static void receiveMoney(Player currentPlayer, String money) {
+		int actualMoney;
+		try {
+			actualMoney = Integer.parseInt(money);
+		} catch (NumberFormatException e) {
+			throw new AssertionError("String ist keine Zahl");
+		}
+		currentPlayer.setBudget(currentPlayer.getBudget() + actualMoney);
+	}
 
 	/**
 	 * Returns and "removes" the money in the middle of the playfield.
@@ -78,5 +88,17 @@ public final class Bank {
 			int money) {
 		receive.setBudget(receive.getBudget() + money);
 		send.setBudget(send.getBudget() - money);
+	}
+	
+	public static void receiveMoneyFromPlayer(Player receive, Player send,
+			String money) {
+		int actualMoney;
+		try {
+			actualMoney = Integer.parseInt(money);
+		} catch (NumberFormatException e) {
+			throw new AssertionError("String ist keine Zahl");
+		}
+		receive.setBudget(receive.getBudget() + actualMoney);
+		send.setBudget(send.getBudget() - actualMoney);
 	}
 }

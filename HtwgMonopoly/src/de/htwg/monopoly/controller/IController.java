@@ -1,6 +1,8 @@
 package de.htwg.monopoly.controller;
 
 import java.util.List;
+
+import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.observer.IObservable;
 
@@ -100,9 +102,34 @@ public interface IController extends IObservable {
 	 */
 	boolean isCorrectOption(String l);
 
+	/**
+	 * Return the number of Players. 
+	 * 
+	 * @return
+	 */
 	int getNumberOfPlayer();
 
+	/**
+	 * Get the Player at index i in the Player-Queue
+	 * 
+	 * @param i
+	 * @return
+	 */
 	Player getPlayer(int i);
+
+	/**
+	 * Returns the Player-Controller.
+	 * 
+	 * @return
+	 */
+	IPlayerController getPlayers();
+
+	/**
+	 *  Sets the current Field to fieldObject. This is a function only for testing.
+	 * 
+	 * @param fieldObject
+	 */
+	void setCurrentField(IFieldObject fieldObject);
 
 
 }

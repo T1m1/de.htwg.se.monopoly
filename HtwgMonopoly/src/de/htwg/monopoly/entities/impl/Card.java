@@ -6,24 +6,23 @@ public abstract class Card implements ICards {
 
 	private String description;
 	private String actionType;
-	private int money;
-	private int move;
 	private boolean moneyTransferredToFromBank;
 	private String target;
 
 	/**
 	 * Create a new Card with the text on it. The parameter "action" defines the
-	 * action, which will be performed in the game after the card is drawn.
+	 * action, which will be performed in the game after the card is drawn. The
+	 * String target is either the target where the player will be moved or an
+	 * integer. This integer defines the money, which the player receives or has
+	 * to pay.
+	 * 
 	 * 
 	 * @param descr
 	 * @param action
 	 */
-	public Card(String descr, String action, String target, int money, int move,
-			boolean toFromBank) {
+	public Card(String descr, String action, String target, boolean toFromBank) {
 		this.description = descr;
 		this.actionType = action;
-		this.money = money;
-		this.move = move;
 		this.moneyTransferredToFromBank = toFromBank;
 		this.target = target;
 	}
@@ -53,20 +52,10 @@ public abstract class Card implements ICards {
 	}
 
 	@Override
-	public int getMoney() {
-		return money;
-	}
-
-	@Override
-	public int getMove() {
-		return move;
-	}
-	
-	@Override
 	public boolean isReceiveFromToBank() {
 		return moneyTransferredToFromBank;
 	}
-	
+
 	@Override
 	public String getTarget() {
 		return target;

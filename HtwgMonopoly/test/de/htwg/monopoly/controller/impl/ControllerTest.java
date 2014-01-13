@@ -13,6 +13,11 @@ import java.util.ResourceBundle;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
+import de.htwg.monopoly.TestMonopolyModule;
+import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.entities.impl.FieldObject;
 import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.util.IMonopolyFields;
@@ -20,7 +25,7 @@ import de.htwg.monopoly.util.IMonopolyUtil;
 
 public class ControllerTest {
 
-	private Controller testController;
+	private IController testController;
 	ResourceBundle bundle = ResourceBundle.getBundle("Messages", Locale.GERMAN);
 
 	@Before
@@ -30,7 +35,11 @@ public class ControllerTest {
 		/* Initialization */
 
 		System.setIn(testStream);
-		testController = new Controller();
+		Injector injector = Guice.createInjector(new TestMonopolyModule());
+		
+
+		testController = injector.getInstance(IController.class);
+		
 		testController.setNumberofPlayer();
 		testController.setNameofPlayer(0);
 		testController.setNameofPlayer(1);
@@ -86,7 +95,6 @@ public class ControllerTest {
 	public void testPayRent() {
 		testController.getPlayers().currentPlayer().setPosition(1);
 		testController.buyStreet();
-		testController.startTurn();
 		testController.getPlayers().currentPlayer().setPosition(1);
 		testController.payRent();
 		testController.getField();

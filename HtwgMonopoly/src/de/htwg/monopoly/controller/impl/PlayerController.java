@@ -113,11 +113,11 @@ public class PlayerController implements IPlayerController {
 
 	public void transferMoney(Player currentPlayer, ICards currentCard) {
 		if (currentCard.isReceiveFromToBank()) {
-			Bank.receiveMoney(currentPlayer, currentCard.getMoney());
+			Bank.receiveMoney(currentPlayer, currentCard.getTarget());
 		} else {
 			for (Player player : players) {
 				Bank.receiveMoneyFromPlayer(currentPlayer, player,
-						currentCard.getMoney());
+						currentCard.getTarget());
 			}
 		}
 	}

@@ -16,7 +16,7 @@ public class CardsStackTest {
 	public void setUp() throws Exception {
 		stack = new CommunityCardsStack();
 		stack.pushOnTop(new CommunityCard("Gehe in das Gefängnis", "move",
-				null, 0, 0, false));
+				null, false));
 	}
 
 	@Test
