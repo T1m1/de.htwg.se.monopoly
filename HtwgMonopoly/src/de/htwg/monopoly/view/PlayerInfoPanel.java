@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 import de.htwg.monopoly.controller.IController;
-import de.htwg.monopoly.entities.Player;
+import de.htwg.monopoly.entities.impl.Player;
 
 public class PlayerInfoPanel extends JPanel implements ActionListener {
 
