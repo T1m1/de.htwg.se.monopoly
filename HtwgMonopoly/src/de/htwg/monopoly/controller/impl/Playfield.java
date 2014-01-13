@@ -1,13 +1,21 @@
-package de.htwg.monopoly.entities;
+package de.htwg.monopoly.controller.impl;
 
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import de.htwg.monopoly.controller.IPlayfield;
+import de.htwg.monopoly.entities.IFieldObject;
+import de.htwg.monopoly.entities.impl.Bank;
+import de.htwg.monopoly.entities.impl.ChanceCardsStack;
+import de.htwg.monopoly.entities.impl.CommunityCardsStack;
+import de.htwg.monopoly.entities.impl.FieldObject;
+import de.htwg.monopoly.entities.impl.Player;
+import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.util.IMonopolyFields;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
-public class Playfield {
+public class Playfield implements IPlayfield {
 
 	private IFieldObject[] playfield;
 	private CommunityCardsStack commStack;
@@ -91,17 +99,7 @@ public class Playfield {
 		}
 	}
 
-	/**
-	 * Move the Player to the new Field according to the result of the dice
-	 * roll.
-	 * 
-	 * @param currentPlayer
-	 *            which will be moved
-	 * @param diceResult
-	 *            : a Number between 2 and 12 modulo the playfield size.
-	 * @return true if Player moved over or stays on "Los" otherwise return
-	 *         false.
-	 */
+	
 	public void movePlayer(Player currentPlayer, int diceResult) {
 		// calculate the new position of the player within the playfield range
 		// and save its old position
@@ -116,12 +114,6 @@ public class Playfield {
 		wentOverGo = (position < oldPosition);
 	}
 
-	/**
-	 * Get the current Field where the Player is standing on.
-	 * 
-	 * @param currentPlayer
-	 * @return An Object of Type IFieldObject
-	 */
 	public IFieldObject getCurrentField(Player currentPlayer) {
 		return playfield[currentPlayer.getPosition()];
 	}
@@ -203,16 +195,7 @@ public class Playfield {
 		return sb.toString();
 	}
 
-	/**
-	 * Moves the current Player to the field according to the String target. If
-	 * the player went over or stays on Go, he gets money, but not if he goes in
-	 * Prison
-	 * 
-	 * @param currentPlayer
-	 * @param target
-	 * @throws AssertionError
-	 *             if target doesn't exist
-	 */
+	
 	public String movePlayerTo(Player currentPlayer, String target) {
 		int oldPosition = currentPlayer.getPosition();
 		int position = -1;
@@ -243,20 +226,12 @@ public class Playfield {
 		return appendInfo(playfield[position], currentPlayer);
 	}
 
-	/**
-	 * Returns the Community Cards Stack
-	 * 
-	 * @return
-	 */
+	
 	public CommunityCardsStack getCommStack() {
 		return commStack;
 	}
 
-	/**
-	 * Returns the Chance Cards Stack
-	 * 
-	 * @return
-	 */
+	
 	public ChanceCardsStack getChanStack() {
 		return chanStack;
 	}

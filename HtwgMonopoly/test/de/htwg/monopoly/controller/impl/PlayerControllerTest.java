@@ -11,9 +11,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.htwg.monopoly.controller.impl.PlayerController;
-import de.htwg.monopoly.entities.Card;
-import de.htwg.monopoly.entities.CommunityCard;
-import de.htwg.monopoly.entities.Player;
+import de.htwg.monopoly.entities.impl.Card;
+import de.htwg.monopoly.entities.impl.CommunityCard;
+import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
 public class PlayerControllerTest {

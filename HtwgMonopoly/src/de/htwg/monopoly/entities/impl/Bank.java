@@ -1,4 +1,6 @@
-package de.htwg.monopoly.entities;
+package de.htwg.monopoly.entities.impl;
+
+import de.htwg.monopoly.entities.IFieldObject;
 
 public final class Bank {
 
@@ -9,12 +11,17 @@ public final class Bank {
 
 	/**
 	 * The current Player pays the rent of the current Street to its owner. Note
-	 * that the currentField-Object must be a Street-Object.
+	 * that the currentField-Object must be a Street-Object. Otherwise a
+	 * assertion error will be thrown.
 	 * 
 	 * @param currentPlayer
 	 * @param currentField
+	 * @throws assertionError
 	 */
 	public static void payRent(Player currentPlayer, IFieldObject currentField) {
+		if (currentField.getType() != 's') {
+			throw new AssertionError("Field is not a street --> no rent to pay");
+		}
 		Street currentStreet = (Street) currentField;
 		int rent = currentStreet.getRent();
 		Player owner = currentStreet.getOwner();
@@ -23,10 +30,11 @@ public final class Bank {
 		owner.setBudget(owner.getBudget() + rent);
 
 	}
-
+	
 	/**
-	 * The current Player receives money from the Bank. It is possible, that the amount of
-	 * money is negative. In that case, the player pays money to the Bank.
+	 * The current Player receives money from the Bank. It is possible, that the
+	 * amount of money is negative. In that case, the player pays money to the
+	 * Bank.
 	 * 
 	 * @param currentPlayer
 	 * @param money

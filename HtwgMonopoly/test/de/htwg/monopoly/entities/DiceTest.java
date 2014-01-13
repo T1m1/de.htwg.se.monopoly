@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.htwg.monopoly.entities.impl.Dice;
+
 public class DiceTest {
 
 	Dice dice;

@@ -1,9 +1,7 @@
 package de.htwg.monopoly.controller;
 
 import java.util.List;
-
-import de.htwg.monopoly.entities.Player;
-import de.htwg.monopoly.entities.Playfield;
+import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.observer.IObservable;
 
 public interface IController extends IObservable {
@@ -79,7 +77,7 @@ public interface IController extends IObservable {
 	 * 
 	 * @return object of monopoly field
 	 */
-	Playfield getField();
+	IPlayfield getField();
 
 	/**
 	 * for tui, to show which option user can choose

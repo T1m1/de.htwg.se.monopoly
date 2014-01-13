@@ -2,9 +2,10 @@ package de.htwg.monopoly.controller.impl;
 
 import java.util.Scanner;
 
-import de.htwg.monopoly.entities.Bank;
+import de.htwg.monopoly.controller.IPlayerController;
 import de.htwg.monopoly.entities.ICards;
-import de.htwg.monopoly.entities.Player;
+import de.htwg.monopoly.entities.impl.Bank;
+import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
 /**
@@ -12,7 +13,7 @@ import de.htwg.monopoly.util.IMonopolyUtil;
  * 
  * 
  */
-public class PlayerController {
+public class PlayerController implements IPlayerController {
 	/* array with player objects */
 	private Player[] players;
 	/* number of player in game */
@@ -50,15 +51,9 @@ public class PlayerController {
 		}
 	}
 
-	/**
-	 * function to get next player
-	 * 
-	 * @return player
-	 */
 	public Player getNextPlayer() {
 
 		currentPlayer++;
-		// wie wäre es mit modulo?
 		/* set to first player, if all player on turn */
 		if (currentPlayer >= numberOfPlayer) {
 			currentPlayer = IMonopolyUtil.FIRST_PLAYER;
@@ -112,23 +107,10 @@ public class PlayerController {
 
 	}
 
-	/**
-	 * returns a player object
-	 * 
-	 * @param i
-	 * @return
-	 */
 	public Player getPlayer(int i) {
 		return this.players[i];
 	}
 
-	/**
-	 * Performs money transfer according to the drawn card. There are two types:
-	 * Money is transferred to/from bank or all the other players.
-	 * 
-	 * @param currentCard
-	 * @param currentPlayer
-	 */
 	public void transferMoney(Player currentPlayer, ICards currentCard) {
 		if (currentCard.isReceiveFromToBank()) {
 			Bank.receiveMoney(currentPlayer, currentCard.getMoney());

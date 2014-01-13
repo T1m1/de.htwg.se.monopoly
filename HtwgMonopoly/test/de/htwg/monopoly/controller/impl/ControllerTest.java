@@ -13,8 +13,8 @@ import java.util.ResourceBundle;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.monopoly.entities.FieldObject;
-import de.htwg.monopoly.entities.Street;
+import de.htwg.monopoly.entities.impl.FieldObject;
+import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.util.IMonopolyFields;
 import de.htwg.monopoly.util.IMonopolyUtil;
 

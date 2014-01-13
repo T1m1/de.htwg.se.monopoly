@@ -8,8 +8,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.htwg.monopoly.controller.IController;
-import de.htwg.monopoly.entities.Dice;
-import de.htwg.monopoly.entities.Player;
+import de.htwg.monopoly.entities.impl.Dice;
+import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.observer.Event;
 import de.htwg.monopoly.observer.IObserver;
 import de.htwg.monopoly.util.IMonopolyUtil;

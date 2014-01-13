@@ -7,13 +7,12 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import de.htwg.monopoly.controller.IController;
-import de.htwg.monopoly.entities.Bank;
-import de.htwg.monopoly.entities.Dice;
 import de.htwg.monopoly.entities.ICards;
 import de.htwg.monopoly.entities.IFieldObject;
-import de.htwg.monopoly.entities.Player;
-import de.htwg.monopoly.entities.Playfield;
-import de.htwg.monopoly.entities.Street;
+import de.htwg.monopoly.entities.impl.Bank;
+import de.htwg.monopoly.entities.impl.Dice;
+import de.htwg.monopoly.entities.impl.Player;
+import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.observer.impl.Observable;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
