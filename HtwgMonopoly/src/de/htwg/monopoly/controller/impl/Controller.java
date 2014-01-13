@@ -7,6 +7,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.entities.ICards;
@@ -24,6 +25,7 @@ public class Controller extends Observable implements IController {
 	private Playfield field;
 	private Player currentPlayer;
 	private IFieldObject currentField;
+	@Inject @Named("FieldSize") private int fieldSize;
 
 	private StringBuilder message;
 	private int lastChooseOption;

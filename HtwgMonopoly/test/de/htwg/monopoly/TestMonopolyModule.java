@@ -7,7 +7,7 @@ import com.google.inject.name.Names;
 import de.htwg.monopoly.controller.IController;
 
 public class TestMonopolyModule extends AbstractModule  {
-	private static final int FIELDSIZE = 2;
+	//private static final int FIELDSIZE = 2;
 	
 	@Override
 	protected void configure()  {
