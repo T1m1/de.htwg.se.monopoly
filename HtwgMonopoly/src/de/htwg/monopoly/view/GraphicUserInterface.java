@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import de.htwg.monopoly.controller.IController;
@@ -103,13 +102,10 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 
 	@Override
 	public void update(Event e) {
-		
-		
 	}
 
 	@Override
 	public void update(int e) {
-		// TODO Auto-generated method stub
 		pnlOutput.update();
 		pnlPlayerInfo.update();
 		

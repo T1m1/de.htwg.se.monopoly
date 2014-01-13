@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -14,9 +13,8 @@ import javax.swing.border.Border;
 
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.observer.Event;
-import de.htwg.monopoly.observer.IObserver;
 
-public class OutputPanel extends JPanel implements ActionListener, IObserver {
+public class OutputPanel extends JPanel implements ActionListener {
 
 	
 	private static final long serialVersionUID = -3497906149119900058L;
@@ -50,33 +48,11 @@ public class OutputPanel extends JPanel implements ActionListener, IObserver {
 	}
 
 	public void actionPerformed(Event e) {
-			// ?? wie alle ereignise abfangen und ausgeben?
-		// evtl. mitm controller get string
-		
-		taAusgabe.setText(contr.getMessage());
-		System.out.println("Huhu");
-	
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		taAusgabe.setText(contr.getMessage());
-		System.out.println("Huhu");
-		
-	}
 
-	@Override
-	public void update(Event e) {
-		taAusgabe.setText(contr.getMessage());
-		System.out.println("Huhu");
-		JOptionPane.showMessageDialog(this, "LALA");
-		
-	}
-
-	@Override
-	public void update(int e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public void update() {

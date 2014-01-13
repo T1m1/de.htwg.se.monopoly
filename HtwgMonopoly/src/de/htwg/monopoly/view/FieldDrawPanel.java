@@ -20,6 +20,15 @@ class FieldDrawPanel extends JPanel {
 	private final static int DIFFERENC = 70;
 	private final static int NUMBER_OF_ROWS = 8;
 
+	private final static String RESOURCE_DIRECTORY = "resources/";
+
+	private final static String PICTURE_GO = "GO.gif";
+	private final static String PICTURE_CHANCE_WEST = "CHANCE_WEST";
+	private final static String PICTURE_CHANCE_NORTH = "CHANCE_NORTH";
+	private final static String PICTURE_LOGO = "LOGO.png";
+	private final static String PICTURE_COMM_NORTH = "COMM_NORTH.jpg";
+	private final static String PICTURE_STRANDBAR = "STRANDBAR.jpg";
+
 	private IController contr;
 
 	private Image mshi;
@@ -47,7 +56,7 @@ class FieldDrawPanel extends JPanel {
 		 */
 		/* TEST COLOR */
 		drawStreet(g2d, 1, Color.red);
-		drawStreet(g2d, 2, Color.red);
+		drawStreet(g2d, 3, Color.red);
 		drawStreet(g2d, 6, Color.blue);
 		drawStreet(g2d, 4, Color.blue);
 		drawStreet(g2d, 8, Color.yellow);
@@ -128,14 +137,17 @@ class FieldDrawPanel extends JPanel {
 	}
 
 	private void loadImage() {
-		/*TODO dateinamen ändern und als final string */
-		mshi = new ImageIcon("resources/logo_de.png").getImage();
-		go = new ImageIcon("resources/go_6249.gif").getImage();
-		strandbar = new ImageIcon("resources/strandbar.jpg").getImage();
-		ereignisfeld = new ImageIcon("resources/chance2.jpg").getImage();
-		ereignisfeldLiegend = new ImageIcon(
-				"resources/chance2 _liegend_links.jpg").getImage();
-		gemeinschaftsfeld = new ImageIcon("resources/commchest.jpg").getImage();
+		
+		mshi = new ImageIcon(RESOURCE_DIRECTORY + PICTURE_LOGO).getImage();
+		go = new ImageIcon(RESOURCE_DIRECTORY + PICTURE_GO).getImage();
+		strandbar = new ImageIcon(RESOURCE_DIRECTORY + PICTURE_STRANDBAR)
+				.getImage();
+		ereignisfeld = new ImageIcon(RESOURCE_DIRECTORY + PICTURE_CHANCE_NORTH)
+				.getImage();
+		ereignisfeldLiegend = new ImageIcon(RESOURCE_DIRECTORY
+				+ PICTURE_CHANCE_WEST).getImage();
+		gemeinschaftsfeld = new ImageIcon(RESOURCE_DIRECTORY
+				+ PICTURE_COMM_NORTH).getImage();
 
 	}
 
