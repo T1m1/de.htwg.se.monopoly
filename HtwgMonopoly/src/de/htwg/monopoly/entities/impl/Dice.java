@@ -12,7 +12,7 @@ public final class Dice {
 	private static int resultDice = 0;
 
 	/**
-	 * for now, this method only returns a new value, when the method setDice is
+	 * for now, this method only returns a new value, when the metho22d setDice is
 	 * called before. Going to fix that
 	 * 
 	 * @return

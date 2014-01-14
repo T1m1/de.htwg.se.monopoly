@@ -40,13 +40,12 @@ public interface IMonopolyFields {
 	 * 
 	 * 
 	 */
-	Color[] COLOUR = { null, Color.magenta, null, Color.magenta, null, null,
-			Color.cyan, null, Color.cyan, Color.cyan, null, Color.pink, null,
-			Color.pink, Color.pink, null, Color.orange, null, Color.orange,
-			Color.orange, null, Color.red, null, Color.red, Color.red, null,
-			Color.yellow, Color.yellow, null, Color.yellow, null, Color.green,
-			Color.green, null, Color.green, null, null, Color.blue, null,
-			Color.blue };
+	Color[] COLOUR = { null, Color.magenta, null, Color.magenta, null,
+			Color.cyan, Color.cyan, null, Color.pink, null, Color.pink,
+			Color.pink, null, Color.orange, null, Color.orange, Color.orange,
+			null, Color.red, null, Color.red, Color.red, null, Color.yellow,
+			Color.yellow, null, Color.yellow, null, Color.green, Color.green,
+			null, Color.green, null, null, Color.blue, null, Color.blue };
 
 	/**
 	 * Die Miete stimmt ebenfalls mit dem Original Spiel überein. Alle Felder
