@@ -4,9 +4,19 @@ import de.htwg.monopoly.util.IMonopolyCards;
 
 public class ChanceCardsStack extends CardsStack {
 
+	private int position;
+
 	public ChanceCardsStack() {
 		super();
 
+		for (String descr : IMonopolyCards.DESCR_CHANCE) {
+			pushOnTop(new ChanceCard(descr, null, null, false));
+		}
+	}
+
+	public ChanceCardsStack(int guiPosition) {
+		super();
+		this.position = guiPosition;
 		for (String descr : IMonopolyCards.DESCR_CHANCE) {
 			pushOnTop(new ChanceCard(descr, null, null, false));
 		}
@@ -20,6 +30,16 @@ public class ChanceCardsStack extends CardsStack {
 
 	public String toString() {
 		return "Ereignisfeld";
+	}
+
+	@Override
+	public int getPosition() {
+		return this.position;
+	}
+
+	public void setPosition(Integer position) {
+		this.position = position;
+		
 	}
 
 }

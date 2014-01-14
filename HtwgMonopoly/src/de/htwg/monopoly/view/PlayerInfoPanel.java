@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -20,18 +21,15 @@ public class PlayerInfoPanel extends JPanel implements ActionListener {
 	 * automatic generated serial version UDI
 	 */
 	private static final long serialVersionUID = 8915051809291223084L;
-	private final static int LABEL_DIMENSION_Y = 10;
-	private final static int LABEL_DIMENSION_X = 20;
+	private static final int LABEL_DIMENSION_Y = 10;
+	private static final int LABEL_DIMENSION_X = 20;
 
 	private IController contr;
 
-	JPanel pnLabels;
+	private JPanel pnLabels;
 
-	private LinkedList<Player> player;
-
-	private LinkedList<JPanel> pnPlayers = new LinkedList<JPanel>();
-	private LinkedList<JLabel> lbsPlayersMoney = new LinkedList<JLabel>();
-	private LinkedList<JLabel> lbsPlayersOwnership = new LinkedList<JLabel>();
+	private List<JLabel> lbsPlayersMoney;
+	private List<JLabel> lbsPlayersOwnership;
 
 	public PlayerInfoPanel(IController controller) {
 		contr = controller;
@@ -55,9 +53,9 @@ public class PlayerInfoPanel extends JPanel implements ActionListener {
 
 	private void createPlayerPanels() {
 
-		player = new LinkedList<Player>();
+		List<Player> player = new LinkedList<Player>();
+		List<JPanel> pnPlayers = new LinkedList<JPanel>();
 
-		pnPlayers = new LinkedList<JPanel>();
 		lbsPlayersMoney = new LinkedList<JLabel>();
 		lbsPlayersOwnership = new LinkedList<JLabel>();
 
@@ -93,11 +91,13 @@ public class PlayerInfoPanel extends JPanel implements ActionListener {
 		}
 
 	}
-	
+
 	private void updateUserInformations() {
 		for (int i = 0; i < contr.getNumberOfPlayer(); i++) {
-			lbsPlayersMoney.get(i).setText("Money:   "+contr.getPlayer(i).getBudget());
-			lbsPlayersOwnership.get(i).setText("Ownership: "+contr.getPlayer(i).getOwnership());
+			lbsPlayersMoney.get(i).setText(
+					"Money:   " + contr.getPlayer(i).getBudget());
+			lbsPlayersOwnership.get(i).setText(
+					"Ownership: " + contr.getPlayer(i).getOwnership());
 		}
 	}
 
@@ -107,6 +107,6 @@ public class PlayerInfoPanel extends JPanel implements ActionListener {
 
 	public void update() {
 		updateUserInformations();
-		
+
 	}
 }

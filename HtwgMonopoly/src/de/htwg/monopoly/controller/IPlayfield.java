@@ -43,6 +43,15 @@ public interface IPlayfield {
 	 */
 	String getFieldNameAtIndex(int i);
 
+	
+	/**
+	 * Return the current Field at index i *
+	 * 
+	 * @param i
+	 * @return String
+	 */
+	IFieldObject getFieldAtIndex(int i);
+	
 	/**
 	 * Return the size of the playfield.
 	 * 

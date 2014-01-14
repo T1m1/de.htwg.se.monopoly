@@ -21,6 +21,7 @@ public class Street implements IFieldObject{
 	private int numberOfHotels = 0;
 	private boolean sold = false;
 	private Player owner = null;
+	private int position = 0;
 
 	/***
 	 * Constructor
@@ -38,6 +39,24 @@ public class Street implements IFieldObject{
 		this.color = color;
 		this.rent = rent;
 		this.pricePerHotel = pricePerHotel;
+	}
+	/***
+	 * Constructor
+	 * 
+	 * @param name
+	 * @param priceForStreet
+	 * @param color
+	 * @param rent
+	 * @param pricePerHotel
+	 */
+	public Street(String name, int priceForStreet, Color color, int rent,
+			int pricePerHotel, int position) {
+		this.name = name;
+		this.priceForStreet = priceForStreet;
+		this.color = color;
+		this.rent = rent;
+		this.pricePerHotel = pricePerHotel;
+		this.position = position;
 	}
 
 	/**
@@ -203,5 +222,10 @@ public class Street implements IFieldObject{
 	@Override
 	public String toString () {
 		return this.name;
+	}
+
+	@Override
+	public int getPosition() {
+		return this.position ;
 	}
 }

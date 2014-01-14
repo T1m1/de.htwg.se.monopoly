@@ -77,7 +77,6 @@ public class OptionPanel extends JPanel implements ActionListener {
 
 		/* if button for dice is clickt */
 		if (e.getSource() == buttonWuerfeln) {
-			//buttonWuerfeln.setEnabled(false);
 			contr.startTurn();
 			int diceResult = Dice.getResultDice()
 					% contr.getField().getfieldSize() + 1;
@@ -85,24 +84,22 @@ public class OptionPanel extends JPanel implements ActionListener {
 					+ " gewürfelt");
 
 			// TODO in check enable status method
-			//buttonZugBeenden.setEnabled(true);
+
 			checkEnableStatus(2);
 
 			/* button to exit current draw */
 		} else if (e.getSource() == buttonZugBeenden) {
 			buttonZugBeenden.setEnabled(false);
 			contr.endTurn();
-			JOptionPane.showMessageDialog(this, "Zug beendet!");
+
 			checkEnableStatus(1);
 			// TODO in check enable status method
-			//buttonWuerfeln.setEnabled(true);
 		} else if (e.getSource() == buttonKaufen) {
 			contr.buyStreet();
 			checkEnableStatus(1);
-			/* TODO tmp -> check in checkEnableStatus*/
+			/* TODO tmp -> check in checkEnableStatus */
 			buttonZugBeenden.setEnabled(true);
-		} else {
-			
+			buttonWuerfeln.setEnabled(false);
 		}
 
 		// notifyAll
@@ -110,24 +107,23 @@ public class OptionPanel extends JPanel implements ActionListener {
 	}
 
 	private void checkEnableStatus(int chooseOption) {
-		
+
 		List<String> options = contr.getOptions(chooseOption);
 
 		buttonHotelBauen.setEnabled(false);
 		buttonKaufen.setEnabled(false);
 		buttonWuerfeln.setEnabled(false);
 		buttonZugBeenden.setEnabled(false);
-		
-		
-		/* TODO use message properties*/
+
+		/* TODO use message properties */
 		for (String option : options) {
-			if(option.contains("Kaufen")) {
+			if (option.contains("Kaufen")) {
 				buttonKaufen.setEnabled(true);
 			}
-			if(option.contains("beenden")) {
+			if (option.contains("beenden")) {
 				buttonZugBeenden.setEnabled(true);
 			}
-			if(option.contains("würfeln")) {
+			if (option.contains("würfeln")) {
 				buttonWuerfeln.setEnabled(true);
 			}
 		}

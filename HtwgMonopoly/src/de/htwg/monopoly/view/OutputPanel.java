@@ -16,8 +16,9 @@ import de.htwg.monopoly.observer.Event;
 
 public class OutputPanel extends JPanel implements ActionListener {
 
-	
 	private static final long serialVersionUID = -3497906149119900058L;
+	private static final int LINES = 3;
+	private static final int COLUMS = 3;
 
 	private IController contr;
 
@@ -32,7 +33,7 @@ public class OutputPanel extends JPanel implements ActionListener {
 		contr = controller;
 
 		JPanel pAusgabe = new JPanel();
-		taAusgabe = new JTextArea(3, 20);
+		taAusgabe = new JTextArea(LINES, COLUMS);
 		taAusgabe.setEditable(false);
 		Border border2 = BorderFactory.createEtchedBorder();
 		taAusgabe.setBorder(border2);
@@ -56,7 +57,8 @@ public class OutputPanel extends JPanel implements ActionListener {
 	}
 
 	public void update() {
-		taAusgabe.setText(contr.getCurrentPlayer().getName()+": "+contr.getMessage());
-		
+		taAusgabe.setText(contr.getCurrentPlayer().getName() + ": "
+				+ contr.getMessage());
+
 	}
 }

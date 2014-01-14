@@ -31,12 +31,10 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 	private static final long serialVersionUID = -4630996003551288978L;
 
 	private IController controller;
-	private JPanel mainPanel;
-	private JPanel fieldPannel;
 
-	PlayerInfoPanel pnlPlayerInfo;
-	OutputPanel pnlOutput;
-	OptionPanel pnlOption;
+	private PlayerInfoPanel pnlPlayerInfo;
+	private OutputPanel pnlOutput;
+	private OptionPanel pnlOption;
 
 	public GraphicUserInterface(IController controller) {
 		this.controller = controller;
@@ -61,13 +59,13 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 		setPreferredSize(dimension);
 
 		/* main panel, containing all other panels */
-		mainPanel = new JPanel();
+		JPanel mainPanel = new JPanel();
 		mainPanel.setBorder(BorderFactory.createEmptyBorder(BORDER_SIZE,
 				BORDER_SIZE, BORDER_SIZE, BORDER_SIZE));
 		mainPanel.setLayout(new BorderLayout());
 
 		/* monopoly draw - field panel */
-		fieldPannel = new JPanel();
+		JPanel fieldPannel = new JPanel();
 		fieldPannel.setLayout(new BoxLayout(fieldPannel, BoxLayout.LINE_AXIS));
 		fieldPannel.add(new FieldDrawPanel(controller));
 		fieldPannel.setMinimumSize(new Dimension(SURFACE_MIN_DIMENSION_X,
@@ -108,7 +106,7 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 	public void update(int e) {
 		pnlOutput.update();
 		pnlPlayerInfo.update();
-		
+
 	}
 
 }

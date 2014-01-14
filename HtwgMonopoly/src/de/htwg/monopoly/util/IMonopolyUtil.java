@@ -46,6 +46,7 @@ public interface IMonopolyUtil {
 	
 	/* GUI */
 	int COLORSIZE = 20;
+	int TWO_HUNDRET_SEVENTY = 270;
 
 	
 

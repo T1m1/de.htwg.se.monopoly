@@ -4,9 +4,6 @@ import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import com.google.inject.Inject;
-import com.google.inject.name.Named;
-
 import de.htwg.monopoly.controller.IPlayfield;
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Bank;
@@ -23,17 +20,17 @@ public class Playfield implements IPlayfield {
 	private IFieldObject[] playfield;
 	private CommunityCardsStack commStack;
 	private ChanceCardsStack chanStack;
-	
-	//@Inject @Named("FieldSize") private int fieldSize;
-	private int fieldSize = 8;
+
+	// @Inject @Named("FieldSize") private int fieldSize;
+	private int fieldSize = 10;
 	private boolean wentOverGo = false;
 
 	/* internationalization */
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
-	
+
 	public Playfield() {
-		//this.fieldSize = IMonopolyUtil.TUI_FIELD_SIZE;
+		// this.fieldSize = IMonopolyUtil.TUI_FIELD_SIZE;
 		this.playfield = new IFieldObject[this.fieldSize];
 		this.commStack = new CommunityCardsStack();
 		this.chanStack = new ChanceCardsStack();
@@ -69,15 +66,16 @@ public class Playfield implements IPlayfield {
 		switch (IMonopolyFields.TYP[i]) {
 		case 'l':
 			playfield[i] = new FieldObject(IMonopolyFields.NAME[i],
-					IMonopolyFields.TYP[i], 0);
+					IMonopolyFields.TYP[i], IMonopolyFields.POSITION[i]);
 			break;
 		case 's':
 			playfield[i] = new Street(IMonopolyFields.NAME[i],
 					IMonopolyFields.PRICE_FOR_STREET[i],
 					IMonopolyFields.COLOUR[i], IMonopolyFields.RENT[i],
-					IMonopolyFields.HOTEL[i]);
+					IMonopolyFields.HOTEL[i], IMonopolyFields.POSITION[i]);
 			break;
 		case 'g':
+			this.commStack.setPosition(IMonopolyFields.POSITION[i]);
 			playfield[i] = this.commStack;
 			break;
 		case 'z':
@@ -87,24 +85,25 @@ public class Playfield implements IPlayfield {
 		case 'b':
 
 		case 'e':
+			this.chanStack.setPosition(IMonopolyFields.POSITION[i]);
 			playfield[i] = (IFieldObject) this.chanStack;
 			break;
 		case 'n':
 			/* BSYS -> zu besuch */
 			playfield[i] = new FieldObject("Bsys Labor: nur zu Besuch",
-					IMonopolyFields.TYP[i], 0);
+					IMonopolyFields.TYP[i], 0, IMonopolyFields.POSITION[i]);
 			break;
 		case 'p':
 			/* gehe ins Bsys labor */
 			playfield[i] = new FieldObject("Gehe in das Bsys Labor",
-					IMonopolyFields.TYP[i], 0);
+					IMonopolyFields.TYP[i], 0, IMonopolyFields.POSITION[i]);
 			break;
 		case 'f':
-			playfield[i] = new FieldObject("Mensa", IMonopolyFields.TYP[i], 0);
+			playfield[i] = new FieldObject("Mensa", IMonopolyFields.TYP[i], 0,
+					IMonopolyFields.POSITION[i]);
 		}
 	}
 
-	
 	public void movePlayer(Player currentPlayer, int diceResult) {
 		// calculate the new position of the player within the playfield range
 		// and save its old position
@@ -126,6 +125,12 @@ public class Playfield implements IPlayfield {
 	public String getFieldNameAtIndex(int i) {
 		return playfield[i].toString();
 	}
+	
+	
+	public IFieldObject getFieldAtIndex(int i) {
+		return playfield[i];
+	}
+	
 
 	public int getfieldSize() {
 		return this.fieldSize;
@@ -200,7 +205,6 @@ public class Playfield implements IPlayfield {
 		return sb.toString();
 	}
 
-	
 	public String movePlayerTo(Player currentPlayer, String target) {
 		int oldPosition = currentPlayer.getPosition();
 		int position = -1;
@@ -231,12 +235,10 @@ public class Playfield implements IPlayfield {
 		return appendInfo(playfield[position], currentPlayer);
 	}
 
-	
 	public CommunityCardsStack getCommStack() {
 		return commStack;
 	}
 
-	
 	public ChanceCardsStack getChanStack() {
 		return chanStack;
 	}
