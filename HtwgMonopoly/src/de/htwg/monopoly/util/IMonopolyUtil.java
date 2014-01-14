@@ -56,6 +56,9 @@ public interface IMonopolyUtil {
 	int COLORSIZE = 20;
 	int TWO_HUNDRET_SEVENTY = 270;
 
+
+	int MAX_NUMBER_OF_STEPS = 5;
+
 	
 
 }

@@ -48,7 +48,7 @@ public final class Bank {
 		try {
 			actualMoney = Integer.parseInt(money);
 		} catch (NumberFormatException e) {
-			throw new AssertionError("String ist keine Zahl");
+			throw new AssertionError("String ist keine Zahl" + e);
 		}
 		currentPlayer.setBudget(currentPlayer.getBudget() + actualMoney);
 	}
@@ -96,7 +96,7 @@ public final class Bank {
 		try {
 			actualMoney = Integer.parseInt(money);
 		} catch (NumberFormatException e) {
-			throw new AssertionError("String ist keine Zahl");
+			throw new AssertionError("String ist keine Zahl" + e);
 		}
 		receive.setBudget(receive.getBudget() + actualMoney);
 		send.setBudget(send.getBudget() - actualMoney);

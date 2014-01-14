@@ -168,7 +168,7 @@ public class Controller extends Observable implements IController {
 		int test;
 		try {
 			test = Integer.parseInt(card.getTarget());
-			if (Math.abs(test) < 5) {
+			if (Math.abs(test) < IMonopolyUtil.MAX_NUMBER_OF_STEPS) {
 				return true;
 			}
 			return false;

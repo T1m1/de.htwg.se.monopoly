@@ -4,6 +4,8 @@ import java.awt.Color;
 
 public interface IMonopolyFields {
 
+	String gem = "Gemeinschaftsfeld";
+
 	/**
 	 * l : los s : straße g : gemeinschaftsfeld z : zusatzsteuer e :
 	 * ereignisfeld n : nur zu besuch im gefängnis p : gehe ins gefängnis f :
@@ -28,13 +30,12 @@ public interface IMonopolyFields {
 	 * 
 	 * 
 	 */
-	String[] NAME = { "Bafög-Amt", "Stochastik", "Zusatzsteuer", "SM2",
-			"Gemeinschaftsfeld", "Digital-\ntechnik", "SysMo",
-			"Bsys Labor, nur zu Besuch", "SysProg", "Ereignisfeld", "ProgTech",
-			"Mathe 1", "Zusatzsteuer", "Prog-\nTech 2", "Frei parken", "TI",
-			"Gemeinschaftsfeld", "ALDA", "DB", "Ereignisfeld", "Mathe 2",
-			"Bsys Labor", "ReAr", "Gemeinschaftsfeld", "SE", "Konso",
-			"Zusatzsteuer", "Sekretariat" };
+	String[] NAME = { "Bafög-Amt", "Stochastik", "Zusatzsteuer", "SM2", gem,
+			"Digital-\ntechnik", "SysMo", "Bsys Labor, nur zu Besuch",
+			"SysProg", "Ereignisfeld", "ProgTech", "Mathe 1", "Zusatzsteuer",
+			"Prog-\nTech 2", "Frei parken", "TI", gem, "ALDA", "DB",
+			"Ereignisfeld", "Mathe 2", "Bsys Labor", "ReAr", gem, "SE",
+			"Konso", "Zusatzsteuer", "Sekretariat" };
 	/**
 	 * Farben in richtiger Reihenfolge. Wenn keine Straße, dann ist Farbe null.
 	 * 
@@ -76,7 +77,7 @@ public interface IMonopolyFields {
 	 * Test 1: Contains only 2 Object: Go field and a Gemeinschaftsfeld.
 	 * 
 	 */
-	String[] TESTNAMES = { "Bafög-Amt", "Gemeinschaftsfeld" };
+	String[] TESTNAMES = { "Bafög-Amt", gem };
 	Integer[] TESTRENT = { 0, 0 };
 	Integer[] TESTHOTEL = { 0, 0 };
 	Color[] TESTCOLOUR = { null, null };
