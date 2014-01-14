@@ -5,8 +5,6 @@ import java.util.ResourceBundle;
 
 public class CommunityCardsStack extends CardsStack {
 
-	private static final String move = "move";
-
 	private int position;
 
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",

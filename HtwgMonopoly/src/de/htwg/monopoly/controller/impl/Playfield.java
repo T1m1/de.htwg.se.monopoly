@@ -209,7 +209,7 @@ public class Playfield implements IPlayfield {
 		int oldPosition = currentPlayer.getPosition();
 		int position = -1;
 
-		if (target.equalsIgnoreCase("prison")) {
+		if (target.equalsIgnoreCase("Bsys Labor")) {
 			currentPlayer.setInPrison(true);
 			return bundle.getString("play_bsys");
 		}

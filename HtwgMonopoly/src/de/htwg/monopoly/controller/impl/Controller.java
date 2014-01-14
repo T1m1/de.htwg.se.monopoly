@@ -165,8 +165,12 @@ public class Controller extends Observable implements IController {
 	 * @return boolean
 	 */
 	private boolean isMoveAction(ICards card) {
+		int test;
 		try {
-			Integer.parseInt(card.getTarget());
+			test = Integer.parseInt(card.getTarget());
+			if (Math.abs(test) < 5) {
+				return true;
+			}
 			return false;
 		} catch (NumberFormatException e) {
 			return true;
