@@ -96,6 +96,19 @@ public class PlayfieldTest {
 		field.movePlayer(testplayer, 1);
 		field.appendInfo(field.getCurrentField(testplayer), testplayer);
 		field.movePlayer(testplayer, 1);
+		field.movePlayer(testplayer, 1);
+		field.appendInfo(field.getCurrentField(testplayer), testplayer);
+		field.movePlayer(testplayer, 1);
+		field.appendInfo(field.getCurrentField(testplayer), testplayer);
+		field.movePlayer(testplayer, 1);
+		field.appendInfo(field.getCurrentField(testplayer), testplayer);
+		field.movePlayer(testplayer, 1);field.movePlayer(testplayer, 1);
+		field.appendInfo(field.getCurrentField(testplayer), testplayer);
+		field.movePlayer(testplayer, 1);
+		field.appendInfo(field.getCurrentField(testplayer), testplayer);
+		field.movePlayer(testplayer, 1);
+		field.appendInfo(field.getCurrentField(testplayer), testplayer);
+		field.movePlayer(testplayer, 1);
 	}
 
 	@Test
