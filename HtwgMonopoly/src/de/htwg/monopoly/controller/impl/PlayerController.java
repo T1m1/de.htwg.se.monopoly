@@ -76,7 +76,7 @@ public class PlayerController implements IPlayerController {
 				tmpNumberOfPlayer = in.nextInt();
 				in.nextLine();
 			} else {
-				/* TODO: alles weg*/
+				/* TODO: alles weg */
 				in.nextLine();
 				return false;
 			}
@@ -113,12 +113,21 @@ public class PlayerController implements IPlayerController {
 	}
 
 	public void transferMoney(Player currentPlayer, ICards currentCard) {
-		if (currentCard.isReceiveFromToBank()) {
-			Bank.receiveMoney(currentPlayer, currentCard.getTarget());
+		int actualMoney;
+		try {
+			actualMoney = Integer.parseInt(currentCard.getTarget());
+		} catch (NumberFormatException e) {
+			throw new AssertionError("String ist keine Zahl" + e);
+		}
+		if (currentCard.isReceiveFromToPark()) {
+			if (actualMoney < 0) {
+				Bank.addParkingMoney(currentPlayer, -actualMoney);
+			} else {
+				Bank.receiveMoney(currentPlayer, actualMoney);
+			}
 		} else {
 			for (Player player : players) {
-				Bank.receiveMoneyFromPlayer(currentPlayer, player,
-						currentCard.getTarget());
+				Bank.receiveMoneyFromPlayer(currentPlayer, player, actualMoney);
 			}
 		}
 	}

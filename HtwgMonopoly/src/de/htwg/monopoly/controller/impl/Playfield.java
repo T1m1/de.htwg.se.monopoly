@@ -20,7 +20,6 @@ public class Playfield implements IPlayfield {
 	private IFieldObject[] playfield;
 	private CommunityCardsStack commStack;
 	private ChanceCardsStack chanStack;
-
 	// @Inject @Named("FieldSize") private int fieldSize;
 	private int fieldSize;
 	private boolean wentOverGo = false;
@@ -100,21 +99,21 @@ public class Playfield implements IPlayfield {
 			playfield[i] = new FieldObject("Mensa", IMonopolyFields.TYP[i], 0,
 					IMonopolyFields.POSITION[i]);
 			break;
-		
+
 		}
 	}
 
+	/**
+	 * Move the Player according to the dice Result. If the Player went over Go,
+	 * it is saved in a boolean variable.
+	 * 
+	 * 
+	 */
 	public void movePlayer(Player currentPlayer, int diceResult) {
-		// calculate the new position of the player within the playfield range
-		// and save its old position
 		int position = (currentPlayer.getPosition() + diceResult)
 				% playfield.length;
 		int oldPosition = currentPlayer.getPosition();
-
-		// Move the player
 		currentPlayer.setPosition(position);
-
-		// saves true, if the Player went over or stays on "Los"
 		wentOverGo = (position < oldPosition);
 	}
 
@@ -155,8 +154,7 @@ public class Playfield implements IPlayfield {
 			output = MessageFormat.format(bundle.getString("play_pay"),
 					field.getPriceToPay());
 			sb.append(output);
-			Bank.receiveMoney(currentPlayer, -field.getPriceToPay());
-			Bank.addParkingMoney(field.getPriceToPay());
+			Bank.addParkingMoney(currentPlayer, field.getPriceToPay());
 			break;
 		case 'p':
 			sb.append(bundle.getString("play_bsys"));

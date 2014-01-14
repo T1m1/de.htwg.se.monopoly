@@ -78,9 +78,8 @@ public class Controller extends Observable implements IController {
 
 		/* move player -> max number to dice is fieldSize */
 		field.movePlayer(currentPlayer,
-				(Dice.getResultDice() % field.getfieldSize() + 1));
-
-		/* set current field */
+				(Dice.getResultDice() % (field.getfieldSize() + 1)));
+		
 		this.currentField = field.getCurrentField(currentPlayer);
 
 		/*

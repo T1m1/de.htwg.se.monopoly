@@ -54,5 +54,10 @@ public interface IPlayerController {
 	 */
 	void transferMoney(Player currentPlayer, ICards currentCard);
 
+	/**
+	 * Returns the current Player
+	 * 
+	 * @return
+	 */
 	Player currentPlayer();
 }

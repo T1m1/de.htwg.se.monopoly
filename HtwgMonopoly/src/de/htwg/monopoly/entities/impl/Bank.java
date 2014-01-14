@@ -30,7 +30,7 @@ public final class Bank {
 		owner.setBudget(owner.getBudget() + rent);
 
 	}
-	
+
 	/**
 	 * The current Player receives money from the Bank. It is possible, that the
 	 * amount of money is negative. In that case, the player pays money to the
@@ -41,16 +41,6 @@ public final class Bank {
 	 */
 	public static void receiveMoney(Player currentPlayer, int money) {
 		currentPlayer.setBudget(currentPlayer.getBudget() + money);
-	}
-	
-	public static void receiveMoney(Player currentPlayer, String money) {
-		int actualMoney;
-		try {
-			actualMoney = Integer.parseInt(money);
-		} catch (NumberFormatException e) {
-			throw new AssertionError("String ist keine Zahl" + e);
-		}
-		currentPlayer.setBudget(currentPlayer.getBudget() + actualMoney);
 	}
 
 	/**
@@ -72,7 +62,8 @@ public final class Bank {
 	 * @param priceToPay
 	 * @return void
 	 */
-	public static void addParkingMoney(int priceToPay) {
+	public static void addParkingMoney(Player currentPlayer, int priceToPay) {
+		currentPlayer.setBudget(currentPlayer.getBudget() - priceToPay);
 		parkingMoney += priceToPay;
 	}
 
@@ -89,7 +80,7 @@ public final class Bank {
 		receive.setBudget(receive.getBudget() + money);
 		send.setBudget(send.getBudget() - money);
 	}
-	
+
 	public static void receiveMoneyFromPlayer(Player receive, Player send,
 			String money) {
 		int actualMoney;
@@ -98,7 +89,6 @@ public final class Bank {
 		} catch (NumberFormatException e) {
 			throw new AssertionError("String ist keine Zahl" + e);
 		}
-		receive.setBudget(receive.getBudget() + actualMoney);
-		send.setBudget(send.getBudget() - actualMoney);
+		receiveMoneyFromPlayer(receive, send, actualMoney);
 	}
 }

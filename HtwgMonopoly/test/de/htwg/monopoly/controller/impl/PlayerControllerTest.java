@@ -11,6 +11,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.htwg.monopoly.controller.impl.PlayerController;
+import de.htwg.monopoly.entities.ICards;
+import de.htwg.monopoly.entities.impl.Bank;
 import de.htwg.monopoly.entities.impl.Card;
 import de.htwg.monopoly.entities.impl.CommunityCard;
 import de.htwg.monopoly.entities.impl.Player;
@@ -95,8 +97,13 @@ public class PlayerControllerTest {
 		
 		players.transferMoney(testplayer, testCard2);
 		assertEquals(100, testplayer.getBudget());
-		
-		
+	}
+	
+	@Test(expected = AssertionError.class)
+	public void testTrasferMoney() {
+		Player testplayer = players.getNextPlayer();
+		ICards testCard = new CommunityCard("Keine Geld Karte", "KEIN GELD", false);
+		players.transferMoney(testplayer, testCard);
 	}
 
 }
