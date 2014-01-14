@@ -22,7 +22,7 @@ public class Playfield implements IPlayfield {
 	private ChanceCardsStack chanStack;
 
 	// @Inject @Named("FieldSize") private int fieldSize;
-	private int fieldSize = 22;
+	private int fieldSize;
 	private boolean wentOverGo = false;
 
 	/* internationalization */
@@ -30,7 +30,7 @@ public class Playfield implements IPlayfield {
 			Locale.GERMAN);
 
 	public Playfield() {
-		// this.fieldSize = IMonopolyUtil.TUI_FIELD_SIZE;
+		this.fieldSize = IMonopolyUtil.TUI_FIELD_SIZE;
 		this.playfield = new IFieldObject[this.fieldSize];
 		this.commStack = new CommunityCardsStack();
 		this.chanStack = new ChanceCardsStack();
@@ -82,8 +82,6 @@ public class Playfield implements IPlayfield {
 			playfield[i] = new FieldObject("Zusatzsteuer",
 					IMonopolyFields.TYP[i], IMonopolyUtil.ZUSATZSTEUER);
 			break;
-		case 'b':
-
 		case 'e':
 			this.chanStack.setPosition(IMonopolyFields.POSITION[i]);
 			playfield[i] = (IFieldObject) this.chanStack;
@@ -101,6 +99,8 @@ public class Playfield implements IPlayfield {
 		case 'f':
 			playfield[i] = new FieldObject("Mensa", IMonopolyFields.TYP[i], 0,
 					IMonopolyFields.POSITION[i]);
+			break;
+		
 		}
 	}
 
@@ -211,7 +211,7 @@ public class Playfield implements IPlayfield {
 			return appendInfo(playfield[currentPlayer.getPosition()],
 					currentPlayer);
 		} catch (NumberFormatException e) {
-			
+
 		}
 
 		if (target.equalsIgnoreCase("Bsys Labor")) {

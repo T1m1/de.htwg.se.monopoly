@@ -5,16 +5,14 @@ import java.awt.Color;
 public interface IMonopolyFields {
 
 	/**
-	 * l : los s : straße g : gemeinschaftsfeld z : zusatzsteuer b : Bahnhof e :
+	 * l : los s : straße g : gemeinschaftsfeld z : zusatzsteuer e :
 	 * ereignisfeld n : nur zu besuch im gefängnis p : gehe ins gefängnis f :
-	 * frei parken. Reihenfolge stimmt mit original Monopoly überein. Werke sind
-	 * durch ereignis/gemeinschaftskarten ersetzt.
+	 * frei parken.
 	 * 
 	 */
-	char[] TYP = { 'l', 's', 'g', 's', 'z', 'b', 's', 'g', 's', 's', 'n', 's',
-			'g', 's', 's', 'b', 's', 'e', 's', 's', 'f', 's', 'e', 's', 's',
-			'b', 's', 's', 'g', 's', 'p', 's', 's', 'g', 's', 'b', 'e', 's',
-			'z', 's' };
+	char[] TYP = { 'l', 's', 'z', 's', 'g', 's', 's', 'n', 's', 'e', 's', 's',
+			'z', 's', 'f', 's', 'g', 's', 's', 'e', 's', 'p', 's', 'g', 's',
+			's', 'z', 's' };
 	/**
 	 * Preise für die Straßen von dem original Monopoly Spiel und in richtiger
 	 * Reihenfolge.
@@ -30,11 +28,13 @@ public interface IMonopolyFields {
 	 * 
 	 * 
 	 */
-	String[] NAME = { "Bafög-Amt", "Stochastik", "Gemeinschaftsfeld", "SM2",
-			"Einkommensteuer", "Digital-\ntechnik", "SysMo", "Ereignisfeld",
-			"SysProg", "ProgTech", "Bsys Labor", "Mathe 1",
-			"Gemeinschaftsfeld", "Prog-\nTech 2", "TI", "ALDA", "DB",
-			"Ereignisfeld", "Mathe 2", "ReAr", "Frei parken", "SE" };
+	String[] NAME = { "Bafög-Amt", "Stochastik", "Zusatzsteuer", "SM2",
+			"Gemeinschaftsfeld", "Digital-\ntechnik", "SysMo",
+			"Bsys Labor, nur zu Besuch", "SysProg", "Ereignisfeld", "ProgTech",
+			"Mathe 1", "Zusatzsteuer", "Prog-\nTech 2", "Frei parken", "TI",
+			"Gemeinschaftsfeld", "ALDA", "DB", "Ereignisfeld", "Mathe 2",
+			"Bsys Labor", "ReAr", "Gemeinschaftsfeld", "SE", "Konso",
+			"Zusatzsteuer", "Sekretariat" };
 	/**
 	 * Farben in richtiger Reihenfolge. Wenn keine Straße, dann ist Farbe null.
 	 * 
@@ -83,6 +83,6 @@ public interface IMonopolyFields {
 	Color[] TESTCOLOUR = { null, null };
 
 	Integer[] POSITION = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
-			15, 16, 17, 18, 19, 20, 21, 22 };
+			15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 272 };
 
 }

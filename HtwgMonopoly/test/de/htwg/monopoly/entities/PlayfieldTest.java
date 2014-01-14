@@ -20,9 +20,8 @@ public class PlayfieldTest {
 	@Before
 	public void setUp() throws Exception {
 		field = new Playfield();
-		field.initialize(10);
+		field.initialize(15);
 		testplayer = new Player();
-		// initialize testObject;
 	}
 
 	@Test
@@ -97,6 +96,13 @@ public class PlayfieldTest {
 		field.movePlayer(testplayer, 1);
 		field.appendInfo(field.getCurrentField(testplayer), testplayer);
 		field.movePlayer(testplayer, 1);
+		field.movePlayer(testplayer, 1);
+		field.appendInfo(field.getCurrentField(testplayer), testplayer);
+		field.movePlayer(testplayer, 1);
+		field.appendInfo(field.getCurrentField(testplayer), testplayer);
+		field.movePlayer(testplayer, 1);
+		field.appendInfo(field.getCurrentField(testplayer), testplayer);
+		field.movePlayer(testplayer, 1);
 	}
 	
 	@Test
@@ -115,6 +121,11 @@ public class PlayfieldTest {
 		assertEquals(0, testplayer.getPosition());
 		field.movePlayerTo(testplayer, IMonopolyFields.NAME[1]);
 		assertEquals(1, testplayer.getPosition());
+	}
+	
+	@Test
+	public void testGetFieldAtIndex() {
+		field.getFieldAtIndex(1);
 	}
 	
 	@Test(expected = AssertionError.class)

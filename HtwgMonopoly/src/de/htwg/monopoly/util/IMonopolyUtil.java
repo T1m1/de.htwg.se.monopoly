@@ -20,7 +20,7 @@ public interface IMonopolyUtil {
 	int LOS_MONEY = 2000;
 	int FIELD_SIZE = 40;
 	int ZUSATZSTEUER = 1000;
-	int TUI_FIELD_SIZE = 8;
+	int TUI_FIELD_SIZE = 28;
 	int TUI_HIGH = 5;
 	int FREIKAUFEN = 500;
 	int OPTION_FINISH = 3;
