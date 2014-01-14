@@ -50,7 +50,7 @@ public interface IMonopolyFields {
 
 	/**
 	 * Die Miete stimmt ebenfalls mit dem Original Spiel überein. Alle Felder
-	 * die keine Straße sind werden mit 0 initialisiert. 
+	 * die keine Straße sind werden mit 0 initialisiert.
 	 * 
 	 */
 	Integer[] RENT = { 0, 2, 0, 4, 0, 6, 0, 6, 8, 0, 10, 0, 10, 12, 0, 14, 0,
@@ -72,17 +72,17 @@ public interface IMonopolyFields {
 	Integer[] PRICE_PER_HOTEL = new Integer[IMonopolyUtil.FIELD_SIZE];
 	Integer[] PRICE_PER_HOUSE = new Integer[IMonopolyUtil.FIELD_SIZE];
 
-	
 	/** Test Cases **/
 	/**
 	 * Test 1: Contains only 2 Object: Go field and a Gemeinschaftsfeld.
 	 * 
 	 */
-	String[] TESTNAMES = { "Bafög-Amt", "Gemeinschaftsfeld"};
-	Integer[] TESTRENT = { 0, 0};
-	Integer[] TESTHOTEL = { 0, 0};
-	Color[] TESTCOLOUR = { null, null};
+	String[] TESTNAMES = { "Bafög-Amt", "Gemeinschaftsfeld" };
+	Integer[] TESTRENT = { 0, 0 };
+	Integer[] TESTHOTEL = { 0, 0 };
+	Color[] TESTCOLOUR = { null, null };
 
-	Integer[] POSITION = { 0, 1, 2, 3, 5, 6, 7, 8, 9, 11, 12, 15, 16, 18 };
+	Integer[] POSITION = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
+			15, 16, 17, 18, 19, 20, 21, 22 };
 
 }

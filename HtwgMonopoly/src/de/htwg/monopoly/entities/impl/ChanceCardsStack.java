@@ -3,6 +3,8 @@ package de.htwg.monopoly.entities.impl;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import de.htwg.monopoly.entities.ICards;
+
 public class ChanceCardsStack extends CardsStack {
 
 	private int position;
@@ -10,6 +12,16 @@ public class ChanceCardsStack extends CardsStack {
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
 
+	/**
+	 * Constructor for testing
+	 * 
+	 * @param card
+	 */
+	public ChanceCardsStack(ICards card) {
+		super();
+		pushOnTop(card);
+	}
+	
 	public ChanceCardsStack() {
 		super();
 		pushOnTop(new ChanceCard(bundle.getString("chance_1"),

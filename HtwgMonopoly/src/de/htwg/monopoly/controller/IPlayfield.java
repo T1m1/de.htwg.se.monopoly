@@ -95,5 +95,21 @@ public interface IPlayfield {
 	 * @return
 	 */
 	ChanceCardsStack getChanStack();
+	
+	/**
+	 * for testing
+	 * 
+	 * 
+	 * @param i
+	 * @param field
+	 */
+	void setFieldAtIndex(int i, IFieldObject field);
+	
+	/**
+	 * for testing
+	 * 
+	 * @param size
+	 */
+	void initialize(int size);
 
 }

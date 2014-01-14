@@ -22,7 +22,7 @@ public class Playfield implements IPlayfield {
 	private ChanceCardsStack chanStack;
 
 	// @Inject @Named("FieldSize") private int fieldSize;
-	private int fieldSize = 10;
+	private int fieldSize = 22;
 	private boolean wentOverGo = false;
 
 	/* internationalization */
@@ -41,7 +41,7 @@ public class Playfield implements IPlayfield {
 	}
 
 	/**
-	 * help function for testing, later it will be replaced by google juice
+	 * help function for testing, later it will be replaced by google guice
 	 * (maybe)
 	 * 
 	 * @param size
@@ -125,12 +125,10 @@ public class Playfield implements IPlayfield {
 	public String getFieldNameAtIndex(int i) {
 		return playfield[i].toString();
 	}
-	
-	
+
 	public IFieldObject getFieldAtIndex(int i) {
 		return playfield[i];
 	}
-	
 
 	public int getfieldSize() {
 		return this.fieldSize;
@@ -208,13 +206,21 @@ public class Playfield implements IPlayfield {
 	public String movePlayerTo(Player currentPlayer, String target) {
 		int oldPosition = currentPlayer.getPosition();
 		int position = -1;
+		try {
+			movePlayer(currentPlayer, Integer.parseInt(target));
+			return appendInfo(playfield[currentPlayer.getPosition()],
+					currentPlayer);
+		} catch (NumberFormatException e) {
+			
+		}
 
 		if (target.equalsIgnoreCase("Bsys Labor")) {
 			currentPlayer.setInPrison(true);
 			return bundle.getString("play_bsys");
 		}
 
-		for (int i = 0; i < fieldSize; ++i) {
+		for (int i = oldPosition; i < (fieldSize + oldPosition); ++i) {
+			i = i % fieldSize;
 			if (playfield[i].toString().equalsIgnoreCase(target)) {
 				position = i;
 				break;
@@ -230,7 +236,7 @@ public class Playfield implements IPlayfield {
 
 		// saves true, if the Player went over or stays on "Los"
 		wentOverGo = (position < oldPosition);
-		
+
 		// Important: the new position must not be a Stack !!! (for now....)
 		return appendInfo(playfield[position], currentPlayer);
 	}
@@ -242,8 +248,13 @@ public class Playfield implements IPlayfield {
 	public ChanceCardsStack getChanStack() {
 		return chanStack;
 	}
-	
+
 	public void setFieldAtIndex(int i, IFieldObject field) {
+		if (field.getType() == 'g') {
+			this.commStack = (CommunityCardsStack) field;
+		} else if (field.getType() == 'e') {
+			this.chanStack = (ChanceCardsStack) field;
+		}
 		playfield[i] = field;
 	}
 }

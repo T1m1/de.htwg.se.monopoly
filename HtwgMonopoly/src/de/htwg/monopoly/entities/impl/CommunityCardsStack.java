@@ -3,6 +3,8 @@ package de.htwg.monopoly.entities.impl;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import de.htwg.monopoly.entities.ICards;
+
 public class CommunityCardsStack extends CardsStack {
 
 	private int position;
@@ -15,6 +17,16 @@ public class CommunityCardsStack extends CardsStack {
 		this.position = position;
 	}
 
+	/**
+	 * Constructor for testing
+	 * 
+	 * @param card
+	 */
+	public CommunityCardsStack(ICards card) {
+		super();
+		pushOnTop(card);
+	}
+	
 	public CommunityCardsStack() {
 		super();
 		pushOnTop(new CommunityCard(bundle.getString("comm_1"),

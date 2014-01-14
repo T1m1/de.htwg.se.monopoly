@@ -56,5 +56,7 @@ public class FieldObject implements IFieldObject {
 	public int getPosition() {
 		return this.guiPosition;
 	}
+	
+	
 
 }
