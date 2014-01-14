@@ -13,7 +13,7 @@ public interface IController extends IObservable {
 	 */
 	void startNewGame();
 
-	/**
+	/** 
 	 * start a turn of a player
 	 */
 	void startTurn();
