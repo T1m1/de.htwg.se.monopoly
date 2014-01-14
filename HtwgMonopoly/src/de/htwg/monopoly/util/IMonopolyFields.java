@@ -16,8 +16,7 @@ public interface IMonopolyFields {
 			'z', 's', 'f', 's', 'g', 's', 's', 'e', 's', 'p', 's', 'g', 's',
 			's', 'z', 's' };
 	/**
-	 * Preise für die Straßen von dem original Monopoly Spiel und in richtiger
-	 * Reihenfolge.
+	 * Preise für die Straßen
 	 * 
 	 * 
 	 */

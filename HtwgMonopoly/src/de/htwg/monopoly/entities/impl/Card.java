@@ -46,7 +46,7 @@ public abstract class Card implements ICards {
 	}
 
 	@Override
-	public boolean isReceiveFromToBank() {
+	public boolean isReceiveFromToPark() {
 		return moneyTransferredToFromBank;
 	}
 

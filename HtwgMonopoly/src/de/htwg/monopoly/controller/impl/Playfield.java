@@ -154,8 +154,7 @@ public class Playfield implements IPlayfield {
 			output = MessageFormat.format(bundle.getString("play_pay"),
 					field.getPriceToPay());
 			sb.append(output);
-			Bank.receiveMoney(currentPlayer, -field.getPriceToPay());
-			Bank.addParkingMoney(field.getPriceToPay());
+			Bank.addParkingMoney(currentPlayer, field.getPriceToPay());
 			break;
 		case 'p':
 			sb.append(bundle.getString("play_bsys"));
