@@ -230,7 +230,6 @@ public class Playfield implements IPlayfield {
 
 		// saves true, if the Player went over or stays on "Los"
 		wentOverGo = (position < oldPosition);
-
 		// Important: the new position must not be a Stack !!! (for now....)
 		return appendInfo(playfield[position], currentPlayer);
 	}
