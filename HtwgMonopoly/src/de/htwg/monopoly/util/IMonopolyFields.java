@@ -4,7 +4,7 @@ import java.awt.Color;
 
 public interface IMonopolyFields {
 
-	String gem = "Gemeinschaftsfeld";
+	String GEMEINSCHAFTSFELD = "Gemeinschaftsfeld";
 
 	/**
 	 * l : los s : straße g : gemeinschaftsfeld z : zusatzsteuer e :
@@ -26,16 +26,17 @@ public interface IMonopolyFields {
 			200, 260, 260, 150, 280, 0, 300, 300, 0, 320, 200, 0, 350, 100, 400 };
 
 	/**
-	 * Vorläufige Namen von Feldern. Insgesamt bis jetzt nur 22 Felder.
+	 * Vorläufige Namen von Feldern. Insgesamt bis jetzt 28 Felder.
 	 * 
 	 * 
 	 */
-	String[] NAME = { "Bafög-Amt", "Stochastik", "Zusatzsteuer", "SM2", gem,
-			"Digital-\ntechnik", "SysMo", "Bsys Labor, nur zu Besuch",
-			"SysProg", "Ereignisfeld", "ProgTech", "Mathe 1", "Zusatzsteuer",
-			"Prog-\nTech 2", "Frei parken", "TI", gem, "ALDA", "DB",
-			"Ereignisfeld", "Mathe 2", "Bsys Labor", "ReAr", gem, "SE",
-			"Konso", "Zusatzsteuer", "Sekretariat" };
+	String[] NAME = { "Bafög-Amt", "Stochastik", "Zusatzsteuer", "SM2",
+			GEMEINSCHAFTSFELD, "Digital-\ntechnik", "SysMo",
+			"Bsys Labor, nur zu Besuch", "SysProg", "Ereignisfeld", "ProgTech",
+			"Mathe 1", "Zusatzsteuer", "Prog-\nTech 2", "Frei parken", "TI",
+			GEMEINSCHAFTSFELD, "ALDA", "DB", "Ereignisfeld", "Mathe 2",
+			"Bsys Labor", "ReAr", GEMEINSCHAFTSFELD, "SE", "Konso",
+			"Zusatzsteuer", "Sekretariat" };
 	/**
 	 * Farben in richtiger Reihenfolge. Wenn keine Straße, dann ist Farbe null.
 	 * 
@@ -43,10 +44,9 @@ public interface IMonopolyFields {
 	 */
 	Color[] COLOUR = { null, Color.magenta, null, Color.magenta, null,
 			Color.cyan, Color.cyan, null, Color.pink, null, Color.pink,
-			Color.pink, null, Color.orange, null, Color.orange, Color.orange,
-			null, Color.red, null, Color.red, Color.red, null, Color.yellow,
-			Color.yellow, null, Color.yellow, null, Color.green, Color.green,
-			null, Color.green, null, null, Color.blue, null, Color.blue };
+			Color.orange, null, Color.orange, null, Color.red, null, Color.red,
+			Color.yellow, null, Color.yellow, null, Color.green, null, Color.green,
+			Color.blue, null, Color.blue };
 
 	/**
 	 * Die Miete stimmt ebenfalls mit dem Original Spiel überein. Alle Felder
@@ -77,7 +77,7 @@ public interface IMonopolyFields {
 	 * Test 1: Contains only 2 Object: Go field and a Gemeinschaftsfeld.
 	 * 
 	 */
-	String[] TESTNAMES = { "Bafög-Amt", gem };
+	String[] TESTNAMES = { "Bafög-Amt", GEMEINSCHAFTSFELD };
 	Integer[] TESTRENT = { 0, 0 };
 	Integer[] TESTHOTEL = { 0, 0 };
 	Color[] TESTCOLOUR = { null, null };
