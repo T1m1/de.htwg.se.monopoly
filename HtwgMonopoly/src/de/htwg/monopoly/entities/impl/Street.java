@@ -226,6 +226,6 @@ public class Street implements IFieldObject{
 
 	@Override
 	public int getPosition() {
-		return this.position ;
+		return this.position;
 	}
 }

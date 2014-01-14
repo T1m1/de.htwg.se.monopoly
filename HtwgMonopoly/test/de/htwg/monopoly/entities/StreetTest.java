@@ -47,6 +47,7 @@ public class StreetTest {
 		assertEquals("empty", street1.getName());
 		street1.setName("Rudolf");
 		assertEquals("Rudolf", street1.getName());
+		street1.getPosition();
 	}
 
 	@Test

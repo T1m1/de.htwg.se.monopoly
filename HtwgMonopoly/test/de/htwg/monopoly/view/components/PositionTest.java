@@ -59,7 +59,7 @@ public class PositionTest {
 
 		assertEquals(IMonopolyUtil.COLORSIZE, east.getHigh());
 
-		/* TODO not jet implemented */
+		/* TODO not yet implemented */
 		assertEquals(0, east.getPictureX());
 		assertEquals(0, east.getPictureY());
 
