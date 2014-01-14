@@ -47,7 +47,7 @@ public class PlayfieldTest {
 	@Test
 	public void testNotMyStree2t() {
 
-		Player andererPlayer = new Player("hhh", 'm', 2000);
+		Player andererPlayer = new Player("hhh", "m", 2000);
 		field.appendInfo(field.getCurrentField(testplayer), testplayer);
 
 		field.movePlayer(testplayer, 1);

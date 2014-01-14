@@ -20,8 +20,8 @@ public class BankTest {
 	@Before
 	public void setUp() throws Exception {
 		testField = new Street("foo", 1000, null, 50, 20);
-		testPlayer = new Player("bar", 'a', 50);
-		testOwner = new Player("unicorn", 'b', 0);
+		testPlayer = new Player("bar", "a", 50);
+		testOwner = new Player("unicorn", "b", 0);
 		testNotStreet = new FieldObject("Not a Street", 'l', 0);
 		testField.setOwner(testOwner);
 	}

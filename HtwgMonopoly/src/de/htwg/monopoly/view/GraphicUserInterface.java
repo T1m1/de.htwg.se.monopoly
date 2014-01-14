@@ -80,7 +80,7 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 		/* create panels */
 		pnlPlayerInfo = new PlayerInfoPanel(controller);
 		pnlOutput = new OutputPanel(controller);
-		OptionPanel pnlOption = new OptionPanel(controller);
+		OptionPanel pnlOption = new OptionPanel(controller, pnlOutput.getTaAusgabe());
 
 		/* add panels to main panel */
 		mainPanel.add(pnlField, BorderLayout.WEST);

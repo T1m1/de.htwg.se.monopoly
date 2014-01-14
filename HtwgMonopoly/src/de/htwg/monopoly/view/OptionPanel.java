@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.border.Border;
 
 import de.htwg.monopoly.controller.IController;
@@ -23,6 +24,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 5849970700974325497L;
 
 	private IController contr;
+	private JTextArea taAusgabe;
 
 	private JButton buttonZugBeenden;
 	private JButton buttonKaufen;
@@ -33,9 +35,9 @@ public class OptionPanel extends JPanel implements ActionListener {
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
 
-	public OptionPanel(IController controller) {
+	public OptionPanel(IController controller, JTextArea ausgabe) {
 		contr = controller;
-
+		this.taAusgabe = ausgabe;
 		buttonWuerfeln = new JButton(bundle.getString("gui_dice"));
 		this.add(buttonWuerfeln);
 		buttonWuerfeln.addActionListener(this);
@@ -52,7 +54,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 		buttonKaufen.setEnabled(false);
 		this.add(buttonKaufen);
 		buttonKaufen.addActionListener(this);
-
+		
 		buttonHotelBauen = new JButton(bundle.getString("gui_motel"));
 		buttonHotelBauen.setEnabled(false);
 		this.add(buttonHotelBauen);
@@ -80,8 +82,8 @@ public class OptionPanel extends JPanel implements ActionListener {
 			contr.startTurn();
 			int diceResult = Dice.getResultDice()
 					% contr.getField().getfieldSize() + 1;
-			JOptionPane.showMessageDialog(this, "Sie haben " + diceResult
-					+ " gewürfelt");
+			taAusgabe.setText("Sie haben " + diceResult
+					+ " gewürfelt\n" +taAusgabe.getText() );
 
 			// TODO in check enable status method
 

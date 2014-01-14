@@ -47,7 +47,7 @@ class FieldDrawPanel extends JPanel {
 	private static final int TWENTY = 20;
 	private static final int TWENTY_FIFE = 25;
 	private static final int FOUR = 4;
-	private static final int FIFTY = 4;
+	private static final int FIFTY = 50;
 	
 	private static final String RESOURCE_DIRECTORY = "resources/";
 
@@ -58,12 +58,12 @@ class FieldDrawPanel extends JPanel {
 	private static final String PICTURE_COMM_NORTH = "COMM_NORTH.jpg";
 	private static final String PICTURE_STRANDBAR = "STRANDBAR.jpg";
 
-	private static final String PICTURE_USER1 = "PICTURE_USER1.jpg";
-	private static final String PICTURE_USER2 = "PICTURE_USER2.jpg";
-	private static final String PICTURE_USER3 = "PICTURE_USER3.jpg";
-	private static final String PICTURE_USER4 = "PICTURE_USER4.jpg";
-	private static final String PICTURE_USER5 = "PICTURE_USER5.jpg";
-	private static final String PICTURE_USER6 = "PICTURE_USER6.jpg";
+	private static final String PICTURE_USER1 = "Schoppa.jpg";
+	private static final String PICTURE_USER2 = "Neuschwander.jpg";
+	private static final String PICTURE_USER3 = "Bittel.jpg";
+	private static final String PICTURE_USER4 = "Boger.jpg";
+	private static final String PICTURE_USER5 = "Garloff.jpg";
+	private static final String PICTURE_USER6 = "Mächtel.jpg";
 
 	private static final String[] PICTURES = { PICTURE_USER1, PICTURE_USER2,
 			PICTURE_USER3, PICTURE_USER4, PICTURE_USER5, PICTURE_USER6 };
@@ -138,6 +138,7 @@ class FieldDrawPanel extends JPanel {
 
 		/* add user figure at his position */
 		setFigures();
+		setFigureForPlayer();
 
 	}
 
@@ -269,13 +270,17 @@ class FieldDrawPanel extends JPanel {
 	}
 
 	public void update() {
-		updateFigures();
+		setFigures();
+		repaint();
 	}
 
 	
-	private void updateFigures() {
-		setFigures();
-		repaint();
+	private void setFigureForPlayer() {
+		for (int i = 0; i < contr.getNumberOfPlayer(); i++) {
+			Player player = contr.getPlayer(i);
+			//player.setFigure()
+
+		}
 
 	}
 
@@ -291,13 +296,13 @@ class FieldDrawPanel extends JPanel {
 		Position pos = new Position(position, NUMBER_OF_ROWS, DIFFERENC);
 		if (i < 2) {
 			g2d.drawImage(figures.get(i), pos.getPictureX(), pos.getPictureY() + TWENTY
-					+ (i * TWENTY), TWENTY_FIFE, TWENTY_FIFE, null);
+					+ (i * TWENTY), TWENTY, TWENTY_FIFE, null);
 		} else if (i < FOUR) {
 			g2d.drawImage(figures.get(i), pos.getPictureX()+TWENTY_FIFE, pos.getPictureY() + TWENTY
-					+ (i%2 * TWENTY), TWENTY_FIFE, TWENTY_FIFE, null);
+					+ (i%2 * TWENTY), TWENTY, TWENTY_FIFE, null);
 		} else {
 			g2d.drawImage(figures.get(i), pos.getPictureX()+FIFTY, pos.getPictureY() + TWENTY
-					+ (i%2 * TWENTY), TWENTY_FIFE, TWENTY_FIFE, null);
+					+ (i%2 * TWENTY), TWENTY, TWENTY_FIFE, null);
 		}
 		
 

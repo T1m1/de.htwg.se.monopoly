@@ -94,7 +94,7 @@ public class StreetTest {
 	
 	@Test
 	public void testStreetOwner() {
-		Player newOwner = new Player("ll", 'p', 3330);
+		Player newOwner = new Player("ll", "p", 3330);
 		street1.setOwner(newOwner);
 		assertEquals("ll", street1.getOwner().getName());
 	}

@@ -25,7 +25,8 @@ public class OutputPanel extends JPanel implements ActionListener {
 	private JTextArea taAusgabe;
 
 	/**
-	 * create panel for graphic user interface logger
+	 * create panel for graphic user interf
+	 * ace logger
 	 * 
 	 * @param controller
 	 */
@@ -60,5 +61,9 @@ public class OutputPanel extends JPanel implements ActionListener {
 		taAusgabe.setText(contr.getCurrentPlayer().getName() + " (" + contr.getCurrentPlayer().getFigure() + ") : "
 				+ contr.getMessage());
 
+	}
+	
+	public JTextArea getTaAusgabe() {
+		return this.taAusgabe;
 	}
 }

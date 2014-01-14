@@ -12,7 +12,7 @@ public class Player {
 	private static int number = 0;
 	/* variables representing a player object */
 	private String name;
-	private char figure;
+	private String figure;
 	private int budget;
 	// ownership ?
 	private int position = 0;
@@ -28,7 +28,7 @@ public class Player {
 		number++;
 		/* generate default player */
 		this.name = "player" + number;
-		this.figure = (char) number;
+		this.figure = "" + number;
 		this.budget = IMonopolyUtil.INITIAL_MONEY;
 		ownership = new LinkedList<IFieldObject>();
 	}
@@ -41,7 +41,7 @@ public class Player {
 	 * @param budget
 	 * @param position
 	 */
-	public Player(String name, char figure, int budget, int position) {
+	public Player(String name, String figure, int budget, int position) {
 		this.name = name;
 		this.figure = figure;
 		this.budget = budget;
@@ -56,7 +56,7 @@ public class Player {
 	 * @param figure
 	 * @param budget
 	 */
-	public Player(String name, char figure, int budget) {
+	public Player(String name, String figure, int budget) {
 		this(name, figure, budget, 1);
 	}
 
@@ -83,7 +83,7 @@ public class Player {
 	 * 
 	 * @return
 	 */
-	public char getFigure() {
+	public String getFigure() {
 		return figure;
 	}
 
@@ -92,7 +92,7 @@ public class Player {
 	 * 
 	 * @param figure
 	 */
-	public void setFigure(char figure) {
+	public void setFigure(String figure) {
 		this.figure = figure;
 	}
 
@@ -202,6 +202,7 @@ public class Player {
 
 	/**
 	 * add a new ownership for player e.g. a street
+	 * 
 	 * @param street
 	 */
 	public void addOwnership(IFieldObject street) {
@@ -209,7 +210,8 @@ public class Player {
 	}
 
 	/**
-	 * decremt money of player e.g. to buy a street 
+	 * decremt money of player e.g. to buy a street
+	 * 
 	 * @param freikaufen
 	 */
 	public void decrementMoney(int freikaufen) {

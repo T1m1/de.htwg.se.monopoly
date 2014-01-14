@@ -15,25 +15,25 @@ public class PlayerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		player1 = new Player("lala", 'U', 0);
+		player1 = new Player("lala", "U", 0);
 		Player player2 = new Player();
 		player2.decrementMoney(1);
 	}
 
 	@Test
 	public void testPlayerStringCharDoubleStringArrayInt() {
-		Player player3 = new Player("Kenny", 'K', IMonopolyUtil.TEST_PRICE_ONE);
+		Player player3 = new Player("Kenny", "K", IMonopolyUtil.TEST_PRICE_ONE);
 		assertEquals("Kenny", player3.getName());
-		assertEquals('K', player3.getFigure());
+		assertEquals("K", player3.getFigure());
 		assertEquals(IMonopolyUtil.TEST_PRICE_ONE, player3.getBudget());
 	
 	}
 
 	@Test
 	public void testPlayerStringCharDouble() {
-		Player player2 = new Player("Manny", 'M', IMonopolyUtil.TEST_PRICE_TWO);
+		Player player2 = new Player("Manny", "M", IMonopolyUtil.TEST_PRICE_TWO);
 		assertEquals("Manny", player2.getName());
-		assertEquals('M', player2.getFigure());
+		assertEquals("M", player2.getFigure());
 		assertEquals(IMonopolyUtil.TEST_PRICE_TWO, player2.getBudget());
 	}
 
@@ -45,8 +45,8 @@ public class PlayerTest {
 
 	@Test
 	public void testGetFigure() {
-		player1.setFigure('x');
-		assertEquals('x', player1.getFigure());
+		player1.setFigure("x");
+		assertEquals("x", player1.getFigure());
 	}
 
 	@Test
