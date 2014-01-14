@@ -40,6 +40,7 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 		this.controller = controller;
 		this.controller.addObserver(this);
 		initUI();
+		
 	}
 
 	public void run() {
