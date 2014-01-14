@@ -8,6 +8,7 @@ import org.junit.Test;
 import de.htwg.monopoly.controller.impl.Playfield;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.Street;
+import de.htwg.monopoly.util.IMonopolyFields;
 
 
 public class PlayfieldTest {
@@ -110,9 +111,9 @@ public class PlayfieldTest {
 		assertTrue(testplayer.isInPrison());
 		testplayer.setInPrison(false);
 		testplayer.setPosition(5);
-		field.movePlayerTo(testplayer, "go" );
+		field.movePlayerTo(testplayer, IMonopolyFields.NAME[0] );
 		assertEquals(0, testplayer.getPosition());
-		field.movePlayerTo(testplayer, "firststreet");
+		field.movePlayerTo(testplayer, IMonopolyFields.NAME[1]);
 		assertEquals(1, testplayer.getPosition());
 	}
 	
