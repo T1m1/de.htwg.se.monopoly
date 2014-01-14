@@ -285,8 +285,17 @@ class FieldDrawPanel extends JPanel {
 
 	private void drawPosition(int i, int position) {
 		Position pos = new Position(position, NUMBER_OF_ROWS, DIFFERENC);
-		g2d.drawImage(figures.get(i), pos.getPictureX(), pos.getPictureY() + 20
-				+ (i * 20), 25, 25, null);
+		if (i < 2) {
+			g2d.drawImage(figures.get(i), pos.getPictureX(), pos.getPictureY() + 20
+					+ (i * 20), 25, 25, null);
+		} else if (i < 4) {
+			g2d.drawImage(figures.get(i), pos.getPictureX()+25, pos.getPictureY() + 20
+					+ (i%2 * 20), 25, 25, null);
+		} else {
+			g2d.drawImage(figures.get(i), pos.getPictureX()+50, pos.getPictureY() + 20
+					+ (i%2 * 20), 25, 25, null);
+		}
+		
 
 	}
 

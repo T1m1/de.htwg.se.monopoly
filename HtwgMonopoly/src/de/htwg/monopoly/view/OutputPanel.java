@@ -57,7 +57,7 @@ public class OutputPanel extends JPanel implements ActionListener {
 	}
 
 	public void update() {
-		taAusgabe.setText(contr.getCurrentPlayer().getName() + ": "
+		taAusgabe.setText(contr.getCurrentPlayer().getName() + " (" + contr.getCurrentPlayer().getFigure() + ") : "
 				+ contr.getMessage());
 
 	}

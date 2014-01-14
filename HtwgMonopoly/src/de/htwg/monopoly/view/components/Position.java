@@ -74,12 +74,12 @@ public class Position {
 			this.high = IMonopolyUtil.COLORSIZE;
 			this.stringX = this.x + differenc / FIFE;
 			this.stringY = this.y - IMonopolyUtil.COLORSIZE * THREE / 2;
-			this.pictureX = ((anzahlFelderReihe * differenc) - ((street % (anzahlFelderReihe - 1)) * differenc));
+			this.pictureX = (((anzahlFelderReihe-1) * differenc) - ((street % (anzahlFelderReihe - 1)) * differenc));
 			this.pictureY = (anzahlFelderReihe - 1) * differenc;
 			this.rotate = SOUTH;
 		} else {
 			/* if street position WEST */
-			this.y = ((anzahlFelderReihe*differenc )- ((street % anzahlFelderReihe) *differenc) );
+			this.y = (((anzahlFelderReihe-1)*differenc )- ((street % (anzahlFelderReihe-1)) *differenc) );
 			this.x = 0;
 			this.width = IMonopolyUtil.COLORSIZE;
 			this.high = differenc;
@@ -88,7 +88,7 @@ public class Position {
 			this.rotate = WEST;
 			this.pictureX = 0;
 			/* TODO right ??? */
-			this.pictureY = ((anzahlFelderReihe*differenc )-((street % anzahlFelderReihe) *differenc) );
+			this.pictureY = this.y ;
 					;
 		}
 
