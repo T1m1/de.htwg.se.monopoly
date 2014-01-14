@@ -26,10 +26,8 @@ public class PositionTest {
 	@Test
 	public void testEAST() {
 		int street = NUMBER_OF_FIELDS + 2;
-		Position east = new Position(street, NUMBER_OF_FIELDS,
-
-		DIFFERENC);
-		assertEquals(NUMBER_OF_FIELDS * (DIFFERENC - 1) + 1, east.getPictureX());
+		Position east = new Position(street, NUMBER_OF_FIELDS, DIFFERENC);
+		assertEquals((NUMBER_OF_FIELDS - 1) * DIFFERENC, east.getPictureX());
 		assertEquals(east.getY() + 1, east.getPictureY());
 
 		assertEquals(NUMBER_OF_FIELDS * DIFFERENC - IMonopolyUtil.COLORSIZE,
@@ -60,8 +58,10 @@ public class PositionTest {
 		assertEquals(IMonopolyUtil.COLORSIZE, east.getHigh());
 
 		/* TODO not yet implemented */
-		assertEquals(0, east.getPictureX());
-		assertEquals(0, east.getPictureY());
+		assertEquals(
+				(((NUMBER_OF_FIELDS - 1) * DIFFERENC) - ((street % (NUMBER_OF_FIELDS - 1)) * DIFFERENC)),
+				east.getPictureX());
+		assertEquals((NUMBER_OF_FIELDS - 1) * DIFFERENC, east.getPictureY());
 
 		assertEquals(east.getX() + DIFFERENC / 5, east.getStringX());
 
@@ -76,8 +76,8 @@ public class PositionTest {
 		int street = NUMBER_OF_FIELDS * 3 + 2;
 		Position east = new Position(street, NUMBER_OF_FIELDS, DIFFERENC);
 
-		assertEquals(((NUMBER_OF_FIELDS - 1) * 5 - street) * DIFFERENC,
-				east.getY());
+		assertEquals(((NUMBER_OF_FIELDS - 1) * DIFFERENC)
+				- (street % (NUMBER_OF_FIELDS - 1)) * DIFFERENC, east.getY());
 
 		assertEquals(0, east.getX());
 
@@ -87,7 +87,7 @@ public class PositionTest {
 
 		/* TODO not jet implemented */
 		assertEquals(0, east.getPictureX());
-		assertEquals(0, east.getPictureY());
+		assertEquals(east.getY(), east.getPictureY());
 
 		assertEquals(east.getX() + IMonopolyUtil.COLORSIZE * 3 / 2,
 				east.getStringX());
