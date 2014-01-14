@@ -46,6 +46,7 @@ public class BankTest {
 	
 	@Test
 	public void testGetParkingMoney() {
+		Bank.getParkingMoney();
 		Bank.addParkingMoney(testPlayer, 100);
 		assertEquals(100, Bank.getParkingMoney());
 		Bank.addParkingMoney(testPlayer, 100);
