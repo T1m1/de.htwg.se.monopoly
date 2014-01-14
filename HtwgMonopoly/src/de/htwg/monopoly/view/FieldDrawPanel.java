@@ -30,7 +30,8 @@ class FieldDrawPanel extends JPanel {
 
 	private static final int DIFFERENC = 70;
 	private static final int NUMBER_OF_ROWS = 8;
-	private static final int SIZE_OF_GO_PICTURE = DIFFERENC - 20;
+	private static final int CENTER = 20;
+	private static final int SIZE_OF_GO_PICTURE = DIFFERENC - CENTER;
 	private static final int GO_START = 10;
 	private static final int HTWG_COLOR_R = 51;
 	private static final int HTWG_COLOR_G = 153;
@@ -110,10 +111,6 @@ class FieldDrawPanel extends JPanel {
 				* (NUMBER_OF_ROWS - 2) - 1, DIFFERENC * (NUMBER_OF_ROWS - 2)
 				- 1);
 		g2d.drawImage(htwgLogo, HTWG_LOGO_X, HTWG_LOGO_Y, null);
-
-		/* TODO in drawStreet einbauen */
-
-		Position gemPos = new Position(16, NUMBER_OF_ROWS, DIFFERENC);
 
 		/* draw strandbar */
 		g2d.drawImage(this.strandbar, (NUMBER_OF_ROWS - 1) * DIFFERENC + 1,
@@ -201,13 +198,14 @@ class FieldDrawPanel extends JPanel {
 
 		/* draw street name, if newline calculate new position */
 		for (String name : street.getName().split("\n")) {
-			g2d.drawString(name, position.getStringX(), pos += (line * g2d
-					.getFontMetrics().getHeight()));
+			pos += (line * g2d.getFontMetrics().getHeight());
+			g2d.drawString(name, position.getStringX(), pos);
 			line++;
 		}
 		/* draw price for street */
+		pos += g2d.getFontMetrics().getHeight();
 		g2d.drawString(street.getPriceForStreet() + "€", position.getStringX(),
-				pos += (g2d.getFontMetrics().getHeight()));
+				pos);
 	}
 
 	/**

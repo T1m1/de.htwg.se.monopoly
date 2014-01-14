@@ -24,9 +24,7 @@ public class Position {
 
 	private int pictureX;
 	private int pictureY;
-	private int pictureHigh;
-	private int pictureWidth;
-	private double rotate;
+	private int rotate;
 
 	public Position(int street, int anzahlFelderReihe, int differenc) {
 		this.street = street;
@@ -43,13 +41,6 @@ public class Position {
 		return pictureY;
 	}
 
-	public int getPictureHigh() {
-		return pictureHigh;
-	}
-
-	public int getPictureWidth() {
-		return pictureWidth;
-	}
 
 	private void calculateGuiPositions() {
 
@@ -122,7 +113,7 @@ public class Position {
 		return stringY;
 	}
 
-	public double getRotate() {
+	public int getRotate() {
 		return rotate;
 	}
 

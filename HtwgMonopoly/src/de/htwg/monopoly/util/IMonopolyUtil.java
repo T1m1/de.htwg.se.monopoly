@@ -6,6 +6,14 @@ package de.htwg.monopoly.util;
  *
  */
 public interface IMonopolyUtil {
+	
+	
+	/**
+	 * CONFIGURATIONS
+	 */
+	int FIELD_SIZE = 10;
+	
+	
 	/**
 	 *  defines to avoid magic numbers 
 	 *  */
@@ -18,7 +26,7 @@ public interface IMonopolyUtil {
 	int INITIAL_MONEY = 6000;
 	int MAX_PRISON_ROUND = 4;
 	int LOS_MONEY = 2000;
-	int FIELD_SIZE = 40;
+
 	int ZUSATZSTEUER = 1000;
 	int TUI_FIELD_SIZE = 8;
 	int TUI_HIGH = 5;

@@ -10,9 +10,8 @@ import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.util.IMonopolyFields;
 
-
 public class PlayfieldTest {
-	
+
 	Playfield field;
 	Player testplayer;
 	IFieldObject testObject;
@@ -20,7 +19,7 @@ public class PlayfieldTest {
 	@Before
 	public void setUp() throws Exception {
 		field = new Playfield();
-		field.initialize(10);
+		field.initialize(13);
 		testplayer = new Player();
 		// initialize testObject;
 	}
@@ -33,44 +32,45 @@ public class PlayfieldTest {
 		field.movePlayer(testplayer, 1);
 		field.movePlayer(testplayer, 88);
 	}
-	
+
 	@Test
 	public void testGetFieldSize() {
-		assertNotEquals(6 , field.getfieldSize());
+		assertNotEquals(6, field.getfieldSize());
 	}
 
 	@Test
 	public void testGetCurrentField() {
 		assertEquals('l', field.getCurrentField(testplayer).getType());
 		field.getFieldNameAtIndex(1);
-		
+
 	}
-	
+
 	@Test
 	public void testNotMyStree2t() {
-		
+
 		Player andererPlayer = new Player("hhh", 'm', 2000);
 		field.appendInfo(field.getCurrentField(testplayer), testplayer);
-		
+
 		field.movePlayer(testplayer, 1);
 		Street a = (Street) field.getCurrentField(testplayer);
 		a.setOwner(andererPlayer);
 		field.appendInfo(field.getCurrentField(testplayer), testplayer);
 		field.movePlayer(testplayer, 1);
 	}
-	
+
 	@Test
 	public void testNotMyStreet() {
 		field.appendInfo(field.getCurrentField(testplayer), testplayer);
-		
+
 		field.movePlayer(testplayer, 1);
 		field.appendInfo(field.getCurrentField(testplayer), testplayer);
 		field.movePlayer(testplayer, 1);
 	}
+
 	@Test
 	public void testInitialize() {
 		field.appendInfo(field.getCurrentField(testplayer), testplayer);
-		
+
 		field.movePlayer(testplayer, 1);
 		Street a = (Street) field.getCurrentField(testplayer);
 		a.setOwner(testplayer);
@@ -98,29 +98,33 @@ public class PlayfieldTest {
 		field.appendInfo(field.getCurrentField(testplayer), testplayer);
 		field.movePlayer(testplayer, 1);
 	}
-	
+
 	@Test
 	public void testGetStack() {
 		assertEquals('e', field.getChanStack().getType());
 		assertEquals('g', field.getCommStack().getType());
 	}
-	
+
 	@Test
 	public void testMovePlayerTo() {
 		field.movePlayerTo(testplayer, "prison");
 		assertTrue(testplayer.isInPrison());
 		testplayer.setInPrison(false);
 		testplayer.setPosition(5);
-		field.movePlayerTo(testplayer, IMonopolyFields.NAME[0] );
+		field.movePlayerTo(testplayer, IMonopolyFields.NAME[0]);
 		assertEquals(0, testplayer.getPosition());
 		field.movePlayerTo(testplayer, IMonopolyFields.NAME[1]);
 		assertEquals(1, testplayer.getPosition());
+
+		IFieldObject CurrentField = field.getFieldAtIndex(0);
+		assertEquals(0, CurrentField.getPosition());
+
 	}
-	
+
 	@Test(expected = AssertionError.class)
 	public void secondTestMovePlayerTo() {
 		field.initialize(0);
-		field.movePlayerTo(testplayer, "go" );
+		field.movePlayerTo(testplayer, "go");
 	}
 
 }

@@ -22,7 +22,7 @@ public class Playfield implements IPlayfield {
 	private ChanceCardsStack chanStack;
 
 	// @Inject @Named("FieldSize") private int fieldSize;
-	private int fieldSize = 10;
+	private int fieldSize = IMonopolyUtil.FIELD_SIZE;
 	private boolean wentOverGo = false;
 
 	/* internationalization */
