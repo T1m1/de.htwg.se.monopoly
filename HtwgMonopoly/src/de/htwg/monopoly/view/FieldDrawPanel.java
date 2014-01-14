@@ -44,7 +44,11 @@ class FieldDrawPanel extends JPanel {
 	private static final int HTWG_LOGO_Y = 150;
 
 	private static final int FONT_SIZE = 10;
-
+	private static final int TWENTY = 20;
+	private static final int TWENTY_FIFE = 25;
+	private static final int FOUR = 4;
+	private static final int FIFTY = 4;
+	
 	private static final String RESOURCE_DIRECTORY = "resources/";
 
 	private static final String PICTURE_GO = "GO.gif";
@@ -61,7 +65,7 @@ class FieldDrawPanel extends JPanel {
 	private static final String PICTURE_USER5 = "PICTURE_USER5.jpg";
 	private static final String PICTURE_USER6 = "PICTURE_USER6.jpg";
 
-	private static final String[] pictures = { PICTURE_USER1, PICTURE_USER2,
+	private static final String[] PICTURES = { PICTURE_USER1, PICTURE_USER2,
 			PICTURE_USER3, PICTURE_USER4, PICTURE_USER5, PICTURE_USER6 };
 
 	private IController contr;
@@ -256,8 +260,8 @@ class FieldDrawPanel extends JPanel {
 
 		figures = new ArrayList<Image>();
 
-		for (int i = 0; i < pictures.length; i++) {
-			Image img = new ImageIcon(RESOURCE_DIRECTORY + pictures[i])
+		for (int i = 0; i < PICTURES.length; i++) {
+			Image img = new ImageIcon(RESOURCE_DIRECTORY + PICTURES[i])
 					.getImage();
 			figures.add(img);
 		}
@@ -286,14 +290,14 @@ class FieldDrawPanel extends JPanel {
 	private void drawPosition(int i, int position) {
 		Position pos = new Position(position, NUMBER_OF_ROWS, DIFFERENC);
 		if (i < 2) {
-			g2d.drawImage(figures.get(i), pos.getPictureX(), pos.getPictureY() + 20
-					+ (i * 20), 25, 25, null);
-		} else if (i < 4) {
-			g2d.drawImage(figures.get(i), pos.getPictureX()+25, pos.getPictureY() + 20
-					+ (i%2 * 20), 25, 25, null);
+			g2d.drawImage(figures.get(i), pos.getPictureX(), pos.getPictureY() + TWENTY
+					+ (i * TWENTY), TWENTY_FIFE, TWENTY_FIFE, null);
+		} else if (i < FOUR) {
+			g2d.drawImage(figures.get(i), pos.getPictureX()+TWENTY_FIFE, pos.getPictureY() + TWENTY
+					+ (i%2 * TWENTY), TWENTY_FIFE, TWENTY_FIFE, null);
 		} else {
-			g2d.drawImage(figures.get(i), pos.getPictureX()+50, pos.getPictureY() + 20
-					+ (i%2 * 20), 25, 25, null);
+			g2d.drawImage(figures.get(i), pos.getPictureX()+FIFTY, pos.getPictureY() + TWENTY
+					+ (i%2 * TWENTY), TWENTY_FIFE, TWENTY_FIFE, null);
 		}
 		
 
