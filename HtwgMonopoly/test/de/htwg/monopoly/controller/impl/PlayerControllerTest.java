@@ -86,8 +86,8 @@ public class PlayerControllerTest {
 	
 	@Test
 	public void testTransferMoney() {
-		Card testCard1 = new CommunityCard("Zahle geld an Bank", "money", "-100", true);
-		Card testCard2 = new CommunityCard("bekomme geld von alle Spieler", "money", "100", false);
+		Card testCard1 = new CommunityCard("Zahle geld an Bank", "-100", true);
+		Card testCard2 = new CommunityCard("bekomme geld von alle Spieler", "100", false);
 		Player testplayer = players.getNextPlayer();
 		testplayer.setBudget(100);
 		players.transferMoney(testplayer, testCard1);

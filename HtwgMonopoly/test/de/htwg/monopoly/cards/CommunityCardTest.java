@@ -13,14 +13,13 @@ public class CommunityCardTest {
 
 	@Before
 	public void setUp() throws Exception {
-		card = new CommunityCard("Gehe in das Gefängnis", "move", null,
+		card = new CommunityCard("Gehe in das Gefängnis", null,
 				false);
 	}
 
 	@Test
 	public void testCommunityCard() {
-		CommunityCard card2 = new CommunityCard("Gehe in das Gefängnis",
-				"move", "prison", false);
+		CommunityCard card2 = new CommunityCard("Gehe in das Gefängnis", "prison", false);
 		assertEquals("Gehe in das Gefängnis", card2.getDescription());
 	}
 

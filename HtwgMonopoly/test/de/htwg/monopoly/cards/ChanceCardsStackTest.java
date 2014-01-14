@@ -15,7 +15,7 @@ public class ChanceCardsStackTest {
 	@Before
 	public void setUp() throws Exception {
 		stack = new ChanceCardsStack();
-		stack.pushOnTop(new ChanceCard("Gehe in das Gefängnis", "move", null,
+		stack.pushOnTop(new ChanceCard("Gehe in das Gefängnis", null,
 				false));
 	}
 

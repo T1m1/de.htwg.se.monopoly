@@ -5,7 +5,6 @@ import de.htwg.monopoly.entities.ICards;
 public abstract class Card implements ICards {
 
 	private String description;
-	private String actionType;
 	private boolean moneyTransferredToFromBank;
 	private String target;
 
@@ -20,9 +19,8 @@ public abstract class Card implements ICards {
 	 * @param descr
 	 * @param action
 	 */
-	public Card(String descr, String action, String target, boolean toFromBank) { 
+	public Card(String descr, String target, boolean toFromBank) { 
 		this.description = descr;
-		this.actionType = action;
 		this.moneyTransferredToFromBank = toFromBank;
 		this.target = target;
 		if (true) {
@@ -45,10 +43,6 @@ public abstract class Card implements ICards {
 		return this.description;
 	}
 
-	@Override
-	public String getActionType() {
-		return this.actionType;
-	}
 
 	@Override
 	public String toString() {

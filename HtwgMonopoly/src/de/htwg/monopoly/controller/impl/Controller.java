@@ -109,7 +109,7 @@ public class Controller extends Observable implements IController {
 		sb.append(MessageFormat.format(bundle.getString("play_card"),
 				currentCommCard.getDescription()));
 
-		if (currentCommCard.getActionType().equals("move")) {
+		if (isMoveAction(currentCommCard)) {
 			sb.append(field.movePlayerTo(currentPlayer,
 					currentCommCard.getTarget()));
 		} else {
@@ -130,7 +130,7 @@ public class Controller extends Observable implements IController {
 		sb.append(MessageFormat.format(bundle.getString("play_card"),
 				currentChanceCard.getDescription()));
 
-		if (currentChanceCard.getActionType().equals("move")) {
+		if (isMoveAction(currentChanceCard)) {
 			sb.append(field.movePlayerTo(currentPlayer,
 					currentChanceCard.getTarget()));
 		} else {
@@ -155,6 +155,21 @@ public class Controller extends Observable implements IController {
 	 */
 	private boolean fieldIsAChanceStack() {
 		return (currentField.getType() == 'e');
+	}
+	
+	/**
+	 * Check if the Card is a "player move Card" or a "money transfer card" 
+	 * 
+	 * @param card
+	 * @return boolean
+	 */
+	private boolean isMoveAction(ICards card) {
+		try {
+			Integer.parseInt(card.getTarget());
+			return false;
+		} catch (NumberFormatException e) {
+			return true;
+		}
 	}
 
 	@Override
