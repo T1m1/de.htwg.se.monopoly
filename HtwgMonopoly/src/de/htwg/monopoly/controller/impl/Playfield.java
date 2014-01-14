@@ -242,4 +242,8 @@ public class Playfield implements IPlayfield {
 	public ChanceCardsStack getChanStack() {
 		return chanStack;
 	}
+	
+	public void setFieldAtIndex(int i, IFieldObject field) {
+		playfield[i] = field;
+	}
 }

@@ -53,9 +53,13 @@ public class ControllerTest {
 		testController.startTurn();
 		assertTrue(testController.getCurrentPlayer().isInPrison());
 		testController.startTurn();
-
 	}
 
+	@Test
+	public void testTurn() {
+		
+	}
+	
 	@Test
 	public void testRollDice() {
 		testController.rollDice();
