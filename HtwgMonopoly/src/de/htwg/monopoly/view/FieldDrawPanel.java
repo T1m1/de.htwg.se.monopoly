@@ -5,12 +5,15 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.entities.IFieldObject;
+import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.util.IMonopolyUtil;
 import de.htwg.monopoly.view.components.Position;
@@ -30,7 +33,8 @@ class FieldDrawPanel extends JPanel {
 
 	private static final int DIFFERENC = 70;
 	private static final int NUMBER_OF_ROWS = 8;
-	private static final int SIZE_OF_GO_PICTURE = DIFFERENC - 20;
+	private static final int CENTER = 20;
+	private static final int SIZE_OF_GO_PICTURE = DIFFERENC - CENTER;
 	private static final int GO_START = 10;
 	private static final int HTWG_COLOR_R = 51;
 	private static final int HTWG_COLOR_G = 153;
@@ -50,6 +54,16 @@ class FieldDrawPanel extends JPanel {
 	private static final String PICTURE_COMM_NORTH = "COMM_NORTH.jpg";
 	private static final String PICTURE_STRANDBAR = "STRANDBAR.jpg";
 
+	private static final String PICTURE_USER1 = "PICTURE_USER1.jpg";
+	private static final String PICTURE_USER2 = "PICTURE_USER2.jpg";
+	private static final String PICTURE_USER3 = "PICTURE_USER3.jpg";
+	private static final String PICTURE_USER4 = "PICTURE_USER4.jpg";
+	private static final String PICTURE_USER5 = "PICTURE_USER5.jpg";
+	private static final String PICTURE_USER6 = "PICTURE_USER6.jpg";
+
+	private static final String[] pictures = { PICTURE_USER1, PICTURE_USER2,
+			PICTURE_USER3, PICTURE_USER4, PICTURE_USER5, PICTURE_USER6 };
+
 	private IController contr;
 	private Graphics2D g2d;
 
@@ -59,6 +73,8 @@ class FieldDrawPanel extends JPanel {
 	private Image ereignisfeld;
 	private Image ereignisfeldLiegend;
 	private Image gemeinschaftsfeld;
+
+	private List<Image> figures;
 
 	/**
 	 * Constructor
@@ -111,14 +127,13 @@ class FieldDrawPanel extends JPanel {
 				- 1);
 		g2d.drawImage(htwgLogo, HTWG_LOGO_X, HTWG_LOGO_Y, null);
 
-		/* TODO in drawStreet einbauen */
-
-		Position gemPos = new Position(16, NUMBER_OF_ROWS, DIFFERENC);
-
 		/* draw strandbar */
 		g2d.drawImage(this.strandbar, (NUMBER_OF_ROWS - 1) * DIFFERENC + 1,
 				(NUMBER_OF_ROWS - 1) * DIFFERENC + 1, DIFFERENC - 1,
 				DIFFERENC - 1, null);
+
+		/* add user figure at his position */
+		setFigures();
 
 	}
 
@@ -201,13 +216,14 @@ class FieldDrawPanel extends JPanel {
 
 		/* draw street name, if newline calculate new position */
 		for (String name : street.getName().split("\n")) {
-			g2d.drawString(name, position.getStringX(), pos += (line * g2d
-					.getFontMetrics().getHeight()));
+			pos += (line * g2d.getFontMetrics().getHeight());
+			g2d.drawString(name, position.getStringX(), pos);
 			line++;
 		}
 		/* draw price for street */
+		pos += g2d.getFontMetrics().getHeight();
 		g2d.drawString(street.getPriceForStreet() + "€", position.getStringX(),
-				pos += (g2d.getFontMetrics().getHeight()));
+				pos);
 	}
 
 	/**
@@ -237,6 +253,40 @@ class FieldDrawPanel extends JPanel {
 				+ PICTURE_CHANCE_WEST).getImage();
 		gemeinschaftsfeld = new ImageIcon(RESOURCE_DIRECTORY
 				+ PICTURE_COMM_NORTH).getImage();
+
+		figures = new ArrayList<Image>();
+
+		for (int i = 0; i < pictures.length; i++) {
+			Image img = new ImageIcon(RESOURCE_DIRECTORY + pictures[i])
+					.getImage();
+			figures.add(img);
+		}
+
+	}
+
+	public void update() {
+		updateFigures();
+	}
+
+	
+	private void updateFigures() {
+		setFigures();
+		repaint();
+
+	}
+
+	private void setFigures() {
+		for (int i = 0; i < contr.getNumberOfPlayer(); i++) {
+			Player player = contr.getPlayer(i);
+			drawPosition(i, player.getPosition());
+
+		}
+	}
+
+	private void drawPosition(int i, int position) {
+		Position pos = new Position(position, NUMBER_OF_ROWS, DIFFERENC);
+		g2d.drawImage(figures.get(i), pos.getPictureX(), pos.getPictureY() + 20
+				+ (i * 20), 25, 25, null);
 
 	}
 

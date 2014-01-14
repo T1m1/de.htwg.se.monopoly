@@ -34,7 +34,7 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 
 	private PlayerInfoPanel pnlPlayerInfo;
 	private OutputPanel pnlOutput;
-	private OptionPanel pnlOption;
+	private FieldDrawPanel pnField;
 
 	public GraphicUserInterface(IController controller) {
 		this.controller = controller;
@@ -66,23 +66,24 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 		mainPanel.setLayout(new BorderLayout());
 
 		/* monopoly draw - field panel */
-		JPanel fieldPannel = new JPanel();
-		fieldPannel.setLayout(new BoxLayout(fieldPannel, BoxLayout.LINE_AXIS));
-		fieldPannel.add(new FieldDrawPanel(controller));
-		fieldPannel.setMinimumSize(new Dimension(SURFACE_MIN_DIMENSION_X,
+		JPanel pnlField = new JPanel();
+		pnlField.setLayout(new BoxLayout(pnlField, BoxLayout.LINE_AXIS));
+		pnField = new FieldDrawPanel(controller);
+		pnlField.add(pnField);
+		pnlField.setMinimumSize(new Dimension(SURFACE_MIN_DIMENSION_X,
 				SURFACE_MIN_DIMENSION_Y));
-		fieldPannel.setPreferredSize(new Dimension(SURFACE_MIN_DIMENSION_X,
+		pnlField.setPreferredSize(new Dimension(SURFACE_MIN_DIMENSION_X,
 				SURFACE_MIN_DIMENSION_Y));
-		fieldPannel.setBorder(BorderFactory.createEmptyBorder(BORDER_SIZE,
+		pnlField.setBorder(BorderFactory.createEmptyBorder(BORDER_SIZE,
 				BORDER_SIZE, BORDER_SIZE, BORDER_SIZE));
 
 		/* create panels */
 		pnlPlayerInfo = new PlayerInfoPanel(controller);
 		pnlOutput = new OutputPanel(controller);
-		pnlOption = new OptionPanel(controller);
+		OptionPanel pnlOption = new OptionPanel(controller);
 
 		/* add panels to main panel */
-		mainPanel.add(fieldPannel, BorderLayout.WEST);
+		mainPanel.add(pnlField, BorderLayout.WEST);
 		mainPanel.add(pnlPlayerInfo, BorderLayout.CENTER);
 		mainPanel.add(pnlOutput, BorderLayout.SOUTH);
 		mainPanel.add(pnlOption, BorderLayout.NORTH);
@@ -107,7 +108,7 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 	public void update(int e) {
 		pnlOutput.update();
 		pnlPlayerInfo.update();
+		pnField.update();
 
 	}
-
 }

@@ -24,9 +24,7 @@ public class Position {
 
 	private int pictureX;
 	private int pictureY;
-	private int pictureHigh;
-	private int pictureWidth;
-	private double rotate;
+	private int rotate;
 
 	public Position(int street, int anzahlFelderReihe, int differenc) {
 		this.street = street;
@@ -41,14 +39,6 @@ public class Position {
 
 	public int getPictureY() {
 		return pictureY;
-	}
-
-	public int getPictureHigh() {
-		return pictureHigh;
-	}
-
-	public int getPictureWidth() {
-		return pictureWidth;
 	}
 
 	private void calculateGuiPositions() {
@@ -72,7 +62,7 @@ public class Position {
 			this.high = differenc;
 			this.stringX = this.x - IMonopolyUtil.COLORSIZE * 2;
 			this.stringY = this.y + IMonopolyUtil.COLORSIZE;
-			this.pictureX = anzahlFelderReihe * (differenc - 1) + 1;
+			this.pictureX = (anzahlFelderReihe - 1) * (differenc);
 			this.pictureY = this.y + 1;
 			this.rotate = EAST;
 		} else if (street < anzahlFelderReihe * THREE - 2) {
@@ -84,6 +74,8 @@ public class Position {
 			this.high = IMonopolyUtil.COLORSIZE;
 			this.stringX = this.x + differenc / FIFE;
 			this.stringY = this.y - IMonopolyUtil.COLORSIZE * THREE / 2;
+			this.pictureX = ((anzahlFelderReihe * differenc) - ((street % (anzahlFelderReihe - 1)) * differenc));
+			this.pictureY = (anzahlFelderReihe - 1) * differenc;
 			this.rotate = SOUTH;
 		} else {
 			/* if street position WEST */
@@ -94,6 +86,10 @@ public class Position {
 			this.stringX = this.x + IMonopolyUtil.COLORSIZE * THREE / 2;
 			this.stringY = this.y + IMonopolyUtil.COLORSIZE;
 			this.rotate = WEST;
+			this.pictureX = 0;
+			/* TODO right ??? */
+			this.pictureY = ((anzahlFelderReihe - 1) * FIFE - street)
+					* differenc;
 		}
 
 	}
@@ -122,7 +118,7 @@ public class Position {
 		return stringY;
 	}
 
-	public double getRotate() {
+	public int getRotate() {
 		return rotate;
 	}
 
