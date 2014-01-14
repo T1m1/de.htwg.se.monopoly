@@ -94,6 +94,7 @@ public class Controller extends Observable implements IController {
 		} else {
 			message.append(field.appendInfo(currentField, currentPlayer));
 		}
+		
 	}
 
 	/**
