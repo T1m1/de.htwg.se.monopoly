@@ -122,7 +122,8 @@ public class Playfield implements IPlayfield {
 		StringBuilder sb = new StringBuilder();
 		String output;
 		if (wentOverGo) {
-			sb.append(bundle.getString("play_over_los"));
+			output = MessageFormat.format(bundle.getString("play_over_los"), IMonopolyUtil.LOS_MONEY);
+			sb.append(output);
 			Bank.receiveMoney(currentPlayer, IMonopolyUtil.LOS_MONEY);
 		}
 		switch (currentField.getType()) {
@@ -131,7 +132,8 @@ public class Playfield implements IPlayfield {
 			break;
 		case 'l':
 			sb.delete(0, sb.length());
-			sb.append(bundle.getString("play_los"));
+			output = MessageFormat.format(bundle.getString("play_over_los"), IMonopolyUtil.TWICE_LOS_MONEY);
+			sb.append(output);
 			Bank.receiveMoney(currentPlayer, IMonopolyUtil.LOS_MONEY);
 			break;
 		case 'z':

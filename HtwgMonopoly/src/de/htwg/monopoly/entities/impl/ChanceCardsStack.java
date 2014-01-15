@@ -59,19 +59,19 @@ public class ChanceCardsStack extends CardsStack {
 		pushOnTop(new ChanceCard(bundle.getString("chance_15"),
 				bundle.getString("chance_15.1"), false));
 		pushOnTop(new ChanceCard(bundle.getString("chance_16"),
-				bundle.getString("chance_16.1"), false));
+				bundle.getString("chance_16.1"), true));
 		pushOnTop(new ChanceCard(bundle.getString("chance_17"),
 				bundle.getString("chance_17.1"), false));
 		pushOnTop(new ChanceCard(bundle.getString("chance_18"),
 				bundle.getString("chance_18.1"), false));
 		pushOnTop(new ChanceCard(bundle.getString("chance_19"),
-				bundle.getString("chance_19.1"), false));
+				bundle.getString("chance_19.1"), true));
 		pushOnTop(new ChanceCard(bundle.getString("chance_20"),
-				bundle.getString("chance_20.1"), false));
+				bundle.getString("chance_20.1"), true));
 		pushOnTop(new ChanceCard(bundle.getString("chance_21"),
-				bundle.getString("chance_21.1"), false));
+				bundle.getString("chance_21.1"), true));
 		pushOnTop(new ChanceCard(bundle.getString("chance_22"),
-				bundle.getString("chance_22.1"), false));
+				bundle.getString("chance_22.1"), true));
 		pushOnTop(new ChanceCard(bundle.getString("chance_23"),
 				bundle.getString("chance_23.1"), false));
 		pushOnTop(new ChanceCard(bundle.getString("chance_24"),
