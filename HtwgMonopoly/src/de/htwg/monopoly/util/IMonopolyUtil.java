@@ -31,7 +31,7 @@ public interface IMonopolyUtil {
 	int ZUSATZSTEUER = 100;
 	int TUI_FIELD_SIZE = 28;
 	int TUI_HIGH = 5;
-	int FREIKAUFEN = 500;
+	int FREIKAUFEN = 200;
 	int OPTION_FINISH = 3;
 
 	

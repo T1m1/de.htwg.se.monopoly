@@ -28,9 +28,7 @@ public class Player {
 	 * default player constructor
 	 */
 	public Player() {
-		/* increment number of player */
 		number++;
-		/* generate default player */
 		this.name = "player" + number;
 		this.figure = "" + number;
 		this.budget = IMonopolyUtil.INITIAL_MONEY;
@@ -46,7 +44,7 @@ public class Player {
 	 * @param position
 	 */
 	@Inject
-	public Player(String name, String figure,@Named("Budget") int budget, int position) {
+	public Player(String name, String figure, @Named("Budget") int budget, int position) {
 		this.name = name;
 		this.figure = figure;
 		this.budget = budget;
@@ -215,7 +213,7 @@ public class Player {
 	}
 
 	/**
-	 * decremt money of player e.g. to buy a street
+	 * decrement money of player e.g. to buy a street
 	 * 
 	 * @param freikaufen
 	 */
