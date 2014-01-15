@@ -12,6 +12,8 @@ FEATURES
 2.1 [ ] Gewinnen bzw. Verlieren implementieren. Sollte einer verlieren wird das Spiel ausgewertet.
 2.2 [ ] Wenn Spieler ins Gefängnis geschickt wird, nicht nur ins Gefängnis schicken sondern auch an die Position wo das Gefängnis ist.
 3.3 [ ] Freikaufen implementieren.
+3.4 [ ] Preise & Strassennamen aktualisieren 
+3.5 [ ] GELD anpassen, damit man Spiel sinnvoll spielen kann
 
 #TUI
 3.1 [ ] Zeilenumbruch beim Zeichnen vom Spielfeld nach ca. 12 Strassen

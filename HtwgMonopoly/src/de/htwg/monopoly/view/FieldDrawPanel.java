@@ -49,7 +49,7 @@ class FieldDrawPanel extends JPanel {
 	private static final int FOUR = 4;
 	private static final int FIFTY = 50;
 
-	private static final String RESOURCE_DIRECTORY = "resources/";
+	private static final String RESOURCE_DIRECTORY = "resources/pictures/";
 
 	private static final String PICTURE_GO = "GO.gif";
 	private static final String PICTURE_ZU_BESUCH = "ZU_BESUCH.jpg";
