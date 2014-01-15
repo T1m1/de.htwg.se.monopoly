@@ -3,8 +3,11 @@ package de.htwg.monopoly.entities.impl;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
 public final class Dice {
+	
+	private int fieldSize;
 
-	public Dice() {
+	public Dice(int fieldSize) {
+		this.fieldSize = fieldSize;
 	}
 
 	private int dice1 = 0;
@@ -12,7 +15,7 @@ public final class Dice {
 	private int resultDice = 0;
 
 	/**
-	 * for now, this method only returns a new value, when the metho22d setDice is
+	 * for now, this method only returns a new value, when the method setDice is
 	 * called before. Going to fix that
 	 * 
 	 * @return
@@ -20,7 +23,7 @@ public final class Dice {
 	public void throwDice() {
 		dice1 = setDice(1, IMonopolyUtil.DICE);
 		dice2 = setDice(1, IMonopolyUtil.DICE);
-		resultDice = dice1 + dice2;
+		resultDice = (dice1 + dice2) % this.fieldSize + 1;
 	}
 
 	/**
@@ -31,7 +34,7 @@ public final class Dice {
 	 * @param upperBound
 	 */
 	private int setDice(int lowerBound, int upperBound) {
-		return (int) (Math.random() * ((upperBound + 1) - lowerBound) + lowerBound);
+		return (int) (Math.random() * upperBound + lowerBound);
 	}
 
 	public int getDice1() {
@@ -45,5 +48,4 @@ public final class Dice {
 	public int getResultDice() {
 		return resultDice;
 	}
-
 }

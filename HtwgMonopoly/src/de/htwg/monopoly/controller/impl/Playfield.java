@@ -32,10 +32,6 @@ public class Playfield implements IPlayfield {
 			Locale.GERMAN);
 
 	
-	public Playfield() {
-		this(IMonopolyUtil.TUI_FIELD_SIZE);
-	}
-	
 	public Playfield(int size) {
 		this.fieldSize = size;
 		this.playfield = new IFieldObject[this.fieldSize];
@@ -47,22 +43,6 @@ public class Playfield implements IPlayfield {
 		}
 	}
 
-	/**
-	 * help function for testing, later it will be replaced by google guice
-	 * (maybe)
-	 * 
-	 * @param size
-	 */
-	public void initialize(int size) {
-		this.fieldSize = size;
-		this.playfield = new IFieldObject[fieldSize];
-		this.commStack = new CommunityCardsStack();
-		this.chanStack = new ChanceCardsStack();
-
-		for (int i = 0; i < fieldSize; i++) {
-			createField(i);
-		}
-	}
 
 	/**
 	 * TODO for each case statement a new function!!! -> MAYBE

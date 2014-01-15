@@ -19,8 +19,7 @@ public class PlayfieldTest {
 
 	@Before
 	public void setUp() throws Exception {
-		field = new Playfield();
-		field.initialize(25);
+		field = new Playfield(25);
 		testplayer = new Player();
 	}
 
@@ -147,7 +146,7 @@ public class PlayfieldTest {
 
 	@Test(expected = AssertionError.class)
 	public void secondTestMovePlayerTo() {
-		field.initialize(0);
+		field = new Playfield(0);
 		field.movePlayerTo(testplayer, "go");
 	}
 

@@ -13,30 +13,36 @@ public class DiceTest {
 
 	@Before
 	public void setUp() throws Exception {
-		dice = new Dice();
+		dice = new Dice(12);
 	}
 
 	/**
 	 * only needed if the getDice method is public and not private
 	 */
-//	@Test
-//	public void testGetDice() {
-//		dice.setDice(1, 1);
-//		assertEquals(1, dice.setDice(1,1));
-//		dice.setDice(6, 6);
-//		assertEquals(6, dice.setDice(6,6));
-//	}
-	
+	// @Test
+	// public void testGetDice() {
+	// dice.setDice(1, 1);
+	// assertEquals(1, dice.setDice(1,1));
+	// dice.setDice(6, 6);
+	// assertEquals(6, dice.setDice(6,6));
+	// }
+
 	@Test
 	public void testThrowDice() {
-		dice.throwDice();
-		assertTrue(dice.getDice1()<=6);
-		assertFalse(dice.getDice1()>6);
-		assertFalse(dice.getDice2()>6);
-		assertTrue(dice.getDice2()<=6);
-		assertTrue(dice.getDice1()>0);
-		assertFalse(dice.getDice1()<=0);
-		
+		for (int i = 0; i < 100; i++) {
+			dice.throwDice();
+			assertTrue(dice.getResultDice() <= 12);
+			assertFalse(dice.getResultDice() > 12);
+			assertTrue(dice.getResultDice() >= 1);
+			assertFalse(dice.getResultDice() < 1);
+			assertTrue(dice.getDice1() <= 6);
+			assertFalse(dice.getDice1() > 6);
+			assertFalse(dice.getDice2() > 6);
+			assertTrue(dice.getDice2() <= 6);
+			assertTrue(dice.getDice1() > 0);
+			assertFalse(dice.getDice1() <= 0);
+		}
+
 	}
 
 }
