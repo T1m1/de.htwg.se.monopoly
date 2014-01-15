@@ -33,54 +33,21 @@ public class CommunityCardsStack extends CardsStack {
 	public CommunityCardsStack() {
 		super();
 		position = new LinkedList<Integer>();
-		pushOnTop(new CommunityCard(bundle.getString("comm_1"),
-				bundle.getString("comm_1.1"), false));
-		pushOnTop(new CommunityCard(bundle.getString("comm_2"),
-				bundle.getString("comm_2.1"), false));
-		pushOnTop(new CommunityCard(bundle.getString("comm_3"),
-				bundle.getString("comm_3.1"), false));
-		pushOnTop(new CommunityCard(bundle.getString("comm_4"),
-				bundle.getString("comm_4.1"), true));
-		pushOnTop(new CommunityCard(bundle.getString("comm_5"),
-				bundle.getString("comm_5.1"), true));
-		pushOnTop(new CommunityCard(bundle.getString("comm_6"),
-				bundle.getString("comm_6.1"), false));
-		pushOnTop(new CommunityCard(bundle.getString("comm_7"),
-				bundle.getString("comm_7.1"), true));
-		pushOnTop(new CommunityCard(bundle.getString("comm_8"),
-				bundle.getString("comm_8.1"), true));
-		pushOnTop(new CommunityCard(bundle.getString("comm_9"),
-				bundle.getString("comm_9.1"), false));
-		pushOnTop(new CommunityCard(bundle.getString("comm_10"),
-				bundle.getString("comm_10.1"), false));
-		pushOnTop(new CommunityCard(bundle.getString("comm_11"),
-				bundle.getString("comm_11.1"), false));
-		pushOnTop(new CommunityCard(bundle.getString("comm_12"),
-				bundle.getString("comm_12.1"), false));
-		pushOnTop(new CommunityCard(bundle.getString("comm_13"),
-				bundle.getString("comm_13.1"), false));
-		pushOnTop(new CommunityCard(bundle.getString("comm_14"),
-				bundle.getString("comm_14.1"), false));
-		pushOnTop(new CommunityCard(bundle.getString("comm_15"),
-				bundle.getString("comm_15.1"), false));
-		pushOnTop(new CommunityCard(bundle.getString("comm_16"),
-				bundle.getString("comm_16.1"), false));
-		pushOnTop(new CommunityCard(bundle.getString("comm_17"),
-				bundle.getString("comm_17.1"), true));
-		pushOnTop(new CommunityCard(bundle.getString("comm_18"),
-				bundle.getString("comm_18.1"), true));
-		pushOnTop(new CommunityCard(bundle.getString("comm_19"),
-				bundle.getString("comm_19.1"), false));
-		pushOnTop(new CommunityCard(bundle.getString("comm_20"),
-				bundle.getString("comm_20.1"), true));
-		pushOnTop(new CommunityCard(bundle.getString("comm_21"),
-				bundle.getString("comm_21.1"), true));
-		pushOnTop(new CommunityCard(bundle.getString("comm_22"),
-				bundle.getString("comm_22.1"), false));
-		pushOnTop(new CommunityCard(bundle.getString("comm_23"),
-				bundle.getString("comm_23.1"), false));
-		pushOnTop(new CommunityCard(bundle.getString("comm_24"),
-				bundle.getString("comm_24.1"), false));
+
+		StringBuilder opt1 = new StringBuilder();
+		StringBuilder opt2 = new StringBuilder();
+
+		for (int i = 1; i < 24; i++) {
+			opt1.delete(0, opt1.length());
+			opt2.delete(0, opt2.length());
+			opt1.append("comm_").append(i);
+			opt1.append("comm_").append(i).append("_1");
+			pushOnTop(new CommunityCard(bundle.getString(opt1.toString()),
+					bundle.getString(opt2.toString()), false));
+			if (true) {
+				// system.out.println("TODO: die boolean variable muss noch richtig gesetzt werden. Die ist nicht immer false.");
+			}
+		}
 
 		this.shuffle();
 	}
