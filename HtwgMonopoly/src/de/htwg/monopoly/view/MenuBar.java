@@ -3,25 +3,24 @@ package de.htwg.monopoly.view;
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class MenuBar extends JMenuBar implements ActionListener {
 
+	private final Logger logger = LogManager.getLogger("MenuBar");
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1262745107060789415L;
 
-	private JMenuBar menuBar;
-	private JMenu mDatei;
-	private JMenu mHelp;
-	private JMenuItem subMenu, miSource, miRegeln;
+	private JMenuItem miSource, miRegeln;
 	private JMenuItem miNewGame;
 	private JMenuItem miExitGame;
 
@@ -31,9 +30,9 @@ public class MenuBar extends JMenuBar implements ActionListener {
 	public MenuBar() {
 
 		// Create the menu bar.
-		menuBar = new JMenuBar();
-		mDatei = new JMenu("Game");
-		mHelp = new JMenu("Help");
+		JMenuBar menuBar = new JMenuBar();
+		JMenu mDatei = new JMenu("Game");
+		JMenu mHelp = new JMenu("Help");
 		menuBar.add(mDatei);
 		menuBar.add(mHelp);
 
@@ -41,7 +40,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 		miNewGame.addActionListener(this);
 		mDatei.add(miNewGame);
 
-		subMenu = new JMenuItem("Optionen Einstellen");
+		JMenuItem subMenu = new JMenuItem("Optionen Einstellen");
 		mDatei.add(subMenu);
 
 		mDatei.addSeparator();
@@ -63,35 +62,26 @@ public class MenuBar extends JMenuBar implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		Object event = e.getSource();
-		if (event == miExitGame) {
+		if (event.equals(miExitGame)) {
 			System.exit(0);
-		} else if (event == miNewGame) {
-
-		} else if (event == miSource) {
-			Desktop desktop = Desktop.isDesktopSupported() ? Desktop
-					.getDesktop() : null;
-			try {
-				desktop.browse(new URI(SOURCE));
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			} catch (URISyntaxException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		} else if (event == miRegeln) {
-			Desktop desktop = Desktop.isDesktopSupported() ? Desktop
-					.getDesktop() : null;
-			try {
-				desktop.browse(new URI(RULES));
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			} catch (URISyntaxException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+		} else if (event.equals(miSource)) {
+			showURL(SOURCE);
+		} else if (event.equals(miRegeln)) {
+			showURL(RULES);
 
 		}
 
 	}
 
+	private void showURL(String source) {
+		Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop()
+				: null;
+		try {
+			desktop.browse(new URI(source));
+		} catch (Exception e) {
+			logger.info("Exception in MenuBar");
+
+		}
+
+	}
 }

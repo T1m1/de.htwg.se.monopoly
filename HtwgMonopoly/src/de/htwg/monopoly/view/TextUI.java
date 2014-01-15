@@ -157,6 +157,7 @@ public class TextUI implements IObserver {
 				+ bundle.getString("ownership") + "\n");
 		sb.append("-------\t|------\t|--------------\n");
 		for (int i = 0; i < controller.getNumberOfPlayer(); i++) {
+			
 			Player player = controller.getPlayer(i);
 			sb.append(player.getName() + "\t|" + player.getBudget() + "\t|"
 					+ player.getOwnership() + "\n");

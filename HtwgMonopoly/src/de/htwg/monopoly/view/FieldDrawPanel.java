@@ -175,9 +175,8 @@ class FieldDrawPanel extends JPanel {
 		Position position = new Position(fieldNameAtIndex.getPosition(),
 				NUMBER_OF_ROWS, DIFFERENC);
 
-		
 		// TODO SWITCH CASE
-		
+
 		/* check type of IFieldObject to call specific functions */
 		if (fieldNameAtIndex.getType() == 's') {
 			/* if street object */
@@ -334,7 +333,7 @@ class FieldDrawPanel extends JPanel {
 		community = new ArrayList<Image>();
 
 		Image img;
-		for (int j = 0; j < 4; j++) {
+		for (int j = 0; j < FOUR; j++) {
 			img = new ImageIcon(RESOURCE_DIRECTORY + CARDS[COMM][j]).getImage();
 			community.add(img);
 			img = new ImageIcon(RESOURCE_DIRECTORY + CARDS[CHANCE][j])
@@ -360,7 +359,7 @@ class FieldDrawPanel extends JPanel {
 		for (int i = 0; i < contr.getNumberOfPlayer(); i++) {
 			Player player = contr.getPlayer(i);
 			String tmp = PICTURES[i];
-			tmp = tmp.substring(0, tmp.lastIndexOf("."));
+			tmp = tmp.substring(0, tmp.lastIndexOf('.'));
 			player.setFigure(tmp);
 
 		}
