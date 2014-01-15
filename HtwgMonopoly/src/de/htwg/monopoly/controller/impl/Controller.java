@@ -301,6 +301,9 @@ public class Controller extends Observable implements IController {
 			options.add("(f) " + bundle.getString("contr_free") + " ("
 					+ IMonopolyUtil.FREIKAUFEN + ")");
 			options.add("(3) " + bundle.getString("contr_threeDice"));
+			if(currentPlayer.hasPrisonFreeCard()) {
+				options.add("(c) " + bundle.getString("contr_freeCard"));
+			}
 			// TODO check if contains free park card
 		}
 		/* returns a list with options */
