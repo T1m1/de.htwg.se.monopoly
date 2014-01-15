@@ -200,7 +200,6 @@ public class Player {
 	public List<IFieldObject> getOwnership() {
 		return ownership;
 	}
-	
 
 	/**
 	 * add a new ownership for player e.g. a street
