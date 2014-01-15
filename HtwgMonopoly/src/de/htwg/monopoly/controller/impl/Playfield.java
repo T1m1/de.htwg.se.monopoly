@@ -143,8 +143,7 @@ public class Playfield implements IPlayfield {
 			break;
 		case 'p':
 			sb.append(bundle.getString("play_bsys"));
-			currentPlayer.setInPrison(true);
-			movePlayerTo(currentPlayer, "Bsys Labor, nur zu Besuch");
+			movePlayerToPrison(currentPlayer);
 			break;
 		case 'n':
 			sb.append(bundle.getString("play_look"));
@@ -198,9 +197,9 @@ public class Playfield implements IPlayfield {
 
 		}
 
-		if (target.equalsIgnoreCase("Bsys Labor")) {
-			currentPlayer.setInPrison(true);
-			return bundle.getString("play_bsys");
+		if (target.equalsIgnoreCase("Bsys Labor, nur zu Besuch")) {
+			movePlayerToPrison(currentPlayer);
+			return " ;) ";
 		}
 
 		for (int i = oldPosition; i < (fieldSize + oldPosition); ++i) {
@@ -224,6 +223,13 @@ public class Playfield implements IPlayfield {
 		// Important: the new position must not be a Stack !!! (for now....)
 		return performActionAndAppendInfo(playfield[position], currentPlayer);
 	}
+
+	private void movePlayerToPrison(Player currentPlayer) {
+		currentPlayer.setInPrison(true);
+		currentPlayer.setPosition(IMonopolyUtil.POSITION_OF_PRISON);
+		
+	}
+
 
 	public CommunityCardsStack getCommStack() {
 		return commStack;

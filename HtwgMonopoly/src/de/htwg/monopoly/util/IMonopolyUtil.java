@@ -61,6 +61,8 @@ public interface IMonopolyUtil {
 
 	int MAX_NUMBER_OF_STEPS = 5;
 
+	int POSITION_OF_PRISON = 8;
+
 	
 
 }

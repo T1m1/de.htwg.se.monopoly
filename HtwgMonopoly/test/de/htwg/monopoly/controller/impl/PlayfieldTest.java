@@ -130,7 +130,7 @@ public class PlayfieldTest {
 
 	@Test
 	public void testMovePlayerTo() {
-		field.movePlayerTo(testplayer, "Bsys Labor");
+		field.movePlayerTo(testplayer, "Bsys Labor, nur zu Besuch");
 		assertTrue(testplayer.isInPrison());
 		testplayer.setInPrison(false);
 		testplayer.setPosition(5);
