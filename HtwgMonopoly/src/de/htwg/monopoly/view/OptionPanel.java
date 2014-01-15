@@ -16,7 +16,6 @@ import javax.swing.JTextArea;
 import javax.swing.border.Border;
 
 import de.htwg.monopoly.controller.IController;
-import de.htwg.monopoly.entities.impl.Dice;
 
 public class OptionPanel extends JPanel implements ActionListener {
 
@@ -79,7 +78,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 		/* if button for dice is clickt */
 		if (e.getSource() == buttonWuerfeln) {
 			contr.startTurn();
-			int diceResult = Dice.getResultDice()
+			int diceResult = contr.getDice().getResultDice()
 					% contr.getField().getfieldSize() + 1;
 			taAusgabe.setText("Sie haben " + diceResult
 					+ " gewürfelt\n" +taAusgabe.getText() );

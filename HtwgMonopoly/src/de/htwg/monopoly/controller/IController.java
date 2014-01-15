@@ -3,6 +3,7 @@ package de.htwg.monopoly.controller;
 import java.util.List;
 
 import de.htwg.monopoly.entities.IFieldObject;
+import de.htwg.monopoly.entities.impl.Dice;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.observer.IObservable;
 
@@ -130,6 +131,8 @@ public interface IController extends IObservable {
 	 * @param fieldObject
 	 */
 	void setCurrentField(IFieldObject fieldObject);
+
+	Dice getDice();
 
 
 }

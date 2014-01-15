@@ -4,12 +4,12 @@ import de.htwg.monopoly.util.IMonopolyUtil;
 
 public final class Dice {
 
-	protected Dice() {
+	public Dice() {
 	}
 
-	private static int dice1 = 0;
-	private static int dice2 = 0;
-	private static int resultDice = 0;
+	private int dice1 = 0;
+	private int dice2 = 0;
+	private int resultDice = 0;
 
 	/**
 	 * for now, this method only returns a new value, when the metho22d setDice is
@@ -17,7 +17,7 @@ public final class Dice {
 	 * 
 	 * @return
 	 */
-	public static void throwDice() {
+	public void throwDice() {
 		dice1 = setDice(1, IMonopolyUtil.DICE);
 		dice2 = setDice(1, IMonopolyUtil.DICE);
 		resultDice = dice1 + dice2;
@@ -30,19 +30,19 @@ public final class Dice {
 	 * @param lowerBound
 	 * @param upperBound
 	 */
-	private static int setDice(int lowerBound, int upperBound) {
+	private int setDice(int lowerBound, int upperBound) {
 		return (int) (Math.random() * ((upperBound + 1) - lowerBound) + lowerBound);
 	}
 
-	public static int getDice1() {
+	public int getDice1() {
 		return dice1;
 	}
 
-	public static int getDice2() {
+	public int getDice2() {
 		return dice2;
 	}
 
-	public static int getResultDice() {
+	public int getResultDice() {
 		return resultDice;
 	}
 

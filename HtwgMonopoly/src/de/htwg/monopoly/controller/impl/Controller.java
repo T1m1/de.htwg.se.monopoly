@@ -26,6 +26,7 @@ public class Controller extends Observable implements IController {
 	private Player currentPlayer;
 	private IFieldObject currentField;
 	private int fieldSize;
+	private Dice dice;
 
 	private StringBuilder message;
 	private int lastChooseOption;
@@ -33,6 +34,7 @@ public class Controller extends Observable implements IController {
 	/* internationalization */
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
+	
 
 	@Inject
 	public Controller(@Named("FieldSize") int fieldSize) {
@@ -40,6 +42,7 @@ public class Controller extends Observable implements IController {
 		this.players = new PlayerController();
 		this.field = new Playfield(this.fieldSize);
 		this.message = new StringBuilder();
+		this.dice = new Dice();
 	}
 
 	@Override
@@ -80,7 +83,7 @@ public class Controller extends Observable implements IController {
 
 		/* move player -> max number to dice is fieldSize */
 		field.movePlayer(currentPlayer,
-				(Dice.getResultDice() % (field.getfieldSize() + 1)));
+				(dice.getResultDice() % (field.getfieldSize() + 1)));
 		
 		this.currentField = field.getCurrentField(currentPlayer);
 
@@ -181,7 +184,7 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void rollDice() {
 		/* throw dice */
-		Dice.throwDice();
+		dice.throwDice();
 	}
 
 	@Override
@@ -344,6 +347,11 @@ public class Controller extends Observable implements IController {
 	@Override
 	public Player getPlayer(int i) {
 		return players.getPlayer(i);
+	}
+
+	@Override
+	public Dice getDice() {
+		return dice;
 	}
 
 }
