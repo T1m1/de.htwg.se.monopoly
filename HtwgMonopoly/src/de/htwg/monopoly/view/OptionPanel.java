@@ -16,6 +16,7 @@ import javax.swing.JTextArea;
 import javax.swing.border.Border;
 
 import de.htwg.monopoly.controller.IController;
+import de.htwg.monopoly.entities.impl.Dice;
 
 public class OptionPanel extends JPanel implements ActionListener {
 
@@ -40,7 +41,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 		this.add(buttonWuerfeln);
 		buttonWuerfeln.addActionListener(this);
 
-		Image img = new ImageIcon("resources/DICE.gif").getImage();
+		Image img = new ImageIcon("resources/pictures/DICE.gif").getImage();
 		buttonWuerfeln.setIcon(new ImageIcon(img));
 
 		buttonZugBeenden = new JButton(bundle.getString("contr_finish"));
@@ -75,11 +76,13 @@ public class OptionPanel extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 
+		String streetName = contr.getField().getCurrentField(contr.getCurrentPlayer()).toString();
+		
 		/* if button for dice is clickt */
 		if (e.getSource() == buttonWuerfeln) {
 			contr.startTurn();
 			int diceResult = contr.getDice().getResultDice()
-					% contr.getField().getfieldSize() + 1;
+					% (contr.getField().getfieldSize() + 1);
 			taAusgabe.setText("Sie haben " + diceResult
 					+ " gewürfelt\n" +taAusgabe.getText() );
 
@@ -97,6 +100,9 @@ public class OptionPanel extends JPanel implements ActionListener {
 		} else if (e.getSource() == buttonKaufen) {
 			contr.buyStreet();
 			checkEnableStatus(1);
+			
+			this.taAusgabe.setText(taAusgabe.getText() + "Sie haben "+streetName +  " erfolgreich gekauft!");
+			
 			/* TODO tmp -> check in checkEnableStatus */
 			buttonZugBeenden.setEnabled(true);
 			buttonWuerfeln.setEnabled(false);
