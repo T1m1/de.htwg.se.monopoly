@@ -40,7 +40,7 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 		this.controller = controller;
 		this.controller.addObserver(this);
 		initUI();
-		
+
 	}
 
 	public void run() {
@@ -58,6 +58,8 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 		setMaximumSize(dimension);
 		setMinimumSize(dimension);
 		setPreferredSize(dimension);
+
+		this.setJMenuBar(new MenuBar());
 
 		/* main panel, containing all other panels */
 		JPanel mainPanel = new JPanel();
@@ -80,7 +82,8 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 		/* create panels */
 		pnlPlayerInfo = new PlayerInfoPanel(controller);
 		pnlOutput = new OutputPanel(controller);
-		OptionPanel pnlOption = new OptionPanel(controller, pnlOutput.getTaAusgabe());
+		OptionPanel pnlOption = new OptionPanel(controller,
+				pnlOutput.getTaAusgabe());
 
 		/* add panels to main panel */
 		mainPanel.add(pnlField, BorderLayout.WEST);
@@ -96,7 +99,7 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 		setSize(baseSize * DISPLAY_FIELD_SIZE + BUFFER, baseSize
 				* DISPLAY_FIELD_SIZE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//setLocationRelativeTo(null);
+		// setLocationRelativeTo(null);
 
 	}
 

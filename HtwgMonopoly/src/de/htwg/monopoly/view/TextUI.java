@@ -38,8 +38,8 @@ public class TextUI implements IObserver {
 		 * 
 		 * TODO GANZ WICHTIG!!! -> JEDES MAL WENN SPIELER EIGNABE BETÄTIGT (GUI)
 		 * BLEIBT DAS SPIEL AN DER STELLE STEHEN.. ES WIRD ZWAR NE NEUE UPDATE
-		 * METHODE AUFGERUFEN ABER DIESE WIRD NICHT GANZ ZUENDE GEFÜHRT
-		 * LSÖUNG: TUI SO UMSCHREIBEN DAS ZUG IMMER BEENDET WIRD
+		 * METHODE AUFGERUFEN ABER DIESE WIRD NICHT GANZ ZUENDE GEFÜHRT LSÖUNG:
+		 * TUI SO UMSCHREIBEN DAS ZUG IMMER BEENDET WIRD
 		 */
 		printInitialisation();
 		logger.info(IMonopolyUtil.START);
@@ -78,7 +78,7 @@ public class TextUI implements IObserver {
 	 */
 	private void printRoll() {
 		int diceResult = Dice.getResultDice()
-				% controller.getField().getfieldSize() + 1;
+				% (controller.getField().getfieldSize() + 1);
 		String out = MessageFormat.format(bundle.getString("tui_dice"),
 				diceResult);
 		logger.info(out);
