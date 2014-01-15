@@ -31,8 +31,13 @@ public class Playfield implements IPlayfield {
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
 
+	
 	public Playfield() {
-		//this.fieldSize = IMonopolyUtil.TUI_FIELD_SIZE;
+		this(IMonopolyUtil.TUI_FIELD_SIZE);
+	}
+	
+	public Playfield(int size) {
+		this.fieldSize = size;
 		this.playfield = new IFieldObject[this.fieldSize];
 		this.commStack = new CommunityCardsStack();
 		this.chanStack = new ChanceCardsStack();
@@ -40,10 +45,6 @@ public class Playfield implements IPlayfield {
 		for (int i = 0; i < fieldSize; i++) {
 			createField(i);
 		}
-	}
-	
-	public Playfield(int size) {
-		initialize(size);
 	}
 
 	/**

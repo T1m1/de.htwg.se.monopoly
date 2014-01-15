@@ -18,9 +18,10 @@ public class Monopoly {
 	private static GraphicUserInterface gui;
 	
 	private static Monopoly getInstance() {
-		if (instance == null) instance = new Monopoly();
-		return instance;
-		
+		if (instance == null){
+			instance = new Monopoly();
+		}
+		return instance;		
 	}
 
 	private Monopoly() {
