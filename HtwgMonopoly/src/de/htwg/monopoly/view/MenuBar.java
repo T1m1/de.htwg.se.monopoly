@@ -32,6 +32,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 
 		// Create the menu bar.
 		menuBar = new JMenuBar();
+		
 		mDatei = new JMenu("Game");
 		mHelp = new JMenu("Help");
 		menuBar.add(mDatei);
