@@ -37,7 +37,7 @@ public class Controller extends Observable implements IController {
 	@Inject
 	public Controller() {
 		this.players = new PlayerController();
-		this.field = new Playfield(this.fieldSize);
+		this.field = new Playfield(28);
 		this.message = new StringBuilder();
 	}
 

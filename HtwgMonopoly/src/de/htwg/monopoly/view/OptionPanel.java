@@ -41,7 +41,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 		this.add(buttonWuerfeln);
 		buttonWuerfeln.addActionListener(this);
 
-		Image img = new ImageIcon("resources/DICE.gif").getImage();
+		Image img = new ImageIcon("resources/pictures/DICE.gif").getImage();
 		buttonWuerfeln.setIcon(new ImageIcon(img));
 
 		buttonZugBeenden = new JButton(bundle.getString("contr_finish"));
