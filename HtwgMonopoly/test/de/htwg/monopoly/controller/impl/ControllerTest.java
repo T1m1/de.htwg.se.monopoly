@@ -77,7 +77,6 @@ public class ControllerTest {
 		IFieldObject field2 = new FieldObject("Bsys Labor, nur zu Besuch", 'n', 0, 1);
 		testController.getField().setFieldAtIndex(0, field);
 		testController.getField().setFieldAtIndex(1, field2);
-		Player testplayer = testController.getCurrentPlayer();
 		testController.startTurn();
 	}
 
