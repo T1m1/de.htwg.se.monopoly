@@ -24,7 +24,6 @@ public class Controller extends Observable implements IController {
 	private Playfield field;
 	private Player currentPlayer;
 	private IFieldObject currentField;
-	private int fieldSize;
 	private Dice dice;
 
 	private StringBuilder message;
@@ -36,11 +35,10 @@ public class Controller extends Observable implements IController {
 
 	@Inject
 	public Controller(@Named("FieldSize") int fieldSize) {
-		this.fieldSize = fieldSize;
 		this.players = new PlayerController();
 		this.field = new Playfield(fieldSize);
 		this.message = new StringBuilder();
-		this.dice = new Dice(this.fieldSize);
+		this.dice = new Dice(fieldSize);
 	}
 
 	@Override

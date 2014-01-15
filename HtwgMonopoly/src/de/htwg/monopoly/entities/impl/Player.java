@@ -19,6 +19,7 @@ public class Player {
 	private int prisonRound = 0;
 	private boolean inPrison = false;
 	private List<IFieldObject> ownership;
+	private int prisonFreeCard = 0;
 
 	/**
 	 * default player constructor
@@ -199,6 +200,7 @@ public class Player {
 	public List<IFieldObject> getOwnership() {
 		return ownership;
 	}
+	
 
 	/**
 	 * add a new ownership for player e.g. a street
@@ -216,6 +218,21 @@ public class Player {
 	 */
 	public void decrementMoney(int freikaufen) {
 		this.budget -= freikaufen;
+	}
+
+	public void incrementPrisonFreeCard() {
+		prisonFreeCard++;
+	}
+
+	public boolean hasPrisonFreeCard() {
+		return (prisonFreeCard > 0);
+	}
+
+	public void usePrisonFreeCard() {
+		if (prisonFreeCard < 1) {
+			throw new AssertionError("This Player has no such Card");
+		}
+		prisonFreeCard--;
 	}
 
 }

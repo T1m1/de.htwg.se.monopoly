@@ -13,7 +13,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.htwg.monopoly.controller.IController;
-import de.htwg.monopoly.controller.impl.Controller;
 
 public class MenuBar extends JMenuBar implements ActionListener {
 
