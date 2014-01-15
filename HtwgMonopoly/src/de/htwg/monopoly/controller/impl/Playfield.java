@@ -199,7 +199,12 @@ public class Playfield implements IPlayfield {
 
 		if (target.equalsIgnoreCase("Bsys Labor, nur zu Besuch")) {
 			movePlayerToPrison(currentPlayer);
-			return " ;) ";
+			return "";
+		}
+		
+		if (target.equalsIgnoreCase("frei")) {
+			currentPlayer.incrementPrisonFreeCard();
+			return "";
 		}
 
 		for (int i = oldPosition; i < (fieldSize + oldPosition); ++i) {
