@@ -13,7 +13,7 @@ public class DiceTest {
 
 	@Before
 	public void setUp() throws Exception {
-		
+		dice = new Dice();
 	}
 
 	/**
@@ -29,13 +29,13 @@ public class DiceTest {
 	
 	@Test
 	public void testThrowDice() {
-		Dice.throwDice();
-		assertTrue(Dice.getDice1()<=6);
-		assertFalse(Dice.getDice1()>6);
-		assertFalse(Dice.getDice2()>6);
-		assertTrue(Dice.getDice2()<=6);
-		assertTrue(Dice.getDice1()>0);
-		assertFalse(Dice.getDice1()<=0);
+		dice.throwDice();
+		assertTrue(dice.getDice1()<=6);
+		assertFalse(dice.getDice1()>6);
+		assertFalse(dice.getDice2()>6);
+		assertTrue(dice.getDice2()<=6);
+		assertTrue(dice.getDice1()>0);
+		assertFalse(dice.getDice1()<=0);
 		
 	}
 
