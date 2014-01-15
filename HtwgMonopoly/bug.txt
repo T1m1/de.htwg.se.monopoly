@@ -14,7 +14,7 @@ FEATURES
 3.3 [ ] Freikaufen implementieren.
 3.4 [ ] Preise & Strassennamen aktualisieren 
 3.5 [ ] GELD anpassen, damit man Spiel sinnvoll spielen kann
-3.6 [ ] bei Text ausgabe "sie müssen ihm jetzt [BETRAG] € Zahlen, steht der name nicht der betrag.
+3.6 [x] bei Text ausgabe "sie müssen ihm jetzt [BETRAG] € Zahlen, steht der name nicht der betrag.
 
 #TUI
 3.1 [ ] Zeilenumbruch beim Zeichnen vom Spielfeld nach ca. 12 Strassen
@@ -23,3 +23,4 @@ FEATURES
 4.1 [x] Bestätigung wenn Strasse gekauft wurde.
 4.2 [x] Menü implementieren
 4.2 [ ] Wenn im Gefängnis -> PopUp mit Freikauf/Würfel/Karte einlösen Optionen
+4.3 [ ] gehe 3 Felder vor und lande auf einer Straße die frei ist. dann kann er sie nicht kaufen in der gui

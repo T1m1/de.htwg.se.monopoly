@@ -7,6 +7,7 @@ import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.ChanceCardsStack;
 import de.htwg.monopoly.entities.impl.CommunityCardsStack;
 import de.htwg.monopoly.entities.impl.Player;
+import de.htwg.monopoly.entities.impl.Street;
 
 /**
  *
@@ -104,4 +105,15 @@ public interface IPlayfield {
 	 * @param field
 	 */
 	void setFieldAtIndex(int i, IFieldObject field);
+	
+	/**
+	 * The current Player buys this current Street. Returns false if the Player
+	 * has not enough money. Otherwise true if the purchase was successful.
+	 * 
+	 * 
+	 * @param currentPlayer
+	 * @param currentStreet
+	 * @return
+	 */
+	boolean buyStreet(Player currentPlayer, Street currentStreet);
 }

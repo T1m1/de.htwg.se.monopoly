@@ -19,7 +19,7 @@ public class PlayfieldTest {
 
 	@Before
 	public void setUp() throws Exception {
-		field = new Playfield(25);
+		field = new Playfield(23);
 		testplayer = new Player();
 	}
 

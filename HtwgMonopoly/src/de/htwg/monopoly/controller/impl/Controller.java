@@ -198,21 +198,8 @@ public class Controller extends Observable implements IController {
 
 	@Override
 	public boolean buyStreet() {
-		/* get current street */
 		Street currentStreet = (Street) field.getCurrentField(currentPlayer);
-		/* check if enough money */
-		if (currentStreet.getPriceForStreet() < currentPlayer.getBudget()) {
-			/* decrement money of current player */
-			currentPlayer.setBudget(currentPlayer.getBudget()
-					- currentStreet.getPriceForStreet());
-			currentStreet.setOwner(currentPlayer);
-			/* add street to ownership of current player */
-			currentPlayer.addOwnership(currentStreet);
-			return true;
-		}
-		/* TODO: not enough money!! -> end of game? */
-		return false;
-
+		return field.buyStreet(currentPlayer, currentStreet);
 	}
 
 	@Override
@@ -301,7 +288,7 @@ public class Controller extends Observable implements IController {
 			options.add("(f) " + bundle.getString("contr_free") + " ("
 					+ IMonopolyUtil.FREIKAUFEN + ")");
 			options.add("(3) " + bundle.getString("contr_threeDice"));
-			if(currentPlayer.hasPrisonFreeCard()) {
+			if (currentPlayer.hasPrisonFreeCard()) {
 				options.add("(c) " + bundle.getString("contr_freeCard"));
 			}
 			// TODO check if contains free park card

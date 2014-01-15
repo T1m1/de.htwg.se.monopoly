@@ -27,7 +27,6 @@ public class Playfield implements IPlayfield {
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
 
-	
 	public Playfield(int size) {
 		this.fieldSize = size;
 		this.playfield = new IFieldObject[this.fieldSize];
@@ -38,7 +37,6 @@ public class Playfield implements IPlayfield {
 			createField(i);
 		}
 	}
-
 
 	/**
 	 * TODO for each case statement a new function!!! -> MAYBE
@@ -60,17 +58,18 @@ public class Playfield implements IPlayfield {
 		case 'g':
 			this.commStack.setPosition(IMonopolyFields.POSITION[i]);
 			playfield[i] = this.commStack;
-			
+
 			break;
 		case 'z':
 			playfield[i] = new FieldObject("Zusatzsteuer",
-					IMonopolyFields.TYP[i], IMonopolyUtil.ZUSATZSTEUER, IMonopolyFields.POSITION[i]);
+					IMonopolyFields.TYP[i], IMonopolyUtil.ZUSATZSTEUER,
+					IMonopolyFields.POSITION[i]);
 			break;
 		case 'e':
 			this.chanStack.setPosition(IMonopolyFields.POSITION[i]);
 			playfield[i] = (IFieldObject) this.chanStack;
 			break;
-		case 'n': 
+		case 'n':
 			/* BSYS -> zu besuch */
 			playfield[i] = new FieldObject("Bsys Labor, nur zu Besuch",
 					IMonopolyFields.TYP[i], 0, IMonopolyFields.POSITION[i]);
@@ -118,7 +117,8 @@ public class Playfield implements IPlayfield {
 		return this.fieldSize;
 	}
 
-	public String performActionAndAppendInfo(IFieldObject currentField, Player currentPlayer) {
+	public String performActionAndAppendInfo(IFieldObject currentField,
+			Player currentPlayer) {
 		StringBuilder sb = new StringBuilder();
 		String output;
 		if (wentOverGo) {
@@ -191,8 +191,8 @@ public class Playfield implements IPlayfield {
 		int position = -1;
 		try {
 			movePlayer(currentPlayer, Integer.parseInt(target));
-			return performActionAndAppendInfo(playfield[currentPlayer.getPosition()],
-					currentPlayer);
+			return performActionAndAppendInfo(
+					playfield[currentPlayer.getPosition()], currentPlayer);
 		} catch (NumberFormatException e) {
 
 		}
@@ -201,7 +201,7 @@ public class Playfield implements IPlayfield {
 			movePlayerToPrison(currentPlayer);
 			return "";
 		}
-		
+
 		if (target.equalsIgnoreCase("frei")) {
 			currentPlayer.incrementPrisonFreeCard();
 			return "";
@@ -232,9 +232,8 @@ public class Playfield implements IPlayfield {
 	private void movePlayerToPrison(Player currentPlayer) {
 		currentPlayer.setInPrison(true);
 		currentPlayer.setPosition(IMonopolyUtil.POSITION_OF_PRISON);
-		
-	}
 
+	}
 
 	public CommunityCardsStack getCommStack() {
 		return commStack;
@@ -251,5 +250,17 @@ public class Playfield implements IPlayfield {
 			this.chanStack = (ChanceCardsStack) field;
 		}
 		playfield[i] = field;
+	}
+
+	public boolean buyStreet(Player currentPlayer, Street currentStreet) {
+		if (currentStreet.getPriceForStreet() < currentPlayer.getBudget()) {
+			currentPlayer.setBudget(currentPlayer.getBudget()
+					- currentStreet.getPriceForStreet());
+			currentStreet.setOwner(currentPlayer);
+			currentPlayer.addOwnership(currentStreet);
+			return true;
+		}
+		return false;
+
 	}
 }
