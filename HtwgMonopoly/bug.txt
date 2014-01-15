@@ -14,7 +14,7 @@ FEATURES
 2.2 [x] Wenn Spieler ins Gefängnis geschickt wird, nicht nur ins Gefängnis schicken sondern auch an die Position wo das Gefängnis ist.
 3.3 [ ] Freikaufen implementieren.
 3.4 [ ] Preise & Strassennamen aktualisieren 
-3.5 [ ] GELD anpassen, damit man Spiel sinnvoll spielen kann
+3.5 [x] GELD anpassen, damit man Spiel sinnvoll spielen kann
 3.6 [x] bei Text ausgabe "sie müssen ihm jetzt [BETRAG] € Zahlen, steht der name nicht der betrag.
 
 #TUI
