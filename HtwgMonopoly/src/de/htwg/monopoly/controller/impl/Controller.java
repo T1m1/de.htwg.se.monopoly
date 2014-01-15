@@ -25,7 +25,7 @@ public class Controller extends Observable implements IController {
 	private Playfield field;
 	private Player currentPlayer;
 	private IFieldObject currentField;
-	@Inject @Named("FieldSize") private int fieldSize;
+	private int fieldSize;
 
 	private StringBuilder message;
 	private int lastChooseOption;
@@ -35,7 +35,8 @@ public class Controller extends Observable implements IController {
 			Locale.GERMAN);
 
 	@Inject
-	public Controller() {
+	public Controller(@Named("FieldSize") int fieldSize) {
+		this.fieldSize = fieldSize;
 		this.players = new PlayerController();
 		this.field = new Playfield(28);
 		this.message = new StringBuilder();
