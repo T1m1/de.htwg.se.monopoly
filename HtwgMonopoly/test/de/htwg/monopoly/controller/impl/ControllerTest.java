@@ -49,7 +49,6 @@ public class ControllerTest {
 		testController.setNumberofPlayer();
 		testController.setNameofPlayer(0);
 		testController.setNameofPlayer(1);
-		testController.getField().initialize(2);
 		testController.startNewGame();
 		System.setIn(System.in);
 	}

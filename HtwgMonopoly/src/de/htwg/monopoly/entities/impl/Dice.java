@@ -4,23 +4,26 @@ import de.htwg.monopoly.util.IMonopolyUtil;
 
 public final class Dice {
 
-	protected Dice() {
+	private int fieldSize;
+
+	public Dice(int fieldSize) {
+		this.fieldSize = fieldSize;
 	}
 
-	private static int dice1 = 0;
-	private static int dice2 = 0;
-	private static int resultDice = 0;
+	private int dice1 = 0;
+	private int dice2 = 0;
+	private int resultDice = 0;
 
 	/**
-	 * for now, this method only returns a new value, when the metho22d setDice is
-	 * called before. Going to fix that
+	 * This Method throws (sets) the two dices, represented as two private dice
+	 * variables. It also sets the result dice according to the field size.
 	 * 
 	 * @return
 	 */
-	public static void throwDice() {
+	public void throwDice() {
 		dice1 = setDice(1, IMonopolyUtil.DICE);
 		dice2 = setDice(1, IMonopolyUtil.DICE);
-		resultDice = dice1 + dice2;
+		resultDice = (dice1 + dice2) % this.fieldSize + 1;
 	}
 
 	/**
@@ -30,20 +33,19 @@ public final class Dice {
 	 * @param lowerBound
 	 * @param upperBound
 	 */
-	private static int setDice(int lowerBound, int upperBound) {
-		return (int) (Math.random() * ((upperBound + 1) - lowerBound) + lowerBound);
+	private int setDice(int lowerBound, int upperBound) {
+		return (int) (Math.random() * upperBound + lowerBound);
 	}
 
-	public static int getDice1() {
+	public int getDice1() {
 		return dice1;
 	}
 
-	public static int getDice2() {
+	public int getDice2() {
 		return dice2;
 	}
 
-	public static int getResultDice() {
+	public int getResultDice() {
 		return resultDice;
 	}
-
 }

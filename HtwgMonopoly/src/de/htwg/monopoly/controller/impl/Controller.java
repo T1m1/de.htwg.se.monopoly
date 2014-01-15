@@ -19,13 +19,13 @@ import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.observer.impl.Observable;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
-
 public class Controller extends Observable implements IController {
 	private PlayerController players;
 	private Playfield field;
 	private Player currentPlayer;
 	private IFieldObject currentField;
 	private int fieldSize;
+	private Dice dice;
 
 	private StringBuilder message;
 	private int lastChooseOption;
@@ -40,6 +40,7 @@ public class Controller extends Observable implements IController {
 		this.players = new PlayerController();
 		this.field = new Playfield(28);
 		this.message = new StringBuilder();
+		this.dice = new Dice(this.fieldSize);
 	}
 
 	@Override
@@ -55,7 +56,7 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void startNewGame() {
 		// TODO ZufallsSpieler auswählen
-		
+
 		this.currentPlayer = players.getNextPlayer();
 		notifyObservers(0);
 	}
@@ -79,9 +80,8 @@ public class Controller extends Observable implements IController {
 		rollDice();
 
 		/* move player -> max number to dice is fieldSize */
-		field.movePlayer(currentPlayer,
-				(Dice.getResultDice() % (field.getfieldSize() + 1)));
-		
+		field.movePlayer(currentPlayer, dice.getResultDice());
+
 		this.currentField = field.getCurrentField(currentPlayer);
 
 		/*
@@ -93,9 +93,10 @@ public class Controller extends Observable implements IController {
 		} else if (fieldIsAChanceStack()) {
 			message.append(performChanceCardAction());
 		} else {
-			message.append(field.performActionAndAppendInfo(currentField, currentPlayer));
+			message.append(field.performActionAndAppendInfo(currentField,
+					currentPlayer));
 		}
-		
+
 	}
 
 	/**
@@ -158,9 +159,9 @@ public class Controller extends Observable implements IController {
 	private boolean fieldIsAChanceStack() {
 		return (currentField.getType() == 'e');
 	}
-	
+
 	/**
-	 * Check if the Card is a "player move Card" or a "money transfer card" 
+	 * Check if the Card is a "player move Card" or a "money transfer card"
 	 * 
 	 * @param card
 	 * @return boolean
@@ -181,14 +182,14 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void rollDice() {
 		/* throw dice */
-		Dice.throwDice();
+		dice.throwDice();
 	}
 
 	@Override
 	public void endTurn() {
 		this.message.delete(0, this.message.length());
 		this.currentPlayer = players.getNextPlayer();
-		
+
 		notifyObservers(0);
 	}
 
@@ -344,6 +345,11 @@ public class Controller extends Observable implements IController {
 	@Override
 	public Player getPlayer(int i) {
 		return players.getPlayer(i);
+	}
+
+	@Override
+	public Dice getDice() {
+		return dice;
 	}
 
 }

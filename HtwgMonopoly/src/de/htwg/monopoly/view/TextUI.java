@@ -8,7 +8,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.htwg.monopoly.controller.IController;
-import de.htwg.monopoly.entities.impl.Dice;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.observer.Event;
 import de.htwg.monopoly.observer.IObserver;
@@ -77,7 +76,7 @@ public class TextUI implements IObserver {
 	 * print information about dice
 	 */
 	private void printRoll() {
-		int diceResult = Dice.getResultDice()
+		int diceResult = controller.getDice().getResultDice()
 				% (controller.getField().getfieldSize() + 1);
 		String out = MessageFormat.format(bundle.getString("tui_dice"),
 				diceResult);

@@ -20,9 +20,9 @@ public interface IMonopolyFields {
 	 * 
 	 * 
 	 */
-	Integer[] PRICE_FOR_STREET = { 0, 60, 0, 60, 100, 200, 100, 0, 100, 120, 0,
-			140, 150, 140, 160, 200, 180, 0, 180, 200, 0, 220, 0, 220, 240,
-			200, 260, 260, 150, 280, 0, 300, 300, 0, 320, 200, 0, 350, 100, 400 };
+	Integer[] PRICE_FOR_STREET = { 0, 100, 0, 110, 0, 150, 160, 0, 200, 0, 220,
+			320, 0, 350, 0, 450, 0, 480, 580, 0, 600, 0, 700, 0, 750, 900, 0,
+			1000 };
 
 	/**
 	 * Vorläufige Namen von Feldern. Insgesamt bis jetzt 28 Felder.
@@ -44,8 +44,8 @@ public interface IMonopolyFields {
 	Color[] COLOUR = { null, Color.magenta, null, Color.magenta, null,
 			Color.cyan, Color.cyan, null, Color.pink, null, Color.pink,
 			Color.orange, null, Color.orange, null, Color.red, null, Color.red,
-			Color.yellow, null, Color.yellow, null, Color.green, null, Color.green,
-			Color.blue, null, Color.blue };
+			Color.yellow, null, Color.yellow, null, Color.green, null,
+			Color.green, Color.blue, null, Color.blue };
 
 	/**
 	 * Die Miete stimmt ebenfalls mit dem Original Spiel überein. Alle Felder

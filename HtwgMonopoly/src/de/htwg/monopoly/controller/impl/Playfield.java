@@ -4,9 +4,6 @@ import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import com.google.inject.Inject;
-import com.google.inject.name.Named;
-
 import de.htwg.monopoly.controller.IPlayfield;
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Bank;
@@ -23,18 +20,13 @@ public class Playfield implements IPlayfield {
 	private IFieldObject[] playfield;
 	private CommunityCardsStack commStack;
 	private ChanceCardsStack chanStack;
-	@Inject @Named("FieldSize") private int fieldSize;
-	//private int fieldSize;
+	private int fieldSize;
 	private boolean wentOverGo = false;
 
 	/* internationalization */
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
 
-	
-	public Playfield() {
-		this(IMonopolyUtil.TUI_FIELD_SIZE);
-	}
 	
 	public Playfield(int size) {
 		this.fieldSize = size;
@@ -47,22 +39,6 @@ public class Playfield implements IPlayfield {
 		}
 	}
 
-	/**
-	 * help function for testing, later it will be replaced by google guice
-	 * (maybe)
-	 * 
-	 * @param size
-	 */
-	public void initialize(int size) {
-		this.fieldSize = size;
-		this.playfield = new IFieldObject[fieldSize];
-		this.commStack = new CommunityCardsStack();
-		this.chanStack = new ChanceCardsStack();
-
-		for (int i = 0; i < fieldSize; i++) {
-			createField(i);
-		}
-	}
 
 	/**
 	 * TODO for each case statement a new function!!! -> MAYBE
@@ -167,8 +143,7 @@ public class Playfield implements IPlayfield {
 			break;
 		case 'p':
 			sb.append(bundle.getString("play_bsys"));
-			currentPlayer.setInPrison(true);
-			movePlayerTo(currentPlayer, "Bsys Labor, nur zu Besuch");
+			movePlayerToPrison(currentPlayer);
 			break;
 		case 'n':
 			sb.append(bundle.getString("play_look"));
@@ -222,9 +197,9 @@ public class Playfield implements IPlayfield {
 
 		}
 
-		if (target.equalsIgnoreCase("Bsys Labor")) {
-			currentPlayer.setInPrison(true);
-			return bundle.getString("play_bsys");
+		if (target.equalsIgnoreCase("Bsys Labor, nur zu Besuch")) {
+			movePlayerToPrison(currentPlayer);
+			return " ;) ";
 		}
 
 		for (int i = oldPosition; i < (fieldSize + oldPosition); ++i) {
@@ -248,6 +223,13 @@ public class Playfield implements IPlayfield {
 		// Important: the new position must not be a Stack !!! (for now....)
 		return performActionAndAppendInfo(playfield[position], currentPlayer);
 	}
+
+	private void movePlayerToPrison(Player currentPlayer) {
+		currentPlayer.setInPrison(true);
+		currentPlayer.setPosition(IMonopolyUtil.POSITION_OF_PRISON);
+		
+	}
+
 
 	public CommunityCardsStack getCommStack() {
 		return commStack;

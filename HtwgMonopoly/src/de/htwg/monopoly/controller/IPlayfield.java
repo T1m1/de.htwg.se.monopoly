@@ -104,12 +104,4 @@ public interface IPlayfield {
 	 * @param field
 	 */
 	void setFieldAtIndex(int i, IFieldObject field);
-	
-	/**
-	 * for testing
-	 * 
-	 * @param size
-	 */
-	void initialize(int size);
-
 }
