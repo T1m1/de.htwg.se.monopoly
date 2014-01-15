@@ -76,10 +76,11 @@ public class Playfield implements IPlayfield {
 		case 'g':
 			this.commStack.setPosition(IMonopolyFields.POSITION[i]);
 			playfield[i] = this.commStack;
+			
 			break;
 		case 'z':
 			playfield[i] = new FieldObject("Zusatzsteuer",
-					IMonopolyFields.TYP[i], IMonopolyUtil.ZUSATZSTEUER);
+					IMonopolyFields.TYP[i], IMonopolyUtil.ZUSATZSTEUER, IMonopolyFields.POSITION[i]);
 			break;
 		case 'e':
 			this.chanStack.setPosition(IMonopolyFields.POSITION[i]);

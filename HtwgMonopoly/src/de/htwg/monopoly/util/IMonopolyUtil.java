@@ -54,7 +54,9 @@ public interface IMonopolyUtil {
 	
 	/* GUI */
 	int COLORSIZE = 20;
-	int TWO_HUNDRET_SEVENTY = 270;
+	int WEST = 270;
+	int SOUTH = 180;
+	int EAST = 90;
 
 
 	int MAX_NUMBER_OF_STEPS = 5;

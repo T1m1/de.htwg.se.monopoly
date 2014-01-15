@@ -48,15 +48,15 @@ class FieldDrawPanel extends JPanel {
 	private static final int TWENTY_FIFE = 25;
 	private static final int FOUR = 4;
 	private static final int FIFTY = 50;
-	
+
 	private static final String RESOURCE_DIRECTORY = "resources/";
 
 	private static final String PICTURE_GO = "GO.gif";
-	private static final String PICTURE_CHANCE_WEST = "CHANCE_WEST.jpg";
-	private static final String PICTURE_CHANCE_NORTH = "CHANCE_NORTH.jpg";
+	private static final String PICTURE_ZU_BESUCH = "ZU_BESUCH.jpg";
+	private static final String PICTURE_BSYS = "BSYS.jpg";
 	private static final String PICTURE_LOGO = "LOGO.png";
-	private static final String PICTURE_COMM_NORTH = "COMM_NORTH.jpg";
 	private static final String PICTURE_STRANDBAR = "STRANDBAR.jpg";
+	private static final String PICTURE_GEZ = "GEZ.jpg";
 
 	private static final String PICTURE_USER1 = "Schoppa.jpg";
 	private static final String PICTURE_USER2 = "Neuschwander.jpg";
@@ -68,16 +68,39 @@ class FieldDrawPanel extends JPanel {
 	private static final String[] PICTURES = { PICTURE_USER1, PICTURE_USER2,
 			PICTURE_USER3, PICTURE_USER4, PICTURE_USER5, PICTURE_USER6 };
 
+	private static final String COMM_NORTH = "COMM_NORTH.jpg";
+	private static final String COMM_EAST = "COMM_EAST.jpg";
+	private static final String COMM_SOUTH = "COMM_SOUTH.jpg";
+	private static final String COMM_WEST = "COMM_WEST.jpg";
+	private static final String CHANCE_NORTH = "CHANCE_NORTH.jpg";
+	private static final String CHANCE_EAST = "CHANCE_EAST.jpg";
+	private static final String CHANCE_SOUTH = "CHANCE_SOUTH.jpg";
+	private static final String CHANCE_WEST = "CHANCE_WEST.jpg";
+
+	private static final int COMM = 0;
+	private static final int CHANCE = 1;
+
+	private static final int NORTH = 0;
+	private static final int EAST = 1;
+	private static final int SOUTH = 2;
+	private static final int WEST = 3;
+
+	private static final String[][] CARDS = {
+			{ COMM_NORTH, COMM_EAST, COMM_SOUTH, COMM_WEST },
+			{ CHANCE_NORTH, CHANCE_EAST, CHANCE_SOUTH, CHANCE_WEST } };
+
 	private IController contr;
 	private Graphics2D g2d;
 
 	private Image htwgLogo;
 	private Image go;
+	private Image bsys;
 	private Image strandbar;
-	private Image ereignisfeld;
-	private Image ereignisfeldLiegend;
-	private Image gemeinschaftsfeld;
+	private Image zuBesuch;
+	private Image gez;
 
+	private List<Image> chance;
+	private List<Image> community;
 	private List<Image> figures;
 
 	/**
@@ -152,6 +175,9 @@ class FieldDrawPanel extends JPanel {
 		Position position = new Position(fieldNameAtIndex.getPosition(),
 				NUMBER_OF_ROWS, DIFFERENC);
 
+		
+		// TODO SWITCH CASE
+		
 		/* check type of IFieldObject to call specific functions */
 		if (fieldNameAtIndex.getType() == 's') {
 			/* if street object */
@@ -165,15 +191,55 @@ class FieldDrawPanel extends JPanel {
 			drawEreignisfeld(position);
 		} else if (fieldNameAtIndex.getType() == 'g') {
 			drawGemeinschaftsfeld(position);
+		} else if (fieldNameAtIndex.getType() == 'p') {
+			drawPrision();
+		} else if (fieldNameAtIndex.getType() == 'n') {
+			drawNurZuBesuch();
+		} else if (fieldNameAtIndex.getType() == 'z') {
+			drawZusatzsteuer(position);
 		}
 
 	}
 
-	private void drawGemeinschaftsfeld(Position position) {
-		g2d.drawImage(this.gemeinschaftsfeld, position.getX() + 1,
-				(NUMBER_OF_ROWS - 1) * DIFFERENC + 1, DIFFERENC - 1,
-				DIFFERENC - 1, null);
+	private void drawZusatzsteuer(Position pos) {
+		g2d.drawImage(gez, pos.getPictureX() + 1, pos.getPictureY() + 1,
+				DIFFERENC - 1, DIFFERENC - 1, null);
 
+	}
+
+	private void drawNurZuBesuch() {
+		g2d.drawImage(zuBesuch, (NUMBER_OF_ROWS - 1) * DIFFERENC + 1, 1,
+				DIFFERENC - 1, DIFFERENC - 1, null);
+
+	}
+
+	private void drawPrision() {
+		g2d.drawImage(bsys, 0 + 1, (NUMBER_OF_ROWS - 1) * DIFFERENC + 1,
+				DIFFERENC - 1, DIFFERENC - 1, null);
+
+	}
+
+	private void drawGemeinschaftsfeld(Position pos) {
+		if (pos.getRotate() == 0) {
+			/* GUI NORTH */
+			g2d.drawImage(community.get(NORTH), pos.getPictureX() + 1,
+					pos.getPictureY() + 1, DIFFERENC - 1, DIFFERENC - 1, null);
+
+		} else if (pos.getRotate() == IMonopolyUtil.EAST) {
+			/* GUI EAST */
+			g2d.drawImage(community.get(EAST), pos.getPictureX() + 1,
+					pos.getPictureY() + 1, DIFFERENC - 1, DIFFERENC - 1, null);
+
+		} else if (pos.getRotate() == IMonopolyUtil.SOUTH) {
+			/* GUI SOUTH */
+			g2d.drawImage(community.get(SOUTH), pos.getPictureX() + 1,
+					pos.getPictureY() + 1, DIFFERENC - 1, DIFFERENC - 1, null);
+
+		} else if (pos.getRotate() == IMonopolyUtil.WEST) {
+			/* GUI WESt */
+			g2d.drawImage(community.get(WEST), pos.getPictureX() + 1,
+					pos.getPictureY() + 1, DIFFERENC - 1, DIFFERENC - 1, null);
+		}
 	}
 
 	/**
@@ -200,11 +266,19 @@ class FieldDrawPanel extends JPanel {
 	private void drawEreignisfeld(Position pos) {
 		if (pos.getRotate() == 0) {
 			/* GUI NORTH */
-			g2d.drawImage(this.ereignisfeld, pos.getPictureX(),
+			g2d.drawImage(chance.get(NORTH), pos.getPictureX(),
 					pos.getPictureY(), DIFFERENC - 1, DIFFERENC - 1, null);
-		} else if (pos.getRotate() == IMonopolyUtil.TWO_HUNDRET_SEVENTY) {
+		} else if (pos.getRotate() == IMonopolyUtil.EAST) {
 			/* GUI EAST */
-			g2d.drawImage(this.ereignisfeldLiegend, pos.getPictureX(),
+			g2d.drawImage(chance.get(EAST), pos.getPictureX(),
+					pos.getPictureY(), DIFFERENC - 1, DIFFERENC - 1, null);
+		} else if (pos.getRotate() == IMonopolyUtil.SOUTH) {
+			/* GUI SOUTH */
+			g2d.drawImage(chance.get(SOUTH), pos.getPictureX(),
+					pos.getPictureY(), DIFFERENC - 1, DIFFERENC - 1, null);
+		} else if (pos.getRotate() == IMonopolyUtil.WEST) {
+			/* GUI WESt */
+			g2d.drawImage(chance.get(WEST), pos.getPictureX(),
 					pos.getPictureY(), DIFFERENC - 1, DIFFERENC - 1, null);
 		}
 	}
@@ -252,18 +326,26 @@ class FieldDrawPanel extends JPanel {
 		go = new ImageIcon(RESOURCE_DIRECTORY + PICTURE_GO).getImage();
 		strandbar = new ImageIcon(RESOURCE_DIRECTORY + PICTURE_STRANDBAR)
 				.getImage();
-		ereignisfeld = new ImageIcon(RESOURCE_DIRECTORY + PICTURE_CHANCE_NORTH)
+		zuBesuch = new ImageIcon(RESOURCE_DIRECTORY + PICTURE_ZU_BESUCH)
 				.getImage();
-		ereignisfeldLiegend = new ImageIcon(RESOURCE_DIRECTORY
-				+ PICTURE_CHANCE_WEST).getImage();
-		gemeinschaftsfeld = new ImageIcon(RESOURCE_DIRECTORY
-				+ PICTURE_COMM_NORTH).getImage();
+		bsys = new ImageIcon(RESOURCE_DIRECTORY + PICTURE_BSYS).getImage();
+		gez = new ImageIcon(RESOURCE_DIRECTORY + PICTURE_GEZ).getImage();
+		chance = new ArrayList<Image>();
+		community = new ArrayList<Image>();
+
+		Image img;
+		for (int j = 0; j < 4; j++) {
+			img = new ImageIcon(RESOURCE_DIRECTORY + CARDS[COMM][j]).getImage();
+			community.add(img);
+			img = new ImageIcon(RESOURCE_DIRECTORY + CARDS[CHANCE][j])
+					.getImage();
+			chance.add(img);
+		}
 
 		figures = new ArrayList<Image>();
 
 		for (int i = 0; i < PICTURES.length; i++) {
-			Image img = new ImageIcon(RESOURCE_DIRECTORY + PICTURES[i])
-					.getImage();
+			img = new ImageIcon(RESOURCE_DIRECTORY + PICTURES[i]).getImage();
 			figures.add(img);
 		}
 
@@ -274,11 +356,12 @@ class FieldDrawPanel extends JPanel {
 		repaint();
 	}
 
-	
 	private void setFigureForPlayer() {
 		for (int i = 0; i < contr.getNumberOfPlayer(); i++) {
 			Player player = contr.getPlayer(i);
-			//player.setFigure()
+			String tmp = PICTURES[i];
+			tmp = tmp.substring(0, tmp.lastIndexOf("."));
+			player.setFigure(tmp);
 
 		}
 
@@ -295,16 +378,17 @@ class FieldDrawPanel extends JPanel {
 	private void drawPosition(int i, int position) {
 		Position pos = new Position(position, NUMBER_OF_ROWS, DIFFERENC);
 		if (i < 2) {
-			g2d.drawImage(figures.get(i), pos.getPictureX(), pos.getPictureY() + TWENTY
-					+ (i * TWENTY), TWENTY, TWENTY_FIFE, null);
+			g2d.drawImage(figures.get(i), pos.getPictureX(), pos.getPictureY()
+					+ TWENTY + (i * TWENTY), TWENTY, TWENTY_FIFE, null);
 		} else if (i < FOUR) {
-			g2d.drawImage(figures.get(i), pos.getPictureX()+TWENTY_FIFE, pos.getPictureY() + TWENTY
-					+ (i%2 * TWENTY), TWENTY, TWENTY_FIFE, null);
+			g2d.drawImage(figures.get(i), pos.getPictureX() + TWENTY_FIFE,
+					pos.getPictureY() + TWENTY + (i % 2 * TWENTY), TWENTY,
+					TWENTY_FIFE, null);
 		} else {
-			g2d.drawImage(figures.get(i), pos.getPictureX()+FIFTY, pos.getPictureY() + TWENTY
-					+ (i%2 * TWENTY), TWENTY, TWENTY_FIFE, null);
+			g2d.drawImage(figures.get(i), pos.getPictureX() + FIFTY,
+					pos.getPictureY() + TWENTY + (i % 2 * TWENTY), TWENTY,
+					TWENTY_FIFE, null);
 		}
-		
 
 	}
 

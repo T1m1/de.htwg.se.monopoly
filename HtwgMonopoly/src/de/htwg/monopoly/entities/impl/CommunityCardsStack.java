@@ -1,5 +1,7 @@
 package de.htwg.monopoly.entities.impl;
 
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -7,14 +9,14 @@ import de.htwg.monopoly.entities.ICards;
 
 public class CommunityCardsStack extends CardsStack {
 
-	private int position;
+	private Deque<Integer> position;
 
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
 
 	public CommunityCardsStack(int position) {
 		this();
-		this.position = position;
+		this.position.push(position);
 	}
 
 	/**
@@ -25,10 +27,12 @@ public class CommunityCardsStack extends CardsStack {
 	public CommunityCardsStack(ICards card) {
 		super();
 		pushOnTop(card);
+		position = new LinkedList<Integer>();
 	}
-	
+
 	public CommunityCardsStack() {
 		super();
+		position = new LinkedList<Integer>();
 		pushOnTop(new CommunityCard(bundle.getString("comm_1"),
 				bundle.getString("comm_1.1"), false));
 		pushOnTop(new CommunityCard(bundle.getString("comm_2"),
@@ -92,14 +96,22 @@ public class CommunityCardsStack extends CardsStack {
 		return "Gemeinschaftsfeld";
 	}
 
+	/**
+	 * Using a deque, because we need all position of the singleton stack.p
+	 * after we poll the last value we push it back to the top of the list.
+	 * Because the gui call a lot of time the same function.. !?
+	 * 
+	 */
 	@Override
 	public int getPosition() {
-		return this.position;
+		int ret = this.position.pollLast();
+		this.position.push(ret);
+		return ret;
 	}
 
 	/* TODO EVTL DEPENDENCY INJECTION */
 	public void setPosition(int position) {
-		this.position = position;
+		this.position.push(position);
 	}
 
 }
