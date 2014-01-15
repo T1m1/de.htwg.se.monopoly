@@ -12,6 +12,9 @@ import javax.swing.JMenuItem;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import de.htwg.monopoly.controller.IController;
+import de.htwg.monopoly.controller.impl.Controller;
+
 public class MenuBar extends JMenuBar implements ActionListener {
 
 	private final Logger logger = LogManager.getLogger("MenuBar");
@@ -20,6 +23,8 @@ public class MenuBar extends JMenuBar implements ActionListener {
 	 */
 	private static final long serialVersionUID = 1262745107060789415L;
 
+	private IController controller;
+
 	private JMenuItem miSource, miRegeln;
 	private JMenuItem miNewGame;
 	private JMenuItem miExitGame;
@@ -27,7 +32,8 @@ public class MenuBar extends JMenuBar implements ActionListener {
 	private static final String RULES = "http://de.wikipedia.org/wiki/Monopoly";
 	private static final String SOURCE = "https://github.com/T1m1/de.htwg.se.monopoly";
 
-	public MenuBar() {
+	public MenuBar(IController controller) {
+		this.controller = controller;
 
 		// Create the menu bar.
 		JMenuBar menuBar = new JMenuBar();
@@ -69,6 +75,8 @@ public class MenuBar extends JMenuBar implements ActionListener {
 		} else if (event.equals(miRegeln)) {
 			showURL(RULES);
 
+		} else if (event.equals(miNewGame)) {
+			controller.startNewGame();
 		}
 
 	}
