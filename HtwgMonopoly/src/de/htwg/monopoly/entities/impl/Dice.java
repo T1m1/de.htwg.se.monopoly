@@ -3,7 +3,7 @@ package de.htwg.monopoly.entities.impl;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
 public final class Dice {
-	
+
 	private int fieldSize;
 
 	public Dice(int fieldSize) {
@@ -15,8 +15,8 @@ public final class Dice {
 	private int resultDice = 0;
 
 	/**
-	 * for now, this method only returns a new value, when the method setDice is
-	 * called before. Going to fix that
+	 * This Method throws (sets) the two dices, represented as two private dice
+	 * variables. It also sets the result dice according to the field size.
 	 * 
 	 * @return
 	 */
