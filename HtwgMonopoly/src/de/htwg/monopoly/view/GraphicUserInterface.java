@@ -99,7 +99,7 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 		setSize(baseSize * DISPLAY_FIELD_SIZE + BUFFER, baseSize
 				* DISPLAY_FIELD_SIZE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// setLocationRelativeTo(null);
+		setLocationRelativeTo(null);
 
 	}
 

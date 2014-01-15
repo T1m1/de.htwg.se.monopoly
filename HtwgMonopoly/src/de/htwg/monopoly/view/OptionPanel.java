@@ -16,7 +16,6 @@ import javax.swing.JTextArea;
 import javax.swing.border.Border;
 
 import de.htwg.monopoly.controller.IController;
-import de.htwg.monopoly.entities.impl.Dice;
 
 public class OptionPanel extends JPanel implements ActionListener {
 

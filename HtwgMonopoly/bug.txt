@@ -21,5 +21,5 @@ FEATURES
 
 #GUI
 4.1 [x] Bestätigung wenn Strasse gekauft wurde.
-4.2 [ ] Menü implementieren
+4.2 [x] Menü implementieren
 4.2 [ ] Wenn im Gefängnis -> PopUp mit Freikauf/Würfel/Karte einlösen Optionen
