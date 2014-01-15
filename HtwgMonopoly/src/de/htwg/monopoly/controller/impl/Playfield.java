@@ -86,7 +86,7 @@ public class Playfield implements IPlayfield {
 			this.chanStack.setPosition(IMonopolyFields.POSITION[i]);
 			playfield[i] = (IFieldObject) this.chanStack;
 			break;
-		case 'n':
+		case 'n': 
 			/* BSYS -> zu besuch */
 			playfield[i] = new FieldObject("Bsys Labor: nur zu Besuch",
 					IMonopolyFields.TYP[i], 0, IMonopolyFields.POSITION[i]);
