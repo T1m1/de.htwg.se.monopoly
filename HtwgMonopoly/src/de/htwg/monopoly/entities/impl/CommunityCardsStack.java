@@ -40,15 +40,15 @@ public class CommunityCardsStack extends CardsStack {
 		pushOnTop(new CommunityCard(bundle.getString("comm_3"),
 				bundle.getString("comm_3.1"), false));
 		pushOnTop(new CommunityCard(bundle.getString("comm_4"),
-				bundle.getString("comm_4.1"), false));
+				bundle.getString("comm_4.1"), true));
 		pushOnTop(new CommunityCard(bundle.getString("comm_5"),
-				bundle.getString("comm_5.1"), false));
+				bundle.getString("comm_5.1"), true));
 		pushOnTop(new CommunityCard(bundle.getString("comm_6"),
 				bundle.getString("comm_6.1"), false));
 		pushOnTop(new CommunityCard(bundle.getString("comm_7"),
-				bundle.getString("comm_7.1"), false));
+				bundle.getString("comm_7.1"), true));
 		pushOnTop(new CommunityCard(bundle.getString("comm_8"),
-				bundle.getString("comm_8.1"), false));
+				bundle.getString("comm_8.1"), true));
 		pushOnTop(new CommunityCard(bundle.getString("comm_9"),
 				bundle.getString("comm_9.1"), false));
 		pushOnTop(new CommunityCard(bundle.getString("comm_10"),
@@ -66,15 +66,15 @@ public class CommunityCardsStack extends CardsStack {
 		pushOnTop(new CommunityCard(bundle.getString("comm_16"),
 				bundle.getString("comm_16.1"), false));
 		pushOnTop(new CommunityCard(bundle.getString("comm_17"),
-				bundle.getString("comm_17.1"), false));
+				bundle.getString("comm_17.1"), true));
 		pushOnTop(new CommunityCard(bundle.getString("comm_18"),
-				bundle.getString("comm_18.1"), false));
+				bundle.getString("comm_18.1"), true));
 		pushOnTop(new CommunityCard(bundle.getString("comm_19"),
 				bundle.getString("comm_19.1"), false));
 		pushOnTop(new CommunityCard(bundle.getString("comm_20"),
-				bundle.getString("comm_20.1"), false));
+				bundle.getString("comm_20.1"), true));
 		pushOnTop(new CommunityCard(bundle.getString("comm_21"),
-				bundle.getString("comm_21.1"), false));
+				bundle.getString("comm_21.1"), true));
 		pushOnTop(new CommunityCard(bundle.getString("comm_22"),
 				bundle.getString("comm_22.1"), false));
 		pushOnTop(new CommunityCard(bundle.getString("comm_23"),

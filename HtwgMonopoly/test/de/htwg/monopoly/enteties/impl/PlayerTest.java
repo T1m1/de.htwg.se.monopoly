@@ -59,24 +59,6 @@ public class PlayerTest {
 		assertEquals(0, Double.compare(12345, player1.getBudget()));
 	}
 
-//	@Test
-//	public void testGetOwnership() {
-//		String[] steets = { "Haus", "Mensa" };
-//		player1.setOwnership(steets);
-//		assertEquals(steets[0], player1.getOwnership()[0]);
-//		assertEquals(steets[1], player1.getOwnership()[1]);
-//		assertNotSame(steets[1], player1.getOwnership()[0]);
-//	}
-
-//	@Test
-//	public void testSetOwnership() {
-//		String[] steets = { "Haus", "Mensa" };
-//		player1.setOwnership(steets);
-//		assertEquals(steets[0], player1.getOwnership()[0]);
-//		assertEquals(steets[1], player1.getOwnership()[1]);
-//		assertNotSame(steets[1], player1.getOwnership()[0]);
-//	}
-
 	@Test
 	public void testGetPosition() {
 		player1.setPosition(5);
@@ -100,8 +82,8 @@ public class PlayerTest {
 		assertTrue(player1.isInPrison());
 		
 	}
-	@Test
 	
+	@Test	
 	public void testIsInPrison() {
 		player1.setInPrison(true);
 		assertTrue(player1.isInPrison());
@@ -113,7 +95,19 @@ public class PlayerTest {
 		Street a = new Street("huhu", 200, null, 200, 100);
 		player1.addOwnership(a);
 		player1.getOwnership();
-		
-		
+	}
+	
+	@Test
+	public void testPrisonShit() {
+		assertFalse(player1.hasPrisonFreeCard());
+		player1.incrementPrisonFreeCard();
+		assertTrue(player1.hasPrisonFreeCard());
+		player1.usePrisonFreeCard();
+		assertFalse(player1.hasPrisonFreeCard());
+	}
+	
+	@Test(expected = AssertionError.class)
+	public void testPrisonWithError() {
+		player1.usePrisonFreeCard();
 	}
 }

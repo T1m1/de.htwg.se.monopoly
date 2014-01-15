@@ -141,6 +141,7 @@ public class PlayfieldTest {
 
 		IFieldObject CurrentField = field.getFieldAtIndex(0);
 		assertEquals(0, CurrentField.getPosition());
+		field.movePlayerTo(testplayer, "frei");
 
 	}
 
