@@ -38,7 +38,7 @@ public class Controller extends Observable implements IController {
 	public Controller(@Named("FieldSize") int fieldSize) {
 		this.fieldSize = fieldSize;
 		this.players = new PlayerController();
-		this.field = new Playfield(28);
+		this.field = new Playfield(fieldSize);
 		this.message = new StringBuilder();
 		this.dice = new Dice(this.fieldSize);
 	}
