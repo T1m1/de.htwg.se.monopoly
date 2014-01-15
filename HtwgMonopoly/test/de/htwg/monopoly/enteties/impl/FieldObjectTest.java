@@ -1,4 +1,4 @@
-package de.htwg.monopoly.entities;
+package de.htwg.monopoly.enteties.impl;
 
 import static org.junit.Assert.*;
 

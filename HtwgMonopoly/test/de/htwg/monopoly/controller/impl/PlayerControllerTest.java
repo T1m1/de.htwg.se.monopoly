@@ -12,7 +12,6 @@ import org.junit.Test;
 
 import de.htwg.monopoly.controller.impl.PlayerController;
 import de.htwg.monopoly.entities.ICards;
-import de.htwg.monopoly.entities.impl.Bank;
 import de.htwg.monopoly.entities.impl.Card;
 import de.htwg.monopoly.entities.impl.CommunityCard;
 import de.htwg.monopoly.entities.impl.Player;

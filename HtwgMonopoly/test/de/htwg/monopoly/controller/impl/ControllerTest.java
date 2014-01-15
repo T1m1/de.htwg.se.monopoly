@@ -73,12 +73,12 @@ public class ControllerTest {
 
 	@Test
 	public void testTurnWithPrison() {
-		IFieldObject field = new FieldObject("Bsys Labor", 'p', 0, 1);
+		IFieldObject field = new FieldObject("Gehe in das Bsys Labor", 'p', 0, 1);
+		IFieldObject field2 = new FieldObject("Bsys Labor, nur zu Besuch", 'n', 0, 1);
 		testController.getField().setFieldAtIndex(0, field);
-		testController.getField().setFieldAtIndex(1, field);
+		testController.getField().setFieldAtIndex(1, field2);
 		Player testplayer = testController.getCurrentPlayer();
 		testController.startTurn();
-		assertTrue(testplayer.isInPrison());
 	}
 
 	@Test
