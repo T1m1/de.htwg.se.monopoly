@@ -34,7 +34,7 @@ public interface IMonopolyFields {
 			"Bsys Labor, nur zu Besuch", "SysProg", "Ereignisfeld", "ProgTech",
 			"Mathe 1", "Zusatzsteuer", "Prog-\nTech 2", "Frei parken", "TI",
 			GEMEINSCHAFTSFELD, "ALDA", "DB", "Ereignisfeld", "Mathe 2",
-			"Bsys Labor", "ReAr", GEMEINSCHAFTSFELD, "SE", "Konso",
+			"Gehe in das Bsys Labor", "ReAr", GEMEINSCHAFTSFELD, "SE", "Konso",
 			"Zusatzsteuer", "Sekretariat" };
 	/**
 	 * Farben in richtiger Reihenfolge. Wenn keine Straﬂe, dann ist Farbe null.

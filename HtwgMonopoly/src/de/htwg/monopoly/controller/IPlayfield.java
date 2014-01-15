@@ -68,7 +68,7 @@ public interface IPlayfield {
 	 * @param currentPlayer
 	 * @return
 	 */
-	String appendInfo(IFieldObject currentField, Player currentPlayer);
+	String performActionAndAppendInfo(IFieldObject currentField, Player currentPlayer);
 
 	/**
 	 * Moves the current Player to the field according to the String target. If

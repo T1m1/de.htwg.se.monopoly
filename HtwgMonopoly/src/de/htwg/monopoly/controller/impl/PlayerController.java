@@ -18,9 +18,6 @@ public class PlayerController implements IPlayerController {
 	private Player[] players;
 	/* number of player in game */
 	private int numberOfPlayer;
-	/* index of current player */
-	// Idee: mit Stack arbeiten, dann braucht man auch keinen index, sondern der
-	// player wo "oben" liegt ist dran.
 	private int currentPlayer;
 	private Scanner in;
 

@@ -37,7 +37,7 @@ public class Controller extends Observable implements IController {
 	@Inject
 	public Controller() {
 		this.players = new PlayerController();
-		this.field = new Playfield();
+		this.field = new Playfield(this.fieldSize);
 		this.message = new StringBuilder();
 	}
 
@@ -54,6 +54,7 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void startNewGame() {
 		// TODO ZufallsSpieler auswählen
+		
 		this.currentPlayer = players.getNextPlayer();
 		notifyObservers(0);
 	}
@@ -91,7 +92,7 @@ public class Controller extends Observable implements IController {
 		} else if (fieldIsAChanceStack()) {
 			message.append(performChanceCardAction());
 		} else {
-			message.append(field.appendInfo(currentField, currentPlayer));
+			message.append(field.performActionAndAppendInfo(currentField, currentPlayer));
 		}
 		
 	}

@@ -4,6 +4,9 @@ import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
+
 import de.htwg.monopoly.controller.IPlayfield;
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Bank;
@@ -20,8 +23,8 @@ public class Playfield implements IPlayfield {
 	private IFieldObject[] playfield;
 	private CommunityCardsStack commStack;
 	private ChanceCardsStack chanStack;
-	// @Inject @Named("FieldSize") private int fieldSize;
-	private int fieldSize;
+	@Inject @Named("FieldSize") private int fieldSize;
+	//private int fieldSize;
 	private boolean wentOverGo = false;
 
 	/* internationalization */
@@ -29,7 +32,7 @@ public class Playfield implements IPlayfield {
 			Locale.GERMAN);
 
 	public Playfield() {
-		this.fieldSize = IMonopolyUtil.TUI_FIELD_SIZE;
+		//this.fieldSize = IMonopolyUtil.TUI_FIELD_SIZE;
 		this.playfield = new IFieldObject[this.fieldSize];
 		this.commStack = new CommunityCardsStack();
 		this.chanStack = new ChanceCardsStack();
@@ -37,6 +40,10 @@ public class Playfield implements IPlayfield {
 		for (int i = 0; i < fieldSize; i++) {
 			createField(i);
 		}
+	}
+	
+	public Playfield(int size) {
+		initialize(size);
 	}
 
 	/**
@@ -88,7 +95,7 @@ public class Playfield implements IPlayfield {
 			break;
 		case 'n': 
 			/* BSYS -> zu besuch */
-			playfield[i] = new FieldObject("Bsys Labor: nur zu Besuch",
+			playfield[i] = new FieldObject("Bsys Labor, nur zu Besuch",
 					IMonopolyFields.TYP[i], 0, IMonopolyFields.POSITION[i]);
 			break;
 		case 'p':
@@ -134,7 +141,7 @@ public class Playfield implements IPlayfield {
 		return this.fieldSize;
 	}
 
-	public String appendInfo(IFieldObject currentField, Player currentPlayer) {
+	public String performActionAndAppendInfo(IFieldObject currentField, Player currentPlayer) {
 		StringBuilder sb = new StringBuilder();
 		String output;
 		if (wentOverGo) {
@@ -160,6 +167,7 @@ public class Playfield implements IPlayfield {
 		case 'p':
 			sb.append(bundle.getString("play_bsys"));
 			currentPlayer.setInPrison(true);
+			movePlayerTo(currentPlayer, "Bsys Labor, nur zu Besuch");
 			break;
 		case 'n':
 			sb.append(bundle.getString("play_look"));
@@ -207,7 +215,7 @@ public class Playfield implements IPlayfield {
 		int position = -1;
 		try {
 			movePlayer(currentPlayer, Integer.parseInt(target));
-			return appendInfo(playfield[currentPlayer.getPosition()],
+			return performActionAndAppendInfo(playfield[currentPlayer.getPosition()],
 					currentPlayer);
 		} catch (NumberFormatException e) {
 
@@ -237,7 +245,7 @@ public class Playfield implements IPlayfield {
 		wentOverGo = (position < oldPosition);
 
 		// Important: the new position must not be a Stack !!! (for now....)
-		return appendInfo(playfield[position], currentPlayer);
+		return performActionAndAppendInfo(playfield[position], currentPlayer);
 	}
 
 	public CommunityCardsStack getCommStack() {
