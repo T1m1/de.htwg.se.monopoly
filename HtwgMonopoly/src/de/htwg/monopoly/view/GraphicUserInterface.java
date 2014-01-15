@@ -23,7 +23,7 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 	private static final int DISPLAY_FIELD_SIZE = 100;
 	private static final int BUFFER = 150;
 
-	private static final int BORDER_SIZE = 10;
+	private static final int BORDER_SIZE = 5;
 
 	/**
 	 * automatic generated serial version UID
