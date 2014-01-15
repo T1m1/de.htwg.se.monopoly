@@ -1,0 +1,22 @@
+BUGS
+
+1.1 [ ] Wenn Spieler auf los geschickt wird und würfeln bleibt die GUI stecken.
+1.2 [ ] Wenn man auf "Frei Parken" kommt. Wird man ins Gefängnnis gesteckt.
+1.3 [ ] Wird eine 7 gewürfelt, läuft man 6. 
+ 
+
+FEATURES
+
+
+#GAME
+2.1 [ ] Gewinnen bzw. Verlieren implementieren. Sollte einer verlieren wird das Spiel ausgewertet.
+2.2 [ ] Wenn Spieler ins Gefängnis geschickt wird, nicht nur ins Gefängnis schicken sondern auch an die Position wo das Gefängnis ist.
+3.3 [ ] Freikaufen implementieren.
+
+#TUI
+3.1 [ ] Zeilenumbruch beim Zeichnen vom Spielfeld nach ca. 12 Strassen
+
+#GUI
+4.1 [ ] Bestätigung wenn Strasse gekauft wurde.
+4.2 [ ] Menü implementieren
+4.2 [ ] Wenn im Gefängnis -> PopUp mit Freikauf/Würfel/Karte einlösen Optionen
