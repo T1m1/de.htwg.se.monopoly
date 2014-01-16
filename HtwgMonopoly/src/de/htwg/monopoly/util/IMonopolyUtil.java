@@ -11,7 +11,7 @@ public interface IMonopolyUtil {
 	/**
 	 * CONFIGURATIONS
 	 */
-	int FIELD_SIZE = 10;
+	int FIELD_SIZE = 28;
 	
 	
 	/**

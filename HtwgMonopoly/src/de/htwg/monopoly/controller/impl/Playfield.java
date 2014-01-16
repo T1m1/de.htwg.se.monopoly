@@ -37,12 +37,11 @@ public class Playfield implements IPlayfield {
 		this.playfield = new IFieldObject[this.fieldSize];
 		this.commStack = new CommunityCardsStack();
 		this.chanStack = new ChanceCardsStack();
-
+		
 		for (int i = 0; i < fieldSize; i++) {
 			createField(i);
 		}
 	}
-
 	/**
 	 * TODO for each case statement a new function!!! -> MAYBE
 	 * 
