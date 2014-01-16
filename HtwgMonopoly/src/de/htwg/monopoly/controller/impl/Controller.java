@@ -222,29 +222,46 @@ public class Controller extends Observable implements IController {
 
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void receiveGoMoney() {
 		Bank.receiveMoney(currentPlayer, IMonopolyUtil.LOS_MONEY);
 		notifyObservers();
 	}
 
+	/**
+	 * return object with all players
+	 */
 	public PlayerController getPlayers() {
 		return players;
 	}
 
+	/**
+	 * return playfield object
+	 */
 	public Playfield getField() {
 		return field;
 	}
 
+	/**
+	 * return current player object
+	 */
 	public Player getCurrentPlayer() {
 		return currentPlayer;
 	}
 
-	/* for junit test */
+	/**
+	 * for TESTCASES - set current field
+	 */
 	public void setCurrentField(IFieldObject currentField) {
 		this.currentField = currentField;
 	}
 
+	/**
+	 * get string with possible options
+	 */
 	@Override
 	public List<String> getOptions(int chooseOption) {
 
@@ -279,6 +296,11 @@ public class Controller extends Observable implements IController {
 		return options;
 	}
 
+	/**
+	 * return string with options to choose when user stay on street
+	 * 
+	 * @return
+	 */
 	private List<String> getOptionOnStreet() {
 		List<String> options = new ArrayList<String>();
 		/* if current field a steet */
@@ -293,6 +315,11 @@ public class Controller extends Observable implements IController {
 		return options;
 	}
 
+	/**
+	 * return a string with options, if player in prison
+	 * 
+	 * @return
+	 */
 	private List<String> getOptionPrison() {
 		List<String> options = new ArrayList<String>();
 		/* check if current player in prison */
@@ -301,7 +328,7 @@ public class Controller extends Observable implements IController {
 			options.add("(f) " + bundle.getString("contr_free") + " ("
 					+ IMonopolyUtil.FREIKAUFEN + ")");
 			options.add("(3) " + bundle.getString("contr_threeDice"));
-			if(currentPlayer.hasPrisonFreeCard()) {
+			if (currentPlayer.hasPrisonFreeCard()) {
 				options.add("(c) " + bundle.getString("contr_freeCard"));
 			}
 			// TODO check if contains free park card

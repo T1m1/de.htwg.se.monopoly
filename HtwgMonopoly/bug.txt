@@ -23,3 +23,5 @@ FEATURES
 4.1 [x] Bestätigung wenn Strasse gekauft wurde.
 4.2 [x] Menü implementieren
 4.2 [ ] Wenn im Gefängnis -> PopUp mit Freikauf/Würfel/Karte einlösen Optionen
+
+http://www.computerbase.de/forum/showthread.php?t=1049163

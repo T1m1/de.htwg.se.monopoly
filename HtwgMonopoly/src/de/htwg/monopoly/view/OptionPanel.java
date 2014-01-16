@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.Border;
 
+import com.sun.corba.se.impl.encoding.CodeSetConversion.BTCConverter;
+
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
@@ -128,19 +130,24 @@ public class OptionPanel extends JPanel implements ActionListener {
 			/* TODO tmp -> check in checkEnableStatus */
 			buttonZugBeenden.setEnabled(true);
 			buttonWuerfeln.setEnabled(false);
+		} else if (e.getSource().equals(buttonFreikaufen)) {
+			contr.getCurrentPlayer().setBudget(IMonopolyUtil.FREIKAUFEN);
+			contr.getCurrentPlayer().setInPrison(false);
+			buttonFreikarte.setEnabled(false);
+			buttonFreikaufen.setEnabled(false);
+			buttonFreiWuerfeln.setEnabled(false);
 		}
 
-		/* TODO in die update methode packen*/
-		checkInPrison();
+		/* TODO in die update methode packen */
 
 	}
 
-	private void checkInPrison() {
+	public void checkInPrison() {
 		buttonFreikarte.setEnabled(false);
 		buttonFreikaufen.setEnabled(false);
 		buttonFreiWuerfeln.setEnabled(false);
 
-		List<String> options = contr.getOptions(2);
+		List<String> options = contr.getOptions(1);
 
 		for (String option : options) {
 			if (option.contains("Freikarte")) {
