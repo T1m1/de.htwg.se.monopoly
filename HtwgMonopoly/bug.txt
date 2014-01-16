@@ -1,8 +1,9 @@
 BUGS
 
 1.1 [x] Wenn Spieler auf los geschickt wird und würfeln bleibt die GUI stecken.
-1.2 [ ] Wenn man auf "Frei Parken" kommt. Wird man ins Gefängnnis gesteckt.
+1.2 [ ] Kleiner bug: Leerzeichen fehlen zum teil in der Ausgabe
 1.3 [x] Wird eine 7 gewürfelt, läuft man 6. 
+1.4 [ ] Wenn du zurückläufst gehst du über los (das ist schlecht)
  
 
 FEATURES
@@ -13,8 +14,8 @@ FEATURES
 2.2 [x] Wenn Spieler ins Gefängnis geschickt wird, nicht nur ins Gefängnis schicken sondern auch an die Position wo das Gefängnis ist.
 3.3 [ ] Freikaufen implementieren.
 3.4 [ ] Preise & Strassennamen aktualisieren 
-3.5 [ ] GELD anpassen, damit man Spiel sinnvoll spielen kann
-3.6 [ ] bei Text ausgabe "sie müssen ihm jetzt [BETRAG] € Zahlen, steht der name nicht der betrag.
+3.5 [x] GELD anpassen, damit man Spiel sinnvoll spielen kann
+3.6 [x] bei Text ausgabe "sie müssen ihm jetzt [BETRAG] € Zahlen, steht der name nicht der betrag.
 
 #TUI
 3.1 [ ] Zeilenumbruch beim Zeichnen vom Spielfeld nach ca. 12 Strassen
@@ -25,3 +26,5 @@ FEATURES
 4.2 [ ] Wenn im Gefängnis -> PopUp mit Freikauf/Würfel/Karte einlösen Optionen
 
 http://www.computerbase.de/forum/showthread.php?t=1049163
+4.3 [ ] wenn man per ereigniskarte auf ein freies Feld kommt, dann kann man es nicht kaufen
+1.2 [ ] Wenn man auf "Frei Parken" kommt. Wird man ins Gefängnnis gesteckt. (also man steht nur drauf) (fehler von der gui. ich habs überprüft =) )

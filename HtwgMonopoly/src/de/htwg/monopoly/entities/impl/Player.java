@@ -3,6 +3,9 @@ package de.htwg.monopoly.entities.impl;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
+
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
@@ -25,9 +28,7 @@ public class Player {
 	 * default player constructor
 	 */
 	public Player() {
-		/* increment number of player */
 		number++;
-		/* generate default player */
 		this.name = "player" + number;
 		this.figure = "" + number;
 		this.budget = IMonopolyUtil.INITIAL_MONEY;
@@ -42,7 +43,8 @@ public class Player {
 	 * @param budget
 	 * @param position
 	 */
-	public Player(String name, String figure, int budget, int position) {
+	@Inject
+	public Player(String name, String figure, @Named("Budget") int budget, int position) {
 		this.name = name;
 		this.figure = figure;
 		this.budget = budget;
@@ -57,7 +59,7 @@ public class Player {
 	 * @param figure
 	 * @param budget
 	 */
-	public Player(String name, String figure, int budget) {
+	public Player(String name, String figure,@Named("Budget") int budget) {
 		this(name, figure, budget, 1);
 	}
 
@@ -211,7 +213,7 @@ public class Player {
 	}
 
 	/**
-	 * decremt money of player e.g. to buy a street
+	 * decrement money of player e.g. to buy a street
 	 * 
 	 * @param freikaufen
 	 */

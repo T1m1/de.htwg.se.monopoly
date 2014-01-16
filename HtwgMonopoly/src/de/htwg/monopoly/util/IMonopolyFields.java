@@ -25,6 +25,13 @@ public interface IMonopolyFields {
 			1000 };
 
 	/**
+	 * Miete für die einzelnen "Straßen"
+	 * 
+	 */
+	Integer[] RENT = { 0, 10, 0, 11, 0, 15, 16, 0, 20, 0, 22, 32, 0, 35, 0, 45,
+			0, 48, 58, 0, 60, 0, 70, 0, 75, 90, 0, 100 };
+
+	/**
 	 * Vorläufige Namen von Feldern. Insgesamt bis jetzt 28 Felder.
 	 * 
 	 * 
@@ -46,15 +53,6 @@ public interface IMonopolyFields {
 			Color.orange, null, Color.orange, null, Color.red, null, Color.red,
 			Color.yellow, null, Color.yellow, null, Color.green, null,
 			Color.green, Color.blue, null, Color.blue };
-
-	/**
-	 * Die Miete stimmt ebenfalls mit dem Original Spiel überein. Alle Felder
-	 * die keine Straße sind werden mit 0 initialisiert.
-	 * 
-	 */
-	Integer[] RENT = { 0, 2, 0, 4, 0, 6, 0, 6, 8, 0, 10, 0, 10, 12, 0, 14, 0,
-			14, 16, 0, 18, 0, 18, 20, 0, 22, 22, 0, 24, 0, 26, 26, 0, 28, 0,
-			35, 0, 50 };
 
 	/**
 	 * Stimmt nicht, bis jetzt sind es die gleichen Zahlen wie bei Miete

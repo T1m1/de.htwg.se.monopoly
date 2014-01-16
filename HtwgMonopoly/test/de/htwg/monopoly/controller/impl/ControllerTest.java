@@ -268,4 +268,8 @@ public class ControllerTest {
 		testController.getPlayer(0);
 	}
 
+	@Test
+	public void testGetDice() {
+		testController.getDice();
+	}
 }

@@ -19,6 +19,11 @@ import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.observer.impl.Observable;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
+/**
+ * 
+ * @author RuprechtT, GorenfloS
+ * 
+ */
 public class Controller extends Observable implements IController {
 	private PlayerController players;
 	private Playfield field;
@@ -33,6 +38,12 @@ public class Controller extends Observable implements IController {
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
 
+	/**
+	 * public constructor for a new controller create the players, the field and
+	 * the dice
+	 * 
+	 * @param fieldSize
+	 */
 	@Inject
 	public Controller(@Named("FieldSize") int fieldSize) {
 		this.players = new PlayerController();
@@ -41,16 +52,25 @@ public class Controller extends Observable implements IController {
 		this.dice = new Dice(fieldSize);
 	}
 
+	/**
+	 * setter for number of players
+	 */
 	@Override
 	public boolean setNumberofPlayer() {
 		return players.readNumberOfPlayer();
 	}
 
+	/**
+	 * name setter for player
+	 */
 	@Override
 	public boolean setNameofPlayer(int i) {
 		return players.readNameOfPlayer(i);
 	}
 
+	/**
+	 * function to call at start of a new game
+	 */
 	@Override
 	public void startNewGame() {
 		// TODO ZufallsSpieler auswählen
@@ -59,6 +79,9 @@ public class Controller extends Observable implements IController {
 		notifyObservers(0);
 	}
 
+	/**
+	 * function to call at begin of turn.
+	 */
 	@Override
 	public void startTurn() {
 		// this currentPlayer players.currentPlayer
@@ -74,6 +97,9 @@ public class Controller extends Observable implements IController {
 		// notifyObservers
 	}
 
+	/**
+	 * function who move player and perform action depending
+	 */
 	private void turn() {
 		rollDice();
 
@@ -177,12 +203,18 @@ public class Controller extends Observable implements IController {
 		}
 	}
 
+	/**
+	 * function to roll dice
+	 */
 	@Override
 	public void rollDice() {
 		/* throw dice */
 		dice.throwDice();
 	}
 
+	/**
+	 * call this function if turn ends
+	 */
 	@Override
 	public void endTurn() {
 		this.message.delete(0, this.message.length());
@@ -191,30 +223,26 @@ public class Controller extends Observable implements IController {
 		notifyObservers(0);
 	}
 
+	/**
+	 * End of game function
+	 */
 	@Override
 	public void exitGame() {
 		// TODO
 	}
 
+	/**
+	 * function to buy the current street with the current player
+	 */
 	@Override
 	public boolean buyStreet() {
-		/* get current street */
 		Street currentStreet = (Street) field.getCurrentField(currentPlayer);
-		/* check if enough money */
-		if (currentStreet.getPriceForStreet() < currentPlayer.getBudget()) {
-			/* decrement money of current player */
-			currentPlayer.setBudget(currentPlayer.getBudget()
-					- currentStreet.getPriceForStreet());
-			currentStreet.setOwner(currentPlayer);
-			/* add street to ownership of current player */
-			currentPlayer.addOwnership(currentStreet);
-			return true;
-		}
-		/* TODO: not enough money!! -> end of game? */
-		return false;
-
+		return field.buyStreet(currentPlayer, currentStreet);
 	}
 
+	/**
+	 * function to pay rent for the current field
+	 */
 	@Override
 	public void payRent() {
 		Bank.payRent(currentPlayer, field.getCurrentField(currentPlayer));
@@ -223,7 +251,7 @@ public class Controller extends Observable implements IController {
 	}
 
 	/**
-	 * 
+	 * check if money in "Frei Parken" and return them
 	 */
 	@Override
 	public void receiveGoMoney() {
