@@ -70,6 +70,7 @@ public interface IMonopolyFields {
 	Integer[] PRICE_PER_HOUSE = new Integer[IMonopolyUtil.FIELD_SIZE];
 
 	/** Test Cases **/
+	
 	/**
 	 * Test 1: Contains only 2 Object: Go field and a Gemeinschaftsfeld.
 	 * 
