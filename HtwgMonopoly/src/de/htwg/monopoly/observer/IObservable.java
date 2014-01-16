@@ -39,4 +39,13 @@ public interface IObservable {
 	 */
 	void notifyObservers(Event e);
 
+	/**
+	 * Calls the method update() from every Observer in the list with the
+	 * argument int e.
+	 * 
+	 * 
+	 * @param e
+	 */
+	void notifyObservers(int e);
+
 }

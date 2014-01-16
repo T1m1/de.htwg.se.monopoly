@@ -22,7 +22,7 @@ public class ObservableTest {
 
 		@Override
 		public void update(int e) {
-			// TODO Auto-generated method stub
+			ping = true;
 			
 		}
 	}
@@ -57,7 +57,16 @@ public class ObservableTest {
         testObservable.notifyObservers(2);
         
         assertFalse(ping);
-        
+	}
+	
+	@Test
+	public void testNotifyObserversIntEvent() {
+		assertFalse(ping);
+		testObserver = new TestObserver();
+		testObservable.addObserver(testObserver);
+        testObservable.notifyObservers();
+        testObservable.notifyObservers(2);
+        assertTrue(ping);
 	}
 
 }
