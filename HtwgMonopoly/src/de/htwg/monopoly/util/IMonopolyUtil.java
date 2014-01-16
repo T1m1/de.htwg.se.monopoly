@@ -25,8 +25,8 @@ public interface IMonopolyUtil {
 	int MAX_NUMBER_OF_PLAYER = 6;
 	int INITIAL_MONEY = 2000;
 	int MAX_PRISON_ROUND = 2;
-	int LOS_MONEY = 1000;
-	int TWICE_LOS_MONEY = 2000;
+	int LOS_MONEY = 500;
+	int TWICE_LOS_MONEY = 1000;
 
 	int ZUSATZSTEUER = 100;
 	int TUI_FIELD_SIZE = 28;
