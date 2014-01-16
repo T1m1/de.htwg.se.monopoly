@@ -35,6 +35,7 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 	private PlayerInfoPanel pnlPlayerInfo;
 	private OutputPanel pnlOutput;
 	private FieldDrawPanel pnField;
+	private OptionPanel pnlOption;
 
 	public GraphicUserInterface(IController controller) {
 		this.controller = controller;
@@ -82,8 +83,7 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 		/* create panels */
 		pnlPlayerInfo = new PlayerInfoPanel(controller);
 		pnlOutput = new OutputPanel(controller);
-		OptionPanel pnlOption = new OptionPanel(controller,
-				pnlOutput.getTaAusgabe());
+		pnlOption = new OptionPanel(controller, pnlOutput.getTaAusgabe());
 
 		/* add panels to main panel */
 		mainPanel.add(pnlField, BorderLayout.WEST);
@@ -111,6 +111,7 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 	public void update(int e) {
 		pnlOutput.update();
 		pnlPlayerInfo.update();
+		pnlOption.checkInPrison();
 		pnField.update();
 
 	}

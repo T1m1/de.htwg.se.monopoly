@@ -59,10 +59,16 @@ public class PlayerController implements IPlayerController {
 		return players[currentPlayer];
 	}
 
+	/**
+	 * return the current player object
+	 */
 	public Player currentPlayer() {
 		return players[currentPlayer];
 	}
 
+	/**
+	 * function to read number of player
+	 */
 	public boolean readNumberOfPlayer() {
 
 		int tmpNumberOfPlayer = 0;
@@ -91,10 +97,16 @@ public class PlayerController implements IPlayerController {
 		return true;
 	}
 
+	/**
+	 * get number of player
+	 */
 	public int getNumberOfPlayer() {
 		return this.numberOfPlayer;
 	}
 
+	/**
+	 * read name of player
+	 */
 	public boolean readNameOfPlayer(int i) {
 		// S: wann zur hölle is das nicht wahr? also testbar?
 		// T: ich denke NIE
@@ -105,10 +117,16 @@ public class PlayerController implements IPlayerController {
 
 	}
 
+	/**
+	 * get a specific player
+	 */
 	public Player getPlayer(int i) {
 		return this.players[i];
 	}
 
+	/**
+	 * transfer money
+	 */
 	public void transferMoney(Player currentPlayer, ICards currentCard) {
 		int actualMoney;
 		try {

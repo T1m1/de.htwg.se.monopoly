@@ -24,5 +24,7 @@ FEATURES
 4.1 [x] Bestätigung wenn Strasse gekauft wurde.
 4.2 [x] Menü implementieren
 4.2 [ ] Wenn im Gefängnis -> PopUp mit Freikauf/Würfel/Karte einlösen Optionen
+
+http://www.computerbase.de/forum/showthread.php?t=1049163
 4.3 [ ] wenn man per ereigniskarte auf ein freies Feld kommt, dann kann man es nicht kaufen
 1.2 [ ] Wenn man auf "Frei Parken" kommt. Wird man ins Gefängnnis gesteckt. (also man steht nur drauf) (fehler von der gui. ich habs überprüft =) )
