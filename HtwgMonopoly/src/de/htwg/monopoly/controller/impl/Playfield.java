@@ -139,8 +139,7 @@ public class Playfield implements IPlayfield {
 		StringBuilder sb = new StringBuilder();
 		String output;
 		if (wentOverGo) {
-			output = MessageFormat.format(bundle.getString("play_over_los"),
-					IMonopolyUtil.LOS_MONEY);
+			output = MessageFormat.format(bundle.getString("play_over_los"), IMonopolyUtil.LOS_MONEY);
 			sb.append(output);
 			Bank.receiveMoney(currentPlayer, IMonopolyUtil.LOS_MONEY);
 		}

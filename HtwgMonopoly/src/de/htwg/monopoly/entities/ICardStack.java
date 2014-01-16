@@ -10,12 +10,6 @@ public interface ICardStack {
 	 * @return Card
 	 */
 	ICards getNextCard();
-	
-	/**
-	 * Push a new card on top of the Stack.
-	 * @param newCard
-	 */
-	void pushOnTop(ICards newCard);
 
 	/**
 	 * shuffles this Cardstack.

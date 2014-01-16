@@ -23,4 +23,5 @@ public interface ICards {
 	 */
 	String getTarget();
 
+
 }

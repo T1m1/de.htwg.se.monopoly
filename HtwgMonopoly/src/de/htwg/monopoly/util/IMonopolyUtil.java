@@ -65,6 +65,9 @@ public interface IMonopolyUtil {
 	int POSITION_OF_PRISON = 7;
 
 
+	int NUMBER_OF_CARDS_IN_STACK = 24;
+
+
 	
 
 }
