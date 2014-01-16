@@ -44,7 +44,7 @@ The buttons (or characters for the TUI) have following meanings:
     * not yet implemented (Later the player can redeem a *Get out of Jail Free Card*)
 
 ##Getting support
-Feel free to e-mail us, if you have any further questions or dedected some bugs. (But first take a look in the [curent Bug-report](https://github.com/T1m1/de.htwg.se.monopoly/raw/master/HtwgMonopoly/bug.txt)- currently only in german):
+Feel free to e-mail us, if you have any further questions or dedected some bugs. (But first take a look in the [curent Bug-report](https://github.com/T1m1/de.htwg.se.monopoly/raw/master/HtwgMonopoly/bug.txt) - currently only in german):
 
 * [Steffen Gorenflo](mailto:stgorenf@htwg-konstanz.de)
 * [Timotheus Ruprecht](mailto:tiruprec@htwg-konstanz.de)
