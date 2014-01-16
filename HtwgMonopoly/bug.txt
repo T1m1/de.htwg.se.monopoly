@@ -30,3 +30,4 @@ http://www.computerbase.de/forum/showthread.php?t=1049163
 4.3 [ ] wenn man per ereigniskarte auf ein freies Feld kommt, dann kann man es nicht kaufen
 1.2 [ ] Wenn man auf "Frei Parken" kommt. Wird man ins Gefängnnis gesteckt. (also man steht nur drauf) (fehler von der gui. ich habs überprüft =) )
 4.5. [ ] man bekommt die option straßen kaufen angezeigt, obwohl man kein geld hat
+4.6 [ ] wenn man sich freikauft, hat man auf einmal genau 200 € obwohl man die abgezogen bekommen sollte
