@@ -132,6 +132,10 @@ public interface IController extends IObservable {
 	 */
 	void setCurrentField(IFieldObject fieldObject);
 
+	/**
+	 * get dice objects
+	 * @return
+	 */
 	Dice getDice();
 
 

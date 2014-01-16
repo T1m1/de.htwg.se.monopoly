@@ -27,6 +27,11 @@ public class Playfield implements IPlayfield {
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
 
+	/**
+	 * constructor
+	 * 
+	 * @param size
+	 */
 	public Playfield(int size) {
 		this.fieldSize = size;
 		this.playfield = new IFieldObject[this.fieldSize];
@@ -101,18 +106,30 @@ public class Playfield implements IPlayfield {
 		wentOverGo = (position < oldPosition);
 	}
 
+	/**
+	 * get current field
+	 */
 	public IFieldObject getCurrentField(Player currentPlayer) {
 		return playfield[currentPlayer.getPosition()];
 	}
 
+	/**
+	 * get field name at comitted index
+	 */
 	public String getFieldNameAtIndex(int i) {
 		return playfield[i].toString();
 	}
 
+	/**
+	 * get field at commited index
+	 */
 	public IFieldObject getFieldAtIndex(int i) {
 		return playfield[i];
 	}
 
+	/**
+	 * get field size
+	 */
 	public int getfieldSize() {
 		return this.fieldSize;
 	}
@@ -122,7 +139,8 @@ public class Playfield implements IPlayfield {
 		StringBuilder sb = new StringBuilder();
 		String output;
 		if (wentOverGo) {
-			output = MessageFormat.format(bundle.getString("play_over_los"), IMonopolyUtil.LOS_MONEY);
+			output = MessageFormat.format(bundle.getString("play_over_los"),
+					IMonopolyUtil.LOS_MONEY);
 			sb.append(output);
 			Bank.receiveMoney(currentPlayer, IMonopolyUtil.LOS_MONEY);
 		}
@@ -132,7 +150,8 @@ public class Playfield implements IPlayfield {
 			break;
 		case 'l':
 			sb.delete(0, sb.length());
-			output = MessageFormat.format(bundle.getString("play_over_los"), IMonopolyUtil.TWICE_LOS_MONEY);
+			output = MessageFormat.format(bundle.getString("play_over_los"),
+					IMonopolyUtil.TWICE_LOS_MONEY);
 			sb.append(output);
 			Bank.receiveMoney(currentPlayer, IMonopolyUtil.LOS_MONEY);
 			break;
