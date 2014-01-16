@@ -35,18 +35,20 @@ public class CommunityCardsStack extends CardsStack {
 		position = new LinkedList<Integer>();
 
 		StringBuilder opt1 = new StringBuilder();
-		StringBuilder opt2 = new StringBuilder();
 
 		for (int i = 1; i < 24; i++) {
 			opt1.delete(0, opt1.length());
-			opt2.delete(0, opt2.length());
 			opt1.append("comm_").append(i);
-			opt1.append("comm_").append(i).append("_1");
-			pushOnTop(new CommunityCard(bundle.getString(opt1.toString()),
-					bundle.getString(opt2.toString()), false));
-			if (true) {
-				// system.out.println("TODO: die boolean variable muss noch richtig gesetzt werden. Die ist nicht immer false.");
+			
+			String[] opt2 = bundle.getString(opt1.toString()).split("\n");
+			
+			boolean isPark = false;
+			if (opt2.length > 2 && opt2[2].equalsIgnoreCase("park")) {
+				isPark = true;
 			}
+			
+			pushOnTop(new CommunityCard(opt2[0],
+					opt2[1], isPark));
 		}
 
 		this.shuffle();

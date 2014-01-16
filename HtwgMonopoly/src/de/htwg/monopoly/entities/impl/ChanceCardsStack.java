@@ -28,54 +28,23 @@ public class ChanceCardsStack extends CardsStack {
 	public ChanceCardsStack() {
 		super();
 		position = new LinkedList<Integer>();
-		pushOnTop(new ChanceCard(bundle.getString("chance_1"),
-				bundle.getString("chance_1.1"), false));
-		pushOnTop(new ChanceCard(bundle.getString("chance_2"),
-				bundle.getString("chance_2.1"), false));
-		pushOnTop(new ChanceCard(bundle.getString("chance_3"),
-				bundle.getString("chance_3.1"), false));
-		pushOnTop(new ChanceCard(bundle.getString("chance_4"),
-				bundle.getString("chance_4.1"), false));
-		pushOnTop(new ChanceCard(bundle.getString("chance_5"),
-				bundle.getString("chance_5.1"), false));
-		pushOnTop(new ChanceCard(bundle.getString("chance_6"),
-				bundle.getString("chance_6.1"), false));
-		pushOnTop(new ChanceCard(bundle.getString("chance_7"),
-				bundle.getString("chance_7.1"), false));
-		pushOnTop(new ChanceCard(bundle.getString("chance_8"),
-				bundle.getString("chance_8.1"), false));
-		pushOnTop(new ChanceCard(bundle.getString("chance_9"),
-				bundle.getString("chance_9.1"), false));
-		pushOnTop(new ChanceCard(bundle.getString("chance_10"),
-				bundle.getString("chance_10.1"), false));
-		pushOnTop(new ChanceCard(bundle.getString("chance_11"),
-				bundle.getString("chance_11.1"), false));
-		pushOnTop(new ChanceCard(bundle.getString("chance_12"),
-				bundle.getString("chance_12.1"), false));
-		pushOnTop(new ChanceCard(bundle.getString("chance_13"),
-				bundle.getString("chance_13.1"), false));
-		pushOnTop(new ChanceCard(bundle.getString("chance_14"),
-				bundle.getString("chance_14.1"), false));
-		pushOnTop(new ChanceCard(bundle.getString("chance_15"),
-				bundle.getString("chance_15.1"), false));
-		pushOnTop(new ChanceCard(bundle.getString("chance_16"),
-				bundle.getString("chance_16.1"), true));
-		pushOnTop(new ChanceCard(bundle.getString("chance_17"),
-				bundle.getString("chance_17.1"), false));
-		pushOnTop(new ChanceCard(bundle.getString("chance_18"),
-				bundle.getString("chance_18.1"), false));
-		pushOnTop(new ChanceCard(bundle.getString("chance_19"),
-				bundle.getString("chance_19.1"), true));
-		pushOnTop(new ChanceCard(bundle.getString("chance_20"),
-				bundle.getString("chance_20.1"), true));
-		pushOnTop(new ChanceCard(bundle.getString("chance_21"),
-				bundle.getString("chance_21.1"), true));
-		pushOnTop(new ChanceCard(bundle.getString("chance_22"),
-				bundle.getString("chance_22.1"), true));
-		pushOnTop(new ChanceCard(bundle.getString("chance_23"),
-				bundle.getString("chance_23.1"), false));
-		pushOnTop(new ChanceCard(bundle.getString("chance_24"),
-				bundle.getString("chance_24.1"), false));
+		
+		StringBuilder opt1 = new StringBuilder();
+
+		for (int i = 1; i < 24; i++) {
+			opt1.delete(0, opt1.length());
+			opt1.append("chance_").append(i);
+			
+			String[] opt2 = bundle.getString(opt1.toString()).split("\n");
+			
+			boolean isPark = false;
+			if (opt2.length > 2 && opt2[2].equalsIgnoreCase("park")) {
+				isPark = true;
+			}
+			
+			pushOnTop(new ChanceCard(opt2[0],
+					opt2[1], isPark));
+		}
 
 		this.shuffle();
 	}
