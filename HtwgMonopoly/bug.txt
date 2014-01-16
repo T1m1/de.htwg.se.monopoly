@@ -4,6 +4,7 @@ BUGS
 1.2 [ ] Kleiner bug: Leerzeichen fehlen zum teil in der Ausgabe
 1.3 [x] Wird eine 7 gewürfelt, läuft man 6. 
 1.4 [ ] Wenn du zurückläufst gehst du über los (das ist schlecht)
+1.5 [ ] es passiert nichts wenn man kein geld mehr hat 
  
 
 FEATURES
@@ -28,3 +29,4 @@ FEATURES
 http://www.computerbase.de/forum/showthread.php?t=1049163
 4.3 [ ] wenn man per ereigniskarte auf ein freies Feld kommt, dann kann man es nicht kaufen
 1.2 [ ] Wenn man auf "Frei Parken" kommt. Wird man ins Gefängnnis gesteckt. (also man steht nur drauf) (fehler von der gui. ich habs überprüft =) )
+4.5. [ ] man bekommt die option straßen kaufen angezeigt, obwohl man kein geld hat
