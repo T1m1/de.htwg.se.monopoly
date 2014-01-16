@@ -27,7 +27,7 @@ Feel free to e-mail us, if you have any further questions:
 ## How
 When you start the game, you have to type in the number with how many Players you want to play (2 -6). After you typed in the name for each Player, the Gui will start and you are ready to play the game.
 
-* *Note*: You can switch playing every time between the TUI and the GUI!
+* *Note*: You can switch playing after every round between the TUI and the GUI!
 
 In case you forget the rules of monopoly, try consulting the [Wikipedia article](http://en.wikipedia.org/wiki/Monopoly_(game)) (or Google ;) ).
 
