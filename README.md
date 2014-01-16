@@ -1,5 +1,4 @@
 # HTWG Monopoly
-================
 A Java implementation of the board-game **Monopoly** in a *HTWG style*.
 ## What
 This Project is a playable game based on the famous Monopoly game from [Hasbro inc.](http://www.hasbro.com/).  
@@ -15,14 +14,8 @@ The goal of this project was to learn and apply these following components:
 
 This implementation comes along with a *TUI* (text user interface) and *GUI* (graphical user interface).
 
-#Documentation
+##Documentation
 See the current [Javadoc].
-
-#Getting support
-Feel free to e-mail us, if you have any further questions:
-
-* [Steffen Gorenflo](mailto:stgorenf@htwg-konstanz.de)
-* [Timotheus Ruprecht](mailto:tiruprec@htwg-konstanz.de)
 
 ## How
 When you start the game, you have to type in the number with how many Players you want to play (2 -6). After you typed in the name for each Player, the Gui will start and you are ready to play the game.
@@ -49,3 +42,11 @@ The buttons (or characters for the TUI) have following meanings:
     * The current player can pay 200 € to get free from prison (has bugs)
 * *Freikarte einlösen*
     * not yet implemented (Later the player can redeem a *Get out of Jail Free Card*)
+
+##Getting support
+Feel free to e-mail us, if you have any further questions or dedected some bugs (But first take a look in the [curent Bug-report](https://github.com/T1m1/de.htwg.se.monopoly/raw/master/HtwgMonopoly/bug.txt) (currently only in german, sorry):
+
+* [Steffen Gorenflo](mailto:stgorenf@htwg-konstanz.de)
+* [Timotheus Ruprecht](mailto:tiruprec@htwg-konstanz.de)
+ 
+
