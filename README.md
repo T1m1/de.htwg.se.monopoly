@@ -33,7 +33,7 @@ In case you forget the rules of monopoly, try consulting the [Wikipedia article]
 
 If everthing went fine, it should look like this:
 
-![image](http://github.com/T1m1/de.htwg.se.monopoly/blob/master/HtwgMonopoly/doc/MonopolyGui.png)
+![image](http://github.com/T1m1/de.htwg.se.monopoly/raw/master/HtwgMonopoly/doc/MonopolyGui.png)
 
 * To start your turn, just press the *Würfeln*-Button or press 'd'.
 * If your move is over, press the *Zug beenden*-Button or press 'b'.
