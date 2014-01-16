@@ -15,8 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.Border;
 
-import com.sun.corba.se.impl.encoding.CodeSetConversion.BTCConverter;
-
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
