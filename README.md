@@ -21,8 +21,8 @@ See the current [Javadoc].
 #Getting support
 Feel free to e-mail us, if you have any further questions:
 
-* [Steffen Gorenflo](mailto@stgorenf@htwg-konstanz.de)
-* [Timotheus Ruprecht](mailto@tiruprec@htwg-konstanz.de)
+* [Steffen Gorenflo](mailto:stgorenf@htwg-konstanz.de)
+* [Timotheus Ruprecht](mailto:tiruprec@htwg-konstanz.de)
 
 ## How
 When you start the game, you have to type in the number with how many Players you want to play (2 -6). After you typed in the name for each Player, the Gui will start and you are ready to play the game.
