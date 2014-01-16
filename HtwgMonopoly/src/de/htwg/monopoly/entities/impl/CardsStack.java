@@ -13,7 +13,7 @@ import de.htwg.monopoly.util.IMonopolyUtil;
 
 public abstract class CardsStack implements ICardStack, IFieldObject {
 
-	protected Deque<ICards> cards = new LinkedList<ICards>();
+	private Deque<ICards> cards = new LinkedList<ICards>();
 
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
