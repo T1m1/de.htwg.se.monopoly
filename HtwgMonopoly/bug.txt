@@ -1,6 +1,7 @@
 IMPROVEMENT
 
-0.1 [ ] State Pattern verwenden -> [ Würfeln -> (Auf Strasse -> kaufen/verkaufen/bauen ) -> (Im Gefäniss -> Freikaufen) -> (Auf Los ...) -> Würfeln}  
+0.1 [ ] State Pattern  -> [ Würfeln -> (Auf Strasse -> kaufen/verkaufen/bauen ) -> (Im Gefäniss -> Freikaufen) -> (Auf Los ...) -> Würfeln}  
+0.2 [ ] mit Template Methode verwenden -> [ Reigenfolge festelgen einer Spielrunde ]
 
 BUGS
 
