@@ -1,9 +1,13 @@
+IMPROVEMENT
+
+0.1 [ ] State Pattern verwenden -> [ WÃ¼rfeln -> (Auf Strasse -> kaufen/verkaufen/bauen ) -> (Im GefÃ¤niss -> Freikaufen) -> (Auf Los ...) -> WÃ¼rfeln}  
+
 BUGS
 
-1.1 [x] Wenn Spieler auf los geschickt wird und würfeln bleibt die GUI stecken.
+1.1 [x] Wenn Spieler auf los geschickt wird und wï¿½rfeln bleibt die GUI stecken.
 1.2 [ ] Kleiner bug: Leerzeichen fehlen zum teil in der Ausgabe
-1.3 [x] Wird eine 7 gewürfelt, läuft man 6. 
-1.4 [ ] Wenn du zurückläufst gehst du über los (das ist schlecht)
+1.3 [x] Wird eine 7 gewï¿½rfelt, lï¿½uft man 6. 
+1.4 [ ] Wenn du zurï¿½cklï¿½ufst gehst du ï¿½ber los (das ist schlecht)
 1.5 [ ] es passiert nichts wenn man kein geld mehr hat 
  
 
@@ -12,22 +16,23 @@ FEATURES
 
 #GAME
 2.1 [ ] Gewinnen bzw. Verlieren implementieren. Sollte einer verlieren wird das Spiel ausgewertet.
-2.2 [x] Wenn Spieler ins Gefängnis geschickt wird, nicht nur ins Gefängnis schicken sondern auch an die Position wo das Gefängnis ist.
+2.2 [x] Wenn Spieler ins Gefï¿½ngnis geschickt wird, nicht nur ins Gefï¿½ngnis schicken sondern auch an die Position wo das Gefï¿½ngnis ist.
 3.3 [ ] Freikaufen implementieren.
 3.4 [ ] Preise & Strassennamen aktualisieren 
 3.5 [x] GELD anpassen, damit man Spiel sinnvoll spielen kann
-3.6 [x] bei Text ausgabe "sie müssen ihm jetzt [BETRAG] € Zahlen, steht der name nicht der betrag.
+3.6 [x] bei Text ausgabe "sie mï¿½ssen ihm jetzt [BETRAG] ï¿½ Zahlen, steht der name nicht der betrag.
 
 #TUI
 3.1 [ ] Zeilenumbruch beim Zeichnen vom Spielfeld nach ca. 12 Strassen
 
 #GUI
-4.1 [x] Bestätigung wenn Strasse gekauft wurde.
-4.2 [x] Menü implementieren
-4.2 [ ] Wenn im Gefängnis -> PopUp mit Freikauf/Würfel/Karte einlösen Optionen
+4.1 [x] Bestï¿½tigung wenn Strasse gekauft wurde.
+4.2 [x] Menï¿½ implementieren
+4.2 [ ] Wenn im Gefï¿½ngnis -> PopUp mit Freikauf/Wï¿½rfel/Karte einlï¿½sen Optionen
 
 http://www.computerbase.de/forum/showthread.php?t=1049163
 4.3 [ ] wenn man per ereigniskarte auf ein freies Feld kommt, dann kann man es nicht kaufen
-1.2 [ ] Wenn man auf "Frei Parken" kommt. Wird man ins Gefängnnis gesteckt. (also man steht nur drauf) (fehler von der gui. ich habs überprüft =) )
-4.5.[ ] man bekommt die option straßen kaufen angezeigt, obwohl man kein geld hat
-4.6 [ ] wenn man sich freikauft, hat man auf einmal genau 200 € obwohl man die abgezogen bekommen sollte
+1.2 [ ] Wenn man auf "Frei Parken" kommt. Wird man ins Gefï¿½ngnnis gesteckt. (also man steht nur drauf) (fehler von der gui. ich habs ï¿½berprï¿½ft =) )
+4.5.[ ] man bekommt die option straï¿½en kaufen angezeigt, obwohl man kein geld hat
+4.6 [ ] wenn man sich freikauft, hat man auf einmal genau 200 ï¿½ obwohl man die abgezogen bekommen sollte
+
