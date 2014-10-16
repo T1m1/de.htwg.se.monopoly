@@ -1,4 +1,4 @@
-package de.htwg.monopoly;
+package de.htwg.monopoly.game;
 
 
 import com.google.inject.AbstractModule;

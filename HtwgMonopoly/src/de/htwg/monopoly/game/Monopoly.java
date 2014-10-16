@@ -1,4 +1,4 @@
-package de.htwg.monopoly;
+package de.htwg.monopoly.game;
 
 import java.util.Scanner;
 
@@ -16,35 +16,44 @@ public class Monopoly {
 	private IController controller;
 	private static TextUI tui;
 	private static GraphicUserInterface gui;
-	
-	private static Monopoly getInstance() {
-		if (instance == null){
+
+	public static Monopoly getInstance() {
+		if (instance == null) {
 			instance = new Monopoly();
 		}
-		return instance;		
+		return instance;
 	}
 
 	private Monopoly() {
-		
+
 		Injector injector = Guice.createInjector(new MonopolyModule());
 
 		this.controller = injector.getInstance(IController.class);
-		
+
 		tui = new TextUI(controller);
-		
-		/* TODO MUSS VOR DEM AUFRUF VON DER GUI GESTARTET WERDEN DAMIT MAN WEIß WIE VIELE SPIELER */
+
+		/*
+		 * TODO MUSS VOR DEM AUFRUF VON DER GUI GESTARTET WERDEN DAMIT MAN WEIß
+		 * WIE VIELE SPIELER
+		 */
 		tui.startGame();
-		
+
 		gui = new GraphicUserInterface(controller);
-		
-		
-		
+
+	}
+
+	public static TextUI getTextUI() {
+		return tui;
+	}
+
+	public IController getController() {
+		return controller;
 	}
 
 	public static void main(String[] args) {
-		
+
 		Monopoly.getInstance();
-		
+
 		gui.run();
 		boolean run = true;
 		scanner = new Scanner(System.in);
@@ -54,5 +63,4 @@ public class Monopoly {
 		System.out.println("Spiel beendet!");
 	}
 
-	
 }
