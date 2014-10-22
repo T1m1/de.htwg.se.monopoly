@@ -15,11 +15,19 @@ public interface IPlayerController {
 
 	/**
 	 * Return the number of Player.
-	 *  
+	 * 
 	 * @return
 	 */
 	int getNumberOfPlayer();
 
+	/**
+	 * Reads the name of each Player from the Standard input. Return true if
+	 * names are correct, otherwise false.
+	 * 
+	 * @param i
+	 * @return
+	 */
+	boolean readNameOfPlayer(int i);
 
 	/**
 	 * returns a player object at index i in the Queue
@@ -44,4 +52,11 @@ public interface IPlayerController {
 	 * @return
 	 */
 	Player currentPlayer();
+
+	/**
+	 * Returns the first player in the queue. Basically players[0]
+	 * 
+	 * @return the first player.
+	 */
+	Player getFirstPlayer();
 }

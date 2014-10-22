@@ -10,12 +10,14 @@ import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
 import de.htwg.monopoly.controller.IController;
+import de.htwg.monopoly.controller.IPlayerController;
 import de.htwg.monopoly.entities.ICards;
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Bank;
 import de.htwg.monopoly.entities.impl.Dice;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.Street;
+import de.htwg.monopoly.game.Monopoly;
 import de.htwg.monopoly.observer.impl.Observable;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
@@ -52,17 +54,29 @@ public class Controller extends Observable implements IController {
 		this.dice = new Dice(fieldSize);
 	}
 
-
-
 	/**
 	 * function to call at start of a new game
 	 */
 	@Override
-	public void startNewGame(int numberOfPlayer, String[] nameOfPlayers) {
-		// TODO ZufallsSpieler ausw�hlen
-		// TODO init();
+	public void startNewGame(int numberOfPlayer, String[] nameOfPlayers)
+			throws IllegalArgumentException {
+		assert nameOfPlayers.length == numberOfPlayer : "Anzahl der Spieler and Anzahl der Spielernamen stimmt nicht �berein";
 
-		this.currentPlayer = players.getNextPlayer();
+		// check correct number of players
+		if (numberOfPlayer < IMonopolyUtil.MIN_NUMBER_OF_PLAYER
+				|| numberOfPlayer > IMonopolyUtil.MAX_NUMBER_OF_PLAYER) {
+			throw new IllegalArgumentException("Ung�ltige Anzahl an Spielern.");
+		}
+
+		// initialize game with numbers and names of the players
+
+		players.setNumberOfPlayer(numberOfPlayer);
+		for (int i = 0; i < numberOfPlayer; i++) {
+			players.setNameofPlayer(i, nameOfPlayers[i]);
+		}
+
+		// get first player and notify observers
+		this.currentPlayer = players.getFirstPlayer();
 		notifyObservers(0);
 	}
 
@@ -85,7 +99,7 @@ public class Controller extends Observable implements IController {
 	}
 
 	/**
-	 * function who move player and perform action depending
+	 * function which moves player and perform action depending
 	 */
 	private void turn() {
 		rollDice();
@@ -249,7 +263,7 @@ public class Controller extends Observable implements IController {
 	/**
 	 * return object with all players
 	 */
-	public PlayerController getPlayers() {
+	public IPlayerController getPlayers() {
 		return players;
 	}
 
@@ -347,7 +361,7 @@ public class Controller extends Observable implements IController {
 				options.add("(c) " + bundle.getString("contr_freeCard"));
 			}
 			// TODO check if contains free park card
-			
+
 		}
 		/* returns a list with options */
 		return options;
@@ -396,14 +410,5 @@ public class Controller extends Observable implements IController {
 		return dice;
 	}
 
-	@Override
-	public boolean setNumberOfPlayer(int number) {
-		return players.setNumberOfPlayer(number);
-	}
-
-	@Override
-	public boolean setNameofPlayer(int i, String name) {
-		throw new UnsupportedOperationException("Not yet implemented");
-	}
 
 }

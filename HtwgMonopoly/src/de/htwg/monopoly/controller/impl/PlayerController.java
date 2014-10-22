@@ -28,7 +28,6 @@ public class PlayerController implements IPlayerController {
 
 	}
 
-
 	public Player getNextPlayer() {
 
 		currentPlayer++;
@@ -47,7 +46,36 @@ public class PlayerController implements IPlayerController {
 		return players[currentPlayer];
 	}
 
+	/**
+	 * function to read number of player
+	 */
+	public boolean readNumberOfPlayer() {
 
+		int tmpNumberOfPlayer = 0;
+
+		if (in.hasNext()) {
+			/* check if input an integer and in right interval */
+			if (in.hasNextInt()) {
+				tmpNumberOfPlayer = in.nextInt();
+				in.nextLine();
+			} else {
+				/* TODO: alles weg */
+				in.nextLine();
+				return false;
+			}
+		}
+
+		/* check if input smaller as maximum of player and bigger as minimum */
+		if (tmpNumberOfPlayer < IMonopolyUtil.MIN_NUMBER_OF_PLAYER
+				|| tmpNumberOfPlayer > IMonopolyUtil.MAX_NUMBER_OF_PLAYER) {
+			return false;
+		}
+
+		/* if scanned number correct, save it */
+		this.numberOfPlayer = tmpNumberOfPlayer;
+		init();
+		return true;
+	}
 
 	/**
 	 * get number of player
@@ -57,6 +85,7 @@ public class PlayerController implements IPlayerController {
 	}
 
 
+	}
 
 	/**
 	 * get a specific player
@@ -89,19 +118,39 @@ public class PlayerController implements IPlayerController {
 	}
 
 	/**
-	 * Set the number of player for the game.
-	 * 
-	 * @param number
-	 *            a number between 2 and 6
-	 * @return true if correct number of players was omitted.
+	 * Set the number of player for the game and initialize the array with
+	 * player objects.
 	 */
-	public boolean setNumberOfPlayer(int number) {
-		// TODO: abfrage weiter oben oder Zahlen global setzen.
-		if (number < 2 || number > 6) {
-			return false;
-		}
+	public void setNumberOfPlayer(int number) {
+		// set number of players
 		this.numberOfPlayer = number;
-		return true;
+		// create array of players.
+		this.players = new Player[this.numberOfPlayer];
+		// create default players
+		for (int i = 0; i < numberOfPlayer; i++) {
+			players[i] = new Player();
+		}
+
+	}
+
+	/**
+	 * Set the name of the player in the player array according to the given
+	 * index.
+	 * 
+	 * @param i
+	 *            the index of the player array
+	 * @param string
+	 *            the name of the player
+	 */
+	public void setNameofPlayer(int i, String string) {
+		players[i].setName(string);
+
+	}
+
+
+	@Override
+	public Player getFirstPlayer() {
+		return players[0];
 	}
 
 }
