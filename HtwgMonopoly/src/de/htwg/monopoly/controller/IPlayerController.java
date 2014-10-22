@@ -14,14 +14,6 @@ public interface IPlayerController {
 	Player getNextPlayer();
 
 	/**
-	 * Reads a number from the Standard input and checks if correct. 
-	 * Return true if number is correct, otherwise false.
-	 * 
-	 * @return
-	 */
-	boolean readNumberOfPlayer();
-
-	/**
 	 * Return the number of Player.
 	 *  
 	 * @return

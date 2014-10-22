@@ -75,7 +75,7 @@ public class Controller extends Observable implements IController {
 		}
 
 		// get first player and notify observers
-		this.currentPlayer = players.getNextPlayer();
+		this.currentPlayer = players.getFirstPlayer();
 		notifyObservers(0);
 	}
 
@@ -98,7 +98,7 @@ public class Controller extends Observable implements IController {
 	}
 
 	/**
-	 * function who move player and perform action depending
+	 * function which moves player and perform action depending
 	 */
 	private void turn() {
 		rollDice();
