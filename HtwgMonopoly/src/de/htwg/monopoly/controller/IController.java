@@ -50,42 +50,6 @@ public interface IController extends IObservable {
 	 */
 	void receiveGoMoney();
 
-	/***
-	 * set number of player. This function reads from stdin.
-	 * 
-	 * @return true if setting the number was successful.
-	 */
-	boolean setNumberofPlayer();
-
-	/**
-	 * Sets the number of players of the game.
-	 * 
-	 * @param number
-	 *            A Number between 2 and 6
-	 * @return true the operation was successful.
-	 */
-	boolean setNumberOfPlayer(int number);
-
-	/**
-	 * set name of player i
-	 * 
-	 * @param i
-	 *            -> number of player to set name for it
-	 * @return status
-	 */
-	boolean setNameofPlayer(int i);
-
-	/**
-	 * set name of player i
-	 * 
-	 * @param i
-	 *            -> number of player to set name for it
-	 * @param name
-	 *            the name of the player for the number
-	 * @return status
-	 */
-	boolean setNameofPlayer(int i, String name);
-
 	/**
 	 * return object from current player
 	 * 
@@ -160,7 +124,8 @@ public interface IController extends IObservable {
 	Dice getDice();
 
 	/**
-	 * Start a new game with the given number of player and the names oft the players.
+	 * Start a new game with the given number of player and the names oft the
+	 * players.
 	 * 
 	 * @param numberOfPlayer
 	 * @param nameOfPlayers

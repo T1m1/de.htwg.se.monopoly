@@ -54,22 +54,6 @@ public class Controller extends Observable implements IController {
 	}
 
 	/**
-	 * setter for number of players
-	 */
-	@Override
-	public boolean setNumberofPlayer() {
-		return players.readNumberOfPlayer();
-	}
-
-	/**
-	 * name setter for player
-	 */
-	@Override
-	public boolean setNameofPlayer(int i) {
-		return players.readNameOfPlayer(i);
-	}
-
-	/**
 	 * function to call at start of a new game
 	 */
 	@Override
@@ -84,9 +68,10 @@ public class Controller extends Observable implements IController {
 		}
 
 		// initialize game with numbers and names of the players
-		setNumberOfPlayer(numberOfPlayer);
+
+		players.setNumberOfPlayer(numberOfPlayer);
 		for (int i = 0; i < numberOfPlayer; i++) {
-			setNameofPlayer(i, nameOfPlayers[i]);
+			players.setNameofPlayer(i, nameOfPlayers[i]);
 		}
 
 		// get first player and notify observers
@@ -424,14 +409,5 @@ public class Controller extends Observable implements IController {
 		return dice;
 	}
 
-	@Override
-	public boolean setNumberOfPlayer(int number) {
-		return players.setNumberOfPlayer(number);
-	}
-
-	@Override
-	public boolean setNameofPlayer(int i, String name) {
-		throw new UnsupportedOperationException("Not yet implemented");
-	}
 
 }

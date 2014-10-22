@@ -149,18 +149,14 @@ public class PlayerController implements IPlayerController {
 
 	/**
 	 * Set the number of player for the game.
-	 * 
-	 * @param number
-	 *            a number between 2 and 6
-	 * @return true if correct number of players was omitted.
 	 */
-	public boolean setNumberOfPlayer(int number) {
-		// TODO: abfrage weiter oben oder Zahlen global setzen.
-		if (number < 2 || number > 6) {
-			return false;
-		}
+	public void setNumberOfPlayer(int number) {
 		this.numberOfPlayer = number;
-		return true;
+	}
+
+	public void setNameofPlayer(int i, String string) {
+		throw new UnsupportedOperationException("not yet implemented");
+		
 	}
 
 }
