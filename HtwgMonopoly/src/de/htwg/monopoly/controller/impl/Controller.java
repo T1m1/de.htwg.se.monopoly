@@ -414,4 +414,9 @@ public class Controller extends Observable implements IController {
 		return players.setNumberOfPlayer(number);
 	}
 
+	@Override
+	public boolean setNameofPlayer(int i, String name) {
+		throw new UnsupportedOperationException("Not yet implemented");
+	}
+
 }

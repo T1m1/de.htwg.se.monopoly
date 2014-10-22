@@ -58,7 +58,7 @@ public interface IController extends IObservable {
 	/***
 	 * set number of player. This function reads from stdin.
 	 * 
-	 * @return true if setting the number was succesful.
+	 * @return true if setting the number was successful.
 	 */
 	boolean setNumberofPlayer();
 
@@ -79,6 +79,17 @@ public interface IController extends IObservable {
 	 * @return status
 	 */
 	boolean setNameofPlayer(int i);
+
+	/**
+	 * set name of player i
+	 * 
+	 * @param i
+	 *            -> number of player to set name for it
+	 * @param name
+	 *            the name of the player for the number
+	 * @return status
+	 */
+	boolean setNameofPlayer(int i, String name);
 
 	/**
 	 * return object from current player

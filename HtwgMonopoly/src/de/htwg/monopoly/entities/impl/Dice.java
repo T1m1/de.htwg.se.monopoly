@@ -6,6 +6,12 @@ public final class Dice {
 
 	private int fieldSize;
 
+	/**
+	 * Creates a dice class containing two separated dices. The result of the
+	 * dice depends on the field size.
+	 * 
+	 * @param fieldSize
+	 */
 	public Dice(int fieldSize) {
 		this.fieldSize = fieldSize;
 	}
