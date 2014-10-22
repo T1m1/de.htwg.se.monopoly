@@ -147,4 +147,13 @@ public class PlayerController implements IPlayerController {
 		}
 	}
 
+	public boolean setNumberOfPlayer(int number) {
+		// TODO: abfrage weiter oben.
+		if (number < 2 || number > 6) {
+			return false;
+		}
+		this.numberOfPlayer = number;
+		return true;
+	}
+
 }

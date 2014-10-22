@@ -63,6 +63,15 @@ public interface IController extends IObservable {
 	boolean setNumberofPlayer();
 
 	/**
+	 * Sets the number of players of the game.
+	 * 
+	 * @param number
+	 *            A Number between 2 and 6
+	 * @return true the operation was successful.
+	 */
+	boolean setNumberOfPlayer(int number);
+
+	/**
 	 * set name of player i
 	 * 
 	 * @param i

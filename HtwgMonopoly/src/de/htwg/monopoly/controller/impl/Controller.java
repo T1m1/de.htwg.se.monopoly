@@ -409,4 +409,9 @@ public class Controller extends Observable implements IController {
 		return dice;
 	}
 
+	@Override
+	public boolean setNumberOfPlayer(int number) {
+		return players.setNumberOfPlayer(number);
+	}
+
 }
