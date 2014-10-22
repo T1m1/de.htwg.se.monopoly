@@ -31,15 +31,8 @@ public class Monopoly {
 		this.controller = injector.getInstance(IController.class);
 
 		tui = new TextUI(controller);
-
-		/*
-		 * TODO MUSS VOR DEM AUFRUF VON DER GUI GESTARTET WERDEN DAMIT MAN WEIß
-		 * WIE VIELE SPIELER
-		 */
-		tui.startGame();
-
 		gui = new GraphicUserInterface(controller);
-
+        // TODO WUI
 	}
 
 	public TextUI getTextUI() {
@@ -54,7 +47,11 @@ public class Monopoly {
 
 		Monopoly.getInstance();
 
-		gui.run();
+		gui.startGame();
+        tui.startGame();
+        // wui.startGame();
+
+
 		boolean run = true;
 		scanner = new Scanner(System.in);
 		while (run) {

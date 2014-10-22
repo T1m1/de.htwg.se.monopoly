@@ -44,7 +44,7 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 
 	}
 
-	public void run() {
+	public void startGame() {
 
 		setVisible(true);
 	}

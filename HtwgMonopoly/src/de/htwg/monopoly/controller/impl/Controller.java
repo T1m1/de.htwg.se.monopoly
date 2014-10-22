@@ -52,28 +52,14 @@ public class Controller extends Observable implements IController {
 		this.dice = new Dice(fieldSize);
 	}
 
-	/**
-	 * setter for number of players
-	 */
-	@Override
-	public boolean setNumberofPlayer() {
-		return players.readNumberOfPlayer();
-	}
 
-	/**
-	 * name setter for player
-	 */
-	@Override
-	public boolean setNameofPlayer(int i) {
-		return players.readNameOfPlayer(i);
-	}
 
 	/**
 	 * function to call at start of a new game
 	 */
 	@Override
 	public void startNewGame(int numberOfPlayer, String[] nameOfPlayers) {
-		// TODO ZufallsSpieler auswählen
+		// TODO ZufallsSpieler auswï¿½hlen
 		// TODO init();
 
 		this.currentPlayer = players.getNextPlayer();
@@ -92,7 +78,7 @@ public class Controller extends Observable implements IController {
 		} else {
 			turn();
 		}
-		// überprüfen auf was fürn feldobjek
+		// ï¿½berprï¿½fen auf was fï¿½rn feldobjek
 		// dementsprechend notify
 		notifyObservers(1);
 		// notifyObservers

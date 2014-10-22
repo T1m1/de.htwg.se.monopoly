@@ -3,6 +3,7 @@ package de.htwg.monopoly.view;
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,241 +16,269 @@ import de.htwg.monopoly.util.IMonopolyUtil;
 
 public class TextUI implements IObserver {
 
-	/* logger */
-	private final Logger logger = LogManager.getLogger("htwgMonopoly");
+    /* logger */
+    private final Logger logger = LogManager.getLogger("htwgMonopoly");
+    private Scanner in;
 
-	/* internationalization */
-	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
-			Locale.GERMAN);
+    /* internationalization */
+    private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
+            Locale.GERMAN);
 
-	private IController controller;
+    private IController controller;
 
-	public void startGame() {
+    private int configNumberOfPlayer;
+    private String[] configNameOfPlayer;
 
-		/*
-		 * TODO ist glaub nicht gut die anzahl der spieler hier einzulesen...
-		 * namen etc. m¸ssen ja auch in GUI ‰nderbar sein.
-		 * 
-		 * Lˆsung: in der GUI verlange, dass Spieleranzahl in den Optionen
-		 * angegeben werden muss oder so
-		 * 
-		 * 
-		 * 
-		 * TODO GANZ WICHTIG!!! -> JEDES MAL WENN SPIELER EIGNABE BETƒTIGT (GUI)
-		 * BLEIBT DAS SPIEL AN DER STELLE STEHEN.. ES WIRD ZWAR NE NEUE UPDATE
-		 * METHODE AUFGERUFEN ABER DIESE WIRD NICHT GANZ ZUENDE GEF‹HRT LS÷UNG:
-		 * TUI SO UMSCHREIBEN DAS ZUG IMMER BEENDET WIRD
-		 */
-		printInitialisation();
-		logger.info(IMonopolyUtil.START);
-		// TODO start -> random player
-		controller.startNewGame();
-	}
+    public void startGame() {
 
-	public TextUI(IController controller) {
-		this.controller = controller;
-		controller.addObserver(this);
-	}
+        printInitialisation();
+        logger.info(IMonopolyUtil.START);
+        controller.startNewGame(configNumberOfPlayer, configNameOfPlayer);
+    }
 
-	@Override
-	public void update(Event e) {
-		printTUI();
-		startTurn();
-	}
+    public TextUI(IController controller) {
+        this.controller = controller;
+        controller.addObserver(this);
+    }
 
-	@Override
-	public void update(int e) {
-		if (e == 1) {
-			printRoll();
-			onField();
-			printAction();
-			printOptions(2);
+    @Override
+    public void update(Event e) {
+        printTUI();
+        startTurn();
+    }
 
-		}
-		if (e == 0) {
-			printTUI();
-			startTurn();
-		}
-	}
+    @Override
+    public void update(int e) {
+        if (e == 1) {
+            printRoll();
+            onField();
+            printAction();
+            printOptions(2);
 
-	/**
-	 * print information about dice
-	 */
-	private void printRoll() {
-		int diceResult = controller.getDice().getResultDice()
-				% (controller.getField().getfieldSize() + 1);
-		String out = MessageFormat.format(bundle.getString("tui_dice"),
-				diceResult);
-		logger.info(out);
-	}
+        }
+        if (e == 0) {
+            printTUI();
+            startTurn();
+        }
+    }
 
-	public void onField() {
-		String currentFile = controller.getField()
-				.getCurrentField(controller.getCurrentPlayer()).toString();
-		String out = MessageFormat.format(bundle.getString("tui_playfield"),
-				currentFile);
-		logger.info(out);
-	}
+    public void printInitialisation() {
+        logger.info(IMonopolyUtil.GAME_NAME);
+        logger.info("Herzlich Willkommen zu Monopoly!");
+        logger.info("Um das Spiel zu starten, beliebigen Wert eingeben und best√§tigen.");
+        in = new Scanner(System.in);
+        if (!in.next().isEmpty()) {
+            setNumberOfPlayer();
+            setNameOfPlayers();
+        }
+    }
 
-	private void printOptions(int choose) {
-		StringBuilder sb = new StringBuilder();
-		sb.append(bundle.getString("tui_options"));
-		for (String option : controller.getOptions(choose)) {
-			sb.append("\n");
-			sb.append(option);
-		}
-		logger.info(sb.toString());
-	}
+    /**
+     * print information about dice
+     */
+    private void printRoll() {
+        int diceResult = controller.getDice().getResultDice()
+                % (controller.getField().getfieldSize() + 1);
+        String out = MessageFormat.format(bundle.getString("tui_dice"),
+                diceResult);
+        logger.info(out);
+    }
 
-	public void printAction() {
-		logger.info(controller.getMessage());
-	}
+    public void onField() {
+        String currentFile = controller.getField()
+                .getCurrentField(controller.getCurrentPlayer()).toString();
+        String out = MessageFormat.format(bundle.getString("tui_playfield"),
+                currentFile);
+        logger.info(out);
+    }
 
-	public void printInitialisation() {
-		logger.info(IMonopolyUtil.GAME_NAME);
-		setNumberOfPlayer();
-		setNameOfPlayers();
-	}
+    private void printOptions(int choose) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(bundle.getString("tui_options"));
+        for (String option : controller.getOptions(choose)) {
+            sb.append("\n");
+            sb.append(option);
+        }
+        logger.info(sb.toString());
+    }
 
-	public void startTurn() {
-		StringBuilder sb = new StringBuilder();
-		String currentPlayer = controller.getCurrentPlayer().getName();
+    public void printAction() {
+        logger.info(controller.getMessage());
+    }
 
-		sb.append(MessageFormat.format(bundle.getString("tui_player"),
-				currentPlayer));
+    public void startTurn() {
+        StringBuilder sb = new StringBuilder();
+        String currentPlayer = controller.getCurrentPlayer().getName();
 
-		sb.append(bundle.getString("tui_options"));
-		for (String option : controller.getOptions(1)) {
-			sb.append("\n");
-			sb.append(option);
+        sb.append(MessageFormat.format(bundle.getString("tui_player"),
+                currentPlayer));
 
-		}
-		logger.info(sb.toString());
+        sb.append(bundle.getString("tui_options"));
+        for (String option : controller.getOptions(1)) {
+            sb.append("\n");
+            sb.append(option);
 
-	}
+        }
+        logger.info(sb.toString());
 
-	private void setNumberOfPlayer() {
-		logger.info(IMonopolyUtil.Q_NUMBER_OF_PLAYER);
-		while (!controller.setNumberofPlayer()) {
-			logger.info(IMonopolyUtil.ERR_NUMBER_OF_PLAYER);
-		}
-	}
+    }
 
-	private void setNameOfPlayers() {
-		for (int i = 0; i < controller.getNumberOfPlayer(); i++) {
-			logger.info("Player " + (i + 1) + " " + IMonopolyUtil.Q_NAME_PLAYER);
-			while (!controller.setNameofPlayer(i)) {
-				logger.info(IMonopolyUtil.ERR_NAME_OF_PLAYER);
-			}
-		}
-	}
+    /**
+     * function to read number of player
+     */
+    public int readNumberOfPlayer() {
 
-	/**
-	 * print TUI
-	 */
-	private void printTUI() {
-		/* TODO: Ausgabe formatieren */
-		StringBuilder sb = new StringBuilder();
-		StringBuilder streets = new StringBuilder();
+        int tmpNumberOfPlayer = 0;
 
-		sb.append("\n_________________________________\n");
-		sb.append(bundle.getString("player") + "\t|Budget\t|"
-				+ bundle.getString("ownership") + "\n");
-		sb.append("-------\t|------\t|--------------\n");
-		for (int i = 0; i < controller.getNumberOfPlayer(); i++) {
-			
-			Player player = controller.getPlayer(i);
-			sb.append(player.getName() + "\t|" + player.getBudget() + "\t|"
-					+ player.getOwnership() + "\n");
-		}
+        if (in.hasNext()) {
+			/* check if input an integer and in right interval */
+            if (in.hasNextInt()) {
+                tmpNumberOfPlayer = in.nextInt();
+                in.nextLine();
+            } else {
+				/* TODO: alles weg */
+                in.nextLine();
+                return 0;
+            }
+        }
 
-		int z = IMonopolyUtil.TUI_HIGH;
-		String[] zeichen = new String[z];
-		z = 0;
-		zeichen[z] = "|-------";
-		zeichen[++z] = "|___x___";
-		zeichen[++z] = "|       ";
-		zeichen[++z] = "|_______";
+		/* check if input smaller as maximum of player and bigger as minimum */
+        if (tmpNumberOfPlayer < IMonopolyUtil.MIN_NUMBER_OF_PLAYER
+                || tmpNumberOfPlayer > IMonopolyUtil.MAX_NUMBER_OF_PLAYER) {
+            return 0;
+        }
 
-		String x = "x";
-		for (int zeile = 0; zeile < zeichen.length - 1; zeile++) {
-			sb.append("\n");
-			for (int i = 0; i < controller.getField().getfieldSize(); i++) {
-				if (zeile == 1) {
-					zeichen[1] = zeichen[1].replace(x, "" + i);
-					x = "" + i;
-				}
-				sb.append(zeichen[zeile]);
-			}
-			sb.append("|");
-		}
-		for (int i = 0; i < controller.getField().getfieldSize(); i++) {
-			streets.append(i).append("=")
-					.append(controller.getField().getFieldNameAtIndex(i))
-					.append("\n");
-		}
+		/* if scanned number correct, save it */
+        return tmpNumberOfPlayer;
+    }
 
-		sb.append("\n").append(streets);
-		logger.info(sb.toString());
+    private void setNumberOfPlayer() {
+        logger.info(IMonopolyUtil.Q_NUMBER_OF_PLAYER);
+        int status  = readNumberOfPlayer();
+        while (status == 0) {
+            logger.info(IMonopolyUtil.ERR_NUMBER_OF_PLAYER);
+            status  = readNumberOfPlayer();
+        }
+        this.configNumberOfPlayer = status;
+    }
 
-	}
+    private void setNameOfPlayers() {
+        this.configNameOfPlayer = new String[configNumberOfPlayer];
+        for (int i = 0; i < this.configNumberOfPlayer; i++) {
+            logger.info("Player " + (i + 1) + " " + IMonopolyUtil.Q_NAME_PLAYER);
+            if (in.hasNext()) {
+                this.configNameOfPlayer[i] = in.nextLine();
+            }
 
-	/**
-	 * handle user input
-	 * 
-	 * @param line
-	 * @return
-	 */
-	public boolean processInputLine(String line) {
-		boolean status = true;
-		char[] l = line.toCharArray();
-		if (!controller.isCorrectOption(line)) {
-			logger.info(bundle.getString("tui_wrong_input"));
-			return status;
-		}
-		switch (l[0]) {
-		case 'd':
-			// roll dice
-			controller.startTurn();
-			break;
-		case 'b':
-			// zug beenden
-			controller.endTurn();
-			printTUI();
-			startTurn();
-			break;
-		case 'x':
-			status = false;
-			break;
-		case 'y':
-			if (controller.buyStreet()) {
-				logger.info(bundle.getString("tui_buy"));
-			} else {
-				logger.info(bundle.getString("tui_no_money"));
-			}
-			controller.endTurn();
-			printTUI();
-			startTurn();
-			break;
-		case 'n':
-			controller.endTurn();
-			printTUI();
-			startTurn();
-			break;
-		case 'f':
+        }
+    }
+
+    /**
+     * print TUI
+     */
+    private void printTUI() {
+        /* TODO: Ausgabe formatieren */
+        StringBuilder sb = new StringBuilder();
+        StringBuilder streets = new StringBuilder();
+
+        sb.append("\n_________________________________\n");
+        sb.append(bundle.getString("player") + "\t|Budget\t|"
+                + bundle.getString("ownership") + "\n");
+        sb.append("-------\t|------\t|--------------\n");
+        for (int i = 0; i < controller.getNumberOfPlayer(); i++) {
+
+            Player player = controller.getPlayer(i);
+            sb.append(player.getName() + "\t|" + player.getBudget() + "\t|"
+                    + player.getOwnership() + "\n");
+        }
+
+        int z = IMonopolyUtil.TUI_HIGH;
+        String[] zeichen = new String[z];
+        z = 0;
+        zeichen[z] = "|-------";
+        zeichen[++z] = "|___x___";
+        zeichen[++z] = "|       ";
+        zeichen[++z] = "|_______";
+
+        String x = "x";
+        for (int zeile = 0; zeile < zeichen.length - 1; zeile++) {
+            sb.append("\n");
+            for (int i = 0; i < controller.getField().getfieldSize(); i++) {
+                if (zeile == 1) {
+                    zeichen[1] = zeichen[1].replace(x, "" + i);
+                    x = "" + i;
+                }
+                sb.append(zeichen[zeile]);
+            }
+            sb.append("|");
+        }
+        for (int i = 0; i < controller.getField().getfieldSize(); i++) {
+            streets.append(i).append("=")
+                    .append(controller.getField().getFieldNameAtIndex(i))
+                    .append("\n");
+        }
+
+        sb.append("\n").append(streets);
+        logger.info(sb.toString());
+
+    }
+
+    /**
+     * handle user input
+     *
+     * @param line
+     * @return
+     */
+    public boolean processInputLine(String line) {
+        boolean status = true;
+        char[] l = line.toCharArray();
+        if (!controller.isCorrectOption(line)) {
+            logger.info(bundle.getString("tui_wrong_input"));
+            return status;
+        }
+        switch (l[0]) {
+            case 'd':
+                // roll dice
+                controller.startTurn();
+                break;
+            case 'b':
+                // zug beenden
+                controller.endTurn();
+                printTUI();
+                startTurn();
+                break;
+            case 'x':
+                status = false;
+                break;
+            case 'y':
+                if (controller.buyStreet()) {
+                    logger.info(bundle.getString("tui_buy"));
+                } else {
+                    logger.info(bundle.getString("tui_no_money"));
+                }
+                controller.endTurn();
+                printTUI();
+                startTurn();
+                break;
+            case 'n':
+                controller.endTurn();
+                printTUI();
+                startTurn();
+                break;
+            case 'f':
 			/* temporary */
 			/* TODO check if enough money */
-			controller.getCurrentPlayer().decrementMoney(
-					IMonopolyUtil.FREIKAUFEN);
-			controller.getCurrentPlayer().setInPrison(false);
-			// zug beenden
-			controller.endTurn();
-			printTUI();
-			startTurn();
-			break;
-		default:
-			logger.info(bundle.getString("tui_wrong_input"));
-		}
-		return status;
-	}
+                controller.getCurrentPlayer().decrementMoney(
+                        IMonopolyUtil.FREIKAUFEN);
+                controller.getCurrentPlayer().setInPrison(false);
+                // zug beenden
+                controller.endTurn();
+                printTUI();
+                startTurn();
+                break;
+            default:
+                logger.info(bundle.getString("tui_wrong_input"));
+        }
+        return status;
+    }
 }

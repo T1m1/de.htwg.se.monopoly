@@ -14,28 +14,12 @@ public interface IPlayerController {
 	Player getNextPlayer();
 
 	/**
-	 * Reads a number from the Standard input and checks if correct. 
-	 * Return true if number is correct, otherwise false.
-	 * 
-	 * @return
-	 */
-	boolean readNumberOfPlayer();
-
-	/**
 	 * Return the number of Player.
 	 *  
 	 * @return
 	 */
 	int getNumberOfPlayer();
 
-	/**
-	 * Reads the name of each Player from the Standard input.
-	 * Return true if names are correct, otherwise false.
-	 * 
-	 * @param i
-	 * @return
-	 */
-	boolean readNameOfPlayer(int i);
 
 	/**
 	 * returns a player object at index i in the Queue

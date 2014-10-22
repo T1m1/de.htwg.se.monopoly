@@ -46,10 +46,10 @@ public class ControllerTest {
 
 		testController = injector.getInstance(IController.class);
 
-		testController.setNumberofPlayer();
-		testController.setNameofPlayer(0);
-		testController.setNameofPlayer(1);
-		testController.startNewGame();
+		//testController.setNumberofPlayer();
+		//testController.setNameofPlayer(0);
+		//testController.setNameofPlayer(1);
+		//testController.startNewGame();
 		System.setIn(System.in);
 	}
 
@@ -82,7 +82,7 @@ public class ControllerTest {
 	@Test
 	public void testTurnWithCommStack1() {
 		IFieldObject stack = new CommunityCardsStack(new CommunityCard(
-				"Du bekommst 100 € von der Bank", "100", true));
+				"Du bekommst 100 ï¿½ von der Bank", "100", true));
 		testController.getField().setFieldAtIndex(0, stack);
 		testController.getField().setFieldAtIndex(1, stack);
 		Player testplayer = testController.getCurrentPlayer();
@@ -94,7 +94,7 @@ public class ControllerTest {
 	@Test
 	public void testTurnWithCommStack2() {
 		IFieldObject stack = new CommunityCardsStack(new CommunityCard(
-				"Gehe zum nächsten Gemeinschaftsfeld", "Gemeinschaftsfeld", true));
+				"Gehe zum nï¿½chsten Gemeinschaftsfeld", "Gemeinschaftsfeld", true));
 		testController.getField().setFieldAtIndex(0, stack);
 		testController.getField().setFieldAtIndex(1, stack);
 		Player testplayer = testController.getCurrentPlayer();
@@ -118,7 +118,7 @@ public class ControllerTest {
 	@Test
 	public void testTurnWithChanceStack2() {
 		IFieldObject stack = new ChanceCardsStack(new ChanceCard(
-				"Gehe zum nächsten Ereignisfeld", "Ereignisfeld", true));
+				"Gehe zum nï¿½chsten Ereignisfeld", "Ereignisfeld", true));
 		testController.getField().setFieldAtIndex(0, stack);
 		testController.getField().setFieldAtIndex(1, stack);
 		Player testplayer = testController.getCurrentPlayer();

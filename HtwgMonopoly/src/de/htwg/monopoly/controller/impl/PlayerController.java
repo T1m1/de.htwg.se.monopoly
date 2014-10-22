@@ -23,30 +23,11 @@ public class PlayerController implements IPlayerController {
 
 	/**
 	 * Constructor
-	 * 
-	 * @param numberOfPlayer
 	 */
 	public PlayerController() {
-		in = new Scanner(System.in);
 
 	}
 
-	/**
-	 * initialize player array with this.numberOfPlayer
-	 */
-	private void init() {
-		/* create array with number from method readNumberOfPlayer() */
-		this.players = new Player[this.numberOfPlayer];
-		/*
-		 * set current player to the last index, that function getNextPlayer
-		 * return the first player by initial call
-		 */
-		this.currentPlayer = this.numberOfPlayer - 1;
-		/* loop to create player objects with default values */
-		for (int i = 0; i < numberOfPlayer; i++) {
-			players[i] = new Player();
-		}
-	}
 
 	public Player getNextPlayer() {
 
@@ -66,36 +47,7 @@ public class PlayerController implements IPlayerController {
 		return players[currentPlayer];
 	}
 
-	/**
-	 * function to read number of player
-	 */
-	public boolean readNumberOfPlayer() {
 
-		int tmpNumberOfPlayer = 0;
-
-		if (in.hasNext()) {
-			/* check if input an integer and in right interval */
-			if (in.hasNextInt()) {
-				tmpNumberOfPlayer = in.nextInt();
-				in.nextLine();
-			} else {
-				/* TODO: alles weg */
-				in.nextLine();
-				return false;
-			}
-		}
-
-		/* check if input smaller as maximum of player and bigger as minimum */
-		if (tmpNumberOfPlayer < IMonopolyUtil.MIN_NUMBER_OF_PLAYER
-				|| tmpNumberOfPlayer > IMonopolyUtil.MAX_NUMBER_OF_PLAYER) {
-			return false;
-		}
-
-		/* if scanned number correct, save it */
-		this.numberOfPlayer = tmpNumberOfPlayer;
-		init();
-		return true;
-	}
 
 	/**
 	 * get number of player
@@ -104,18 +56,7 @@ public class PlayerController implements IPlayerController {
 		return this.numberOfPlayer;
 	}
 
-	/**
-	 * read name of player
-	 */
-	public boolean readNameOfPlayer(int i) {
-		// S: wann zur hölle is das nicht wahr? also testbar?
-		// T: ich denke NIE
-		if (in.hasNext()) {
-			this.players[i].setName(in.nextLine());
-		}
-		return true;
 
-	}
 
 	/**
 	 * get a specific player
