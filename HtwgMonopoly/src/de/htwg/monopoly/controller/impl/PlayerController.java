@@ -1,7 +1,5 @@
 package de.htwg.monopoly.controller.impl;
 
-import java.util.Scanner;
-
 import de.htwg.monopoly.controller.IPlayerController;
 import de.htwg.monopoly.entities.ICards;
 import de.htwg.monopoly.entities.impl.Bank;
@@ -34,15 +32,15 @@ public class PlayerController implements IPlayerController {
 	public void setNumberOfPlayer(int number) {
 		// set number of players
 		this.numberOfPlayer = number;
-		
+
 		// create array of players.
 		this.players = new Player[this.numberOfPlayer];
-		
+
 		// create default players
 		for (int i = 0; i < numberOfPlayer; i++) {
 			players[i] = new Player();
 		}
-	
+
 	}
 
 	/**
@@ -51,8 +49,9 @@ public class PlayerController implements IPlayerController {
 	@Override
 	public void setNameofPlayer(int i, String string) {
 		players[i].setName(string);
-	
+
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -67,6 +66,7 @@ public class PlayerController implements IPlayerController {
 		/* return current player object */
 		return players[currentPlayer];
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -75,6 +75,7 @@ public class PlayerController implements IPlayerController {
 		currentPlayer = 0;
 		return players[0];
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */

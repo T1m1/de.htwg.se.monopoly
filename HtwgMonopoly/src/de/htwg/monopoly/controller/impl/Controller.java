@@ -61,12 +61,12 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void startNewGame(int numberOfPlayer, String[] nameOfPlayers)
 			throws IllegalArgumentException {
-		assert nameOfPlayers.length == numberOfPlayer : "Anzahl der Spieler and Anzahl der Spielernamen stimmt nicht überein";
+		assert nameOfPlayers.length == numberOfPlayer : "Anzahl der Spieler and Anzahl der Spielernamen stimmt nicht ï¿½berein";
 
 		// check correct number of players
 		if (numberOfPlayer < IMonopolyUtil.MIN_NUMBER_OF_PLAYER
 				|| numberOfPlayer > IMonopolyUtil.MAX_NUMBER_OF_PLAYER) {
-			throw new IllegalArgumentException("Ungültige Anzahl an Spielern.");
+			throw new IllegalArgumentException("Ungï¿½ltige Anzahl an Spielern.");
 		}
 
 		// initialize game with numbers and names of the players
@@ -92,7 +92,7 @@ public class Controller extends Observable implements IController {
 		} else {
 			turn();
 		}
-		// überprüfen auf was fürn feldobjek
+		// ï¿½berprï¿½fen auf was fï¿½rn feldobjek
 		// dementsprechend notify
 		notifyObservers(1);
 		// notifyObservers

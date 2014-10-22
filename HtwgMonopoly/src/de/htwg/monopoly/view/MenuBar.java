@@ -75,7 +75,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 			showURL(RULES);
 
 		} else if (event.equals(miNewGame)) {
-			controller.startNewGame();
+			//controller.startNewGame();
 		}
 
 	}

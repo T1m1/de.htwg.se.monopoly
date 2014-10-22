@@ -20,6 +20,7 @@ public interface IPlayerController {
 	 */
 	int getNumberOfPlayer();
 
+
 	/**
 	 * returns a player object at index i in the Queue
 	 * 

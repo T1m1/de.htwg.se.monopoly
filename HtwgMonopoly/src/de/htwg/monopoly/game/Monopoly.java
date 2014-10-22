@@ -32,6 +32,7 @@ public class Monopoly {
 
 		tui = new TextUI(controller);
 		gui = new GraphicUserInterface(controller);
+
 		// wui = new WebUserInterface(controller);
 
 	}
@@ -47,11 +48,11 @@ public class Monopoly {
 	public static void main(String[] args) {
 
 		Monopoly.getInstance();
-		
+
 		tui.startGame();
 		gui.startGame();
-		//wui.startGame();
-		
+		// wui.startGame();
+
 		boolean run = true;
 		scanner = new Scanner(System.in);
 		while (run) {
