@@ -10,11 +10,6 @@ import de.htwg.monopoly.observer.IObservable;
 public interface IController extends IObservable {
 
 	/**
-	 * start the actual Gameplay
-	 */
-	void startNewGame();
-
-	/**
 	 * start a turn of a player
 	 */
 	void startTurn();
@@ -163,5 +158,13 @@ public interface IController extends IObservable {
 	 * @return
 	 */
 	Dice getDice();
+
+	/**
+	 * Start a new game with the given number of player and the names oft the players.
+	 * 
+	 * @param numberOfPlayer
+	 * @param nameOfPlayers
+	 */
+	void startNewGame(int numberOfPlayer, String[] nameOfPlayers);
 
 }

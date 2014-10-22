@@ -72,8 +72,9 @@ public class Controller extends Observable implements IController {
 	 * function to call at start of a new game
 	 */
 	@Override
-	public void startNewGame() {
+	public void startNewGame(int numberOfPlayer, String[] nameOfPlayers) {
 		// TODO ZufallsSpieler auswählen
+		// TODO init();
 
 		this.currentPlayer = players.getNextPlayer();
 		notifyObservers(0);
