@@ -21,15 +21,6 @@ public interface IPlayerController {
 	int getNumberOfPlayer();
 
 	/**
-	 * Reads the name of each Player from the Standard input. Return true if
-	 * names are correct, otherwise false.
-	 * 
-	 * @param i
-	 * @return
-	 */
-	boolean readNameOfPlayer(int i);
-
-	/**
 	 * returns a player object at index i in the Queue
 	 * 
 	 * @param i
@@ -59,4 +50,24 @@ public interface IPlayerController {
 	 * @return the first player.
 	 */
 	Player getFirstPlayer();
+
+	/**
+	 * Set the name of the player in the player array according to the given
+	 * index.
+	 * 
+	 * @param i
+	 *            the index of the player array
+	 * @param string
+	 *            the name of the player
+	 */
+	void setNameofPlayer(int i, String string);
+
+	/**
+	 * Sets the number of player for the game and initializes the array with
+	 * default players
+	 * 
+	 * @param number
+	 *            a correct number
+	 */
+	void setNumberOfPlayer(int number);
 }

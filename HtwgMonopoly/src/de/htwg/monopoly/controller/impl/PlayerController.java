@@ -19,18 +19,44 @@ public class PlayerController implements IPlayerController {
 	/* number of player in game */
 	private int numberOfPlayer;
 	private int currentPlayer;
-	private Scanner in;
 
 	/**
 	 * Constructor
-	 * 
-	 * @param numberOfPlayer
 	 */
 	public PlayerController() {
-		in = new Scanner(System.in);
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void setNumberOfPlayer(int number) {
+		// set number of players
+		this.numberOfPlayer = number;
+		
+		// create array of players.
+		this.players = new Player[this.numberOfPlayer];
+		
+		// create default players
+		for (int i = 0; i < numberOfPlayer; i++) {
+			players[i] = new Player();
+		}
+	
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void setNameofPlayer(int i, String string) {
+		players[i].setName(string);
+	
+	}
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public Player getNextPlayer() {
 
 		currentPlayer++;
@@ -41,44 +67,42 @@ public class PlayerController implements IPlayerController {
 		/* return current player object */
 		return players[currentPlayer];
 	}
-
 	/**
-	 * return the current player object
+	 * {@inheritDoc}
 	 */
+	@Override
+	public Player getFirstPlayer() {
+		currentPlayer = 0;
+		return players[0];
+	}
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public Player currentPlayer() {
 		return players[currentPlayer];
 	}
 
 	/**
-	 * get number of player
+	 * {@inheritDoc}
 	 */
+	@Override
 	public int getNumberOfPlayer() {
 		return this.numberOfPlayer;
 	}
 
 	/**
-	 * read name of player
+	 * {@inheritDoc}
 	 */
-	public boolean readNameOfPlayer(int i) {
-		// S: wann zur hölle is das nicht wahr? also testbar?
-		// T: ich denke NIE
-		if (in.hasNext()) {
-			this.players[i].setName(in.nextLine());
-		}
-		return true;
-
-	}
-
-	/**
-	 * get a specific player
-	 */
+	@Override
 	public Player getPlayer(int i) {
 		return this.players[i];
 	}
 
 	/**
-	 * transfer money
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void transferMoney(Player currentPlayer, ICards currentCard) {
 		int actualMoney;
 		try {
@@ -97,42 +121,6 @@ public class PlayerController implements IPlayerController {
 				Bank.receiveMoneyFromPlayer(currentPlayer, player, actualMoney);
 			}
 		}
-	}
-
-	/**
-	 * Set the number of player for the game and initialize the array with
-	 * player objects.
-	 */
-	public void setNumberOfPlayer(int number) {
-		// set number of players
-		this.numberOfPlayer = number;
-		// create array of players.
-		this.players = new Player[this.numberOfPlayer];
-		// create default players
-		for (int i = 0; i < numberOfPlayer; i++) {
-			players[i] = new Player();
-		}
-
-	}
-
-	/**
-	 * Set the name of the player in the player array according to the given
-	 * index.
-	 * 
-	 * @param i
-	 *            the index of the player array
-	 * @param string
-	 *            the name of the player
-	 */
-	public void setNameofPlayer(int i, String string) {
-		players[i].setName(string);
-
-	}
-
-
-	@Override
-	public Player getFirstPlayer() {
-		return players[0];
 	}
 
 }

@@ -56,6 +56,7 @@ public class Controller extends Observable implements IController {
 
 	/**
 	 * function to call at start of a new game
+	 * TODO map statt integer und array übergeben
 	 */
 	@Override
 	public void startNewGame(int numberOfPlayer, String[] nameOfPlayers)
@@ -69,7 +70,6 @@ public class Controller extends Observable implements IController {
 		}
 
 		// initialize game with numbers and names of the players
-
 		players.setNumberOfPlayer(numberOfPlayer);
 		for (int i = 0; i < numberOfPlayer; i++) {
 			players.setNameofPlayer(i, nameOfPlayers[i]);
