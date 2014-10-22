@@ -10,6 +10,7 @@ import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
 import de.htwg.monopoly.controller.IController;
+import de.htwg.monopoly.controller.IPlayerController;
 import de.htwg.monopoly.entities.ICards;
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Bank;
@@ -262,7 +263,7 @@ public class Controller extends Observable implements IController {
 	/**
 	 * return object with all players
 	 */
-	public PlayerController getPlayers() {
+	public IPlayerController getPlayers() {
 		return players;
 	}
 

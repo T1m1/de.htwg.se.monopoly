@@ -10,6 +10,7 @@ import java.io.ByteArrayInputStream;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.htwg.monopoly.controller.IPlayerController;
 import de.htwg.monopoly.controller.impl.PlayerController;
 import de.htwg.monopoly.entities.ICards;
 import de.htwg.monopoly.entities.impl.Card;
@@ -18,7 +19,7 @@ import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
 public class PlayerControllerTest {
-	PlayerController players;
+	IPlayerController players;
 
 	@Before
 	public void setUp() throws Exception {

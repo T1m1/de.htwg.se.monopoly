@@ -129,11 +129,8 @@ public class PlayerController implements IPlayerController {
 
 	}
 
-	/**
-	 * Returns the first player in the queue. Basically players[0]
-	 * 
-	 * @return the first player.
-	 */
+
+	@Override
 	public Player getFirstPlayer() {
 		return players[0];
 	}
