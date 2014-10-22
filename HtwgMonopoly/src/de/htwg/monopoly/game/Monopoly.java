@@ -42,7 +42,7 @@ public class Monopoly {
 
 	}
 
-	public static TextUI getTextUI() {
+	public TextUI getTextUI() {
 		return tui;
 	}
 

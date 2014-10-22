@@ -38,7 +38,6 @@ public interface IController extends IObservable {
 	 */
 	boolean buyStreet();
 
-
 	/**
 	 * exit the game.
 	 */
@@ -56,26 +55,29 @@ public interface IController extends IObservable {
 	 */
 	void receiveGoMoney();
 
-
 	/***
-	 * set number of player
-	 * @return status
+	 * set number of player. This function reads from stdin.
+	 * 
+	 * @return true if setting the number was succesful.
 	 */
 	boolean setNumberofPlayer();
 
 	/**
 	 * set name of player i
-	 * @param i -> number of player to set name for it
+	 * 
+	 * @param i
+	 *            -> number of player to set name for it
 	 * @return status
 	 */
 	boolean setNameofPlayer(int i);
 
 	/**
 	 * return object from current player
+	 * 
 	 * @return
 	 */
 	Player getCurrentPlayer();
-	
+
 	/**
 	 * 
 	 * @return object of monopoly field
@@ -84,6 +86,7 @@ public interface IController extends IObservable {
 
 	/**
 	 * for tui, to show which option user can choose
+	 * 
 	 * @param chooseOption
 	 * @return a list with all option
 	 */
@@ -96,15 +99,16 @@ public interface IController extends IObservable {
 	String getMessage();
 
 	/**
-	 * function to check if user have the correct options choose
-	 * correct options are options they are contains in list of function getOption
+	 * function to check if user have the correct options choose correct options
+	 * are options they are contains in list of function getOption
+	 * 
 	 * @param l
 	 * @return
 	 */
 	boolean isCorrectOption(String l);
 
 	/**
-	 * Return the number of Players. 
+	 * Return the number of Players.
 	 * 
 	 * @return
 	 */
@@ -126,7 +130,8 @@ public interface IController extends IObservable {
 	IPlayerController getPlayers();
 
 	/**
-	 *  Sets the current Field to fieldObject. This is a function only for testing.
+	 * Sets the current Field to fieldObject. This is a function only for
+	 * testing.
 	 * 
 	 * @param fieldObject
 	 */
@@ -134,9 +139,9 @@ public interface IController extends IObservable {
 
 	/**
 	 * get dice objects
+	 * 
 	 * @return
 	 */
 	Dice getDice();
-
 
 }
