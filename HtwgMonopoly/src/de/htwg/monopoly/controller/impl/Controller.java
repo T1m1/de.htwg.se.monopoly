@@ -16,6 +16,7 @@ import de.htwg.monopoly.entities.impl.Bank;
 import de.htwg.monopoly.entities.impl.Dice;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.Street;
+import de.htwg.monopoly.game.Monopoly;
 import de.htwg.monopoly.observer.impl.Observable;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
@@ -72,10 +73,23 @@ public class Controller extends Observable implements IController {
 	 * function to call at start of a new game
 	 */
 	@Override
-	public void startNewGame(int numberOfPlayer, String[] nameOfPlayers) {
-		// TODO ZufallsSpieler auswählen
-		// TODO init();
+	public void startNewGame(int numberOfPlayer, String[] nameOfPlayers)
+			throws IllegalArgumentException {
+		assert nameOfPlayers.length == numberOfPlayer : "Anzahl der Spieler and Anzahl der Spielernamen stimmt nicht überein";
 
+		// check correct number of players
+		if (numberOfPlayer < IMonopolyUtil.MIN_NUMBER_OF_PLAYER
+				|| numberOfPlayer > IMonopolyUtil.MAX_NUMBER_OF_PLAYER) {
+			throw new IllegalArgumentException("Ungültige Anzahl an Spielern.");
+		}
+
+		// initialize game with numbers and names of the players
+		setNumberOfPlayer(numberOfPlayer);
+		for (int i = 0; i < numberOfPlayer; i++) {
+			setNameofPlayer(i, nameOfPlayers[i]);
+		}
+
+		// get first player and notify observers
 		this.currentPlayer = players.getNextPlayer();
 		notifyObservers(0);
 	}
@@ -361,7 +375,7 @@ public class Controller extends Observable implements IController {
 				options.add("(c) " + bundle.getString("contr_freeCard"));
 			}
 			// TODO check if contains free park card
-			
+
 		}
 		/* returns a list with options */
 		return options;
