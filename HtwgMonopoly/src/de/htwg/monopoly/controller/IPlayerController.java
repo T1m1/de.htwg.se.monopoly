@@ -31,7 +31,7 @@ public interface IPlayerController {
 
 	/**
 	 * Performs money transfer according to the drawn card. There are two types:
-	 * Money is transferred to/from bank or all the other players.
+	 * Money is transferred to/from bank or to all the other players.
 	 * 
 	 * @param currentCard
 	 * @param currentPlayer

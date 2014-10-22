@@ -17,9 +17,16 @@ public abstract class Card implements ICards {
 	 * 
 	 * 
 	 * @param descr
-	 * @param action
+	 *            A simple text describing the action for the user.
+	 * @param target
+	 *            Indicates the target. This can be the name of a street, where
+	 *            the player should be moved or an integer indicating the amount
+	 *            of money the player receives or has to pay.
+	 * @param toFromBank
+	 *            if set true, the money is transferred to/from the bank.
+	 *            Otherwise the money is transferred to the other players.
 	 */
-	public Card(String descr, String target, boolean toFromBank) { 
+	public Card(String descr, String target, boolean toFromBank) {
 		this.description = descr;
 		this.moneyTransferredToFromBank = toFromBank;
 		this.target = target;
@@ -38,7 +45,6 @@ public abstract class Card implements ICards {
 	public String getDescription() {
 		return this.description;
 	}
-
 
 	@Override
 	public String toString() {
