@@ -73,7 +73,6 @@ public class PlayerController implements IPlayerController {
 
 		/* if scanned number correct, save it */
 		this.numberOfPlayer = tmpNumberOfPlayer;
-		init();
 		return true;
 	}
 
@@ -85,7 +84,7 @@ public class PlayerController implements IPlayerController {
 	}
 
 
-	}
+
 
 	/**
 	 * get a specific player
