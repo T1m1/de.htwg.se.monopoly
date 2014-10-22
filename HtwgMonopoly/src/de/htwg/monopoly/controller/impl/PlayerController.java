@@ -20,37 +20,31 @@ public class PlayerController implements IPlayerController {
 
 	/**
 	 * Constructor
+	 * 
+	 * @param nameOfPlayers
+	 * @param numberOfPlayer2
 	 */
-	public PlayerController() {
+	public PlayerController(int numberOfPlayer2, String[] nameOfPlayers) {
 
-	}
+		// check correct number of players
+		assert nameOfPlayers.length == numberOfPlayer : "Anzahl der Spieler and Anzahl der Spielernamen stimmt nicht �berein";
+		assert (numberOfPlayer < IMonopolyUtil.MIN_NUMBER_OF_PLAYER || numberOfPlayer > IMonopolyUtil.MAX_NUMBER_OF_PLAYER) : "Ung�ltige Anzahl an Spielern.";
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void setNumberOfPlayer(int number) {
 		// set number of players
-		this.numberOfPlayer = number;
+		this.numberOfPlayer = numberOfPlayer2;
 
 		// create array of players.
-		this.players = new Player[this.numberOfPlayer];
+		this.players = new Player[numberOfPlayer2];
 
 		// create default players
 		for (int i = 0; i < numberOfPlayer; i++) {
 			players[i] = new Player();
+			players[i].setName(nameOfPlayers[i]);
 		}
 
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void setNameofPlayer(int i, String string) {
-		players[i].setName(string);
 
-	}
 
 	/**
 	 * {@inheritDoc}
@@ -59,11 +53,14 @@ public class PlayerController implements IPlayerController {
 	public Player getNextPlayer() {
 
 		currentPlayer++;
-		/* set to first player, if all player on turn */
+		
+		// reset to first player at the end of the player queue
+		// TODO do it with collections!!
 		if (currentPlayer >= numberOfPlayer) {
 			currentPlayer = IMonopolyUtil.FIRST_PLAYER;
 		}
-		/* return current player object */
+		
+		// return the current player
 		return players[currentPlayer];
 	}
 
@@ -72,15 +69,15 @@ public class PlayerController implements IPlayerController {
 	 */
 	@Override
 	public Player getFirstPlayer() {
-		currentPlayer = 0;
-		return players[0];
+		currentPlayer = IMonopolyUtil.FIRST_PLAYER;
+		return players[IMonopolyUtil.FIRST_PLAYER];
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Player currentPlayer() {
+	public Player getCurrentPlayer() {
 		return players[currentPlayer];
 	}
 

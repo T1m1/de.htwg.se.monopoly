@@ -175,9 +175,9 @@ public class ControllerTest {
 
 	@Test
 	public void testPayRent() {
-		testController.getPlayers().currentPlayer().setPosition(1);
+		testController.getPlayers().getCurrentPlayer().setPosition(1);
 		testController.buyStreet();
-		testController.getPlayers().currentPlayer().setPosition(1);
+		testController.getPlayers().getCurrentPlayer().setPosition(1);
 		testController.payRent();
 		testController.getField();
 

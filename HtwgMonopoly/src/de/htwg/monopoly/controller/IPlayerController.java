@@ -43,7 +43,7 @@ public interface IPlayerController {
 	 * 
 	 * @return
 	 */
-	Player currentPlayer();
+	Player getCurrentPlayer();
 
 	/**
 	 * Returns the first player in the queue. Basically players[0]
@@ -52,23 +52,4 @@ public interface IPlayerController {
 	 */
 	Player getFirstPlayer();
 
-	/**
-	 * Set the name of the player in the player array according to the given
-	 * index.
-	 * 
-	 * @param i
-	 *            the index of the player array
-	 * @param string
-	 *            the name of the player
-	 */
-	void setNameofPlayer(int i, String string);
-
-	/**
-	 * Sets the number of player for the game and initializes the array with
-	 * default players
-	 * 
-	 * @param number
-	 *            a correct number
-	 */
-	void setNumberOfPlayer(int number);
 }

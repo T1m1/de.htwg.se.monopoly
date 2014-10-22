@@ -17,7 +17,6 @@ import de.htwg.monopoly.entities.impl.Bank;
 import de.htwg.monopoly.entities.impl.Dice;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.Street;
-import de.htwg.monopoly.game.Monopoly;
 import de.htwg.monopoly.observer.impl.Observable;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
@@ -48,7 +47,6 @@ public class Controller extends Observable implements IController {
 	 */
 	@Inject
 	public Controller(@Named("FieldSize") int fieldSize) {
-		this.players = new PlayerController();
 		this.field = new Playfield(fieldSize);
 		this.message = new StringBuilder();
 		this.dice = new Dice(fieldSize);
@@ -59,23 +57,12 @@ public class Controller extends Observable implements IController {
 	 * TODO map statt integer und array übergeben
 	 */
 	@Override
-	public void startNewGame(int numberOfPlayer, String[] nameOfPlayers)
-			throws IllegalArgumentException {
-		assert nameOfPlayers.length == numberOfPlayer : "Anzahl der Spieler and Anzahl der Spielernamen stimmt nicht ï¿½berein";
+	public void startNewGame(int numberOfPlayer, String[] nameOfPlayers) {
+		
+		// initialize player controller
+		this.players = new PlayerController(numberOfPlayer, nameOfPlayers);
 
-		// check correct number of players
-		if (numberOfPlayer < IMonopolyUtil.MIN_NUMBER_OF_PLAYER
-				|| numberOfPlayer > IMonopolyUtil.MAX_NUMBER_OF_PLAYER) {
-			throw new IllegalArgumentException("Ungï¿½ltige Anzahl an Spielern.");
-		}
-
-		// initialize game with numbers and names of the players
-		players.setNumberOfPlayer(numberOfPlayer);
-		for (int i = 0; i < numberOfPlayer; i++) {
-			players.setNameofPlayer(i, nameOfPlayers[i]);
-		}
-
-		// get first player and notify observers
+		// set current player to first player and notify observers
 		this.currentPlayer = players.getFirstPlayer();
 		notifyObservers(0);
 	}

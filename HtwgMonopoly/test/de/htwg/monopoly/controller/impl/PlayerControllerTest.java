@@ -41,7 +41,7 @@ public class PlayerControllerTest {
 
 	@Test
 	public void testCurrentPlayer() {
-		assertEquals("2", players.currentPlayer().getName());
+		assertEquals("2", players.getCurrentPlayer().getName());
 		assertEquals(2, players.getNumberOfPlayer());
 		assertEquals("2", players.getPlayer(1).getName());
 	}
