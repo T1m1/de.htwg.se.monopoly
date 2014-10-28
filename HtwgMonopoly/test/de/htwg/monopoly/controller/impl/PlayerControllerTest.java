@@ -6,6 +6,7 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.io.ByteArrayInputStream;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -26,11 +27,18 @@ public class PlayerControllerTest {
 		ByteArrayInputStream testStream = new ByteArrayInputStream(
 				IMonopolyUtil.TEST_INPUT_STREAM.getBytes());
 		System.setIn(testStream);
-		players = new PlayerController();
+	//	players = new PlayerController();
 	//	players.readNumberOfPlayer();
 	//	players.readNameOfPlayer(0);
 	//	players.readNameOfPlayer(1);
 		System.setIn(System.in);
+
+        // Mock Test22
+      //  List mockList = mock(List.class);
+      //  mockList.add("one");
+      //  when(mockList.get(0)).thenReturn("two");
+      //  assertEquals(mockList.get(0), "two");
+
 	}
 
 	@Test
@@ -56,7 +64,7 @@ public class PlayerControllerTest {
 
 	@Test
 	public void testReadNumberofPlayer() throws AWTException {
-		players = new PlayerController();
+		//players = new PlayerController();
 		String testString = "Hello World";
 		ByteArrayInputStream testStream = new ByteArrayInputStream(
 				testString.getBytes());

@@ -63,7 +63,7 @@ class FieldDrawPanel extends JPanel {
 	private static final String PICTURE_USER3 = "Bittel.jpg";
 	private static final String PICTURE_USER4 = "Boger.jpg";
 	private static final String PICTURE_USER5 = "Garloff.jpg";
-	private static final String PICTURE_USER6 = "Mächtel.jpg";
+	private static final String PICTURE_USER6 = "Mï¿½chtel.jpg";
 
 	private static final String[] PICTURES = { PICTURE_USER1, PICTURE_USER2,
 			PICTURE_USER3, PICTURE_USER4, PICTURE_USER5, PICTURE_USER6 };
@@ -160,8 +160,8 @@ class FieldDrawPanel extends JPanel {
 				DIFFERENC - 1, null);
 
 		/* add user figure at his position */
-		setFigures();
-		setFigureForPlayer();
+		//setFigures();
+		//setFigureForPlayer();
 
 	}
 
@@ -300,7 +300,7 @@ class FieldDrawPanel extends JPanel {
 		}
 		/* draw price for street */
 		pos += g2d.getFontMetrics().getHeight();
-		g2d.drawString(street.getPriceForStreet() + "€", position.getStringX(),
+		g2d.drawString(street.getPriceForStreet() + "ï¿½", position.getStringX(),
 				pos);
 	}
 
@@ -351,8 +351,11 @@ class FieldDrawPanel extends JPanel {
 	}
 
 	public void update() {
-		setFigures();
 		repaint();
+
+      //  setFigures();
+       // setFigureForPlayer();
+
 	}
 
 	private void setFigureForPlayer() {
