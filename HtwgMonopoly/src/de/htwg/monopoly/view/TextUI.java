@@ -13,6 +13,7 @@ import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.observer.Event;
 import de.htwg.monopoly.observer.IObserver;
 import de.htwg.monopoly.util.IMonopolyUtil;
+import de.htwg.monopoly.util.MonopolyUtils;
 
 public class TextUI implements IObserver {
 
@@ -143,8 +144,7 @@ public class TextUI implements IObserver {
         }
 
 		/* check if input smaller as maximum of player and bigger as minimum */
-        if (tmpNumberOfPlayer < IMonopolyUtil.MIN_NUMBER_OF_PLAYER
-                || tmpNumberOfPlayer > IMonopolyUtil.MAX_NUMBER_OF_PLAYER) {
+        if (MonopolyUtils.verifyPlayerNumber(tmpNumberOfPlayer) == false) {
             return 0;
         }
 
