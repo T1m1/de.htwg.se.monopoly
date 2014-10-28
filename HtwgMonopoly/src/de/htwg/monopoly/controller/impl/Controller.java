@@ -62,7 +62,7 @@ public class Controller extends Observable implements IController {
 		// initialize player controller
 		this.players = new PlayerController(numberOfPlayer, nameOfPlayers);
 
-		// set current player to first player and notify observers
+		// set current player to first player, notify observers and get ready to play
 		this.currentPlayer = players.getFirstPlayer();
 		notifyObservers(0);
 	}
