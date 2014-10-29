@@ -116,4 +116,6 @@ public interface IPlayfield {
 	 * @return
 	 */
 	boolean buyStreet(Player currentPlayer, Street currentStreet);
+
+    IFieldObject[] getPlayfield();
 }

@@ -42,6 +42,7 @@ public class Playfield implements IPlayfield {
 			createField(i);
 		}
 	}
+
 	/**
 	 * TODO for each case statement a new function!!! -> MAYBE
 	 * 
@@ -282,4 +283,9 @@ public class Playfield implements IPlayfield {
 		return false;
 
 	}
+
+    @Override
+    public IFieldObject[] getPlayfield() {
+        return this.playfield;
+    }
 }

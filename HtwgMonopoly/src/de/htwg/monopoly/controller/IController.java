@@ -132,4 +132,6 @@ public interface IController extends IObservable {
 	 */
 	void startNewGame(int numberOfPlayer, String[] nameOfPlayers);
 
+
+
 }

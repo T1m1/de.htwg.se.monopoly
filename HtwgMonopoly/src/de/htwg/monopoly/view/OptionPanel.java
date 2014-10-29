@@ -71,11 +71,11 @@ public class OptionPanel extends JPanel implements ActionListener {
 		buttonFreikaufen.setEnabled(false);
 		buttonFreikaufen.addActionListener(this);
 
-		buttonFreikarte = new JButton("Freikarte einlösen");
+		buttonFreikarte = new JButton("Freikarte einlï¿½sen");
 		buttonFreikarte.setEnabled(false);
 		buttonFreikarte.addActionListener(this);
 
-		buttonFreiWuerfeln = new JButton("3 x Würfeln");
+		buttonFreiWuerfeln = new JButton("3 x Wï¿½rfeln");
 		buttonFreiWuerfeln.setEnabled(false);
 		buttonFreiWuerfeln.addActionListener(this);
 
@@ -104,7 +104,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 			contr.startTurn();
 			int diceResult = contr.getDice().getResultDice()
 					% (contr.getField().getfieldSize() + 1);
-			taAusgabe.setText("Sie haben " + diceResult + " gewürfelt\n"
+			taAusgabe.setText("Sie haben " + diceResult + " gewÃ¼rfelt\n"
 					+ taAusgabe.getText());
 
 			// TODO in check enable status method
@@ -177,7 +177,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 			if (option.contains("beenden")) {
 				buttonZugBeenden.setEnabled(true);
 			}
-			if (option.contains("würfeln")) {
+			if (option.contains("wï¿½rfeln")) {
 				buttonWuerfeln.setEnabled(true);
 			}
 		}
