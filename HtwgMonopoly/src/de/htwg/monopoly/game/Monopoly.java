@@ -48,9 +48,11 @@ public class Monopoly {
 	public static void main(String[] args) {
 
 		Monopoly.getInstance();
-
-		tui.startGame();
+		
+		// Note: it is important to start gui first, otherwise the tui waits for input. Maybe fix it.
 		gui.startGame();
+		tui.startGame();
+		
 		// wui.startGame();
 
 		boolean run = true;

@@ -6,11 +6,14 @@ public final class Bank {
 
 	private static int parkingMoney = 0;
 
+	/**
+	 * Static class for handling various Money transfer.
+	 */
 	private Bank() {
 	}
 
 	/**
-	 * The current Player pays the rent of the current Street to its owner. Note
+	 * The given Player pays the rent of the current Street to its owner. Note
 	 * that the currentField-Object must be a Street-Object. Otherwise a
 	 * assertion error will be thrown.
 	 * 
@@ -44,7 +47,7 @@ public final class Bank {
 	}
 
 	/**
-	 * Returns and "removes" the money in the middle of the playfield.
+	 * Returns and <b>removes</b> the money in the middle ("Frei Parken") of the playfield.
 	 * 
 	 * @return int
 	 */

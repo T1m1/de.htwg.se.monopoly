@@ -5,6 +5,7 @@ import de.htwg.monopoly.entities.ICards;
 import de.htwg.monopoly.entities.impl.Bank;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.util.IMonopolyUtil;
+import de.htwg.monopoly.util.MonopolyUtils;
 
 /**
  * Controller for player
@@ -12,29 +13,34 @@ import de.htwg.monopoly.util.IMonopolyUtil;
  * 
  */
 public class PlayerController implements IPlayerController {
-	/* array with player objects */
+
+	// array with all players
 	private Player[] players;
-	/* number of player in game */
+
+	// the number of players
 	private int numberOfPlayer;
+
+	// the player of the current turn
 	private int currentPlayer;
 
 	/**
-	 * Constructor
+	 * Constructor initialize all player with default values. See {@link Player}
+	 * for more information on Player.
 	 * 
 	 * @param nameOfPlayers
-	 * @param numberOfPlayer2
+	 * @param inNumberOfPlayers
 	 */
-	public PlayerController(int numberOfPlayer2, String[] nameOfPlayers) {
+	public PlayerController(int inNumberOfPlayers, String[] nameOfPlayers) {
 
 		// check correct number of players
-		assert nameOfPlayers.length == numberOfPlayer : "Anzahl der Spieler and Anzahl der Spielernamen stimmt nicht �berein";
-		assert (numberOfPlayer < IMonopolyUtil.MIN_NUMBER_OF_PLAYER || numberOfPlayer > IMonopolyUtil.MAX_NUMBER_OF_PLAYER) : "Ung�ltige Anzahl an Spielern.";
+		assert nameOfPlayers.length == inNumberOfPlayers : "Anzahl der Spieler and Anzahl der Spielernamen stimmt nicht �berein";
+		assert MonopolyUtils.verifyPlayerNumber(inNumberOfPlayers) : "Ung�ltige Anzahl an Spielern.";
 
 		// set number of players
-		this.numberOfPlayer = numberOfPlayer2;
+		this.numberOfPlayer = inNumberOfPlayers;
 
 		// create array of players.
-		this.players = new Player[numberOfPlayer2];
+		this.players = new Player[inNumberOfPlayers];
 
 		// create default players
 		for (int i = 0; i < numberOfPlayer; i++) {
@@ -51,13 +57,13 @@ public class PlayerController implements IPlayerController {
 	public Player getNextPlayer() {
 
 		currentPlayer++;
-		
+
 		// reset to first player at the end of the player queue
 		// TODO do it with collections!!
 		if (currentPlayer >= numberOfPlayer) {
 			currentPlayer = IMonopolyUtil.FIRST_PLAYER;
 		}
-		
+
 		// return the current player
 		return players[currentPlayer];
 	}

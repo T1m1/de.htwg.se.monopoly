@@ -166,6 +166,9 @@ public class Player {
 	 * @param roundNumber
 	 */
 	public void setPrisonRound(int roundNumber) {
+		if (roundNumber == 0) {
+			this.inPrison = false;
+		}
 		this.prisonRound = roundNumber;
 	}
 

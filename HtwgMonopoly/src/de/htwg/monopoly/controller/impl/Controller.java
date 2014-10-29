@@ -217,7 +217,8 @@ public class Controller extends Observable implements IController {
 	 */
 	@Override
 	public void exitGame() {
-		// TODO
+		this.players = null;
+		// TODO: notify observers and set status finished
 	}
 
 	/**

@@ -5,7 +5,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.awt.Color;
-import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -37,20 +36,13 @@ public class ControllerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		ByteArrayInputStream testStream = new ByteArrayInputStream(
-				IMonopolyUtil.TEST_INPUT_STREAM.getBytes());
-		/* Initialization */
 
-		System.setIn(testStream);
+		/* Initialization */
 		Injector injector = Guice.createInjector(new TestMonopolyModule());
 
 		testController = injector.getInstance(IController.class);
 
-		//testController.setNumberofPlayer();
-		//testController.setNameofPlayer(0);
-		//testController.setNameofPlayer(1);
-		//testController.startNewGame();
-		System.setIn(System.in);
+		testController.startNewGame(2, new String[] { "0", "1" });
 	}
 
 	@Test
@@ -72,8 +64,10 @@ public class ControllerTest {
 
 	@Test
 	public void testTurnWithPrison() {
-		IFieldObject field = new FieldObject("Gehe in das Bsys Labor", 'p', 0, 1);
-		IFieldObject field2 = new FieldObject("Bsys Labor, nur zu Besuch", 'n', 0, 1);
+		IFieldObject field = new FieldObject("Gehe in das Bsys Labor", 'p', 0,
+				1);
+		IFieldObject field2 = new FieldObject("Bsys Labor, nur zu Besuch", 'n',
+				0, 1);
 		testController.getField().setFieldAtIndex(0, field);
 		testController.getField().setFieldAtIndex(1, field2);
 		testController.startTurn();
@@ -94,7 +88,8 @@ public class ControllerTest {
 	@Test
 	public void testTurnWithCommStack2() {
 		IFieldObject stack = new CommunityCardsStack(new CommunityCard(
-				"Gehe zum n�chsten Gemeinschaftsfeld", "Gemeinschaftsfeld", true));
+				"Gehe zum n�chsten Gemeinschaftsfeld", "Gemeinschaftsfeld",
+				true));
 		testController.getField().setFieldAtIndex(0, stack);
 		testController.getField().setFieldAtIndex(1, stack);
 		Player testplayer = testController.getCurrentPlayer();
@@ -114,7 +109,7 @@ public class ControllerTest {
 		testController.startTurn();
 		assertEquals(0, testplayer.getBudget());
 	}
-	
+
 	@Test
 	public void testTurnWithChanceStack2() {
 		IFieldObject stack = new ChanceCardsStack(new ChanceCard(
@@ -123,10 +118,11 @@ public class ControllerTest {
 		testController.getField().setFieldAtIndex(1, stack);
 		Player testplayer = testController.getCurrentPlayer();
 		testController.startTurn();
-		assertEquals("Ereignisfeld", testController.getField()
-				.getCurrentField(testplayer).toString());
+		assertEquals("Ereignisfeld",
+				testController.getField().getCurrentField(testplayer)
+						.toString());
 	}
-	
+
 	@Test
 	public void testTurnWithChanceStack3() {
 		IFieldObject stack = new ChanceCardsStack(new ChanceCard(
@@ -136,8 +132,9 @@ public class ControllerTest {
 		Player testplayer = testController.getCurrentPlayer();
 		testplayer.setPosition(0);
 		testController.startTurn();
-		assertEquals("Ereignisfeld", testController.getField()
-				.getCurrentField(testplayer).toString());
+		assertEquals("Ereignisfeld",
+				testController.getField().getCurrentField(testplayer)
+						.toString());
 	}
 
 	@Test
@@ -148,7 +145,7 @@ public class ControllerTest {
 	@Test
 	public void testEndTurn() {
 		testController.endTurn();
-		assertEquals("2", testController.getCurrentPlayer().getName());
+		assertEquals("1", testController.getCurrentPlayer().getName());
 	}
 
 	@Test
