@@ -32,8 +32,19 @@ public class TextUI implements IObserver {
 
     public void startGame() {
 
+    	// print Hello screen
         printInitialisation();
+        
+        // read number and name of players
+        in = new Scanner(System.in);
+        if (!in.next().isEmpty()) {
+            setNumberOfPlayer();
+            setNameOfPlayers();
+        }
+        
         logger.info(IMonopolyUtil.START);
+        
+        // start actual game
         controller.startNewGame(configNumberOfPlayer, configNameOfPlayer);
     }
 
@@ -67,11 +78,6 @@ public class TextUI implements IObserver {
         logger.info(IMonopolyUtil.GAME_NAME);
         logger.info("Herzlich Willkommen zu Monopoly!");
         logger.info("Um das Spiel zu starten, beliebigen Wert eingeben und bestätigen.");
-        in = new Scanner(System.in);
-        if (!in.next().isEmpty()) {
-            setNumberOfPlayer();
-            setNameOfPlayers();
-        }
     }
 
     /**

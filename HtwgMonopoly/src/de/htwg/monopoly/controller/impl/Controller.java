@@ -11,7 +11,6 @@ import com.google.inject.name.Named;
 
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.controller.IPlayerController;
-import de.htwg.monopoly.controller.IPlayfield;
 import de.htwg.monopoly.entities.ICards;
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Bank;
@@ -54,16 +53,17 @@ public class Controller extends Observable implements IController {
 	}
 
 	/**
-	 * function to call at start of a new game
-	 * TODO map statt integer und array �bergeben
+	 * function to call at start of a new game TODO map statt integer und array
+	 * �bergeben
 	 */
 	@Override
 	public void startNewGame(int numberOfPlayer, String[] nameOfPlayers) {
-		
+
 		// initialize player controller
 		this.players = new PlayerController(numberOfPlayer, nameOfPlayers);
 
-		// set current player to first player, notify observers and get ready to play
+		// set current player to first player, notify observers and get ready to
+		// play
 		this.currentPlayer = players.getFirstPlayer();
 		notifyObservers(0);
 	}
@@ -222,12 +222,19 @@ public class Controller extends Observable implements IController {
 	}
 
 	/**
-	 * function to buy the current street with the current player
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean buyStreet() {
-		Street currentStreet = (Street) field.getCurrentField(currentPlayer);
-		return field.buyStreet(currentPlayer, currentStreet);
+
+		IFieldObject currentStreet = field.getCurrentField(currentPlayer);
+
+		if (!(currentStreet instanceof Street)) {
+			throw new AssertionError(
+					"Current player is not standing on a street!");
+		}
+
+		return field.buyStreet(currentPlayer, (Street) currentStreet);
 	}
 
 	/**
