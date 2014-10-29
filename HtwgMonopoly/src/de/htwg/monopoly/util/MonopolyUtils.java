@@ -10,10 +10,10 @@ package de.htwg.monopoly.util;
 public class MonopolyUtils {
 
 	/**
-	 * 
+	 * Hide utility constructor
 	 */
-	public MonopolyUtils() {
-		// TODO Auto-generated constructor stub
+	private MonopolyUtils() {
+		super();
 	}
 
 	/**
@@ -25,8 +25,7 @@ public class MonopolyUtils {
 	 *         {@link IMonopolyUtil.MAX_NUMBER_OF_PLAYER}
 	 */
 	public static boolean verifyPlayerNumber(int number) {
-		return number > IMonopolyUtil.MIN_NUMBER_OF_PLAYER
-				|| number < IMonopolyUtil.MAX_NUMBER_OF_PLAYER;
+		return (number >= IMonopolyUtil.MIN_NUMBER_OF_PLAYER && number <= IMonopolyUtil.MAX_NUMBER_OF_PLAYER);
 	}
 
 }
