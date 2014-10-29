@@ -81,6 +81,9 @@ public class PlayerTest {
 		player1.incrementPrisonRound();
 		assertTrue(player1.isInPrison());
 		
+		player1.setPrisonRound(0);
+		assertFalse(player1.isInPrison());
+		
 	}
 	
 	@Test	

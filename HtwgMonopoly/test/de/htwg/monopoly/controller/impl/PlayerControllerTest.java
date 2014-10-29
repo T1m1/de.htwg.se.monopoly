@@ -2,11 +2,6 @@ package de.htwg.monopoly.controller.impl;
 
 import static org.junit.Assert.*;
 
-import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
-import java.io.ByteArrayInputStream;
-
 import org.junit.Before;
 import org.junit.Test;
 
