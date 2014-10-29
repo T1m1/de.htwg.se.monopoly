@@ -31,6 +31,7 @@ public class Controller extends Observable implements IController {
 	private Player currentPlayer;
 	private IFieldObject currentField;
 	private Dice dice;
+	private GameStatusController status;
 
 	private StringBuilder message;
 	private int lastChooseOption;
