@@ -4,6 +4,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 
 import de.htwg.monopoly.entities.ICards;
+import de.htwg.monopoly.util.FieldType;
 
 public class ChanceCardsStack extends CardsStack {
 
@@ -33,9 +34,9 @@ public class ChanceCardsStack extends CardsStack {
 	}
 
 	@Override
-	public char getType() {
-		// e wie ereignisfeld.
-		return 'e';
+	public FieldType getType() {
+		
+		return FieldType.CHANCE_STACK;
 	}
 
 	public String toString() {

@@ -4,6 +4,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 
 import de.htwg.monopoly.entities.ICards;
+import de.htwg.monopoly.util.FieldType;
 
 public class CommunityCardsStack extends CardsStack {
 
@@ -34,9 +35,9 @@ public class CommunityCardsStack extends CardsStack {
 	}
 
 	@Override
-	public char getType() {
+	public FieldType getType() {
 		// g wie Gemeinschaftsfeld.
-		return 'g';
+		return FieldType.COMMUNITY_STACK;
 	}
 
 	@Override

@@ -18,7 +18,9 @@ import de.htwg.monopoly.entities.impl.Dice;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.observer.impl.Observable;
+import de.htwg.monopoly.util.FieldType;
 import de.htwg.monopoly.util.IMonopolyUtil;
+import de.htwg.monopoly.util.UserAction;
 
 /**
  * 
@@ -162,7 +164,7 @@ public class Controller extends Observable implements IController {
 	 * @return
 	 */
 	private boolean fieldIsACommStack() {
-		return (currentField.getType() == 'g');
+		return (currentField.getType() == FieldType.COMMUNITY_STACK);
 	}
 
 	/**
@@ -171,7 +173,7 @@ public class Controller extends Observable implements IController {
 	 * @return
 	 */
 	private boolean fieldIsAChanceStack() {
-		return (currentField.getType() == 'e');
+		return (currentField.getType() == FieldType.CHANCE_STACK);
 	}
 
 	/**
@@ -194,7 +196,7 @@ public class Controller extends Observable implements IController {
 	}
 
 	/**
-	 * function to roll dice
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void rollDice() {
@@ -284,11 +286,20 @@ public class Controller extends Observable implements IController {
 	public void setCurrentField(IFieldObject currentField) {
 		this.currentField = currentField;
 	}
+	
+	public List<UserAction> getOptions() {
+		return status.getOptions();
+	}
+	
+	public boolean isCorrectOption(UserAction userOption) {
+		return status.getOptions().contains(userOption);
+	}
 
 	/**
 	 * get string with possible options
 	 */
 	@Override
+	@Deprecated
 	public List<String> getOptions(int chooseOption) {
 
 		/* TODO INfos selber suchen und zusammenbauen */
@@ -330,7 +341,7 @@ public class Controller extends Observable implements IController {
 	private List<String> getOptionOnStreet() {
 		List<String> options = new ArrayList<String>();
 		/* if current field a steet */
-		if (currentField.getType() == 's') {
+		if (currentField.getType() == FieldType.STREET) {
 			Street s = (Street) currentField;
 			/* check if street have a owner */
 			if (s.getOwner() == null) {
@@ -368,6 +379,7 @@ public class Controller extends Observable implements IController {
 	/**
 	 * function to check if input of user correct
 	 */
+	@Deprecated
 	public boolean isCorrectOption(String chooseOption) {
 		/* get the last options for current user */
 		List<String> options = new ArrayList<String>();

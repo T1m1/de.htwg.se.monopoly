@@ -32,5 +32,9 @@ public final class GameStatusController {
 	public GameStatus getPhase() {
 		return phase;
 	}
+	
+	public void update() {
+		
+	}
 
 }

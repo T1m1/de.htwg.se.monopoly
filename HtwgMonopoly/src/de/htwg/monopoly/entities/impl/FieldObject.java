@@ -1,11 +1,12 @@
 package de.htwg.monopoly.entities.impl;
 
 import de.htwg.monopoly.entities.IFieldObject;
+import de.htwg.monopoly.util.FieldType;
 
 public class FieldObject implements IFieldObject {
 
 	private int priceToPay;
-	private char type;
+	private FieldType type;
 	private String name;
 	private final int guiPosition;
 
@@ -17,7 +18,7 @@ public class FieldObject implements IFieldObject {
 	 * @param type
 	 * @param priceToPay
 	 */
-	public FieldObject(String name, char type, int priceToPay, int guiPosition) {
+	public FieldObject(String name, FieldType type, int priceToPay, int guiPosition) {
 		this.priceToPay = priceToPay;
 		this.type = type;
 		this.name = name;
@@ -33,7 +34,7 @@ public class FieldObject implements IFieldObject {
 	 * @param priceToPay
 	 * 
 	 */
-	public FieldObject(String name, char type, int priceToPay) {
+	public FieldObject(String name, FieldType type, int priceToPay) {
 		this(name, type, priceToPay, 0);
 	}
 
@@ -48,7 +49,7 @@ public class FieldObject implements IFieldObject {
 	}
 
 	@Override
-	public char getType() {
+	public FieldType getType() {
 		return type;
 	}
 

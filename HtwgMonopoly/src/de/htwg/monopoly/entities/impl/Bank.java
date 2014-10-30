@@ -1,6 +1,7 @@
 package de.htwg.monopoly.entities.impl;
 
 import de.htwg.monopoly.entities.IFieldObject;
+import de.htwg.monopoly.util.FieldType;
 
 public final class Bank {
 
@@ -22,7 +23,7 @@ public final class Bank {
 	 * @throws assertionError
 	 */
 	public static void payRent(Player currentPlayer, IFieldObject currentField) {
-		if (currentField.getType() != 's') {
+		if (currentField.getType() != FieldType.STREET) {
 			throw new AssertionError("Field is not a street --> no rent to pay");
 		}
 		Street currentStreet = (Street) currentField;
