@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import de.htwg.monopoly.entities.impl.ChanceCard;
 import de.htwg.monopoly.entities.impl.ChanceCardsStack;
+import de.htwg.monopoly.util.FieldType;
 
 public class ChanceCardsStackTest {
 
@@ -25,7 +26,7 @@ public class ChanceCardsStackTest {
 	public void testChanceCardsStack() {
 		assertEquals("Gehe in das Gefängnis", stack.getNextCard()
 				.getDescription());
-		assertEquals('e', stack.getType());
+		assertEquals(FieldType.CHANCE_STACK, stack.getType());
 	}
 
 	@Test

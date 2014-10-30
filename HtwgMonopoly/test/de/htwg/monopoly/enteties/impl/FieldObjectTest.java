@@ -6,16 +6,17 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.htwg.monopoly.entities.impl.FieldObject;
+import de.htwg.monopoly.util.FieldType;
 
 public class FieldObjectTest {
-	
+
 	FieldObject testObject;
 
 	@Before
 	public void setUp() throws Exception {
-		testObject = new FieldObject("foo", 'x', 100);
+		testObject = new FieldObject("foo", FieldType.STREET, 100);
 	}
-	
+
 	@Test
 	public void testToString() {
 		assertEquals("foo", testObject.toString());
@@ -28,7 +29,8 @@ public class FieldObjectTest {
 
 	@Test
 	public void testGetType() {
-		assertEquals('x', testObject.getType());;
+		assertEquals(FieldType.STREET, testObject.getType());
+		;
 	}
 
 }

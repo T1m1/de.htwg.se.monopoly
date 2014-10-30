@@ -56,31 +56,38 @@ public class Playfield implements IPlayfield {
 					IMonopolyFields.PRICE_FOR_STREET[i],
 					IMonopolyFields.COLOUR[i], IMonopolyFields.RENT[i],
 					IMonopolyFields.HOTEL[i], IMonopolyFields.POSITION[i]);
+			break;
 		case GO:
 			playfield[i] = new FieldObject(IMonopolyFields.NAME[i],
 					IMonopolyFields.TYP[i], IMonopolyFields.POSITION[i]);
+			break;
 
 		case COMMUNITY_STACK:
 			this.commStack.setPosition(IMonopolyFields.POSITION[i]);
 			playfield[i] = this.commStack;
+			break;
 		case TAX:
 
 			playfield[i] = new FieldObject("Zusatzsteuer",
 					IMonopolyFields.TYP[i], IMonopolyUtil.ZUSATZSTEUER,
 					IMonopolyFields.POSITION[i]);
+			break;
 		case CHANCE_STACK:
 			this.chanStack.setPosition(IMonopolyFields.POSITION[i]);
 			playfield[i] = (IFieldObject) this.chanStack;
-
+			break;
 		case GO_TO_PRISON:
 			playfield[i] = new FieldObject("Gehe in das Bsys Labor",
 					IMonopolyFields.TYP[i], 0, IMonopolyFields.POSITION[i]);
+			break;
 		case PRISON_VISIT_ONLY:
 			playfield[i] = new FieldObject("Bsys Labor, nur zu Besuch",
 					IMonopolyFields.TYP[i], 0, IMonopolyFields.POSITION[i]);
+			break;
 		case FREE_PARKING:
 			playfield[i] = new FieldObject("Mensa", IMonopolyFields.TYP[i], 0,
 					IMonopolyFields.POSITION[i]);
+			break;
 		}
 
 	}
@@ -169,6 +176,9 @@ public class Playfield implements IPlayfield {
 			Bank.receiveMoney(currentPlayer, Bank.getParkingMoney());
 			break;
 
+		case CHANCE_STACK:
+		case COMMUNITY_STACK:
+			// do nothing TODO implement solution
 		}
 		return sb.toString();
 	}
