@@ -19,6 +19,7 @@ import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.observer.impl.Observable;
 import de.htwg.monopoly.util.FieldType;
+import de.htwg.monopoly.util.GameStatus;
 import de.htwg.monopoly.util.IMonopolyUtil;
 import de.htwg.monopoly.util.UserAction;
 
@@ -33,6 +34,8 @@ public class Controller extends Observable implements IController {
 	private Player currentPlayer;
 	private IFieldObject currentField;
 	private Dice dice;
+	
+	private GameStatus phase;
 	private GameStatusController status;
 
 	private StringBuilder message;
@@ -53,6 +56,7 @@ public class Controller extends Observable implements IController {
 		this.field = new Playfield(fieldSize);
 		this.message = new StringBuilder();
 		this.dice = new Dice(fieldSize);
+		phase = GameStatus.STOPPED;
 	}
 
 	/**
@@ -69,6 +73,41 @@ public class Controller extends Observable implements IController {
 		// play
 		this.currentPlayer = players.getFirstPlayer();
 		notifyObservers(0);
+	}
+
+	/**
+	 * Tries to redeem the player with money.
+	 * 
+	 * @return true if the player had enough money and was set free from prison,
+	 *         false otherwise.
+	 */
+	public boolean redeemWithMoney() {
+		if (currentPlayer.getBudget() < IMonopolyUtil.FREIKAUFEN) {
+			return false;
+		}
+		currentPlayer.decrementMoney(IMonopolyUtil.FREIKAUFEN);
+		currentPlayer.setInPrison(false);
+		status.update();
+		return true;
+	}
+
+	public boolean redeemWithDice() {
+		throw new UnsupportedOperationException("not yet implemented");
+	}
+
+	/**
+	 * Tries to redeem the current player with a prison free card.
+	 * 
+	 * @return true if the player had a card and was set free.
+	 */
+	public boolean redeemWithCard() {
+		if (currentPlayer.hasPrisonFreeCard()) {
+			currentPlayer.usePrisonFreeCard();
+			currentPlayer.setInPrison(false);
+			status.update();
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -286,11 +325,11 @@ public class Controller extends Observable implements IController {
 	public void setCurrentField(IFieldObject currentField) {
 		this.currentField = currentField;
 	}
-	
+
 	public List<UserAction> getOptions() {
 		return status.getOptions();
 	}
-	
+
 	public boolean isCorrectOption(UserAction userOption) {
 		return status.getOptions().contains(userOption);
 	}
@@ -417,6 +456,11 @@ public class Controller extends Observable implements IController {
 	@Override
 	public Dice getDice() {
 		return dice;
+	}
+
+	@Override
+	public IFieldObject getCurrentField() {
+		return field.getCurrentField(currentPlayer);
 	}
 
 }
