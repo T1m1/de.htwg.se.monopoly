@@ -30,6 +30,7 @@ public final class GameStatusController {
 	public GameStatusController(IController controller) {
 		this.controller = controller;
 		this.options = new LinkedList<UserAction>();
+		phase = controller.getPhase();
 		update();
 	}
 

@@ -6,6 +6,8 @@ import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Dice;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.observer.IObservable;
+import de.htwg.monopoly.util.GameStatus;
+import de.htwg.monopoly.util.UserAction;
 
 public interface IController extends IObservable {
 
@@ -37,18 +39,6 @@ public interface IController extends IObservable {
 	 * exit the game.
 	 */
 	void exitGame();
-
-	/**
-	 * Money will be transferred from to current player to the player who owns
-	 * the current street where the current player is standing on.
-	 */
-	void payRent();
-
-	/**
-	 * The current player receive the amount of money, which you get when you
-	 * pass the GO field
-	 */
-	void receiveGoMoney();
 
 	/**
 	 * return object from current player
@@ -133,6 +123,18 @@ public interface IController extends IObservable {
 	void startNewGame(int numberOfPlayer, String[] nameOfPlayers);
 
 	IFieldObject getCurrentField();
+
+	boolean redeemWithCard();
+
+	boolean redeemWithMoney();
+
+	boolean redeemWithDice();
+
+	GameStatus getPhase();
+
+	List<UserAction> getOptions();
+
+	boolean isCorrectOption(UserAction userOption);
 
 
 

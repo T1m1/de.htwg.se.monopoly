@@ -14,7 +14,7 @@ public enum GameStatus {
 	/**
 	 * The game is started.
 	 */
-	RUNNING,
+	STARTED,
 	
 	/**
 	 * The player is about to begin his turn (e.g. roll the dice and start his turn).

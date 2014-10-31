@@ -167,36 +167,6 @@ public class ControllerTest {
 		assertFalse(testController.buyStreet());
 	}
 
-	@Test
-	public void testAddPlayer() {
-	}
-
-	@Test
-	public void testPayRent() {
-		testController.getPlayers().getCurrentPlayer().setPosition(1);
-		testController.buyStreet();
-		testController.getPlayers().getCurrentPlayer().setPosition(1);
-		testController.payRent();
-		testController.getField();
-
-	}
-
-	@Test
-	public void testReceiveLosMoney() {
-		testController.receiveGoMoney();
-		assertEquals(IMonopolyUtil.LOS_MONEY + IMonopolyUtil.INITIAL_MONEY,
-				testController.getCurrentPlayer().getBudget());
-	}
-
-	@Test
-	public void testGetPlayers() {
-
-	}
-
-	@Test
-	public void testGetField() {
-
-	}
 
 	@Test
 	public void testGetOptions() {
