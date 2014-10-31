@@ -12,7 +12,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="game"/>
 	<classpathentry including="**/*.java|Messages_de.properties|log4j2.xml|pictures/" kind="src" path="resources"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>

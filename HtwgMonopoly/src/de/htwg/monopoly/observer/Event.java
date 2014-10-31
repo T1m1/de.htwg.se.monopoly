@@ -1,5 +1,20 @@
 package de.htwg.monopoly.observer;
 
-public abstract class Event {
+import de.htwg.monopoly.util.GameStatus;
 
+public final class Event {
+
+	private GameStatus status;
+
+	public Event(GameStatus status) {
+		this.status = status;
+	}
+
+	public GameStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(GameStatus status2) {
+		this.status = status2;
+	}
 }

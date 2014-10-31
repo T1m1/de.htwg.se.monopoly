@@ -19,6 +19,7 @@ import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.observer.impl.Observable;
 import de.htwg.monopoly.util.IMonopolyUtil;
+import de.htwg.monopoly.util.UserAction;
 
 /**
  * 
@@ -31,14 +32,17 @@ public class Controller extends Observable implements IController {
 	private Player currentPlayer;
 	private IFieldObject currentField;
 	private Dice dice;
+	
 	private GameStatusController status;
 
+	
 	private StringBuilder message;
 	private int lastChooseOption;
 
 	/* internationalization */
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
+	
 
 	/**
 	 * public constructor for a new controller create the players, the field and
@@ -51,6 +55,8 @@ public class Controller extends Observable implements IController {
 		this.field = new Playfield(fieldSize);
 		this.message = new StringBuilder();
 		this.dice = new Dice(fieldSize);
+		this.status = new GameStatusController(this);
+		
 	}
 
 	/**
@@ -66,6 +72,7 @@ public class Controller extends Observable implements IController {
 		// set current player to first player, notify observers and get ready to
 		// play
 		this.currentPlayer = players.getFirstPlayer();
+		status.update();
 		notifyObservers(0);
 	}
 
@@ -83,6 +90,8 @@ public class Controller extends Observable implements IController {
 		}
 		// �berpr�fen auf was f�rn feldobjek
 		// dementsprechend notify
+		
+		status.update();
 		notifyObservers(1);
 		// notifyObservers
 	}
@@ -210,6 +219,7 @@ public class Controller extends Observable implements IController {
 		this.message.delete(0, this.message.length());
 		this.currentPlayer = players.getNextPlayer();
 
+		status.update();
 		notifyObservers(0);
 	}
 
@@ -219,7 +229,8 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void exitGame() {
 		this.players = null;
-		// TODO: notify observers and set status finished
+		status.update();
+		notifyObservers();
 	}
 
 	/**
@@ -234,7 +245,8 @@ public class Controller extends Observable implements IController {
 			throw new AssertionError(
 					"Current player is not standing on a street!");
 		}
-
+		
+		status.update();
 		return field.buyStreet(currentPlayer, (Street) currentStreet);
 	}
 
@@ -244,6 +256,7 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void payRent() {
 		Bank.payRent(currentPlayer, field.getCurrentField(currentPlayer));
+		status.update();
 		notifyObservers();
 
 	}
@@ -254,6 +267,7 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void receiveGoMoney() {
 		Bank.receiveMoney(currentPlayer, IMonopolyUtil.LOS_MONEY);
+		status.update();
 		notifyObservers();
 	}
 
@@ -284,12 +298,22 @@ public class Controller extends Observable implements IController {
 	public void setCurrentField(IFieldObject currentField) {
 		this.currentField = currentField;
 	}
+	
+	/**
+	 * Returns a list with available options for the current player. 
+	 * @return
+	 */
+	public List<UserAction> getOptions() {
+		return status.getOptions();
+	}
 
 	/**
 	 * get string with possible options
 	 */
 	@Override
+	@Deprecated
 	public List<String> getOptions(int chooseOption) {
+		
 
 		/* TODO INfos selber suchen und zusammenbauen */
 
@@ -364,10 +388,22 @@ public class Controller extends Observable implements IController {
 		return options;
 
 	}
+	
+	/**
+	 * Checks if the given option is valid.
+	 * 
+	 * @param action
+	 * @return true if the valid options contains the given options, false
+	 *         otherwise.
+	 */
+	public boolean isValidOption(UserAction action) {
+		return status.getOptions().contains(action);
+	}
 
 	/**
 	 * function to check if input of user correct
 	 */
+	@Deprecated
 	public boolean isCorrectOption(String chooseOption) {
 		/* get the last options for current user */
 		List<String> options = new ArrayList<String>();
@@ -406,5 +442,17 @@ public class Controller extends Observable implements IController {
 	public Dice getDice() {
 		return dice;
 	}
+
+	@Override
+	public IFieldObject getCurrentField() {
+		return currentField;
+	}
+	
+//	private void notify(GameStatus inStatus) {
+//		status = inStatus;
+//		event.setStatus(inStatus);
+//		notifyObservers(event);
+//		
+//	}
 
 }
