@@ -4,11 +4,12 @@ import java.util.Deque;
 import java.util.LinkedList;
 
 import de.htwg.monopoly.entities.ICards;
+import de.htwg.monopoly.util.FieldType;
 
 public class CommunityCardsStack extends CardsStack {
 
 	private Deque<Integer> position;
-
+	private FieldType fieldType = FieldType.COMMUNITY_STACK;
 
 	/**
 	 * Constructor for testing
@@ -24,29 +25,29 @@ public class CommunityCardsStack extends CardsStack {
 	public CommunityCardsStack() {
 		super();
 		position = new LinkedList<Integer>();
-		
+
 		init(this.getClass());
 	}
-	
+
 	public CommunityCardsStack(int position) {
 		this();
 		this.position.push(position);
 	}
 
 	@Override
-	public char getType() {
+	public FieldType getType() {
 		// g wie Gemeinschaftsfeld.
-		return 'g';
+		return fieldType;
 	}
 
 	@Override
 	public String toString() {
 		return "Gemeinschaftsfeld";
 	}
-	
+
 	/**
 	 * Using a deque, because we need all position of the singleton stack.p
-	 * after we poll the last value we push it back to the top of the list. 
+	 * after we poll the last value we push it back to the top of the list.
 	 * Because the gui call a lot of time the same function.. !?
 	 * 
 	 */
@@ -59,8 +60,7 @@ public class CommunityCardsStack extends CardsStack {
 
 	public void setPosition(Integer position) {
 		this.position.push(position);
-		
+
 	}
-	
-	
+
 }

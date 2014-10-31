@@ -18,6 +18,8 @@ import de.htwg.monopoly.entities.impl.Dice;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.observer.impl.Observable;
+import de.htwg.monopoly.util.FieldType;
+import de.htwg.monopoly.util.GameStatus;
 import de.htwg.monopoly.util.IMonopolyUtil;
 import de.htwg.monopoly.util.UserAction;
 
@@ -33,6 +35,7 @@ public class Controller extends Observable implements IController {
 	private IFieldObject currentField;
 	private Dice dice;
 	
+	private GameStatus phase;
 	private GameStatusController status;
 
 	
@@ -56,7 +59,7 @@ public class Controller extends Observable implements IController {
 		this.message = new StringBuilder();
 		this.dice = new Dice(fieldSize);
 		this.status = new GameStatusController(this);
-		
+		phase = GameStatus.STOPPED;
 	}
 
 	/**
@@ -74,6 +77,41 @@ public class Controller extends Observable implements IController {
 		this.currentPlayer = players.getFirstPlayer();
 		status.update();
 		notifyObservers(0);
+	}
+
+	/**
+	 * Tries to redeem the player with money.
+	 * 
+	 * @return true if the player had enough money and was set free from prison,
+	 *         false otherwise.
+	 */
+	public boolean redeemWithMoney() {
+		if (currentPlayer.getBudget() < IMonopolyUtil.FREIKAUFEN) {
+			return false;
+		}
+		currentPlayer.decrementMoney(IMonopolyUtil.FREIKAUFEN);
+		currentPlayer.setInPrison(false);
+		status.update();
+		return true;
+	}
+
+	public boolean redeemWithDice() {
+		throw new UnsupportedOperationException("not yet implemented");
+	}
+
+	/**
+	 * Tries to redeem the current player with a prison free card.
+	 * 
+	 * @return true if the player had a card and was set free.
+	 */
+	public boolean redeemWithCard() {
+		if (currentPlayer.hasPrisonFreeCard()) {
+			currentPlayer.usePrisonFreeCard();
+			currentPlayer.setInPrison(false);
+			status.update();
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -171,7 +209,7 @@ public class Controller extends Observable implements IController {
 	 * @return
 	 */
 	private boolean fieldIsACommStack() {
-		return (currentField.getType() == 'g');
+		return (currentField.getType() == FieldType.COMMUNITY_STACK);
 	}
 
 	/**
@@ -180,7 +218,7 @@ public class Controller extends Observable implements IController {
 	 * @return
 	 */
 	private boolean fieldIsAChanceStack() {
-		return (currentField.getType() == 'e');
+		return (currentField.getType() == FieldType.CHANCE_STACK);
 	}
 
 	/**
@@ -203,7 +241,7 @@ public class Controller extends Observable implements IController {
 	}
 
 	/**
-	 * function to roll dice
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void rollDice() {
@@ -307,6 +345,11 @@ public class Controller extends Observable implements IController {
 		return status.getOptions();
 	}
 
+
+	public boolean isCorrectOption(UserAction userOption) {
+		return status.getOptions().contains(userOption);
+	}
+
 	/**
 	 * get string with possible options
 	 */
@@ -354,7 +397,7 @@ public class Controller extends Observable implements IController {
 	private List<String> getOptionOnStreet() {
 		List<String> options = new ArrayList<String>();
 		/* if current field a steet */
-		if (currentField.getType() == 's') {
+		if (currentField.getType() == FieldType.STREET) {
 			Street s = (Street) currentField;
 			/* check if street have a owner */
 			if (s.getOwner() == null) {
@@ -445,14 +488,16 @@ public class Controller extends Observable implements IController {
 
 	@Override
 	public IFieldObject getCurrentField() {
-		return currentField;
+	
+
+		return field.getCurrentField(currentPlayer);
 	}
+
 	
 //	private void notify(GameStatus inStatus) {
-//		status = inStatus;
-//		event.setStatus(inStatus);
-//		notifyObservers(event);
-//		
-//	}
-
+//	status = inStatus;
+//	event.setStatus(inStatus);
+//	notifyObservers(event);
+//	
+//}
 }

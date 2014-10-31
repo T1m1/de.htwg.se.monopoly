@@ -26,6 +26,7 @@ import de.htwg.monopoly.entities.impl.CommunityCardsStack;
 import de.htwg.monopoly.entities.impl.FieldObject;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.Street;
+import de.htwg.monopoly.util.FieldType;
 import de.htwg.monopoly.util.IMonopolyFields;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
@@ -64,10 +65,10 @@ public class ControllerTest {
 
 	@Test
 	public void testTurnWithPrison() {
-		IFieldObject field = new FieldObject("Gehe in das Bsys Labor", 'p', 0,
-				1);
-		IFieldObject field2 = new FieldObject("Bsys Labor, nur zu Besuch", 'n',
-				0, 1);
+		IFieldObject field = new FieldObject("Gehe in das Bsys Labor",
+				FieldType.GO_TO_PRISON, 0, 1);
+		IFieldObject field2 = new FieldObject("Bsys Labor, nur zu Besuch",
+				FieldType.PRISON_VISIT_ONLY, 0, 1);
 		testController.getField().setFieldAtIndex(0, field);
 		testController.getField().setFieldAtIndex(1, field2);
 		testController.startTurn();

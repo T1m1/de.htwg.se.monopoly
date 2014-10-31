@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.Street;
+import de.htwg.monopoly.util.FieldType;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
 public class StreetTest {
@@ -89,7 +90,7 @@ public class StreetTest {
 	public void testIsSold() {
 		street1.setSold(true);
 		assertTrue(street1.isSold());
-		assertEquals('s', street1.getType());
+		assertEquals(FieldType.STREET, street1.getType());
 	}
 	
 	@Test

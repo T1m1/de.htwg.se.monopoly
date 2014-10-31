@@ -37,8 +37,12 @@ public enum UserAction {
 	SURRENDER,
 	
 	/**
-	 * This option is available if the player wants to redeem from prison.
+	 * This option is available if the player wants to redeem from prison with money.
 	 */
-	REDEEM;
+	REDEEM_WITH_MONEY,
+	
+	REDEEM_WITH_CARD,
+	
+	REDEEM_WITH_DICE;
 
 }

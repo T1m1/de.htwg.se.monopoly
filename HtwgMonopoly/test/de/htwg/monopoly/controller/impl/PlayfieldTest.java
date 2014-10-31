@@ -9,6 +9,7 @@ import de.htwg.monopoly.controller.impl.Playfield;
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.Street;
+import de.htwg.monopoly.util.FieldType;
 import de.htwg.monopoly.util.IMonopolyFields;
 
 public class PlayfieldTest {
@@ -39,7 +40,7 @@ public class PlayfieldTest {
 
 	@Test
 	public void testGetCurrentField() {
-		assertEquals('l', field.getCurrentField(testplayer).getType());
+		assertEquals(FieldType.GO, field.getCurrentField(testplayer).getType());
 		field.getFieldNameAtIndex(1);
 
 	}
@@ -115,8 +116,8 @@ public class PlayfieldTest {
 
 	@Test
 	public void testGetStack() {
-		assertEquals('e', field.getChanStack().getType());
-		assertEquals('g', field.getCommStack().getType());
+		assertEquals(FieldType.CHANCE_STACK, field.getChanStack().getType());
+		assertEquals(FieldType.COMMUNITY_STACK, field.getCommStack().getType());
 	}
 
 	@Test

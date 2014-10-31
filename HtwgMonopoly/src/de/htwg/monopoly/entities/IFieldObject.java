@@ -1,5 +1,7 @@
 package de.htwg.monopoly.entities;
 
+import de.htwg.monopoly.util.FieldType;
+
 public interface IFieldObject {
 	
 	int getPosition();
@@ -7,7 +9,7 @@ public interface IFieldObject {
 	 * Return the type of this field. For example: Street, train station etc.
 	 * @return TODO: enum, string oder Object??
 	 */
-	char getType();
+	FieldType getType();
 	
 	@Override
 	String toString();

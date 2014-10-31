@@ -19,12 +19,12 @@ public enum GameStatus {
 	/**
 	 * The player is about to begin his turn (e.g. roll the dice and start his turn).
 	 */
-	USER_BEFORE,
+	BEFORE_TURN,
 	
 	/**
 	 * The player is during his turn and is able to perform his moves (e.g. buy a street).
 	 */
-	USER_DURING,
+	DURING_TURN,
 	
 	/**
 	 * The player has ended his turn.

@@ -44,7 +44,8 @@ public class Player {
 	 * @param position
 	 */
 	@Inject
-	public Player(String name, String figure, @Named("Budget") int budget, int position) {
+	public Player(String name, String figure, @Named("Budget") int budget,
+			int position) {
 		this.name = name;
 		this.figure = figure;
 		this.budget = budget;
@@ -59,7 +60,7 @@ public class Player {
 	 * @param figure
 	 * @param budget
 	 */
-	public Player(String name, String figure,@Named("Budget") int budget) {
+	public Player(String name, String figure, @Named("Budget") int budget) {
 		this(name, figure, budget, 1);
 	}
 
@@ -232,11 +233,15 @@ public class Player {
 		return (prisonFreeCard > 0);
 	}
 
+	/**
+	 * Decrements a prison free card
+	 */
 	public void usePrisonFreeCard() {
 		if (prisonFreeCard < 1) {
-			throw new AssertionError("This Player has no such Card");
+			throw new AssertionError("Player has no such card");
 		}
 		prisonFreeCard--;
+
 	}
 
 }

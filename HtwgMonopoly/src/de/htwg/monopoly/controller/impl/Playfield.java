@@ -12,6 +12,7 @@ import de.htwg.monopoly.entities.impl.CommunityCardsStack;
 import de.htwg.monopoly.entities.impl.FieldObject;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.Street;
+import de.htwg.monopoly.util.FieldType;
 import de.htwg.monopoly.util.IMonopolyFields;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
@@ -37,7 +38,7 @@ public class Playfield implements IPlayfield {
 		this.playfield = new IFieldObject[this.fieldSize];
 		this.commStack = new CommunityCardsStack();
 		this.chanStack = new ChanceCardsStack();
-		
+
 		for (int i = 0; i < fieldSize; i++) {
 			createField(i);
 		}
@@ -50,46 +51,45 @@ public class Playfield implements IPlayfield {
 	 */
 	private void createField(int i) {
 		switch (IMonopolyFields.TYP[i]) {
-		case 'l':
-			playfield[i] = new FieldObject(IMonopolyFields.NAME[i],
-					IMonopolyFields.TYP[i], IMonopolyFields.POSITION[i]);
-			break;
-		case 's':
+		case STREET:
 			playfield[i] = new Street(IMonopolyFields.NAME[i],
 					IMonopolyFields.PRICE_FOR_STREET[i],
 					IMonopolyFields.COLOUR[i], IMonopolyFields.RENT[i],
 					IMonopolyFields.HOTEL[i], IMonopolyFields.POSITION[i]);
 			break;
-		case 'g':
+		case GO:
+			playfield[i] = new FieldObject(IMonopolyFields.NAME[i],
+					IMonopolyFields.TYP[i], IMonopolyFields.POSITION[i]);
+			break;
+
+		case COMMUNITY_STACK:
 			this.commStack.setPosition(IMonopolyFields.POSITION[i]);
 			playfield[i] = this.commStack;
-
 			break;
-		case 'z':
+		case TAX:
+
 			playfield[i] = new FieldObject("Zusatzsteuer",
 					IMonopolyFields.TYP[i], IMonopolyUtil.ZUSATZSTEUER,
 					IMonopolyFields.POSITION[i]);
 			break;
-		case 'e':
+		case CHANCE_STACK:
 			this.chanStack.setPosition(IMonopolyFields.POSITION[i]);
 			playfield[i] = (IFieldObject) this.chanStack;
 			break;
-		case 'n':
-			/* BSYS -> zu besuch */
-			playfield[i] = new FieldObject("Bsys Labor, nur zu Besuch",
-					IMonopolyFields.TYP[i], 0, IMonopolyFields.POSITION[i]);
-			break;
-		case 'p':
-			/* gehe ins Bsys labor */
+		case GO_TO_PRISON:
 			playfield[i] = new FieldObject("Gehe in das Bsys Labor",
 					IMonopolyFields.TYP[i], 0, IMonopolyFields.POSITION[i]);
 			break;
-		case 'f':
+		case PRISON_VISIT_ONLY:
+			playfield[i] = new FieldObject("Bsys Labor, nur zu Besuch",
+					IMonopolyFields.TYP[i], 0, IMonopolyFields.POSITION[i]);
+			break;
+		case FREE_PARKING:
 			playfield[i] = new FieldObject("Mensa", IMonopolyFields.TYP[i], 0,
 					IMonopolyFields.POSITION[i]);
 			break;
-
 		}
+
 	}
 
 	/**
@@ -139,42 +139,46 @@ public class Playfield implements IPlayfield {
 		StringBuilder sb = new StringBuilder();
 		String output;
 		if (wentOverGo) {
-			output = MessageFormat.format(bundle.getString("play_over_los"), IMonopolyUtil.LOS_MONEY);
+			output = MessageFormat.format(bundle.getString("play_over_los"),
+					IMonopolyUtil.LOS_MONEY);
 			sb.append(output);
 			Bank.receiveMoney(currentPlayer, IMonopolyUtil.LOS_MONEY);
 		}
 		switch (currentField.getType()) {
-		case 's':
+		case STREET:
 			sb.append(addStreetInfo(currentField, currentPlayer));
 			break;
-		case 'l':
+		case GO:
 			sb.delete(0, sb.length());
 			output = MessageFormat.format(bundle.getString("play_los"),
 					IMonopolyUtil.TWICE_LOS_MONEY);
 			sb.append(output);
 			Bank.receiveMoney(currentPlayer, IMonopolyUtil.LOS_MONEY);
 			break;
-		case 'z':
+		case TAX:
 			FieldObject field = (FieldObject) currentField;
 			output = MessageFormat.format(bundle.getString("play_pay"),
 					field.getPriceToPay());
 			sb.append(output);
 			Bank.addParkingMoney(currentPlayer, field.getPriceToPay());
 			break;
-		case 'p':
+		case GO_TO_PRISON:
 			sb.append(bundle.getString("play_bsys"));
 			movePlayerToPrison(currentPlayer);
 			break;
-		case 'n':
+		case PRISON_VISIT_ONLY:
 			sb.append(bundle.getString("play_look"));
 			break;
-		case 'f':
+		case FREE_PARKING:
 			output = MessageFormat.format(bundle.getString("play_mensa"),
 					Bank.getParkingMoney());
 			sb.append(output);
 			Bank.receiveMoney(currentPlayer, Bank.getParkingMoney());
 			break;
 
+		case CHANCE_STACK:
+		case COMMUNITY_STACK:
+			// do nothing TODO implement solution
 		}
 		return sb.toString();
 	}
@@ -264,9 +268,9 @@ public class Playfield implements IPlayfield {
 	}
 
 	public void setFieldAtIndex(int i, IFieldObject field) {
-		if (field.getType() == 'g') {
+		if (field.getType() == FieldType.COMMUNITY_STACK) {
 			this.commStack = (CommunityCardsStack) field;
-		} else if (field.getType() == 'e') {
+		} else if (field.getType() == FieldType.CHANCE_STACK) {
 			this.chanStack = (ChanceCardsStack) field;
 		}
 		playfield[i] = field;
@@ -284,8 +288,8 @@ public class Playfield implements IPlayfield {
 
 	}
 
-    @Override
-    public IFieldObject[] getPlayfield() {
-        return this.playfield;
-    }
+	@Override
+	public IFieldObject[] getPlayfield() {
+		return this.playfield;
+	}
 }

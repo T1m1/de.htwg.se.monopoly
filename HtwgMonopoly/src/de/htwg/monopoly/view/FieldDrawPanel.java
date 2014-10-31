@@ -15,6 +15,7 @@ import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.Street;
+import de.htwg.monopoly.util.FieldType;
 import de.htwg.monopoly.util.IMonopolyUtil;
 import de.htwg.monopoly.view.components.Position;
 
@@ -160,8 +161,8 @@ class FieldDrawPanel extends JPanel {
 				DIFFERENC - 1, null);
 
 		/* add user figure at his position */
-		//setFigures();
-		//setFigureForPlayer();
+		// setFigures();
+		// setFigureForPlayer();
 
 	}
 
@@ -178,23 +179,23 @@ class FieldDrawPanel extends JPanel {
 		// TODO SWITCH CASE
 
 		/* check type of IFieldObject to call specific functions */
-		if (fieldNameAtIndex.getType() == 's') {
+		if (fieldNameAtIndex.getType() == FieldType.STREET) {
 			/* if street object */
 			Street street = (Street) fieldNameAtIndex;
 			drawStreet(position, street.getColor());
 			drawNames(position, street);
-		} else if (fieldNameAtIndex.getType() == 'l') {
+		} else if (fieldNameAtIndex.getType() == FieldType.GO) {
 			/* if go */
 			drawPictureGo(position);
-		} else if (fieldNameAtIndex.getType() == 'e') {
+		} else if (fieldNameAtIndex.getType() == FieldType.CHANCE_STACK) {
 			drawEreignisfeld(position);
-		} else if (fieldNameAtIndex.getType() == 'g') {
+		} else if (fieldNameAtIndex.getType() == FieldType.COMMUNITY_STACK) {
 			drawGemeinschaftsfeld(position);
-		} else if (fieldNameAtIndex.getType() == 'p') {
+		} else if (fieldNameAtIndex.getType() == FieldType.GO_TO_PRISON) {
 			drawPrision();
-		} else if (fieldNameAtIndex.getType() == 'n') {
+		} else if (fieldNameAtIndex.getType() == FieldType.PRISON_VISIT_ONLY) {
 			drawNurZuBesuch();
-		} else if (fieldNameAtIndex.getType() == 'z') {
+		} else if (fieldNameAtIndex.getType() == FieldType.FREE_PARKING) {
 			drawZusatzsteuer(position);
 		}
 
@@ -300,8 +301,8 @@ class FieldDrawPanel extends JPanel {
 		}
 		/* draw price for street */
 		pos += g2d.getFontMetrics().getHeight();
-		g2d.drawString(street.getPriceForStreet() + "�", position.getStringX(),
-				pos);
+		g2d.drawString(street.getPriceForStreet() + "�",
+				position.getStringX(), pos);
 	}
 
 	/**
@@ -353,8 +354,8 @@ class FieldDrawPanel extends JPanel {
 	public void update() {
 		repaint();
 
-      //  setFigures();
-       // setFigureForPlayer();
+		// setFigures();
+		// setFigureForPlayer();
 
 	}
 

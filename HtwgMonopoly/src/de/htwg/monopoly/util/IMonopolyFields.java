@@ -1,6 +1,7 @@
 package de.htwg.monopoly.util;
 
 import java.awt.Color;
+import de.htwg.monopoly.util.FieldType;
 
 public interface IMonopolyFields {
 
@@ -12,9 +13,15 @@ public interface IMonopolyFields {
 	 * frei parken.
 	 * 
 	 */
-	char[] TYP = { 'l', 's', 'z', 's', 'g', 's', 's', 'n', 's', 'e', 's', 's',
-			'z', 's', 'f', 's', 'g', 's', 's', 'e', 's', 'p', 's', 'g', 's',
-			's', 'z', 's' };
+	FieldType[] TYP = { FieldType.GO, FieldType.STREET, FieldType.TAX,
+			FieldType.STREET, FieldType.COMMUNITY_STACK, FieldType.STREET,
+			FieldType.STREET, FieldType.PRISON_VISIT_ONLY, FieldType.STREET,
+			FieldType.CHANCE_STACK, FieldType.STREET, FieldType.STREET,
+			FieldType.TAX, FieldType.STREET, FieldType.FREE_PARKING,
+			FieldType.STREET, FieldType.COMMUNITY_STACK, FieldType.STREET,
+			FieldType.STREET, FieldType.CHANCE_STACK, FieldType.STREET,
+			FieldType.GO_TO_PRISON, FieldType.STREET, FieldType.COMMUNITY_STACK,
+			FieldType.STREET, FieldType.STREET, FieldType.TAX, FieldType.STREET };
 	/**
 	 * Preise für die Straßen
 	 * 
@@ -38,11 +45,11 @@ public interface IMonopolyFields {
 	 */
 	String[] NAME = { "Bafög-Amt", "Stochastik", "Zusatzsteuer", "SM2",
 			GEMEINSCHAFTSFELD, "Konso", "SysMo", "Bsys Labor, nur zu Besuch",
-			"Digital-\ntechnik", "Ereignisfeld", "ProgTech", "Mathe 1", "Zusatzsteuer",
-			"TI", "Frei parken", "Sekretariat", GEMEINSCHAFTSFELD, "SysProg",
-			"Mathe 2", "Ereignisfeld", "Prog-\nTech  2", "Gehe in das Bsys Labor", "ReAr",
-			GEMEINSCHAFTSFELD, "ALDA", "DB", "Zusatzsteuer",
-			"SE" };
+			"Digital-\ntechnik", "Ereignisfeld", "ProgTech", "Mathe 1",
+			"Zusatzsteuer", "TI", "Frei parken", "Sekretariat",
+			GEMEINSCHAFTSFELD, "SysProg", "Mathe 2", "Ereignisfeld",
+			"Prog-\nTech  2", "Gehe in das Bsys Labor", "ReAr",
+			GEMEINSCHAFTSFELD, "ALDA", "DB", "Zusatzsteuer", "SE" };
 	/**
 	 * Farben in richtiger Reihenfolge. Wenn keine Straße, dann ist Farbe null.
 	 * 
@@ -70,7 +77,7 @@ public interface IMonopolyFields {
 	Integer[] PRICE_PER_HOUSE = new Integer[IMonopolyUtil.FIELD_SIZE];
 
 	/** Test Cases **/
-	
+
 	/**
 	 * Test 1: Contains only 2 Object: Go field and a Gemeinschaftsfeld.
 	 * 

@@ -3,6 +3,7 @@ package de.htwg.monopoly.entities.impl;
 import java.awt.Color;
 
 import de.htwg.monopoly.entities.IFieldObject;
+import de.htwg.monopoly.util.FieldType;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
 /**
@@ -198,9 +199,8 @@ public class Street implements IFieldObject{
 	}
 
 	@Override
-	public char getType() {
-		// s wie Straﬂe.
-		return 's';
+	public FieldType getType() {
+		return FieldType.STREET;
 	}
 
 	/**
