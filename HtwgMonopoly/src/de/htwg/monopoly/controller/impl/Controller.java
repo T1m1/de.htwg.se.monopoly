@@ -35,7 +35,7 @@ public class Controller extends Observable implements IController {
 	private Dice dice;
 
 	private GameStatus phase;
-	private GameStatusController status;
+	private UserOptionsController userOptions;
 
 	private StringBuilder message;
 	private int lastChooseOption;
@@ -55,7 +55,7 @@ public class Controller extends Observable implements IController {
 		this.field = new Playfield(fieldSize);
 		this.message = new StringBuilder();
 		this.dice = new Dice(fieldSize);
-		this.status = new GameStatusController(this);
+		this.userOptions = new UserOptionsController(this);
 		phase = GameStatus.STOPPED;
 	}
 
@@ -76,8 +76,7 @@ public class Controller extends Observable implements IController {
 		// play
 		this.currentPlayer = players.getFirstPlayer();
 
-		phase = GameStatus.STARTED;
-		status.update();
+		updateGameStatus(GameStatus.STARTED);
 		notifyObservers(0);
 	}
 
@@ -107,8 +106,7 @@ public class Controller extends Observable implements IController {
 
 		// �berpr�fen auf was f�rn feldobjek
 		// dementsprechend notify
-		phase = GameStatus.DURING_TURN;
-		status.update();
+		updateGameStatus(GameStatus.DURING_TURN);
 		notifyObservers(1);
 	}
 
@@ -125,8 +123,8 @@ public class Controller extends Observable implements IController {
 					"Current player is not standing on a street!");
 		}
 
-		phase = GameStatus.DURING_TURN;
-		status.update();
+		updateGameStatus(GameStatus.DURING_TURN);
+		// TODO notify observer?
 		return field.buyStreet(currentPlayer, (Street) currentStreet);
 	}
 
@@ -138,8 +136,12 @@ public class Controller extends Observable implements IController {
 		this.message.delete(0, this.message.length());
 		this.currentPlayer = players.getNextPlayer();
 
-		phase = GameStatus.BEFORE_TURN;
-		status.update();
+		if (currentPlayer.isInPrison()) {
+			updateGameStatus(GameStatus.BEFORE_TURN_IN_PRISON);
+		} else {
+			updateGameStatus(GameStatus.BEFORE_TURN);
+		}
+
 		notifyObservers(0);
 	}
 
@@ -156,11 +158,13 @@ public class Controller extends Observable implements IController {
 		if (currentPlayer.hasPrisonFreeCard()) {
 			currentPlayer.usePrisonFreeCard();
 			currentPlayer.setInPrison(false);
-			phase = GameStatus.BEFORE_TURN;
-			status.update();
+
+			updateGameStatus(GameStatus.BEFORE_TURN);
 			return true;
 		}
 		return false;
+
+		// TODO notify Observers?
 	}
 
 	/**
@@ -179,7 +183,9 @@ public class Controller extends Observable implements IController {
 		}
 		currentPlayer.decrementMoney(IMonopolyUtil.FREIKAUFEN);
 		currentPlayer.setInPrison(false);
-		status.update();
+
+		updateGameStatus(GameStatus.BEFORE_TURN);
+		// TODO notify Observers?
 		return true;
 	}
 
@@ -193,12 +199,7 @@ public class Controller extends Observable implements IController {
 	 */
 	@Override
 	public boolean redeemWithDice() {
-
-		currentPlayer.incrementPrisonRound();
-		message.append(bundle.getString("contr_bsys") + "\n");
-
-		return currentPlayer.isInPrison();
-
+		throw new UnsupportedOperationException("not implemented yet");
 	}
 
 	/**
@@ -218,7 +219,7 @@ public class Controller extends Observable implements IController {
 		this.players = null;
 
 		phase = GameStatus.STOPPED;
-		status.update();
+		userOptions.update();
 		notifyObservers();
 	}
 
@@ -282,6 +283,16 @@ public class Controller extends Observable implements IController {
 		} catch (NumberFormatException e) {
 			return true;
 		}
+	}
+
+	/**
+	 * Updates the phase, in which the game is and updates the user options.
+	 * 
+	 * @param phaseToSet
+	 */
+	private void updateGameStatus(GameStatus phaseToSet) {
+		phase = phaseToSet;
+		userOptions.update();
 	}
 
 	@Override
@@ -354,7 +365,7 @@ public class Controller extends Observable implements IController {
 	 */
 	@Override
 	public List<UserAction> getOptions() {
-		return status.getOptions();
+		return userOptions.getCurrentPlayerOptions();
 	}
 
 	/**
@@ -369,7 +380,7 @@ public class Controller extends Observable implements IController {
 	 */
 	@Override
 	public boolean isCorrectOption(UserAction userOption) {
-		return status.getOptions().contains(userOption);
+		return userOptions.getCurrentPlayerOptions().contains(userOption);
 	}
 
 	/**
