@@ -1,5 +1,7 @@
 package de.htwg.monopoly.observer;
 
+import de.htwg.monopoly.util.GameStatus;
+
 public interface IObservable {
 
 	/**
@@ -32,20 +34,18 @@ public interface IObservable {
 
 	/**
 	 * Calls the method update() from every Observer in the list with the
-	 * argument e.
-	 * 
-	 * 
-	 * @param e
-	 */
-	void notifyObservers(Event e);
-
-	/**
-	 * Calls the method update() from every Observer in the list with the
 	 * argument int e.
 	 * 
 	 * 
 	 * @param e
 	 */
 	void notifyObservers(int e);
+
+	/**
+	 * Notify all Observers with the current game status.
+	 * 
+	 * @param e
+	 */
+	void notifyObservers(GameStatus e);
 
 }

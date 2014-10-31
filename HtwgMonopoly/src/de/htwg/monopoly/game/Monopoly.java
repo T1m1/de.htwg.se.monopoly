@@ -3,6 +3,9 @@ package de.htwg.monopoly.game;
 import java.util.Scanner;
 
 import de.htwg.monopoly.controller.IController;
+import de.htwg.monopoly.controller.impl.Controller;
+import de.htwg.monopoly.util.IMonopolyFields;
+import de.htwg.monopoly.util.IMonopolyUtil;
 import de.htwg.monopoly.view.GraphicUserInterface;
 import de.htwg.monopoly.view.TextUI;
 
@@ -26,10 +29,11 @@ public class Monopoly {
 
 	private Monopoly() {
 
-		Injector injector = Guice.createInjector(new MonopolyModule());
+		//Injector injector = Guice.createInjector(new MonopolyModule());
 
-		this.controller = injector.getInstance(IController.class);
-
+		// this.controller = injector.getInstance(IController.class);
+		this.controller = new Controller(IMonopolyUtil.FIELD_SIZE);
+		
 		tui = new TextUI(controller);
 		gui = new GraphicUserInterface(controller);
 

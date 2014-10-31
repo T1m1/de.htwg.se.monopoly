@@ -59,6 +59,7 @@ public interface IController extends IObservable {
 	 * @param chooseOption
 	 * @return a list with all option
 	 */
+	@Deprecated
 	List<String> getOptions(int chooseOption);
 
 	/**
@@ -74,6 +75,7 @@ public interface IController extends IObservable {
 	 * @param l
 	 * @return
 	 */
+	@Deprecated
 	boolean isCorrectOption(String l);
 
 	/**
@@ -135,6 +137,8 @@ public interface IController extends IObservable {
 	List<UserAction> getOptions();
 
 	boolean isCorrectOption(UserAction userOption);
+
+	void performAction(UserAction choosedOption);
 
 
 

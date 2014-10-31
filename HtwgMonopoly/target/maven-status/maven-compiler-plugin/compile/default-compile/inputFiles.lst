@@ -19,6 +19,7 @@ C:\Users\Steffen\git\de.htwg.se.monopoly\HtwgMonopoly\src\de\htwg\monopoly\entit
 C:\Users\Steffen\git\de.htwg.se.monopoly\HtwgMonopoly\src\de\htwg\monopoly\entities\ICards.java
 C:\Users\Steffen\git\de.htwg.se.monopoly\HtwgMonopoly\src\de\htwg\monopoly\view\OutputPanel.java
 C:\Users\Steffen\git\de.htwg.se.monopoly\HtwgMonopoly\src\de\htwg\monopoly\controller\impl\PlayerController.java
+C:\Users\Steffen\git\de.htwg.se.monopoly\HtwgMonopoly\src\de\htwg\monopoly\util\FieldType.java
 C:\Users\Steffen\git\de.htwg.se.monopoly\HtwgMonopoly\src\de\htwg\monopoly\view\FieldDrawPanel.java
 C:\Users\Steffen\git\de.htwg.se.monopoly\HtwgMonopoly\src\de\htwg\monopoly\util\GameStatus.java
 C:\Users\Steffen\git\de.htwg.se.monopoly\HtwgMonopoly\src\de\htwg\monopoly\entities\impl\CommunityCardsStack.java
@@ -32,9 +33,9 @@ C:\Users\Steffen\git\de.htwg.se.monopoly\HtwgMonopoly\src\de\htwg\monopoly\contr
 C:\Users\Steffen\git\de.htwg.se.monopoly\HtwgMonopoly\src\de\htwg\monopoly\util\IMonopolyUtil.java
 C:\Users\Steffen\git\de.htwg.se.monopoly\HtwgMonopoly\src\de\htwg\monopoly\observer\impl\Observable.java
 C:\Users\Steffen\git\de.htwg.se.monopoly\HtwgMonopoly\src\de\htwg\monopoly\game\MonopolyModule.java
-C:\Users\Steffen\git\de.htwg.se.monopoly\HtwgMonopoly\src\de\htwg\monopoly\controller\impl\GameStatusController.java
 C:\Users\Steffen\git\de.htwg.se.monopoly\HtwgMonopoly\src\de\htwg\monopoly\view\TextUI.java
 C:\Users\Steffen\git\de.htwg.se.monopoly\HtwgMonopoly\src\de\htwg\monopoly\view\PlayerInfoPanel.java
 C:\Users\Steffen\git\de.htwg.se.monopoly\HtwgMonopoly\src\de\htwg\monopoly\util\IMonopolyFields.java
 C:\Users\Steffen\git\de.htwg.se.monopoly\HtwgMonopoly\src\de\htwg\monopoly\entities\impl\ChanceCard.java
+C:\Users\Steffen\git\de.htwg.se.monopoly\HtwgMonopoly\src\de\htwg\monopoly\controller\impl\UserOptionsController.java
 C:\Users\Steffen\git\de.htwg.se.monopoly\HtwgMonopoly\src\de\htwg\monopoly\entities\impl\Street.java

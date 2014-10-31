@@ -3,9 +3,9 @@ package de.htwg.monopoly.observer.impl;
 import java.util.LinkedList;
 import java.util.List;
 
-import de.htwg.monopoly.observer.Event;
 import de.htwg.monopoly.observer.IObservable;
 import de.htwg.monopoly.observer.IObserver;
+import de.htwg.monopoly.util.GameStatus;
 
 public class Observable implements IObservable {
 	
@@ -32,7 +32,10 @@ public class Observable implements IObservable {
 	}
 
 	@Override
-	public void notifyObservers(Event e) {
+	public void notifyObservers(GameStatus e) {
+		if (e == null) {
+			throw new IllegalArgumentException("null is not permited as a game status");
+		}
 		for (IObserver current: obsList) {
 			current.update(e);
 		}

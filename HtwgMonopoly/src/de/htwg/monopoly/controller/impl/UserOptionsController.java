@@ -48,6 +48,7 @@ public final class UserOptionsController {
 	 */
 	public void update() {
 		options.clear();
+		phase = controller.getPhase();
 
 		switch (phase) {
 		case STOPPED:

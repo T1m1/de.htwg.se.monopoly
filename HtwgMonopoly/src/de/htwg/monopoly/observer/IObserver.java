@@ -1,5 +1,7 @@
 package de.htwg.monopoly.observer;
 
+import de.htwg.monopoly.util.GameStatus;
+
 public interface IObserver {
 
 	/**
@@ -8,7 +10,7 @@ public interface IObserver {
 	 * 
 	 * @param e
 	 */
-	void update(Event e);
+	void update(GameStatus e);
 	void update(int e);
 
 }

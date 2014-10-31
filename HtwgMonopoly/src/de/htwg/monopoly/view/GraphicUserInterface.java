@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.observer.Event;
 import de.htwg.monopoly.observer.IObserver;
+import de.htwg.monopoly.util.GameStatus;
 
 public class GraphicUserInterface extends JFrame implements IObserver {
 
@@ -104,7 +105,7 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 	}
 
 	@Override
-	public void update(Event e) {
+	public void update(GameStatus e) {
 	}
 
 	@Override
@@ -115,4 +116,5 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 		pnField.update();
 
 	}
+
 }

@@ -44,19 +44,27 @@ public class Controller extends Observable implements IController {
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
 
-	/**
-	 * public constructor for a new controller create the players, the field and
-	 * the dice
-	 * 
-	 * @param fieldSize
-	 */
-	@Inject
-	public Controller(@Named("FieldSize") int fieldSize) {
+//	/**
+//	 * public constructor for a new controller create the players, the field and
+//	 * the dice
+//	 * 
+//	 * @param fieldSize
+//	 */
+//	@Inject
+//	public Controller(@Named("FieldSize") int fieldSize) {
+//		this.field = new Playfield(fieldSize);
+//		this.message = new StringBuilder();
+//		this.dice = new Dice(fieldSize);
+//		this.userOptions = new UserOptionsController(this);
+//		phase = GameStatus.STOPPED;
+//	}
+	
+	public Controller(int fieldSize) {
+		phase = GameStatus.STOPPED;
 		this.field = new Playfield(fieldSize);
 		this.message = new StringBuilder();
 		this.dice = new Dice(fieldSize);
 		this.userOptions = new UserOptionsController(this);
-		phase = GameStatus.STOPPED;
 	}
 
 	/**
@@ -519,6 +527,12 @@ public class Controller extends Observable implements IController {
 		options.add("(x) " + bundle.getString("contr_quit"));
 		/* return a list of options (strings) */
 		return options;
+	}
+
+	@Override
+	public void performAction(UserAction choosedOption) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	// private void notify(GameStatus inStatus) {
