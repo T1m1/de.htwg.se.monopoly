@@ -2,7 +2,6 @@ package de.htwg.monopoly.view;
 
 import java.text.MessageFormat;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -12,9 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.htwg.monopoly.controller.IController;
-import de.htwg.monopoly.controller.impl.UserOptionsController;
 import de.htwg.monopoly.entities.impl.Player;
-import de.htwg.monopoly.observer.Event;
 import de.htwg.monopoly.observer.IObserver;
 import de.htwg.monopoly.util.GameStatus;
 import de.htwg.monopoly.util.IMonopolyUtil;
@@ -86,46 +83,36 @@ public class TextUI implements IObserver {
 		case STOPPED:
 			
 			break;
-
 		case STARTED:
-			
+			printTUI();
+			printOptions();
 			break;
-
 		case BEFORE_TURN:
-			
+			printMessage();
+			printOptions();
 			break;
-
 		case BEFORE_TURN_IN_PRISON:
-			
+			printMessage();
+			printOptions();
 			break;
-
 		case DURING_TURN:
-			
+			onField();
+			printMessage();
+			printOptions();
 			break;
-
 		case AFTER_TURN:
-			
+			printTUI();
+			break;
+		case DICE_RESULT:
+			printRoll();
 			break;
 		}
-		
-		
-		printTUI();
-		startTurn();
+
 	}
 
 	@Override
 	public void update(int e) {
-		if (e == 1) {
-			printRoll();
-			onField();
-			printAction();
-			printOptions(2);
-
-		}
-		if (e == 0) {
-			printTUI();
-			startTurn();
-		}
+		throw new UnsupportedOperationException("not supported!!");
 	}
 
 
@@ -149,37 +136,23 @@ public class TextUI implements IObserver {
 		logger.info(out);
 	}
 
-	private void printOptions(int choose) {
+	private void printOptions() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(bundle.getString("tui_options"));
 
 		for (UserAction currentOption : controller.getOptions()) {
 			sb.append("\n");
+			sb.append("(");
 			sb.append(getOptionChar(currentOption));
+			sb.append(") - ");
+			sb.append(currentOption.getDescription());
 
 		}
 		logger.info(sb.toString());
 	}
 
-	public void printAction() {
+	public void printMessage() {
 		logger.info(controller.getMessage());
-	}
-
-	public void startTurn() {
-		StringBuilder sb = new StringBuilder();
-		String currentPlayer = controller.getCurrentPlayer().getName();
-
-		sb.append(MessageFormat.format(bundle.getString("tui_player"),
-				currentPlayer));
-
-		sb.append(bundle.getString("tui_options"));
-		for (String option : controller.getOptions(1)) {
-			sb.append("\n");
-			sb.append(option);
-
-		}
-		logger.info(sb.toString());
-
 	}
 
 	/**
@@ -303,7 +276,7 @@ public class TextUI implements IObserver {
 			return true;
 		}
 		
-		// TODO: needs to be implementd controller.performAction(choosedOption);
+		// TODO: needs to be implemented: controller.performAction(choosedOption);
 		
 		boolean status = true;
 	
@@ -315,8 +288,6 @@ public class TextUI implements IObserver {
 		case END_TURN:
 			// zug beenden
 			controller.endTurn();
-			printTUI();
-			startTurn();
 			break;
 		case SURRENDER:
 			// TODO for now the game finishes
@@ -329,28 +300,20 @@ public class TextUI implements IObserver {
 				logger.info(bundle.getString("tui_no_money"));
 			}
 			controller.endTurn();
-			printTUI();
-			startTurn();
 			break;
-			// TODO: What is 'n'??
-//		case 'n':
-//			controller.endTurn();
-//			printTUI();
-//			startTurn();
-//			break;
 		case REDEEM_WITH_MONEY:
-			/* temporary */
-			/* TODO check if enough money */
-			controller.getCurrentPlayer().decrementMoney(
-					IMonopolyUtil.FREIKAUFEN);
-			controller.getCurrentPlayer().setInPrison(false);
-			// zug beenden
-			controller.endTurn();
-			printTUI();
-			startTurn();
+			if (!controller.redeemWithMoney()) {
+				logger.info("Nicht gut Geld zum Freikaufen.");
+			}
 			break;
+		case REDEEM_WITH_CARD:
+		case REDEEM_WITH_DICE:
+		case ROLL_DICE:
 		default:
-			logger.info(bundle.getString("tui_wrong_input"));
+			
+			logger.info("not implemented yet.");
+			break;
+		
 		}
 		return status;
 	}

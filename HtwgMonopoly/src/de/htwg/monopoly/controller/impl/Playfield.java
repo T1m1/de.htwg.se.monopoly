@@ -282,6 +282,7 @@ public class Playfield implements IPlayfield {
 					- currentStreet.getPriceForStreet());
 			currentStreet.setOwner(currentPlayer);
 			currentPlayer.addOwnership(currentStreet);
+			currentStreet.setSold(true);
 			return true;
 		}
 		return false;

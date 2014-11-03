@@ -70,6 +70,9 @@ public final class UserOptionsController {
 		case DURING_TURN:
 			addDuringTurnOptions();
 			break;
+		case DICE_RESULT:
+			//TODO
+			break;
 		}
 
 		// always add the surrender option, if game is running.
@@ -100,6 +103,9 @@ public final class UserOptionsController {
 			// add no user options
 			break;
 		}
+
+		// always add the end turn option if its during the turn of the player
+		options.add(UserAction.END_TURN);
 
 	}
 }

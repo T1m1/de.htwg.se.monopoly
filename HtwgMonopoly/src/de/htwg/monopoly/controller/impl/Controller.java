@@ -44,21 +44,21 @@ public class Controller extends Observable implements IController {
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
 
-//	/**
-//	 * public constructor for a new controller create the players, the field and
-//	 * the dice
-//	 * 
-//	 * @param fieldSize
-//	 */
-//	@Inject
-//	public Controller(@Named("FieldSize") int fieldSize) {
-//		this.field = new Playfield(fieldSize);
-//		this.message = new StringBuilder();
-//		this.dice = new Dice(fieldSize);
-//		this.userOptions = new UserOptionsController(this);
-//		phase = GameStatus.STOPPED;
-//	}
-	
+	/**
+	 * public constructor for a new controller create the players, the field and
+	 * the dice
+	 * 
+	 * @param fieldSize
+	 */
+	// @Inject
+	// public Controller(@Named("FieldSize") int fieldSize) {
+	// this.field = new Playfield(fieldSize);
+	// this.message = new StringBuilder();
+	// this.dice = new Dice(fieldSize);
+	// this.userOptions = new UserOptionsController(this);
+	// phase = GameStatus.STOPPED;
+	// }
+
 	public Controller(int fieldSize) {
 		phase = GameStatus.STOPPED;
 		this.field = new Playfield(fieldSize);
@@ -85,7 +85,7 @@ public class Controller extends Observable implements IController {
 		this.currentPlayer = players.getFirstPlayer();
 
 		updateGameStatus(GameStatus.STARTED);
-		notifyObservers(0);
+		notifyObservers(GameStatus.STARTED);
 	}
 
 	/**
@@ -115,7 +115,7 @@ public class Controller extends Observable implements IController {
 		// �berpr�fen auf was f�rn feldobjek
 		// dementsprechend notify
 		updateGameStatus(GameStatus.DURING_TURN);
-		notifyObservers(1);
+		notifyObservers(GameStatus.DURING_TURN);
 	}
 
 	/**
@@ -142,15 +142,20 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void endTurn() {
 		this.message.delete(0, this.message.length());
+
+		updateGameStatus(GameStatus.AFTER_TURN);
+		notifyObservers(GameStatus.AFTER_TURN);
+
 		this.currentPlayer = players.getNextPlayer();
 
 		if (currentPlayer.isInPrison()) {
 			updateGameStatus(GameStatus.BEFORE_TURN_IN_PRISON);
+			notifyObservers(GameStatus.BEFORE_TURN_IN_PRISON);
 		} else {
 			updateGameStatus(GameStatus.BEFORE_TURN);
+			notifyObservers(GameStatus.BEFORE_TURN);
 		}
 
-		notifyObservers(0);
 	}
 
 	/**
@@ -217,6 +222,8 @@ public class Controller extends Observable implements IController {
 	public void rollDice() {
 		/* throw dice */
 		dice.throwDice();
+		updateGameStatus(GameStatus.DICE_RESULT);
+		notifyObservers(GameStatus.DICE_RESULT);
 	}
 
 	/**
@@ -225,10 +232,8 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void exitGame() {
 		this.players = null;
-
-		phase = GameStatus.STOPPED;
-		userOptions.update();
-		notifyObservers();
+		updateGameStatus(GameStatus.STOPPED);
+		notifyObservers(GameStatus.STOPPED);
 	}
 
 	/**
@@ -532,7 +537,7 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void performAction(UserAction choosedOption) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	// private void notify(GameStatus inStatus) {

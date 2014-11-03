@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.monopoly.observer.Event;
 import de.htwg.monopoly.observer.IObserver;
+import de.htwg.monopoly.util.GameStatus;
 
 public class ObservableTest {
 	private boolean ping = false;
@@ -15,7 +15,7 @@ public class ObservableTest {
 
 	class TestObserver implements IObserver {
 		@Override
-		public void update(Event e) {
+		public void update(GameStatus e) {
 			ping = true;
 
 		}
@@ -37,7 +37,7 @@ public class ObservableTest {
 	@Test
 	public void testRemoveOberserver() {
 		assertFalse(ping);
-        testObservable.notifyObservers();
+        testObservable.notifyObservers(GameStatus.BEFORE_TURN);
         assertTrue(ping);
 	}
 
@@ -45,7 +45,7 @@ public class ObservableTest {
 	public void testNotifyObservers() {
 		assertFalse(ping);
         testObservable.removeObserver(testObserver);
-        testObservable.notifyObservers();
+        testObservable.notifyObservers(GameStatus.BEFORE_TURN);
         assertFalse(ping);
 	}
 
@@ -53,7 +53,7 @@ public class ObservableTest {
 	public void testNotifyObserversEvent() {
 		assertFalse(ping);
         testObservable.removeAllObservers();
-        testObservable.notifyObservers();
+        testObservable.notifyObservers(GameStatus.BEFORE_TURN);
         testObservable.notifyObservers(2);
         
         assertFalse(ping);
@@ -64,7 +64,7 @@ public class ObservableTest {
 		assertFalse(ping);
 		testObserver = new TestObserver();
 		testObservable.addObserver(testObserver);
-        testObservable.notifyObservers();
+        testObservable.notifyObservers(GameStatus.BEFORE_TURN);
         testObservable.notifyObservers(2);
         assertTrue(ping);
 	}

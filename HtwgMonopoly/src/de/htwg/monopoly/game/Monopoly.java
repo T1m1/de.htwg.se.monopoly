@@ -32,7 +32,7 @@ public class Monopoly {
 		//Injector injector = Guice.createInjector(new MonopolyModule());
 
 		// this.controller = injector.getInstance(IController.class);
-		this.controller = new Controller(IMonopolyUtil.FIELD_SIZE);
+		this.controller = new Controller(10);
 		
 		tui = new TextUI(controller);
 		gui = new GraphicUserInterface(controller);
