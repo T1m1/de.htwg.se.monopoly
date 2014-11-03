@@ -34,7 +34,7 @@ public interface IPlayfield {
 	 * @param currentPlayer
 	 * @return An Object of Type IFieldObject
 	 */
-	IFieldObject getCurrentField(Player currentPlayer);
+	IFieldObject getFieldOfPlayer(Player currentPlayer);
 
 	/**
 	 * Return the name of the Field at index i *

@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import de.htwg.monopoly.controller.IController;
-import de.htwg.monopoly.observer.Event;
 import de.htwg.monopoly.observer.IObserver;
 import de.htwg.monopoly.util.GameStatus;
 
@@ -96,7 +95,7 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 		this.setContentPane(mainPanel);
 
 		/* scalable display size */
-		int baseSize = controller.getField().getfieldSize();
+		int baseSize = controller.getFieldSize();
 		setSize(baseSize * DISPLAY_FIELD_SIZE + BUFFER, baseSize
 				* DISPLAY_FIELD_SIZE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

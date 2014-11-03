@@ -17,6 +17,7 @@ import javax.swing.border.Border;
 
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.util.IMonopolyUtil;
+import de.htwg.monopoly.util.UserAction;
 
 public class OptionPanel extends JPanel implements ActionListener {
 
@@ -96,14 +97,13 @@ public class OptionPanel extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 
-		String streetName = contr.getField()
-				.getCurrentField(contr.getCurrentPlayer()).toString();
+		String streetName = contr.getCurrentField().toString();
 
-		/* if button for dice is clickt */
+		/* if button for dice is clicked */
 		if (e.getSource() == buttonWuerfeln) {
 			contr.startTurn();
 			int diceResult = contr.getDice().getResultDice()
-					% (contr.getField().getfieldSize() + 1);
+					% (contr.getFieldSize() + 1);
 			taAusgabe.setText("Sie haben " + diceResult + " gewürfelt\n"
 					+ taAusgabe.getText());
 
@@ -129,7 +129,9 @@ public class OptionPanel extends JPanel implements ActionListener {
 			buttonZugBeenden.setEnabled(true);
 			buttonWuerfeln.setEnabled(false);
 		} else if (e.getSource().equals(buttonFreikaufen)) {
-			contr.getCurrentPlayer().setBudget(contr.getCurrentPlayer().getBudget() - IMonopolyUtil.FREIKAUFEN);
+			contr.getCurrentPlayer().setBudget(
+					contr.getCurrentPlayer().getBudget()
+							- IMonopolyUtil.FREIKAUFEN);
 			contr.getCurrentPlayer().setInPrison(false);
 			buttonFreikarte.setEnabled(false);
 			buttonFreikaufen.setEnabled(false);
@@ -145,41 +147,38 @@ public class OptionPanel extends JPanel implements ActionListener {
 		buttonFreikaufen.setEnabled(false);
 		buttonFreiWuerfeln.setEnabled(false);
 
-		List<String> options = contr.getOptions(1);
+		List<UserAction> options = contr.getOptions();
 
-		for (String option : options) {
-			if (option.contains("Freikarte")) {
-				buttonFreikaufen.setEnabled(true);
-			}
-			if (option.contains("3")) {
-				buttonFreiWuerfeln.setEnabled(true);
-			}
-			if (option.contains("Freikaufen")) {
-				buttonFreikaufen.setEnabled(true);
-			}
+		if (options.contains(UserAction.REDEEM_WITH_MONEY)) {
+			buttonFreikaufen.setEnabled(true);
+		}
+		if (options.contains(UserAction.REDEEM_WITH_DICE)) {
+			buttonFreiWuerfeln.setEnabled(true);
+		}
+		if (options.contains(UserAction.REDEEM_WITH_CARD)) {
+			// TODO needs to be implemented
+
 		}
 	}
 
 	private void checkEnableStatus(int chooseOption) {
 
-		List<String> options = contr.getOptions(chooseOption);
+		List<UserAction> options = contr.getOptions();
 
 		buttonHotelBauen.setEnabled(false);
 		buttonKaufen.setEnabled(false);
 		buttonWuerfeln.setEnabled(false);
 		buttonZugBeenden.setEnabled(false);
 
-		/* TODO use message properties */
-		for (String option : options) {
-			if (option.contains("Kaufen")) {
-				buttonKaufen.setEnabled(true);
-			}
-			if (option.contains("beenden")) {
-				buttonZugBeenden.setEnabled(true);
-			}
-			if (option.contains("w�rfeln")) {
-				buttonWuerfeln.setEnabled(true);
-			}
+		if (options.contains(UserAction.BUY_STREET)) {
+			buttonKaufen.setEnabled(true);
+		}
+		if (options.contains(UserAction.END_TURN)) {
+			buttonZugBeenden.setEnabled(true);
+		}
+		if (options.contains(UserAction.ROLL_DICE)
+				|| options.contains(UserAction.START_TURN)) {
+			buttonWuerfeln.setEnabled(true);
 		}
 		// parse options and set buttons enable
 

@@ -38,7 +38,6 @@ public class Controller extends Observable implements IController {
 	private UserOptionsController userOptions;
 
 	private StringBuilder message;
-	private int lastChooseOption;
 
 	/* internationalization */
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
@@ -100,7 +99,7 @@ public class Controller extends Observable implements IController {
 		field.movePlayer(currentPlayer, dice.getResultDice());
 
 		// set the current field
-		this.currentField = field.getCurrentField(currentPlayer);
+		this.currentField = field.getFieldOfPlayer(currentPlayer);
 
 		// perform the action, depending on the field.
 		if (currentField.getType() == FieldType.COMMUNITY_STACK) {
@@ -124,7 +123,7 @@ public class Controller extends Observable implements IController {
 	@Override
 	public boolean buyStreet() {
 
-		IFieldObject currentStreet = field.getCurrentField(currentPlayer);
+		IFieldObject currentStreet = field.getFieldOfPlayer(currentPlayer);
 
 		if (!(currentStreet instanceof Street)) {
 			throw new AssertionError(
@@ -335,31 +334,12 @@ public class Controller extends Observable implements IController {
 		return phase;
 	}
 
-	/**
-	 * return object with all players
-	 */
-	/**
-	 * {@inheritDoc}
-	 */
+	
 	@Override
-	public IPlayerController getPlayers() {
-		return players;
+	public int getFieldSize() {
+		return field.getfieldSize();
 	}
 
-	/**
-	 * return playfield object
-	 */
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Playfield getField() {
-		return field;
-	}
-
-	/**
-	 * return current player object
-	 */
 	/**
 	 * {@inheritDoc}
 	 */
@@ -369,11 +349,6 @@ public class Controller extends Observable implements IController {
 	}
 
 	/**
-	 * Returns a list with available options for the current player.
-	 * 
-	 * @return
-	 */
-	/**
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -381,13 +356,6 @@ public class Controller extends Observable implements IController {
 		return userOptions.getCurrentPlayerOptions();
 	}
 
-	/**
-	 * Checks if the given option is valid.
-	 * 
-	 * @param action
-	 * @return true if the valid options contains the given options, false
-	 *         otherwise.
-	 */
 	/**
 	 * {@inheritDoc}
 	 */
@@ -417,127 +385,25 @@ public class Controller extends Observable implements IController {
 	 */
 	@Override
 	public IFieldObject getCurrentField() {
-
-		return field.getCurrentField(currentPlayer);
-	}
-
-	/**
-	 * for TESTCASES - set current field
-	 */
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void setCurrentField(IFieldObject currentField) {
-		this.currentField = currentField;
-	}
-
-	/**
-	 * return string with options to choose when user stay on street
-	 * 
-	 * @return
-	 */
-	private List<String> getOptionOnStreet() {
-		List<String> options = new ArrayList<String>();
-		/* if current field a steet */
-		if (currentField.getType() == FieldType.STREET) {
-			Street s = (Street) currentField;
-			/* check if street have a owner */
-			if (s.getOwner() == null) {
-				/* if not -> add option to buy street */
-				options.add("(y) " + bundle.getString("contr_buy"));
-			}
-		}
-		return options;
-	}
-
-	/**
-	 * return a string with options, if player in prison
-	 * 
-	 * @return
-	 */
-	private List<String> getOptionPrison() {
-		List<String> options = new ArrayList<String>();
-		/* check if current player in prison */
-		if (currentPlayer.isInPrison()) {
-			/* add option to leave prison */
-			options.add("(f) " + bundle.getString("contr_free") + " ("
-					+ IMonopolyUtil.FREIKAUFEN + ")");
-			options.add("(3) " + bundle.getString("contr_threeDice"));
-			if (currentPlayer.hasPrisonFreeCard()) {
-				options.add("(c) " + bundle.getString("contr_freeCard"));
-			}
-			// TODO check if contains free park card
-
-		}
-		/* returns a list with options */
-		return options;
-
-	}
-
-	/**
-	 * function to check if input of user correct
-	 */
-	@Deprecated
-	public boolean isCorrectOption(String chooseOption) {
-		/* get the last options for current user */
-		List<String> options = new ArrayList<String>();
-		options = getOptions(this.lastChooseOption);
-		/* create string for search */
-		String strChooseOptions = "(" + chooseOption + ")";
-		/* check if choosen option containing in option list for user */
-		for (String tmp : options) {
-			if (tmp.contains(strChooseOptions)) {
-				/* correct option */
-				return true;
-			}
-		}
-		/* not correct options */
-		return false;
-	}
-
-	/**
-	 * get string with possible options
-	 */
-	@Override
-	@Deprecated
-	public List<String> getOptions(int chooseOption) {
-
-		/* TODO INfos selber suchen und zusammenbauen */
-
-		List<String> options = new ArrayList<String>();
-
-		switch (chooseOption) {
-		case 1:
-			/* add options if user in prison */
-			options.addAll(getOptionPrison());
-			/* add option to dice */
-			options.add("(d) " + bundle.getString("dice"));
-			break;
-		case 2:
-			/* add options if user on a street object */
-			options.addAll(getOptionOnStreet());
-			// NO BREAK
-		case IMonopolyUtil.OPTION_FINISH:
-			options.add("(b) " + bundle.getString("contr_finish"));
-		default:
-			break;
-		}
-		/*
-		 * set information witch option is choose, to check correct user input
-		 * in function isCorrectOption
-		 */
-		this.lastChooseOption = chooseOption;
-		/* add option to quit the game (without loosing) */
-		options.add("(x) " + bundle.getString("contr_quit"));
-		/* return a list of options (strings) */
-		return options;
+		return field.getFieldOfPlayer(currentPlayer);
 	}
 
 	@Override
 	public void performAction(UserAction choosedOption) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public IFieldObject getFieldAtIndex(int i) {
+		return field.getFieldAtIndex(i);
+	}
+
+	/**
+	 * for TESTCASES - set current field
+	 */
+	void setCurrentField(IFieldObject currentField) {
+		this.currentField = currentField;
 	}
 
 	// private void notify(GameStatus inStatus) {

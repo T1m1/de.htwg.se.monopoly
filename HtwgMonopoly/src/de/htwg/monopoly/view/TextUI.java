@@ -45,7 +45,7 @@ public class TextUI implements IObserver {
 		userOption.put("c", UserAction.REDEEM_WITH_CARD);
 		userOption.put("w", UserAction.REDEEM_WITH_DICE);
 	}
-	
+
 	public TextUI(IController controller) {
 		this.controller = controller;
 		controller.addObserver(this);
@@ -68,29 +68,25 @@ public class TextUI implements IObserver {
 		// start actual game
 		controller.startNewGame(configNumberOfPlayer, configNameOfPlayer);
 	}
-	
+
 	public void printInitialisation() {
 		logger.info(IMonopolyUtil.GAME_NAME);
 		logger.info("Herzlich Willkommen zu Monopoly!");
 		logger.info("Um das Spiel zu starten, beliebigen Wert eingeben und bestätigen.");
 	}
 
-
-
 	@Override
 	public void update(GameStatus phase) {
 		switch (phase) {
 		case STOPPED:
-			
+			//TODO
+
 			break;
 		case STARTED:
 			printTUI();
 			printOptions();
 			break;
 		case BEFORE_TURN:
-			printMessage();
-			printOptions();
-			break;
 		case BEFORE_TURN_IN_PRISON:
 			printMessage();
 			printOptions();
@@ -115,22 +111,19 @@ public class TextUI implements IObserver {
 		throw new UnsupportedOperationException("not supported!!");
 	}
 
-
-
 	/**
 	 * print information about dice
 	 */
 	private void printRoll() {
 		int diceResult = controller.getDice().getResultDice()
-				% (controller.getField().getfieldSize() + 1);
+				% (controller.getFieldSize() + 1);
 		String out = MessageFormat.format(bundle.getString("tui_dice"),
 				diceResult);
 		logger.info(out);
 	}
 
 	public void onField() {
-		String currentFile = controller.getField()
-				.getCurrentField(controller.getCurrentPlayer()).toString();
+		String currentFile = controller.getCurrentField().toString();
 		String out = MessageFormat.format(bundle.getString("tui_playfield"),
 				currentFile);
 		logger.info(out);
@@ -234,7 +227,7 @@ public class TextUI implements IObserver {
 		String x = "x";
 		for (int zeile = 0; zeile < zeichen.length - 1; zeile++) {
 			sb.append("\n");
-			for (int i = 0; i < controller.getField().getfieldSize(); i++) {
+			for (int i = 0; i < controller.getFieldSize(); i++) {
 				if (zeile == 1) {
 					zeichen[1] = zeichen[1].replace(x, "" + i);
 					x = "" + i;
@@ -243,9 +236,9 @@ public class TextUI implements IObserver {
 			}
 			sb.append("|");
 		}
-		for (int i = 0; i < controller.getField().getfieldSize(); i++) {
+		for (int i = 0; i < controller.getFieldSize(); i++) {
 			streets.append(i).append("=")
-					.append(controller.getField().getFieldNameAtIndex(i))
+					.append(controller.getFieldAtIndex(i).toString())
 					.append("\n");
 		}
 
@@ -261,25 +254,25 @@ public class TextUI implements IObserver {
 	 * @return
 	 */
 	public boolean processInputLine(String line) {
-		
+
 		UserAction choosedOption = userOption.get(line);
-		
+
 		if (choosedOption == null) {
 			// wrong input, option not mapped.
 			logger.info(bundle.getString("tui_wrong_input"));
 			return true;
 		}
-		
-		if (!controller.isCorrectOption(choosedOption)){
+
+		if (!controller.isCorrectOption(choosedOption)) {
 			// wrong input, option not available
 			logger.info(bundle.getString("tui_wrong_input"));
 			return true;
 		}
-		
-		// TODO: needs to be implemented: controller.performAction(choosedOption);
-		
-		boolean status = true;
-	
+
+		// TODO: needs to be implemented:
+		// controller.performAction(choosedOption);
+
+
 		switch (choosedOption) {
 		case START_TURN:
 			// roll dice
@@ -290,9 +283,10 @@ public class TextUI implements IObserver {
 			controller.endTurn();
 			break;
 		case SURRENDER:
-			// TODO for now the game finishes
-			status = false;
-			break;
+			// for now the game finishes completely
+			logger.info("Spiel beendet!");
+			controller.exitGame();	
+			return false;
 		case BUY_STREET:
 			if (controller.buyStreet()) {
 				logger.info(bundle.getString("tui_buy"));
@@ -303,19 +297,18 @@ public class TextUI implements IObserver {
 			break;
 		case REDEEM_WITH_MONEY:
 			if (!controller.redeemWithMoney()) {
-				logger.info("Nicht gut Geld zum Freikaufen.");
+				logger.info("Nicht genug Geld zum Freikaufen.");
 			}
 			break;
 		case REDEEM_WITH_CARD:
 		case REDEEM_WITH_DICE:
 		case ROLL_DICE:
-		default:
-			
+
 			logger.info("not implemented yet.");
 			break;
-		
+
 		}
-		return status;
+		return true;
 	}
 
 	/**
@@ -329,13 +322,13 @@ public class TextUI implements IObserver {
 	 * @return the key for the value
 	 */
 	private String getOptionChar(UserAction Option) {
-	
+
 		for (String currentChar : userOption.keySet()) {
 			if (userOption.get(currentChar) == Option) {
 				return currentChar;
 			}
 		}
-	
+
 		throw new AssertionError("Wrong Option");
 	}
 }

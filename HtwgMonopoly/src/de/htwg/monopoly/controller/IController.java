@@ -49,34 +49,9 @@ public interface IController extends IObservable {
 
 	/**
 	 * 
-	 * @return object of monopoly field
-	 */
-	IPlayfield getField();
-
-	/**
-	 * for tui, to show which option user can choose
-	 * 
-	 * @param chooseOption
-	 * @return a list with all option
-	 */
-	@Deprecated
-	List<String> getOptions(int chooseOption);
-
-	/**
-	 * 
 	 * @return a string with information of current turn
 	 */
 	String getMessage();
-
-	/**
-	 * function to check if user have the correct options choose correct options
-	 * are options they are contains in list of function getOption
-	 * 
-	 * @param l
-	 * @return
-	 */
-	@Deprecated
-	boolean isCorrectOption(String l);
 
 	/**
 	 * Return the number of Players.
@@ -94,21 +69,6 @@ public interface IController extends IObservable {
 	Player getPlayer(int i);
 
 	/**
-	 * Returns the Player-Controller.
-	 * 
-	 * @return
-	 */
-	IPlayerController getPlayers();
-
-	/**
-	 * Sets the current Field to fieldObject. This is a function only for
-	 * testing.
-	 * 
-	 * @param fieldObject
-	 */
-	void setCurrentField(IFieldObject fieldObject);
-
-	/**
 	 * get dice objects
 	 * 
 	 * @return
@@ -124,8 +84,13 @@ public interface IController extends IObservable {
 	 */
 	void startNewGame(int numberOfPlayer, String[] nameOfPlayers);
 
+	/**
+	 * Get the field, where the current player is standing on.
+	 * @return
+	 */
 	IFieldObject getCurrentField();
 
+	
 	boolean redeemWithCard();
 
 	boolean redeemWithMoney();
@@ -134,12 +99,32 @@ public interface IController extends IObservable {
 
 	GameStatus getPhase();
 
+	/**
+	 * Returns a list with available options for the current player.
+	 * 
+	 * @return
+	 */
 	List<UserAction> getOptions();
 
+	/**
+	 * Checks if the given option is valid.
+	 * 
+	 * @param action
+	 * @return true if the valid options contains the given options, false
+	 *         otherwise.
+	 */
 	boolean isCorrectOption(UserAction userOption);
 
 	void performAction(UserAction choosedOption);
 
+	/**
+	 * Returns the size of the playfield. Meaning the number of fields existing
+	 * in the game.
+	 * 
+	 * @return integer greater than 0
+	 */
+	int getFieldSize();
 
+	IFieldObject getFieldAtIndex(int i);
 
 }

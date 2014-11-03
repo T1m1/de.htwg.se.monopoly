@@ -132,8 +132,8 @@ class FieldDrawPanel extends JPanel {
 		loadImage();
 
 		/* draw each field */
-		for (int i = 0; i < contr.getField().getfieldSize(); i++) {
-			drawField(contr.getField().getFieldAtIndex(i));
+		for (int i = 0; i < contr.getFieldSize(); i++) {
+			drawField(contr.getFieldAtIndex(i));
 		}
 
 		/** draw field lines **/

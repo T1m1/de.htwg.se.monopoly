@@ -109,7 +109,7 @@ public class Playfield implements IPlayfield {
 	/**
 	 * get current field
 	 */
-	public IFieldObject getCurrentField(Player currentPlayer) {
+	public IFieldObject getFieldOfPlayer(Player currentPlayer) {
 		return playfield[currentPlayer.getPosition()];
 	}
 
