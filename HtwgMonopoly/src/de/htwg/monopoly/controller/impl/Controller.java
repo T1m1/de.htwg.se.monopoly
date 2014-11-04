@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
+
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.controller.IPlayerController;
 import de.htwg.monopoly.entities.ICards;
@@ -46,16 +49,8 @@ public class Controller extends Observable implements IController {
 	 * 
 	 * @param fieldSize
 	 */
-	// @Inject
-	// public Controller(@Named("FieldSize") int fieldSize) {
-	// this.field = new Playfield(fieldSize);
-	// this.message = new StringBuilder();
-	// this.dice = new Dice(fieldSize);
-	// this.userOptions = new UserOptionsController(this);
-	// phase = GameStatus.STOPPED;
-	// }
-
-	public Controller(int fieldSize) {
+	@Inject
+	public Controller(@Named("FieldSize") int fieldSize) {
 		phase = GameStatus.STOPPED;
 		this.field = new Playfield(fieldSize);
 		this.message = new StringBuilder();

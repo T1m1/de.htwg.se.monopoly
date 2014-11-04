@@ -3,10 +3,6 @@
  */
 package de.htwg.monopoly.util;
 
-import java.text.MessageFormat;
-import java.util.Locale;
-import java.util.ResourceBundle;
-
 /**
  * These enums define the options, which a player can use in the game.
  * 

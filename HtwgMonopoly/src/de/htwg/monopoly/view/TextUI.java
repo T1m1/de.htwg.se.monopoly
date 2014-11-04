@@ -84,6 +84,7 @@ public class TextUI implements IObserver {
 			break;
 		case STARTED:
 			printTUI();
+			logger.info("Spieler " + controller.getCurrentPlayer() + ". Sie sind an der Reihe.");
 			printOptions();
 			break;
 		case BEFORE_TURN:
@@ -98,6 +99,7 @@ public class TextUI implements IObserver {
 			break;
 		case AFTER_TURN:
 			printTUI();
+			logger.info("Spieler " + controller.getCurrentPlayer() + ". Sie sind an der Reihe.");
 			break;
 		case DICE_RESULT:
 			printRoll();
