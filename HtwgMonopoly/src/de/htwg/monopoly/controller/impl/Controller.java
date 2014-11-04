@@ -10,6 +10,7 @@ import com.google.inject.name.Named;
 
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.controller.IPlayerController;
+import de.htwg.monopoly.controller.IPlayfield;
 import de.htwg.monopoly.entities.ICards;
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Dice;
@@ -432,5 +433,10 @@ public class Controller extends Observable implements IController {
 
 	boolean isDiceFlagSet() {
 		return diceFlag != 0;
+	}
+
+	@Override
+	public IPlayfield getField() {
+		return this.field;
 	}
 }

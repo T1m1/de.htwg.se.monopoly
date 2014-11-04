@@ -126,6 +126,8 @@ public interface IController extends IObservable {
 	int getFieldSize();
 
 	IFieldObject getFieldAtIndex(int i);
+	
+	IPlayfield getField();
 
 	
 

@@ -3,7 +3,6 @@ package de.htwg.monopoly.entities.impl;
 import java.util.Deque;
 import java.util.LinkedList;
 
-import de.htwg.monopoly.entities.ICards;
 import de.htwg.monopoly.util.FieldType;
 
 public class CommunityCardsStack extends CardsStack {
@@ -11,21 +10,10 @@ public class CommunityCardsStack extends CardsStack {
 	private Deque<Integer> position;
 	private FieldType fieldType = FieldType.COMMUNITY_STACK;
 
-	/**
-	 * Constructor for testing
-	 * 
-	 * @param card
-	 */
-	public CommunityCardsStack(ICards card) {
-		super();
-		pushOnTop(card);
-		position = new LinkedList<Integer>();
-	}
 
 	public CommunityCardsStack() {
 		super();
 		position = new LinkedList<Integer>();
-
 		init(this.getClass());
 	}
 
