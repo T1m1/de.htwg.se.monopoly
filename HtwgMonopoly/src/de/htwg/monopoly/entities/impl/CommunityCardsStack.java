@@ -42,7 +42,7 @@ public class CommunityCardsStack extends CardsStack {
 
 	@Override
 	public String toString() {
-		return "Gemeinschaftsfeld";
+		return "Gemeinschafts-Feld";
 	}
 
 	/**
