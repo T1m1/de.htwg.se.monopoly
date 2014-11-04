@@ -19,7 +19,7 @@ public interface IController extends IObservable {
 	/**
 	 * throw the two dices
 	 */
-	void rollDice();
+	void rollDiceToRedeem();
 
 	/**
 	 * end the turn of the current Player.
@@ -58,7 +58,7 @@ public interface IController extends IObservable {
 	 * 
 	 * @return
 	 */
-	int getNumberOfPlayer();
+	int getNumberOfPlayers();
 
 	/**
 	 * Get the Player at index i in the Player-Queue
@@ -126,5 +126,7 @@ public interface IController extends IObservable {
 	int getFieldSize();
 
 	IFieldObject getFieldAtIndex(int i);
+
+	
 
 }

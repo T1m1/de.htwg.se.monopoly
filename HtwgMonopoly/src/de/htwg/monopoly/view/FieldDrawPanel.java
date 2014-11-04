@@ -360,7 +360,7 @@ class FieldDrawPanel extends JPanel {
 	}
 
 	private void setFigureForPlayer() {
-		for (int i = 0; i < contr.getNumberOfPlayer(); i++) {
+		for (int i = 0; i < contr.getNumberOfPlayers(); i++) {
 			Player player = contr.getPlayer(i);
 			String tmp = PICTURES[i];
 			tmp = tmp.substring(0, tmp.lastIndexOf('.'));
@@ -371,7 +371,7 @@ class FieldDrawPanel extends JPanel {
 	}
 
 	private void setFigures() {
-		for (int i = 0; i < contr.getNumberOfPlayer(); i++) {
+		for (int i = 0; i < contr.getNumberOfPlayers(); i++) {
 			Player player = contr.getPlayer(i);
 			drawPosition(i, player.getPosition());
 

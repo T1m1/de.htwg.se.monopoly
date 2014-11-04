@@ -54,4 +54,13 @@ public final class Dice {
 	public int getResultDice() {
 		return resultDice;
 	}
+
+	/**
+	 * Returns true if both dices have the same number.
+	 * 
+	 * @return
+	 */
+	public boolean isPasch() {
+		return dice1 == dice2;
+	}
 }

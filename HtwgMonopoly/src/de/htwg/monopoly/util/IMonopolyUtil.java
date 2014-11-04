@@ -68,6 +68,9 @@ public interface IMonopolyUtil {
 	int NUMBER_OF_CARDS_IN_STACK = 24;
 
 
+	int TIMES_TO_ROLL_DICE = 3;
+
+
 	
 
 }

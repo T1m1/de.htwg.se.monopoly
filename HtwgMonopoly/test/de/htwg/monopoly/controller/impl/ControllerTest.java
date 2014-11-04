@@ -42,7 +42,7 @@ public class ControllerTest {
 
 	@Test
 	public void testRollDice() {
-		testController.rollDice();
+		testController.rollDiceToRedeem();
 	}
 
 	@Test
@@ -76,7 +76,7 @@ public class ControllerTest {
 
 	@Test
 	public void testNumberOfPlayer() {
-		testController.getNumberOfPlayer();
+		testController.getNumberOfPlayers();
 	}
 
 	@Test

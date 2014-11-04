@@ -60,7 +60,7 @@ public class PlayerInfoPanel extends JPanel implements ActionListener {
 		lbsPlayersOwnership = new LinkedList<JLabel>();
 
 		/* create panels with all information about player */
-		for (int i = 0; i < contr.getNumberOfPlayer(); i++) {
+		for (int i = 0; i < contr.getNumberOfPlayers(); i++) {
 			player.add(contr.getPlayer(i));
 
 			lbsPlayersMoney.add(new JLabel("Money:   "
@@ -78,7 +78,7 @@ public class PlayerInfoPanel extends JPanel implements ActionListener {
 		pnLabels.setLayout(new BoxLayout(pnLabels, BoxLayout.Y_AXIS));
 
 		/* add panels to labels */
-		for (int i = 0; i < contr.getNumberOfPlayer(); i++) {
+		for (int i = 0; i < contr.getNumberOfPlayers(); i++) {
 			lbsPlayersMoney.get(i).setMinimumSize(
 					new Dimension(LABEL_DIMENSION_X, LABEL_DIMENSION_Y));
 			lbsPlayersOwnership.get(i).setMinimumSize(
@@ -93,7 +93,7 @@ public class PlayerInfoPanel extends JPanel implements ActionListener {
 
 	private void updateUserInformations() {
         createPlayerPanels();
-		for (int i = 0; i < contr.getNumberOfPlayer(); i++) {
+		for (int i = 0; i < contr.getNumberOfPlayers(); i++) {
 			lbsPlayersMoney.get(i).setText(
 					"Money:   " + contr.getPlayer(i).getBudget());
 			lbsPlayersOwnership.get(i).setText(

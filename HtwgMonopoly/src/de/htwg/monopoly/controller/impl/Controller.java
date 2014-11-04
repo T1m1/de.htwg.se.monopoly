@@ -1,13 +1,9 @@
 package de.htwg.monopoly.controller.impl;
 
 import java.text.MessageFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
-
-import com.google.inject.Inject;
-import com.google.inject.name.Named;
 
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.controller.IPlayerController;
@@ -28,7 +24,7 @@ import de.htwg.monopoly.util.UserAction;
  * 
  */
 public class Controller extends Observable implements IController {
-	private PlayerController players;
+	private IPlayerController players;
 	private Playfield field;
 	private Player currentPlayer;
 	private IFieldObject currentField;
@@ -42,6 +38,7 @@ public class Controller extends Observable implements IController {
 	/* internationalization */
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
+	private int diceFlag;
 
 	/**
 	 * public constructor for a new controller create the players, the field and
@@ -84,7 +81,6 @@ public class Controller extends Observable implements IController {
 		this.currentPlayer = players.getFirstPlayer();
 
 		updateGameStatus(GameStatus.STARTED);
-		notifyObservers(GameStatus.STARTED);
 	}
 
 	/**
@@ -92,8 +88,10 @@ public class Controller extends Observable implements IController {
 	 */
 	@Override
 	public void startTurn() {
+		clearMessage();
 
-		rollDice();
+		dice.throwDice();
+		notifyObservers(GameStatus.DICE_RESULT);
 
 		/* move player -> max number to dice is fieldSize */
 		field.movePlayer(currentPlayer, dice.getResultDice());
@@ -111,10 +109,7 @@ public class Controller extends Observable implements IController {
 					currentPlayer));
 		}
 
-		// ï¿½berprï¿½fen auf was fï¿½rn feldobjek
-		// dementsprechend notify
 		updateGameStatus(GameStatus.DURING_TURN);
-		notifyObservers(GameStatus.DURING_TURN);
 	}
 
 	/**
@@ -122,17 +117,25 @@ public class Controller extends Observable implements IController {
 	 */
 	@Override
 	public boolean buyStreet() {
-
+		clearMessage();
 		IFieldObject currentStreet = field.getFieldOfPlayer(currentPlayer);
 
-		if (!(currentStreet instanceof Street)) {
+		if (!(currentStreet.getType() == FieldType.STREET)) {
 			throw new AssertionError(
 					"Current player is not standing on a street!");
 		}
 
+		boolean status = field.buyStreet(currentPlayer, (Street) currentStreet);
+
+		// add result of street buying to message.
+		if (status == true) {
+			message.append(bundle.getString("tui_buy"));
+		} else {
+			message.append(bundle.getString("tui_no_money"));
+		}
+
 		updateGameStatus(GameStatus.DURING_TURN);
-		// TODO notify observer?
-		return field.buyStreet(currentPlayer, (Street) currentStreet);
+		return status;
 	}
 
 	/**
@@ -140,19 +143,17 @@ public class Controller extends Observable implements IController {
 	 */
 	@Override
 	public void endTurn() {
-		this.message.delete(0, this.message.length());
+		clearMessage();
 
 		updateGameStatus(GameStatus.AFTER_TURN);
-		notifyObservers(GameStatus.AFTER_TURN);
 
 		this.currentPlayer = players.getNextPlayer();
 
 		if (currentPlayer.isInPrison()) {
+			message.append("Sie sind im Gefängnis");
 			updateGameStatus(GameStatus.BEFORE_TURN_IN_PRISON);
-			notifyObservers(GameStatus.BEFORE_TURN_IN_PRISON);
 		} else {
 			updateGameStatus(GameStatus.BEFORE_TURN);
-			notifyObservers(GameStatus.BEFORE_TURN);
 		}
 
 	}
@@ -167,16 +168,20 @@ public class Controller extends Observable implements IController {
 	 */
 	@Override
 	public boolean redeemWithCard() {
+		clearMessage();
 		if (currentPlayer.hasPrisonFreeCard()) {
 			currentPlayer.usePrisonFreeCard();
 			currentPlayer.setInPrison(false);
 
+			message.append("Erfolgreich frei gekommen.");
 			updateGameStatus(GameStatus.BEFORE_TURN);
 			return true;
 		}
+
+		message.append("Keine Karte im Besitz");
+		updateGameStatus(GameStatus.BEFORE_TURN_IN_PRISON);
 		return false;
 
-		// TODO notify Observers?
 	}
 
 	/**
@@ -190,39 +195,60 @@ public class Controller extends Observable implements IController {
 	 */
 	@Override
 	public boolean redeemWithMoney() {
+		clearMessage();
 		if (currentPlayer.getBudget() < IMonopolyUtil.FREIKAUFEN) {
+
+			message.append("Kein Geld zum Freikaufen!");
+
+			updateGameStatus(GameStatus.BEFORE_TURN_IN_PRISON);
 			return false;
 		}
 		currentPlayer.decrementMoney(IMonopolyUtil.FREIKAUFEN);
 		currentPlayer.setInPrison(false);
 
+		message.append("Erfolgreich freigekauft!");
 		updateGameStatus(GameStatus.BEFORE_TURN);
-		// TODO notify Observers?
 		return true;
 	}
 
-	/**
-	 * For now there is no option to redeem with dice.The player has to wait.
-	 * 
-	 * @return
-	 */
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean redeemWithDice() {
-		throw new UnsupportedOperationException("not implemented yet");
+		clearMessage();
+		diceFlag = IMonopolyUtil.TIMES_TO_ROLL_DICE;
+		message.append("Versuchen sie bei 3 Würfen einen Pasch zu würfeln.");
+		updateGameStatus(GameStatus.DICE_ROLL_FOR_PRISON);
+		return true;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void rollDice() {
-		/* throw dice */
+	public void rollDiceToRedeem() {
+		clearMessage();
+
 		dice.throwDice();
-		updateGameStatus(GameStatus.DICE_RESULT);
+		diceFlag--;
+
 		notifyObservers(GameStatus.DICE_RESULT);
+
+		if (dice.isPasch()) {
+			currentPlayer.setInPrison(false);
+			message.append("Erfolgreich frei gekommen");
+			updateGameStatus(GameStatus.BEFORE_TURN);
+			return;
+		}
+
+		if (diceFlag < 1) {
+			message.append("Leider 3 mal kein Pasch gewürfelt. Der Nächste ist dran.");
+		} else {
+			message.append("Leider kein Pasch gewürfelt. Noch " + diceFlag
+					+ " Versuch(e).");
+		}
+		updateGameStatus(GameStatus.DICE_ROLL_FOR_PRISON);
 	}
 
 	/**
@@ -232,7 +258,6 @@ public class Controller extends Observable implements IController {
 	public void exitGame() {
 		this.players = null;
 		updateGameStatus(GameStatus.STOPPED);
-		notifyObservers(GameStatus.STOPPED);
 	}
 
 	/**
@@ -305,6 +330,7 @@ public class Controller extends Observable implements IController {
 	private void updateGameStatus(GameStatus phaseToSet) {
 		phase = phaseToSet;
 		userOptions.update();
+		notifyObservers(phaseToSet);
 	}
 
 	@Override
@@ -334,7 +360,6 @@ public class Controller extends Observable implements IController {
 		return phase;
 	}
 
-	
 	@Override
 	public int getFieldSize() {
 		return field.getfieldSize();
@@ -368,7 +393,7 @@ public class Controller extends Observable implements IController {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int getNumberOfPlayer() {
+	public int getNumberOfPlayers() {
 		return players.getNumberOfPlayer();
 	}
 
@@ -406,10 +431,11 @@ public class Controller extends Observable implements IController {
 		this.currentField = currentField;
 	}
 
-	// private void notify(GameStatus inStatus) {
-	// status = inStatus;
-	// event.setStatus(inStatus);
-	// notifyObservers(event);
-	//
-	// }
+	private void clearMessage() {
+		message.delete(0, message.length());
+	}
+
+	boolean isDiceFlagSet() {
+		return diceFlag != 0;
+	}
 }

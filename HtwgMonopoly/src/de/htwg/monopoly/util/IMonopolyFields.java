@@ -22,6 +22,8 @@ public interface IMonopolyFields {
 			FieldType.STREET, FieldType.CHANCE_STACK, FieldType.STREET,
 			FieldType.GO_TO_PRISON, FieldType.STREET, FieldType.COMMUNITY_STACK,
 			FieldType.STREET, FieldType.STREET, FieldType.TAX, FieldType.STREET };
+	
+
 	/**
 	 * Preise für die Straßen
 	 * 

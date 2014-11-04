@@ -79,7 +79,7 @@ public class TextUI implements IObserver {
 	public void update(GameStatus phase) {
 		switch (phase) {
 		case STOPPED:
-			//TODO
+			// TODO
 
 			break;
 		case STARTED:
@@ -102,6 +102,10 @@ public class TextUI implements IObserver {
 		case DICE_RESULT:
 			printRoll();
 			break;
+		case DICE_ROLL_FOR_PRISON:
+			printMessage();
+			printOptions();
+			break;
 		}
 
 	}
@@ -115,10 +119,9 @@ public class TextUI implements IObserver {
 	 * print information about dice
 	 */
 	private void printRoll() {
-		int diceResult = controller.getDice().getResultDice()
-				% (controller.getFieldSize() + 1);
 		String out = MessageFormat.format(bundle.getString("tui_dice"),
-				diceResult);
+				controller.getDice().getDice1(), controller.getDice()
+						.getDice2());
 		logger.info(out);
 	}
 
@@ -209,7 +212,7 @@ public class TextUI implements IObserver {
 		sb.append(bundle.getString("player") + "\t|Budget\t|"
 				+ bundle.getString("ownership") + "\n");
 		sb.append("-------\t|------\t|--------------\n");
-		for (int i = 0; i < controller.getNumberOfPlayer(); i++) {
+		for (int i = 0; i < controller.getNumberOfPlayers(); i++) {
 
 			Player player = controller.getPlayer(i);
 			sb.append(player.getName() + "\t|" + player.getBudget() + "\t|"
@@ -272,41 +275,34 @@ public class TextUI implements IObserver {
 		// TODO: needs to be implemented:
 		// controller.performAction(choosedOption);
 
-
 		switch (choosedOption) {
 		case START_TURN:
-			// roll dice
 			controller.startTurn();
 			break;
 		case END_TURN:
-			// zug beenden
 			controller.endTurn();
 			break;
-		case SURRENDER:
-			// for now the game finishes completely
-			logger.info("Spiel beendet!");
-			controller.exitGame();	
-			return false;
 		case BUY_STREET:
-			if (controller.buyStreet()) {
-				logger.info(bundle.getString("tui_buy"));
-			} else {
-				logger.info(bundle.getString("tui_no_money"));
-			}
-			controller.endTurn();
+			controller.buyStreet();
 			break;
 		case REDEEM_WITH_MONEY:
-			if (!controller.redeemWithMoney()) {
-				logger.info("Nicht genug Geld zum Freikaufen.");
-			}
+			controller.redeemWithMoney();
 			break;
 		case REDEEM_WITH_CARD:
-		case REDEEM_WITH_DICE:
-		case ROLL_DICE:
-
-			logger.info("not implemented yet.");
+			controller.redeemWithCard();
 			break;
-
+		case REDEEM_WITH_DICE:
+			controller.redeemWithDice();
+			break;
+		case ROLL_DICE:
+			controller.rollDiceToRedeem();
+			break;
+			
+			// for now the game finishes completely
+		case SURRENDER:
+			logger.info("Spiel beendet!");
+			controller.exitGame();
+			return false;
 		}
 		return true;
 	}

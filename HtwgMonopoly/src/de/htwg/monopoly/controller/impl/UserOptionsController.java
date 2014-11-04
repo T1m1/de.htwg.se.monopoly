@@ -6,7 +6,6 @@ package de.htwg.monopoly.controller.impl;
 import java.util.LinkedList;
 import java.util.List;
 
-import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.util.GameStatus;
 import de.htwg.monopoly.util.UserAction;
@@ -19,14 +18,14 @@ public final class UserOptionsController {
 
 	private GameStatus phase;
 	private List<UserAction> options;
-	private IController controller;
+	private Controller controller;
 
 	/**
 	 * @param controller
 	 * 
 	 *            Initialize a new game status controller
 	 */
-	public UserOptionsController(IController controller) {
+	public UserOptionsController(Controller controller) {
 		this.controller = controller;
 		this.options = new LinkedList<UserAction>();
 		phase = controller.getPhase();
@@ -60,18 +59,22 @@ public final class UserOptionsController {
 			options.add(UserAction.START_TURN);
 			break;
 		case BEFORE_TURN_IN_PRISON:
-
 			options.add(UserAction.REDEEM_WITH_CARD);
 			options.add(UserAction.REDEEM_WITH_MONEY);
-
-			// FIXME if user selects dice...,
-			// options.add(UserAction.REDEEM_WITH_DICE);
+			options.add(UserAction.REDEEM_WITH_DICE);
+			break;
+		case DICE_ROLL_FOR_PRISON:
+			if (controller.isDiceFlagSet()) {
+				options.add(UserAction.ROLL_DICE);
+			} else {
+				options.add(UserAction.END_TURN);
+			}
 			break;
 		case DURING_TURN:
 			addDuringTurnOptions();
 			break;
 		case DICE_RESULT:
-			//TODO
+			options.add(UserAction.ROLL_DICE);
 			break;
 		}
 

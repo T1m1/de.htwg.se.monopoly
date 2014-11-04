@@ -47,6 +47,11 @@ public enum GameStatus {
 	/**
 	 * The dice was thrown by the user.
 	 */
-	DICE_RESULT;
+	DICE_RESULT, 
+	
+	/**
+	 * When the player tries to redeem himself with a dice roll.
+	 */
+	DICE_ROLL_FOR_PRISON;
 
 }
