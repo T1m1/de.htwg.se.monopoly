@@ -1,12 +1,15 @@
 package de.htwg.monopoly.controller;
 
 import java.util.List;
+import java.util.Map;
 
+import de.htwg.monopoly.controller.impl.Controller;
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Dice;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.observer.IObservable;
 import de.htwg.monopoly.util.GameStatus;
+import de.htwg.monopoly.util.IMonopolyUtil;
 import de.htwg.monopoly.util.UserAction;
 
 public interface IController extends IObservable {
@@ -81,16 +84,28 @@ public interface IController extends IObservable {
 	 * 
 	 * @param numberOfPlayer
 	 * @param nameOfPlayers
+	 * @deprecated use {@link Controller#startNewGame(Map)} instead.
 	 */
 	void startNewGame(int numberOfPlayer, String[] nameOfPlayers);
 
 	/**
+	 * Start a new game with the given map of number and player names. Note: The
+	 * number of players must be between
+	 * {@link IMonopolyUtil#MIN_NUMBER_OF_PLAYER} and
+	 * {@link IMonopolyUtil#MAX_NUMBER_OF_PLAYER}.
+	 * 
+	 * @param players
+	 *            a map containing the number and the names of the players.
+	 */
+	void startNewGame(Map<Integer, String> players);
+
+	/**
 	 * Get the field, where the current player is standing on.
+	 * 
 	 * @return
 	 */
 	IFieldObject getCurrentField();
 
-	
 	boolean redeemWithCard();
 
 	boolean redeemWithMoney();
@@ -126,9 +141,7 @@ public interface IController extends IObservable {
 	int getFieldSize();
 
 	IFieldObject getFieldAtIndex(int i);
-	
-	IPlayfield getField();
 
-	
+	IPlayfield getField();
 
 }

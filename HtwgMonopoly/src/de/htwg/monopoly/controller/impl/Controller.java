@@ -3,6 +3,7 @@ package de.htwg.monopoly.controller.impl;
 import java.text.MessageFormat;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import com.google.inject.Inject;
@@ -20,6 +21,7 @@ import de.htwg.monopoly.observer.impl.Observable;
 import de.htwg.monopoly.util.FieldType;
 import de.htwg.monopoly.util.GameStatus;
 import de.htwg.monopoly.util.IMonopolyUtil;
+import de.htwg.monopoly.util.MonopolyUtils;
 import de.htwg.monopoly.util.UserAction;
 
 /**
@@ -60,11 +62,9 @@ public class Controller extends Observable implements IController {
 	}
 
 	/**
-	 * function to call at start of a new game TODO map statt integer und array
-	 * �bergeben
-	 */
-	/**
 	 * {@inheritDoc}
+	 * 
+	 * @deprecated use {@link Controller#startNewGame(Map)} instead.
 	 */
 	@Override
 	public void startNewGame(int numberOfPlayer, String[] nameOfPlayers) {
@@ -75,6 +75,22 @@ public class Controller extends Observable implements IController {
 		// set current player to first player, notify observers and get ready to
 		// play
 		this.currentPlayer = players.getFirstPlayer();
+
+		updateGameStatus(GameStatus.STARTED);
+	}
+
+	@Override
+	public void startNewGame(Map<Integer, String> players) {
+
+		if (MonopolyUtils.verifyPlayerNumber(players.size()) == false) {
+			message.append("Wrong number of players!!");
+			updateGameStatus(GameStatus.STOPPED);
+		}
+
+		this.players = new PlayerController(players);
+		// set current player to first player, notify observers and get ready to
+		// play
+		this.currentPlayer = this.players.getFirstPlayer();
 
 		updateGameStatus(GameStatus.STARTED);
 	}

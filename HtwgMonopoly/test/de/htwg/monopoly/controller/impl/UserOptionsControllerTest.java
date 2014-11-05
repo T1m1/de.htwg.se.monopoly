@@ -5,6 +5,9 @@ package de.htwg.monopoly.controller.impl;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,23 +35,28 @@ public class UserOptionsControllerTest {
 
 		testController = injector.getInstance(IController.class);
 
-		
 	}
 
 	/**
-	 * Test method for {@link de.htwg.monopoly.controller.impl.UserOptionsController#getCurrentPlayerOptions()}.
+	 * Test method for
+	 * {@link de.htwg.monopoly.controller.impl.UserOptionsController#getCurrentPlayerOptions()}
+	 * .
 	 */
 	@Test
 	public void testGetCurrentPlayerOptions() {
 		assertTrue(testController.getOptions().isEmpty());
-		
-		testController.startNewGame(2, new String[] { "0", "1" });
+
+		Map<Integer, String> playerMap = new HashMap<Integer, String>();
+		playerMap.put(0, "0");
+		playerMap.put(1, "1");
+
+		testController.startNewGame(playerMap);
+
 		assertTrue(testController.getOptions().contains(UserAction.START_TURN));
 		assertTrue(testController.getOptions().contains(UserAction.SURRENDER));
-		
+
 		testController.startTurn();
 		assertTrue(testController.getOptions().contains(UserAction.END_TURN));
 	}
-
 
 }
