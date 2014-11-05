@@ -411,7 +411,7 @@ public class Controller extends Observable implements IController {
 
 	@Override
 	public void performAction(UserAction choosedOption) {
-		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("not implemented yet!");
 
 	}
 
