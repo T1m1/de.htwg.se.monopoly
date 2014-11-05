@@ -39,6 +39,7 @@ public class Playfield implements IPlayfield {
 		this.commStack = new CommunityCardsStack();
 		this.chanStack = new ChanceCardsStack();
 
+		// iterate over all fields and parse them from a resource
 		for (int i = 0; i < fieldSize; i++) {
 			createField(i);
 		}
@@ -61,7 +62,6 @@ public class Playfield implements IPlayfield {
 			playfield[i] = new FieldObject(IMonopolyFields.NAME[i],
 					IMonopolyFields.TYP[i], IMonopolyFields.POSITION[i]);
 			break;
-
 		case COMMUNITY_STACK:
 			this.commStack.setPosition(IMonopolyFields.POSITION[i]);
 			playfield[i] = this.commStack;
@@ -218,7 +218,7 @@ public class Playfield implements IPlayfield {
 			return performActionAndAppendInfo(
 					playfield[currentPlayer.getPosition()], currentPlayer);
 		} catch (NumberFormatException e) {
-
+			// do nothing
 		}
 
 		if (target.equalsIgnoreCase("Bsys Labor, nur zu Besuch")) {

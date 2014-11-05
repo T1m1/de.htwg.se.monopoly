@@ -63,6 +63,11 @@ public class Player {
 	public Player(String name, String figure, @Named("Budget") int budget) {
 		this(name, figure, budget, 1);
 	}
+	
+	public Player(String name) {
+		this();
+		this.setName(name);
+	}
 
 	/**
 	 * get name of player

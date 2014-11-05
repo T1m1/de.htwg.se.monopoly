@@ -11,6 +11,7 @@ import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.util.FieldType;
 import de.htwg.monopoly.util.IMonopolyFields;
+import de.htwg.monopoly.util.IMonopolyUtil;
 
 public class PlayfieldTest {
 
@@ -20,8 +21,13 @@ public class PlayfieldTest {
 
 	@Before
 	public void setUp() throws Exception {
-		field = new Playfield(23);
+		field = new Playfield(IMonopolyUtil.FIELD_SIZE);
 		testplayer = new Player();
+	}
+
+	@Test
+	public void getPlayfieldArray() {
+		assertEquals(IMonopolyUtil.FIELD_SIZE, field.getPlayfield().length);
 	}
 
 	@Test
@@ -49,69 +55,128 @@ public class PlayfieldTest {
 	public void testNotMyStree2t() {
 
 		Player andererPlayer = new Player("hhh", "m", 2000);
-		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer), testplayer);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
 
 		field.movePlayer(testplayer, 1);
 		Street a = (Street) field.getFieldOfPlayer(testplayer);
 		a.setOwner(andererPlayer);
-		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer), testplayer);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
 		field.movePlayer(testplayer, 1);
 	}
 
 	@Test
 	public void testNotMyStreet() {
-		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer), testplayer);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
 
 		field.movePlayer(testplayer, 1);
-		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer), testplayer);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
 		field.movePlayer(testplayer, 1);
 	}
 
 	@Test
 	public void testInitialize() {
-		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer), testplayer);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
 
 		field.movePlayer(testplayer, 1);
 		Street a = (Street) field.getFieldOfPlayer(testplayer);
 		a.setOwner(testplayer);
-		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer), testplayer);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
 		field.movePlayer(testplayer, 1);
 
-		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer), testplayer);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
 		field.movePlayer(testplayer, 1);
-		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer), testplayer);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
 		field.movePlayer(testplayer, 1);
-		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer), testplayer);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
 		field.movePlayer(testplayer, 1);
-		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer), testplayer);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
 		field.movePlayer(testplayer, 1);
-		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer), testplayer);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
 		field.movePlayer(testplayer, 1);
-		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer), testplayer);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
 		field.movePlayer(testplayer, 1);
-		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer), testplayer);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
 		field.movePlayer(testplayer, 1);
-		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer), testplayer);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
 		field.movePlayer(testplayer, 1);
-		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer), testplayer);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
 		field.movePlayer(testplayer, 1);
-		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer), testplayer);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
 		field.movePlayer(testplayer, 1);
-		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer), testplayer);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
 		field.movePlayer(testplayer, 1);
-		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer), testplayer);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
 		field.movePlayer(testplayer, 1);
-		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer), testplayer);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
 		field.movePlayer(testplayer, 1);
-		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer), testplayer);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
 		field.movePlayer(testplayer, 1);
-		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer), testplayer);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
 		field.movePlayer(testplayer, 1);
-		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer), testplayer);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
 		field.movePlayer(testplayer, 1);
-		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer), testplayer);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
+		field.movePlayer(testplayer, 1);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
+		field.movePlayer(testplayer, 1);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
+		field.movePlayer(testplayer, 1);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
+		field.movePlayer(testplayer, 1);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
+		field.movePlayer(testplayer, 1);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
+		field.movePlayer(testplayer, 1);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
+		field.movePlayer(testplayer, 1);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
+		field.movePlayer(testplayer, 1);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
+		field.movePlayer(testplayer, 1);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
+		field.movePlayer(testplayer, 1);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
+		field.movePlayer(testplayer, 1);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
+		field.movePlayer(testplayer, 1);
+		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
+				testplayer);
 		field.movePlayer(testplayer, 20);
-		
+
 	}
 
 	@Test
@@ -135,6 +200,14 @@ public class PlayfieldTest {
 		assertEquals(0, CurrentField.getPosition());
 		field.movePlayerTo(testplayer, "frei");
 
+	}
+
+	@Test
+	public void movePlayerWithNumber() {
+		field.movePlayerTo(testplayer, IMonopolyFields.NAME[0]);
+
+		field.movePlayerTo(testplayer, "1");
+		assertEquals(1, testplayer.getPosition());
 	}
 
 	@Test(expected = AssertionError.class)
