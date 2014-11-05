@@ -2,6 +2,9 @@ package de.htwg.monopoly.controller.impl;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,20 +20,27 @@ public class PlayerControllerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		players = new PlayerController(2, new String[] { "2", "2", "2" });
+		Map<Integer, String> playerMap = new HashMap<Integer, String>();
+		playerMap.put(0, "0");
+		playerMap.put(1, "1");
+		playerMap.put(2, "2");
+
+		players = new PlayerController(playerMap);
 	}
 
 	@Test
 	public void testGetNextPlayer() {
+		assertEquals("1", players.getNextPlayer().getName());
 		assertEquals("2", players.getNextPlayer().getName());
-		assertEquals("2", players.getNextPlayer().getName());
+		assertEquals("0", players.getNextPlayer().getName());
+		assertEquals("1", players.getNextPlayer().getName());
 	}
 
 	@Test
 	public void testCurrentPlayer() {
-		assertEquals("2", players.getCurrentPlayer().getName());
-		assertEquals(2, players.getNumberOfPlayer());
-		assertEquals("2", players.getPlayer(1).getName());
+		assertEquals("0", players.getCurrentPlayer().getName());
+		assertEquals(3, players.getNumberOfPlayer());
+		assertEquals("1", players.getPlayer(1).getName());
 	}
 
 	@Test
@@ -40,21 +50,38 @@ public class PlayerControllerTest {
 				"100", false);
 		Player testplayer = players.getNextPlayer();
 		testplayer.setBudget(100);
+
+		// perform test method
 		players.transferMoney(testplayer, testCard1);
+
+		// verify
 		assertEquals(0, testplayer.getBudget());
 
+		// perform other test method
 		players.transferMoney(testplayer, testCard2);
-		assertEquals(100, testplayer.getBudget());
+		// verify
+		assertEquals(200, testplayer.getBudget());
 	}
-	
+
 	@Test
 	public void receiveMoney() {
-		Card testCard1 = new CommunityCard("Bekomme geld von der Bank", "100", true);
+		Card testCard1 = new CommunityCard("Bekomme geld von der Bank", "100",
+				true);
 		Player testplayer = players.getNextPlayer();
 		testplayer.setBudget(100);
 		players.transferMoney(testplayer, testCard1);
 
 		assertEquals(200, testplayer.getBudget());
+	}
+
+	@Test
+	public void getFirstPlayer() {
+		assertEquals("0", players.getFirstPlayer().getName());
+	}
+
+	@Test(expected = AssertionError.class)
+	public void expectException() {
+		new PlayerController(new HashMap<Integer, String>());
 	}
 
 	@Test(expected = AssertionError.class)
@@ -63,11 +90,6 @@ public class PlayerControllerTest {
 		ICards testCard = new CommunityCard("Keine Geld Karte", "KEIN GELD",
 				false);
 		players.transferMoney(testplayer, testCard);
-	}
-
-	@Test
-	public void getFirstPlayer() {
-		assertEquals("2", players.getFirstPlayer().getName());
 	}
 
 }
