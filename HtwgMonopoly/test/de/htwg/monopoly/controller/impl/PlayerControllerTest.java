@@ -2,8 +2,8 @@ package de.htwg.monopoly.controller.impl;
 
 import static org.junit.Assert.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,12 +20,14 @@ public class PlayerControllerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		Map<Integer, String> playerMap = new HashMap<Integer, String>();
-		playerMap.put(0, "0");
-		playerMap.put(1, "1");
-		playerMap.put(2, "2");
+		
+		List<String> playerList = new ArrayList<String>();
+		playerList.add("0");
+		playerList.add("1");
+		playerList.add("2");
+		
 
-		players = new PlayerController(playerMap);
+		players = new PlayerController(playerList);
 	}
 
 	@Test
@@ -81,7 +83,7 @@ public class PlayerControllerTest {
 
 	@Test(expected = AssertionError.class)
 	public void expectException() {
-		new PlayerController(new HashMap<Integer, String>());
+		new PlayerController(new ArrayList<String>());
 	}
 
 	@Test(expected = AssertionError.class)

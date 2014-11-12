@@ -1,6 +1,7 @@
 package de.htwg.monopoly.controller.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import de.htwg.monopoly.controller.IPlayerController;
@@ -64,7 +65,7 @@ public class PlayerController implements IPlayerController {
 	 * @param nameOfPlayers
 	 * @param inNumberOfPlayers
 	 */
-	public PlayerController(Map<Integer, String> inPlayers) {
+	public PlayerController(List<String> inPlayers) {
 		this.numberOfPlayer = inPlayers.size();
 
 		// assert wrong number.
@@ -76,8 +77,8 @@ public class PlayerController implements IPlayerController {
 		this.players = new HashMap<Integer, Player>();
 
 		// create default players
-		for (Integer i : inPlayers.keySet()) {
-			players.put(i, new Player(inPlayers.get(i)));
+		for (String current : inPlayers) {
+			players.put(inPlayers.indexOf(current), new Player(current));
 		}
 
 	}

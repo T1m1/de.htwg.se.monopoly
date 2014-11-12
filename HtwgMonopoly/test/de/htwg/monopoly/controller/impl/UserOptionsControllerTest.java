@@ -5,8 +5,8 @@ package de.htwg.monopoly.controller.impl;
 
 import static org.junit.Assert.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -46,11 +46,11 @@ public class UserOptionsControllerTest {
 	public void testGetCurrentPlayerOptions() {
 		assertTrue(testController.getOptions().isEmpty());
 
-		Map<Integer, String> playerMap = new HashMap<Integer, String>();
-		playerMap.put(0, "0");
-		playerMap.put(1, "1");
+		List<String> playerList = new ArrayList<String>();
+		playerList.add("0");
+		playerList.add("1");
 
-		testController.startNewGame(playerMap);
+		testController.startNewGame(playerList);
 
 		assertTrue(testController.getOptions().contains(UserAction.START_TURN));
 		assertTrue(testController.getOptions().contains(UserAction.SURRENDER));

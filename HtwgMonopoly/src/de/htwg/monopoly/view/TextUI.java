@@ -1,14 +1,16 @@
 package de.htwg.monopoly.view;
 
 import java.text.MessageFormat;
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.Locale;
-import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
 
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.entities.impl.Player;
@@ -30,20 +32,22 @@ public class TextUI implements IObserver {
 
 	private IController controller;
 
-	private int configNumberOfPlayer;
-	private String[] configNameOfPlayer;
-
-	private static Map<String, UserAction> userOption = new HashMap<String, UserAction>();
+	
+	// Bidirectional map for user input and enum actions
+	private final static BiMap<String, UserAction> ENUM_USER_OPTION = HashBiMap.create();
+	private final static BiMap<UserAction, String> CHAR_USER_OPTION;
 
 	static {
-		userOption.put("d", UserAction.START_TURN);
-		userOption.put("x", UserAction.SURRENDER);
-		userOption.put("b", UserAction.END_TURN);
-		userOption.put("y", UserAction.BUY_STREET);
-		userOption.put("f", UserAction.REDEEM_WITH_MONEY);
-		userOption.put("r", UserAction.ROLL_DICE);
-		userOption.put("c", UserAction.REDEEM_WITH_CARD);
-		userOption.put("w", UserAction.REDEEM_WITH_DICE);
+		ENUM_USER_OPTION.put("d", UserAction.START_TURN);
+		ENUM_USER_OPTION.put("x", UserAction.SURRENDER);
+		ENUM_USER_OPTION.put("b", UserAction.END_TURN);
+		ENUM_USER_OPTION.put("y", UserAction.BUY_STREET);
+		ENUM_USER_OPTION.put("f", UserAction.REDEEM_WITH_MONEY);
+		ENUM_USER_OPTION.put("r", UserAction.ROLL_DICE);
+		ENUM_USER_OPTION.put("c", UserAction.REDEEM_WITH_CARD);
+		ENUM_USER_OPTION.put("w", UserAction.REDEEM_WITH_DICE);
+		
+		CHAR_USER_OPTION = ENUM_USER_OPTION.inverse();
 	}
 
 	public TextUI(IController controller) {
@@ -57,16 +61,17 @@ public class TextUI implements IObserver {
 		printInitialisation();
 
 		// read number and name of players
+		String[] playerArray = null;
 		in = new Scanner(System.in);
 		if (!in.next().isEmpty()) {
-			setNumberOfPlayer();
-			setNameOfPlayers();
+			int number = setNumberOfPlayer();
+			 playerArray = setNameOfPlayers(number);
 		}
-
+		
 		logger.info(IMonopolyUtil.START);
 
 		// start actual game
-		controller.startNewGame(configNumberOfPlayer, configNameOfPlayer);
+		controller.startNewGame(Arrays.asList(playerArray));
 	}
 
 	public void printInitialisation() {
@@ -112,11 +117,6 @@ public class TextUI implements IObserver {
 
 	}
 
-	@Override
-	public void update(int e) {
-		throw new UnsupportedOperationException("not supported!!");
-	}
-
 	/**
 	 * print information about dice
 	 */
@@ -141,7 +141,7 @@ public class TextUI implements IObserver {
 		for (UserAction currentOption : controller.getOptions()) {
 			sb.append("\n");
 			sb.append("(");
-			sb.append(getOptionChar(currentOption));
+			sb.append(CHAR_USER_OPTION.get(currentOption));
 			sb.append(") - ");
 			sb.append(currentOption.getDescription());
 
@@ -151,55 +151,6 @@ public class TextUI implements IObserver {
 
 	public void printMessage() {
 		logger.info(controller.getMessage());
-	}
-
-	/**
-	 * function to read number of player
-	 */
-	public int readNumberOfPlayer() {
-
-		int tmpNumberOfPlayer = 0;
-
-		if (in.hasNext()) {
-			/* check if input an integer and in right interval */
-			if (in.hasNextInt()) {
-				tmpNumberOfPlayer = in.nextInt();
-				in.nextLine();
-			} else {
-				/* TODO: alles weg */
-				in.nextLine();
-				return 0;
-			}
-		}
-
-		/* check if input smaller as maximum of player and bigger as minimum */
-		if (MonopolyUtils.verifyPlayerNumber(tmpNumberOfPlayer) == false) {
-			return 0;
-		}
-
-		/* if scanned number correct, save it */
-		return tmpNumberOfPlayer;
-	}
-
-	private void setNumberOfPlayer() {
-		logger.info(IMonopolyUtil.Q_NUMBER_OF_PLAYER);
-		int status = readNumberOfPlayer();
-		while (status == 0) {
-			logger.info(IMonopolyUtil.ERR_NUMBER_OF_PLAYER);
-			status = readNumberOfPlayer();
-		}
-		this.configNumberOfPlayer = status;
-	}
-
-	private void setNameOfPlayers() {
-		this.configNameOfPlayer = new String[configNumberOfPlayer];
-		for (int i = 0; i < this.configNumberOfPlayer; i++) {
-			logger.info("Player " + (i + 1) + " " + IMonopolyUtil.Q_NAME_PLAYER);
-			if (in.hasNext()) {
-				this.configNameOfPlayer[i] = in.nextLine();
-			}
-
-		}
 	}
 
 	/**
@@ -260,7 +211,7 @@ public class TextUI implements IObserver {
 	 */
 	public boolean processInputLine(String line) {
 
-		UserAction choosedOption = userOption.get(line);
+		UserAction choosedOption = ENUM_USER_OPTION.get(line);
 
 		if (choosedOption == null) {
 			// wrong input, option not mapped.
@@ -309,24 +260,58 @@ public class TextUI implements IObserver {
 		return true;
 	}
 
-	/**
-	 * finds the char to the corresponding enum value.
-	 * 
-	 * TODO : Find solution for finding the key to a specific value, since all
-	 * values are unique too.
-	 * 
-	 * @param Option
-	 *            An Option in the map.
-	 * @return the key for the value
-	 */
-	private String getOptionChar(UserAction Option) {
+	@Override
+	public void update(int e) {
+		throw new UnsupportedOperationException("not supported!!");
+	}
 
-		for (String currentChar : userOption.keySet()) {
-			if (userOption.get(currentChar) == Option) {
-				return currentChar;
+	/**
+	 * function to read number of player
+	 */
+	private int readNumberOfPlayer() {
+	
+		int tmpNumberOfPlayer = 0;
+	
+		if (in.hasNext()) {
+			/* check if input an integer and in right interval */
+			if (in.hasNextInt()) {
+				tmpNumberOfPlayer = in.nextInt();
+				in.nextLine();
+			} else {
+				/* TODO: alles weg */
+				in.nextLine();
+				return 0;
 			}
 		}
+	
+		/* check if input smaller as maximum of player and bigger as minimum */
+		if (MonopolyUtils.verifyPlayerNumber(tmpNumberOfPlayer) == false) {
+			return 0;
+		}
+	
+		/* if scanned number correct, save it */
+		return tmpNumberOfPlayer;
+	}
 
-		throw new AssertionError("Wrong Option");
+	private int setNumberOfPlayer() {
+		logger.info(IMonopolyUtil.Q_NUMBER_OF_PLAYER);
+		int readNumber = readNumberOfPlayer();
+		while (readNumber == 0) {
+			logger.info(IMonopolyUtil.ERR_NUMBER_OF_PLAYER);
+			readNumber = readNumberOfPlayer();
+		}
+		return readNumber;
+	}
+
+	private String[] setNameOfPlayers(int numberOfPlayer) {
+		String[] configNameOfPlayer = new String[numberOfPlayer];
+		for (int i = 0; i < numberOfPlayer; i++) {
+			logger.info("Player " + (i + 1) + " " + IMonopolyUtil.Q_NAME_PLAYER);
+			if (in.hasNext()) {
+				configNameOfPlayer[i] = in.nextLine();
+			}
+	
+		}
+		return configNameOfPlayer;
 	}
 }

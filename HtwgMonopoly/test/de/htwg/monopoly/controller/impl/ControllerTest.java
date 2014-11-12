@@ -4,9 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import org.junit.Before;
@@ -31,11 +31,11 @@ public class ControllerTest {
 
 		testController = injector.getInstance(IController.class);
 
-		Map<Integer,String> playerMap = new HashMap<Integer, String>();
-		playerMap.put(0, "0");
-		playerMap.put(1, "1");
+		List<String> playerList = new ArrayList<String>();
+		playerList.add("0");
+		playerList.add("1");
 		
-		testController.startNewGame(playerMap);
+		testController.startNewGame(playerList);
 	}
 
 	@Test

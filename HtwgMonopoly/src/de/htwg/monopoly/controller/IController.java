@@ -97,7 +97,7 @@ public interface IController extends IObservable {
 	 * @param players
 	 *            a map containing the number and the names of the players.
 	 */
-	void startNewGame(Map<Integer, String> players);
+	void startNewGame(List<String> players);
 
 	/**
 	 * Get the field, where the current player is standing on.
