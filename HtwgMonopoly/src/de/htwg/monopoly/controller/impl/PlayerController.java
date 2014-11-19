@@ -1,8 +1,7 @@
 package de.htwg.monopoly.controller.impl;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import de.htwg.monopoly.controller.IPlayerController;
 import de.htwg.monopoly.entities.ICards;
@@ -19,7 +18,7 @@ import de.htwg.monopoly.util.MonopolyUtils;
 public class PlayerController implements IPlayerController {
 
 	// array with all players
-	private Map<Integer, Player> players;
+	private List<Player> players;
 
 	// the number of players
 	private int numberOfPlayer;
@@ -49,11 +48,10 @@ public class PlayerController implements IPlayerController {
 		this.numberOfPlayer = inNumberOfPlayers;
 
 		// create array of players.
-		this.players = new HashMap<Integer, Player>();
+		this.players = new ArrayList<Player>();
 
-		// create default players
-		for (int i = 0; i < numberOfPlayer; i++) {
-			players.put(i, new Player(nameOfPlayers[i]));
+		for (String currentName : nameOfPlayers) {
+			players.add(new Player(currentName));
 		}
 
 	}
@@ -73,12 +71,11 @@ public class PlayerController implements IPlayerController {
 			throw new AssertionError("Ung�ltige Anzahl an Spielern.");
 		}
 
-		// init map
-		this.players = new HashMap<Integer, Player>();
+		// create array of players.
+		this.players = new ArrayList<Player>();
 
-		// create default players
-		for (String current : inPlayers) {
-			players.put(inPlayers.indexOf(current), new Player(current));
+		for (String currentName : inPlayers) {
+			players.add(new Player(currentName));
 		}
 
 	}
@@ -150,8 +147,9 @@ public class PlayerController implements IPlayerController {
 			// transfer money between players (including the player itself,
 			// because it doesn't matter)
 		} else {
-			for (Player player : players.values()) {
-				Bank.receiveMoneyFromPlayer(currentPlayer, player, actualMoney);
+			for (Player tempPlayer : players) {
+				Bank.receiveMoneyFromPlayer(currentPlayer, tempPlayer,
+						actualMoney);
 			}
 		}
 	}
