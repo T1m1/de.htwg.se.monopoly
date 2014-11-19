@@ -19,7 +19,7 @@ public enum UserAction {
 	/**
 	 * Buying a street or other fields, which can be bought.
 	 */
-	BUY_STREET("Straﬂe kaufen & Zug beenden"),
+	BUY_STREET("Straﬂe kaufen"),
 	
 	/**
 	 * End the turn of the player

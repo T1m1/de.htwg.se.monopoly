@@ -32,9 +32,9 @@ public class TextUI implements IObserver {
 
 	private IController controller;
 
-	
 	// Bidirectional map for user input and enum actions
-	private final static BiMap<String, UserAction> ENUM_USER_OPTION = HashBiMap.create();
+	private final static BiMap<String, UserAction> ENUM_USER_OPTION = HashBiMap
+			.create();
 	private final static BiMap<UserAction, String> CHAR_USER_OPTION;
 
 	static {
@@ -46,7 +46,7 @@ public class TextUI implements IObserver {
 		ENUM_USER_OPTION.put("r", UserAction.ROLL_DICE);
 		ENUM_USER_OPTION.put("c", UserAction.REDEEM_WITH_CARD);
 		ENUM_USER_OPTION.put("w", UserAction.REDEEM_WITH_DICE);
-		
+
 		CHAR_USER_OPTION = ENUM_USER_OPTION.inverse();
 	}
 
@@ -65,9 +65,9 @@ public class TextUI implements IObserver {
 		in = new Scanner(System.in);
 		if (!in.next().isEmpty()) {
 			int number = setNumberOfPlayer();
-			 playerArray = setNameOfPlayers(number);
+			playerArray = setNameOfPlayers(number);
 		}
-		
+
 		logger.info(IMonopolyUtil.START);
 
 		// start actual game
@@ -89,7 +89,8 @@ public class TextUI implements IObserver {
 			break;
 		case STARTED:
 			printTUI();
-			logger.info("Spieler " + controller.getCurrentPlayer() + ". Sie sind an der Reihe.");
+			logger.info("Spieler " + controller.getCurrentPlayer()
+					+ ". Sie sind an der Reihe.");
 			printOptions();
 			break;
 		case BEFORE_TURN:
@@ -98,13 +99,14 @@ public class TextUI implements IObserver {
 			printOptions();
 			break;
 		case DURING_TURN:
-			onField();
 			printMessage();
+			onField();
 			printOptions();
 			break;
 		case AFTER_TURN:
 			printTUI();
-			logger.info("Spieler " + controller.getCurrentPlayer() + ". Sie sind an der Reihe.");
+			logger.info("Spieler " + controller.getCurrentPlayer()
+					+ ". Sie sind an der Reihe.");
 			break;
 		case DICE_RESULT:
 			printRoll();
@@ -127,6 +129,9 @@ public class TextUI implements IObserver {
 		logger.info(out);
 	}
 
+	/**
+	 * Print information, where the player is currently standing on.
+	 */
 	public void onField() {
 		String currentFile = controller.getCurrentField().toString();
 		String out = MessageFormat.format(bundle.getString("tui_playfield"),
@@ -134,6 +139,9 @@ public class TextUI implements IObserver {
 		logger.info(out);
 	}
 
+	/**
+	 * Print the options, which are available for the current player.
+	 */
 	private void printOptions() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(bundle.getString("tui_options"));
@@ -149,12 +157,16 @@ public class TextUI implements IObserver {
 		logger.info(sb.toString());
 	}
 
+	/**
+	 * Print the event message from the controller, which describes the current
+	 * state of the game.
+	 */
 	public void printMessage() {
 		logger.info(controller.getMessage());
 	}
 
 	/**
-	 * print TUI
+	 * print the game field and its properties
 	 */
 	private void printTUI() {
 		/* TODO: Ausgabe formatieren */
@@ -207,7 +219,8 @@ public class TextUI implements IObserver {
 	 * handle user input
 	 *
 	 * @param line
-	 * @return
+	 *            a char indicating the option 
+	 * @return false, if the player has ended the game ('x'), true otherwise.
 	 */
 	public boolean processInputLine(String line) {
 
@@ -250,8 +263,8 @@ public class TextUI implements IObserver {
 		case ROLL_DICE:
 			controller.rollDiceToRedeem();
 			break;
-			
-			// for now the game finishes completely
+
+		// for now the game finishes completely
 		case SURRENDER:
 			logger.info("Spiel beendet!");
 			controller.exitGame();
@@ -260,18 +273,13 @@ public class TextUI implements IObserver {
 		return true;
 	}
 
-	@Override
-	public void update(int e) {
-		throw new UnsupportedOperationException("not supported!!");
-	}
-
 	/**
 	 * function to read number of player
 	 */
 	private int readNumberOfPlayer() {
-	
+
 		int tmpNumberOfPlayer = 0;
-	
+
 		if (in.hasNext()) {
 			/* check if input an integer and in right interval */
 			if (in.hasNextInt()) {
@@ -283,12 +291,12 @@ public class TextUI implements IObserver {
 				return 0;
 			}
 		}
-	
+
 		/* check if input smaller as maximum of player and bigger as minimum */
 		if (MonopolyUtils.verifyPlayerNumber(tmpNumberOfPlayer) == false) {
 			return 0;
 		}
-	
+
 		/* if scanned number correct, save it */
 		return tmpNumberOfPlayer;
 	}
@@ -310,8 +318,13 @@ public class TextUI implements IObserver {
 			if (in.hasNext()) {
 				configNameOfPlayer[i] = in.nextLine();
 			}
-	
+
 		}
 		return configNameOfPlayer;
+	}
+
+	@Override
+	public void update(int e) {
+		throw new UnsupportedOperationException("not supported!!");
 	}
 }
