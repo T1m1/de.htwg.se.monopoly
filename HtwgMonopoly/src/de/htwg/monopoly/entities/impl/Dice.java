@@ -29,7 +29,7 @@ public final class Dice {
 	public void throwDice() {
 		dice1 = setDice(1, IMonopolyUtil.DICE);
 		dice2 = setDice(1, IMonopolyUtil.DICE);
-		resultDice = (dice1 + dice2) % this.fieldSize + 1;
+		resultDice = (dice1 + dice2);
 	}
 
 	/**
