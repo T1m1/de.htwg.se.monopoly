@@ -11,6 +11,8 @@ public interface IObserver {
 	 * @param e
 	 */
 	void update(GameStatus e);
+	
+	@Deprecated
 	void update(int e);
 
 }
