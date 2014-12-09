@@ -19,13 +19,13 @@ public class DiceTest {
 	/**
 	 * only needed if the getDice method is public and not private
 	 */
-	// @Test
-	// public void testGetDice() {
-	// dice.setDice(1, 1);
-	// assertEquals(1, dice.setDice(1,1));
-	// dice.setDice(6, 6);
-	// assertEquals(6, dice.setDice(6,6));
-	// }
+    // @Test
+    // public void testGetDice() {
+    // dice.setDice(1, 1);
+    // assertEquals(1, dice.setDice(1,1));
+    // dice.setDice(6, 6);
+    // assertEquals(6, dice.setDice(6,6));
+    // }
 
 	@Test
 	public void testThrowDice() {
