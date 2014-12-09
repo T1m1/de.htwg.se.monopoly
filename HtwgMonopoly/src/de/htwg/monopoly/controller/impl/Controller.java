@@ -168,10 +168,12 @@ public class Controller extends Observable implements IController {
 
 		this.currentPlayer = players.getNextPlayer();
 		
-		currentPlayer.incrementPrisonRound();
+		if(this.currentPlayer.isInPrison()) {
+            currentPlayer.incrementPrisonRound();
+        }
 
 		if (currentPlayer.isInPrison()) {
-			message.append("Sie sind im Gefängnis");
+			message.append("Sie sind im Gefï¿½ngnis");
 			updateGameStatus(GameStatus.BEFORE_TURN_IN_PRISON);
 		} else {
 			updateGameStatus(GameStatus.BEFORE_TURN);
@@ -239,7 +241,7 @@ public class Controller extends Observable implements IController {
 	public boolean redeemWithDice() {
 		clearMessage();
 		diceFlag = IMonopolyUtil.TIMES_TO_ROLL_DICE;
-		message.append("Versuchen sie bei 3 Würfen einen Pasch zu würfeln.");
+		message.append("Versuchen sie bei 3 Wï¿½rfen einen Pasch zu wï¿½rfeln.");
 		updateGameStatus(GameStatus.DICE_ROLL_FOR_PRISON);
 		return true;
 	}
@@ -264,9 +266,9 @@ public class Controller extends Observable implements IController {
 		}
 
 		if (diceFlag < 1) {
-			message.append("Leider 3 mal kein Pasch gewürfelt. Der Nächste ist dran.");
+			message.append("Leider 3 mal kein Pasch gewï¿½rfelt. Der Nï¿½chste ist dran.");
 		} else {
-			message.append("Leider kein Pasch gewürfelt. Noch " + diceFlag
+			message.append("Leider kein Pasch gewï¿½rfelt. Noch " + diceFlag
 					+ " Versuch(e).");
 		}
 		updateGameStatus(GameStatus.DICE_ROLL_FOR_PRISON);
