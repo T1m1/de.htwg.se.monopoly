@@ -75,7 +75,6 @@ public class MenuBar extends JMenuBar implements ActionListener {
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			} catch (URISyntaxException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		} else if (event == miRegeln) {
@@ -86,7 +85,6 @@ public class MenuBar extends JMenuBar implements ActionListener {
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			} catch (URISyntaxException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 

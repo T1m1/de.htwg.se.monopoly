@@ -87,7 +87,6 @@ public class Position {
 			this.stringY = this.y + IMonopolyUtil.COLORSIZE;
 			this.rotate = WEST;
 			this.pictureX = 0;
-			/* TODO right ??? */
 			this.pictureY = this.y;
 
 		}

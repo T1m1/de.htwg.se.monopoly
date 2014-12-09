@@ -107,7 +107,6 @@ public class OptionPanel extends JPanel implements ActionListener {
 			taAusgabe.setText("Sie haben " + diceResult + " gewürfelt\n"
 					+ taAusgabe.getText());
 
-			// TODO in check enable status method
 
 			checkEnableStatus(2);
 
@@ -117,7 +116,6 @@ public class OptionPanel extends JPanel implements ActionListener {
 			contr.endTurn();
 
 			checkEnableStatus(1);
-			// TODO in check enable status method
 		} else if (e.getSource() == buttonKaufen) {
 			contr.buyStreet();
 			checkEnableStatus(1);
@@ -125,7 +123,6 @@ public class OptionPanel extends JPanel implements ActionListener {
 			this.taAusgabe.setText(taAusgabe.getText() + "Sie haben "
 					+ streetName + " erfolgreich gekauft!");
 
-			/* TODO tmp -> check in checkEnableStatus */
 			buttonZugBeenden.setEnabled(true);
 			buttonWuerfeln.setEnabled(false);
 		} else if (e.getSource().equals(buttonFreikaufen)) {
@@ -138,7 +135,6 @@ public class OptionPanel extends JPanel implements ActionListener {
 			buttonFreiWuerfeln.setEnabled(false);
 		}
 
-		/* TODO in die update methode packen */
 
 	}
 
@@ -156,7 +152,6 @@ public class OptionPanel extends JPanel implements ActionListener {
 			buttonFreiWuerfeln.setEnabled(true);
 		}
 		if (options.contains(UserAction.REDEEM_WITH_CARD)) {
-			// TODO needs to be implemented
 
 		}
 	}

@@ -1,20 +1,15 @@
 package de.htwg.monopoly.controller.impl;
 
-import java.text.MessageFormat;
-import java.util.Locale;
-import java.util.ResourceBundle;
-
 import de.htwg.monopoly.controller.IPlayfield;
 import de.htwg.monopoly.entities.IFieldObject;
-import de.htwg.monopoly.entities.impl.Bank;
-import de.htwg.monopoly.entities.impl.ChanceCardsStack;
-import de.htwg.monopoly.entities.impl.CommunityCardsStack;
-import de.htwg.monopoly.entities.impl.FieldObject;
-import de.htwg.monopoly.entities.impl.Player;
-import de.htwg.monopoly.entities.impl.Street;
+import de.htwg.monopoly.entities.impl.*;
 import de.htwg.monopoly.util.FieldType;
 import de.htwg.monopoly.util.IMonopolyFields;
 import de.htwg.monopoly.util.IMonopolyUtil;
+
+import java.text.MessageFormat;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class Playfield implements IPlayfield {
 
@@ -46,8 +41,7 @@ public class Playfield implements IPlayfield {
 	}
 
 	/**
-	 * TODO for each case statement a new function!!! -> MAYBE
-	 * 
+	 *
 	 * @param i
 	 */
 	private void createField(int i) {

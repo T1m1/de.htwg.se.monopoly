@@ -23,7 +23,6 @@ import de.htwg.monopoly.view.components.Position;
  * 
  * @author RuprechtT
  * 
- *         - TODO Rotate pictures automatically; - TODO correct picture
  *         handling;
  */
 class FieldDrawPanel extends JPanel {
@@ -176,7 +175,6 @@ class FieldDrawPanel extends JPanel {
 		Position position = new Position(fieldNameAtIndex.getPosition(),
 				NUMBER_OF_ROWS, DIFFERENC);
 
-		// TODO SWITCH CASE
 
 		/* check type of IFieldObject to call specific functions */
 		if (fieldNameAtIndex.getType() == FieldType.STREET) {
