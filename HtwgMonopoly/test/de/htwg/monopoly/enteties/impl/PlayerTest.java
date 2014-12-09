@@ -1,14 +1,13 @@
 
 package de.htwg.monopoly.enteties.impl;
 
-import static org.junit.Assert.*;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.util.IMonopolyUtil;
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class PlayerTest {
 	Player player1;
@@ -90,6 +89,20 @@ public class PlayerTest {
 	public void testIsInPrison() {
 		player1.setInPrison(true);
 		assertTrue(player1.isInPrison());
+
+        player1.incrementPrisonRound();
+        assertTrue(player1.isInPrison());
+
+        player1.incrementPrisonRound();
+        assertTrue(player1.isInPrison());
+
+        player1.incrementPrisonRound();
+        assertTrue("player should be in prison",player1.isInPrison());
+
+        player1.incrementPrisonRound();
+
+
+        assertFalse(player1.isInPrison());
 	}
 
 	@Test

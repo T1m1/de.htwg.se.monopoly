@@ -1,13 +1,12 @@
 package de.htwg.monopoly.entities.impl;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.util.IMonopolyUtil;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class Player {
 
@@ -157,7 +156,7 @@ public class Player {
 	 * not in prison. 1-3 means the Player is in prison and number indicate the
 	 * round.
 	 * 
-	 * @param prisonRound
+	 * @param
 	 */
 	public void incrementPrisonRound() {
 		this.prisonRound = (prisonRound + 1) % IMonopolyUtil.MAX_PRISON_ROUND;
@@ -188,12 +187,13 @@ public class Player {
 	}
 
 	/**
-	 * Put the Player in prison if true.
+	 * If argument is true, put the Player in prison.
 	 * 
 	 * @param inPrison
 	 */
 	public void setInPrison(boolean inPrison) {
 		this.inPrison = inPrison;
+
 	}
 
 	/**
