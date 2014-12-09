@@ -160,6 +160,8 @@ public class Controller extends Observable implements IController {
 		updateGameStatus(GameStatus.AFTER_TURN);
 
 		this.currentPlayer = players.getNextPlayer();
+		
+		currentPlayer.incrementPrisonRound();
 
 		if (currentPlayer.isInPrison()) {
 			message.append("Sie sind im Gefängnis");
@@ -173,7 +175,7 @@ public class Controller extends Observable implements IController {
 	/**
 	 * Tries to redeem the current player with a prison free card.
 	 * 
-	 * @return true if the player had a card and was set free.
+	 * @return true if the player had a card and was set free, false otherwise
 	 */
 	/**
 	 * {@inheritDoc}
