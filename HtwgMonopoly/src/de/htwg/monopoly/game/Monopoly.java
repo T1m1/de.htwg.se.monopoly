@@ -1,13 +1,11 @@
 package de.htwg.monopoly.game;
 
-import java.util.Scanner;
-
-import de.htwg.monopoly.controller.IController;
-import de.htwg.monopoly.view.GraphicUserInterface;
-import de.htwg.monopoly.view.TextUI;
-
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import de.htwg.monopoly.controller.IController;
+import de.htwg.monopoly.view.TextUI;
+
+import java.util.Scanner;
 
 public class Monopoly {
 
@@ -15,7 +13,7 @@ public class Monopoly {
 	private static Monopoly instance = null;
 	private IController controller;
 	private static TextUI tui;
-	private static GraphicUserInterface gui;
+	//private static GraphicUserInterface gui;
 
 	public static Monopoly getInstance() {
 		if (instance == null) {
@@ -32,7 +30,7 @@ public class Monopoly {
 		//this.controller = new Controller(IMonopolyUtil.FIELD_SIZE);
 		
 		tui = new TextUI(controller);
-		gui = new GraphicUserInterface(controller);
+		//gui = new GraphicUserInterface(controller);
 
 		// wui = new WebUserInterface(controller);
 
@@ -51,7 +49,7 @@ public class Monopoly {
 		Monopoly.getInstance();
 		
 		// Note: it is important to start gui first, otherwise the tui waits for input. Maybe fix it.
-		gui.startGame();
+		//gui.startGame();
 		tui.startGame();
 		
 		// wui.startGame();
