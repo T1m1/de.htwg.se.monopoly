@@ -35,7 +35,8 @@ public class Controller extends Observable implements IController {
 	private Player currentPlayer;
 	private IFieldObject currentField;
 	private Dice dice;
-
+	private int fieldSize;
+	
 	private GameStatus phase;
 	private UserOptionsController userOptions;
 
@@ -45,6 +46,7 @@ public class Controller extends Observable implements IController {
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
 	private int diceFlag;
+	
 
 	/**
 	 * public constructor for a new controller create the players, the field and
@@ -55,9 +57,10 @@ public class Controller extends Observable implements IController {
 	@Inject
 	public Controller(@Named("FieldSize") int fieldSize) {
 		phase = GameStatus.STOPPED;
-		this.field = new Playfield(fieldSize);
+		this.fieldSize = fieldSize;
+		
 		this.message = new StringBuilder();
-		this.dice = new Dice(fieldSize);
+		this.dice = new Dice();
 		this.userOptions = new UserOptionsController(this);
 	}
 
@@ -81,13 +84,17 @@ public class Controller extends Observable implements IController {
 
 	@Override
 	public void startNewGame(List<String> players) {
+		
 
 		if (MonopolyUtils.verifyPlayerNumber(players.size()) == false) {
 			message.append("Wrong number of players!!");
 			updateGameStatus(GameStatus.STOPPED);
 		}
 
+		// create new field and player
+		this.field = new Playfield(fieldSize);
 		this.players = new PlayerController(players);
+		
 		// set current player to first player, notify observers and get ready to
 		// play
 		this.currentPlayer = this.players.getFirstPlayer();
@@ -270,7 +277,10 @@ public class Controller extends Observable implements IController {
 	 */
 	@Override
 	public void exitGame() {
+		// "delete" players and playfield
 		this.players = null;
+		this.field = null;
+		
 		updateGameStatus(GameStatus.STOPPED);
 	}
 

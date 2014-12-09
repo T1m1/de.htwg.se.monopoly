@@ -84,8 +84,7 @@ public class TextUI implements IObserver {
 	public void update(GameStatus phase) {
 		switch (phase) {
 		case STOPPED:
-			// TODO
-
+			logger.info("Game is stopped.");
 			break;
 		case STARTED:
 			printTUI();
@@ -169,7 +168,6 @@ public class TextUI implements IObserver {
 	 * print the game field and its properties
 	 */
 	private void printTUI() {
-		/* TODO: Ausgabe formatieren */
 		StringBuilder sb = new StringBuilder();
 		StringBuilder streets = new StringBuilder();
 
@@ -238,7 +236,7 @@ public class TextUI implements IObserver {
 			return true;
 		}
 
-		// TODO: needs to be implemented:
+		// TODO: it would be fancy if this the following implemented:
 		// controller.performAction(choosedOption);
 
 		switch (choosedOption) {
@@ -286,7 +284,6 @@ public class TextUI implements IObserver {
 				tmpNumberOfPlayer = in.nextInt();
 				in.nextLine();
 			} else {
-				/* TODO: alles weg */
 				in.nextLine();
 				return 0;
 			}

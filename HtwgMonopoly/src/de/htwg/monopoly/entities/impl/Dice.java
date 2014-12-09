@@ -4,21 +4,18 @@ import de.htwg.monopoly.util.IMonopolyUtil;
 
 public final class Dice {
 
-	private int fieldSize;
-
+	private int dice1;
+	private int dice2;
+	private int resultDice;;
 	/**
 	 * Creates a dice class containing two separated dices. The result of the
 	 * dice depends on the field size.
-	 * 
-	 * @param fieldSize
 	 */
-	public Dice(int fieldSize) {
-		this.fieldSize = fieldSize;
+	public Dice() {
+		dice1 = 0;
+		dice2 = 0;
+		resultDice = 0;
 	}
-
-	private int dice1 = 0;
-	private int dice2 = 0;
-	private int resultDice = 0;
 
 	/**
 	 * This Method throws (sets) the two dices, represented as two private dice
