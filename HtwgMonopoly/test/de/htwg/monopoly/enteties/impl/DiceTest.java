@@ -1,11 +1,11 @@
 package de.htwg.monopoly.enteties.impl;
 
-import static org.junit.Assert.*;
-
+import de.htwg.monopoly.entities.impl.Dice;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.monopoly.entities.impl.Dice;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class DiceTest {
 
@@ -13,7 +13,7 @@ public class DiceTest {
 
 	@Before
 	public void setUp() throws Exception {
-		dice = new Dice(12);
+		dice = new Dice();
 	}
 
 	/**
