@@ -173,7 +173,7 @@ public class Controller extends Observable implements IController {
         }
 
 		if (currentPlayer.isInPrison()) {
-			message.append("Sie sind im Gef�ngnis");
+			message.append("Sie sind im Gef&auml;ngnis");
 			updateGameStatus(GameStatus.BEFORE_TURN_IN_PRISON);
 		} else {
 			updateGameStatus(GameStatus.BEFORE_TURN);
@@ -241,7 +241,7 @@ public class Controller extends Observable implements IController {
 	public boolean redeemWithDice() {
 		clearMessage();
 		diceFlag = IMonopolyUtil.TIMES_TO_ROLL_DICE;
-		message.append("Versuchen sie bei 3 W�rfen einen Pasch zu w�rfeln.");
+		message.append("Versuchen sie bei 3 W&uuml;rfen einen Pasch zu w&uuml;rfeln.");
 		updateGameStatus(GameStatus.DICE_ROLL_FOR_PRISON);
 		return true;
 	}
@@ -266,9 +266,9 @@ public class Controller extends Observable implements IController {
 		}
 
 		if (diceFlag < 1) {
-			message.append("Leider 3 mal kein Pasch gew�rfelt. Der N�chste ist dran.");
+			message.append("Leider 3 mal kein Pasch gew&uuml;rfelt. Der N&auml;chste ist dran.");
 		} else {
-			message.append("Leider kein Pasch gew�rfelt. Noch " + diceFlag
+			message.append("Leider kein Pasch gew&uuml;rfelt. Noch " + diceFlag
 					+ " Versuch(e).");
 		}
 		updateGameStatus(GameStatus.DICE_ROLL_FOR_PRISON);
