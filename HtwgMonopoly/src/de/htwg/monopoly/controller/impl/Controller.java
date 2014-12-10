@@ -22,6 +22,7 @@ import de.htwg.monopoly.util.FieldType;
 import de.htwg.monopoly.util.GameStatus;
 import de.htwg.monopoly.util.IMonopolyUtil;
 import de.htwg.monopoly.util.MonopolyUtils;
+import de.htwg.monopoly.util.PlayerIcon;
 import de.htwg.monopoly.util.UserAction;
 
 /**
@@ -36,7 +37,7 @@ public class Controller extends Observable implements IController {
 	private IFieldObject currentField;
 	private Dice dice;
 	private int fieldSize;
-	
+
 	private GameStatus phase;
 	private UserOptionsController userOptions;
 
@@ -46,7 +47,6 @@ public class Controller extends Observable implements IController {
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
 	private int diceFlag;
-	
 
 	/**
 	 * public constructor for a new controller create the players, the field and
@@ -58,7 +58,7 @@ public class Controller extends Observable implements IController {
 	public Controller(@Named("FieldSize") int fieldSize) {
 		phase = GameStatus.STOPPED;
 		this.fieldSize = fieldSize;
-		
+
 		this.message = new StringBuilder();
 		this.dice = new Dice();
 		this.userOptions = new UserOptionsController(this);
@@ -67,7 +67,7 @@ public class Controller extends Observable implements IController {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @deprecated use {@link Controller#startNewGame(Map)} instead.
+	 * @deprecated use {@link Controller#startNewGame(List<String>)} instead.
 	 */
 	@Override
 	public void startNewGame(int numberOfPlayer, String[] nameOfPlayers) {
@@ -84,7 +84,6 @@ public class Controller extends Observable implements IController {
 
 	@Override
 	public void startNewGame(List<String> players) {
-		
 
 		if (MonopolyUtils.verifyPlayerNumber(players.size()) == false) {
 			message.append("Wrong number of players!!");
@@ -94,11 +93,29 @@ public class Controller extends Observable implements IController {
 		// create new field and player
 		this.field = new Playfield(fieldSize);
 		this.players = new PlayerController(players);
-		
+
 		// set current player to first player, notify observers and get ready to
 		// play
 		this.currentPlayer = this.players.getFirstPlayer();
 
+		updateGameStatus(GameStatus.STARTED);
+	}
+
+	@Override
+	public void startNewGame(Map<String, PlayerIcon> players) {
+		// verify the number of players
+		if (MonopolyUtils.verifyPlayerNumber(players.size()) == false) {
+			message.append("Wrong number of players!!");
+			updateGameStatus(GameStatus.STOPPED);
+		}
+
+		// create new field and player
+		this.field = new Playfield(fieldSize);
+		this.players = new PlayerController(players);
+		
+
+		// set current player to first player, notify observers and start playing
+		this.currentPlayer = this.players.getFirstPlayer();
 		updateGameStatus(GameStatus.STARTED);
 	}
 
@@ -167,7 +184,7 @@ public class Controller extends Observable implements IController {
 		updateGameStatus(GameStatus.AFTER_TURN);
 
 		this.currentPlayer = players.getNextPlayer();
-		
+
 		currentPlayer.incrementPrisonRound();
 
 		if (currentPlayer.isInPrison()) {
@@ -280,7 +297,7 @@ public class Controller extends Observable implements IController {
 		// "delete" players and playfield
 		this.players = null;
 		this.field = null;
-		
+
 		updateGameStatus(GameStatus.STOPPED);
 	}
 
