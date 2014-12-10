@@ -310,6 +310,7 @@ public class Controller extends Observable implements IController {
 	 * @return
 	 */
 	private String performCommCardAction() {
+		// draw card
 		ICards currentCommCard = field.getCommStack().getNextCard();
 		StringBuilder sb = new StringBuilder();
 

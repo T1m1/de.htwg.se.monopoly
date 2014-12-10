@@ -173,6 +173,7 @@ public class Playfield implements IPlayfield {
 		case CHANCE_STACK:
 		case COMMUNITY_STACK:
 			// do nothing TODO implement solution
+			// happens in the controller
 		}
 		return sb.toString();
 	}
