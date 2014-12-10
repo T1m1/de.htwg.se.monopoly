@@ -137,9 +137,11 @@ public class Controller extends Observable implements IController {
 
 		// perform the action, depending on the field.
 		if (currentField.getType() == FieldType.COMMUNITY_STACK) {
-			message.append(performCommCardAction());
+			ICards currentChanceCard = field.getCommStack().getNextCard();
+			message.append(performCardAction(currentChanceCard));
 		} else if (currentField.getType() == FieldType.CHANCE_STACK) {
-			message.append(performChanceCardAction());
+			ICards currentChanceCard = field.getChanStack().getNextCard();
+			message.append(performCardAction(currentChanceCard));
 		} else {
 			message.append(field.performActionAndAppendInfo(currentField,
 					currentPlayer));
@@ -309,49 +311,25 @@ public class Controller extends Observable implements IController {
 	 * 
 	 * @return
 	 */
-	private String performCommCardAction() {
-		// draw card
-		ICards currentCommCard = field.getCommStack().getNextCard();
+	private String performCardAction(ICards currentCard) {
 		StringBuilder sb = new StringBuilder();
-
 		sb.append(MessageFormat.format(bundle.getString("play_card"),
-				currentCommCard.getDescription()));
+				currentCard.getDescription()));
 
-		if (isMoveAction(currentCommCard)) {
-			sb.append(field.movePlayerTo(currentPlayer,
-					currentCommCard.getTarget()));
+		if (isMoveAction(currentCard)) {
+			sb.append(field.movePlayerTo(currentPlayer, currentCard.getTarget()));
 		} else {
-			players.transferMoney(currentPlayer, currentCommCard);
+			players.transferMoney(currentPlayer, currentCard);
 		}
 		return sb.toString();
 	}
 
 	/**
-	 * Does the same as performCommCardAction() except, for a Chance Card
-	 * 
-	 * @return
-	 */
-	private String performChanceCardAction() {
-		ICards currentChanceCard = field.getChanStack().getNextCard();
-		StringBuilder sb = new StringBuilder();
-
-		sb.append(MessageFormat.format(bundle.getString("play_card"),
-				currentChanceCard.getDescription()));
-
-		if (isMoveAction(currentChanceCard)) {
-			sb.append(field.movePlayerTo(currentPlayer,
-					currentChanceCard.getTarget()));
-		} else {
-			players.transferMoney(currentPlayer, currentChanceCard);
-		}
-		return sb.toString();
-	}
-
-	/**
-	 * Check if the Card is a "player move Card" or a "money transfer card"
+	 * Check if the Card is a "player move Card" or a "money transfer card". In
+	 * particular: Is the target a string or an integer
 	 * 
 	 * @param card
-	 * @return boolean
+	 * @return false if the target (of the card) is an integer, true otherwise.
 	 */
 	private boolean isMoveAction(ICards card) {
 		int test;
