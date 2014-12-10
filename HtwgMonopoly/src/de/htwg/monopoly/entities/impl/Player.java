@@ -8,6 +8,7 @@ import com.google.inject.name.Named;
 
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.util.IMonopolyUtil;
+import de.htwg.monopoly.util.PlayerIcon;
 
 public class Player {
 
@@ -23,6 +24,7 @@ public class Player {
 	private boolean inPrison = false;
 	private List<IFieldObject> ownership;
 	private int prisonFreeCard = 0;
+	private PlayerIcon icon;
 
 	/**
 	 * default player constructor
@@ -67,6 +69,15 @@ public class Player {
 	public Player(String name) {
 		this();
 		this.setName(name);
+	}
+
+	
+	public Player(String name, PlayerIcon playerIcon) {
+		this.name = name;
+		this.figure = playerIcon.getDescription();
+		this.icon = playerIcon;
+		this.budget = IMonopolyUtil.INITIAL_MONEY;
+		ownership = new LinkedList<IFieldObject>();
 	}
 
 	/**
@@ -247,6 +258,13 @@ public class Player {
 		}
 		prisonFreeCard--;
 
+	}
+
+	/**
+	 * @return the icon
+	 */
+	public PlayerIcon getIcon() {
+		return icon;
 	}
 
 }
