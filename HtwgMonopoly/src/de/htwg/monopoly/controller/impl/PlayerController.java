@@ -2,6 +2,7 @@ package de.htwg.monopoly.controller.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import de.htwg.monopoly.controller.IPlayerController;
 import de.htwg.monopoly.entities.ICards;
@@ -9,6 +10,7 @@ import de.htwg.monopoly.entities.impl.Bank;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.util.IMonopolyUtil;
 import de.htwg.monopoly.util.MonopolyUtils;
+import de.htwg.monopoly.util.PlayerIcon;
 
 /**
  * Controller for player
@@ -78,6 +80,23 @@ public class PlayerController implements IPlayerController {
 			players.add(new Player(currentName));
 		}
 
+	}
+
+	public PlayerController(Map<String, PlayerIcon> inPlayers) {
+		this.numberOfPlayer = inPlayers.size();
+
+		// assert wrong number.
+		if (!MonopolyUtils.verifyPlayerNumber(numberOfPlayer)) {
+			throw new AssertionError("Ung�ltige Anzahl an Spielern.");
+		}
+		
+		// create array of players.
+		this.players = new ArrayList<Player>();
+		
+		for (String current: inPlayers.keySet()){
+			players.add(new Player(current, inPlayers.get(current)));
+		}
+		
 	}
 
 	/**
