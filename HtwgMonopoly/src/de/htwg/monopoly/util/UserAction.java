@@ -14,12 +14,12 @@ public enum UserAction {
 	/**
 	 * A simple dice roll.
 	 */
-	ROLL_DICE("würfeln"),
+	ROLL_DICE("w&uuml;rfeln"),
 	
 	/**
 	 * Buying a street or other fields, which can be bought.
 	 */
-	BUY_STREET("Straße kaufen"),
+	BUY_STREET("Stra&szlig;e kaufen"),
 	
 	/**
 	 * End the turn of the player
@@ -29,7 +29,7 @@ public enum UserAction {
 	/**
 	 * Start the turn of a player, by rolling a dice and moving.
 	 */
-	START_TURN("Würfeln (Zug starten)"),
+	START_TURN("W&uuml;rfeln (Zug starten)"),
 	
 	/**
 	 * End the game, by surrendering.
@@ -44,12 +44,12 @@ public enum UserAction {
 	/**
 	* This option is available if the player wants to redeem from prison with a chance or community card.
 	*/
-	REDEEM_WITH_CARD("\"Du kommst aus dem Gefängnis frei\" - Karte einlösen"),
+	REDEEM_WITH_CARD("\"Du kommst aus dem Gef&auml;ngnis frei\" - Karte einl&ouml;sen"),
 	
 	/**
 	* This option is available if the player wants to redeem from prison with trying to roll a "pasch".
 	*/
-	REDEEM_WITH_DICE("Mit 3 Versuchen ein Pasch würfeln um aus dem Gefängnis frei zu kommen.");
+	REDEEM_WITH_DICE("Mit 3 Versuchen ein Pasch w&uuml;rfeln um aus dem Gef&auml;ngnis frei zu kommen.");
 	
 	private final String description;
 	

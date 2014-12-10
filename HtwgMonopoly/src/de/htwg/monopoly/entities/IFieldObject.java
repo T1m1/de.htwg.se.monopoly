@@ -7,7 +7,7 @@ public interface IFieldObject {
 	int getPosition();
 	/**
 	 * Return the type of this field. For example: Street, train station etc.
-	 * @return TODO: enum, string oder Object??
+	 * @return enum
 	 */
 	FieldType getType();
 	

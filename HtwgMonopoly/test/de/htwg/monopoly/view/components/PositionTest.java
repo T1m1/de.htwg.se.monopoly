@@ -57,7 +57,6 @@ public class PositionTest {
 
 		assertEquals(IMonopolyUtil.COLORSIZE, east.getHigh());
 
-		/* TODO not yet implemented */
 		assertEquals(
 				(((NUMBER_OF_FIELDS - 1) * DIFFERENC) - ((street % (NUMBER_OF_FIELDS - 1)) * DIFFERENC)),
 				east.getPictureX());
@@ -85,7 +84,6 @@ public class PositionTest {
 
 		assertEquals(DIFFERENC, east.getHigh());
 
-		/* TODO not jet implemented */
 		assertEquals(0, east.getPictureX());
 		assertEquals(east.getY(), east.getPictureY());
 

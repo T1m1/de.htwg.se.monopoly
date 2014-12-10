@@ -1,15 +1,14 @@
 package de.htwg.monopoly.util;
 
-import java.awt.Color;
-import de.htwg.monopoly.util.FieldType;
+import java.awt.*;
 
 public interface IMonopolyFields {
 
 	String GEMEINSCHAFTSFELD = "Gemeinschafts-Feld";
 
 	/**
-	 * l : los s : stra�e g : gemeinschaftsfeld z : zusatzsteuer e :
-	 * ereignisfeld n : nur zu besuch im gef�ngnis p : gehe ins gef�ngnis f :
+	 * l : los s : strasse g : gemeinschaftsfeld z : zusatzsteuer e :
+	 * ereignisfeld n : nur zu besuch im gefaengnis p : gehe ins gefaengnis f :
 	 * frei parken.
 	 * 
 	 */
@@ -25,7 +24,7 @@ public interface IMonopolyFields {
 	
 
 	/**
-	 * Preise f�r die Stra�en
+	 * Preise f&uuml;r die Stra&szlig;en
 	 * 
 	 * 
 	 */
@@ -34,18 +33,18 @@ public interface IMonopolyFields {
 			1000 };
 
 	/**
-	 * Miete f�r die einzelnen "Stra�en"
+	 * Miete fuer die einzelnen "Strassen"
 	 * 
 	 */
 	Integer[] RENT = { 0, 10, 0, 11, 0, 15, 16, 0, 20, 0, 22, 32, 0, 35, 0, 45,
 			0, 48, 58, 0, 60, 0, 70, 0, 75, 90, 0, 100 };
 
 	/**
-	 * Vorl�ufige Namen von Feldern. Insgesamt bis jetzt 28 Felder.
+	 * Vorlaeufige Namen von Feldern. Insgesamt bis jetzt 28 Felder.
 	 * 
 	 * 
 	 */
-	String[] NAME = { "Bafög-Amt", "Stochastik", "Zusatzsteuer", "SM2",
+	String[] NAME = { "Baf&ouml;g-Amt", "Stochastik", "Zusatzsteuer", "SM2",
 			GEMEINSCHAFTSFELD, "Konso", "SysMo", "Bsys Labor, nur zu Besuch",
 			"Digitaltechnik", "Ereignisfeld", "ProgTech", "Mathe 1",
 			"Zusatzsteuer", "TI", "Frei parken", "Sekretariat",
@@ -53,7 +52,7 @@ public interface IMonopolyFields {
 			"ProgTech  2", "Gehe in das Bsys Labor", "ReAr",
 			GEMEINSCHAFTSFELD, "ALDA", "DB", "Zusatzsteuer", "SE" };
 	/**
-	 * Farben in richtiger Reihenfolge. Wenn keine Straße, dann ist Farbe null.
+	 * Farben in richtiger Reihenfolge. Wenn keine Strasse, dann ist Farbe null.
 	 * 
 	 * 
 	 */
@@ -84,7 +83,7 @@ public interface IMonopolyFields {
 	 * Test 1: Contains only 2 Object: Go field and a Gemeinschaftsfeld.
 	 * 
 	 */
-	String[] TESTNAMES = { "Baf�g-Amt", GEMEINSCHAFTSFELD };
+	String[] TESTNAMES = { "Baf&ouml;g-Amt", GEMEINSCHAFTSFELD };
 	Integer[] TESTRENT = { 0, 0 };
 	Integer[] TESTHOTEL = { 0, 0 };
 	Color[] TESTCOLOUR = { null, null };
