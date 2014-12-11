@@ -17,8 +17,6 @@ import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Dice;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.Street;
-import de.htwg.monopoly.information.IStats;
-import de.htwg.monopoly.information.impl.Stats;
 import de.htwg.monopoly.observer.impl.Observable;
 import de.htwg.monopoly.util.FieldType;
 import de.htwg.monopoly.util.GameStatus;
@@ -118,6 +116,9 @@ public class Controller extends Observable implements IController {
 		// set current player to first player, notify observers and start
 		// playing
 		this.currentPlayer = this.players.getFirstPlayer();
+		
+		clearMessage();
+		message.append("Spiel gestartet!");
 		updateGameStatus(GameStatus.STARTED);
 	}
 
