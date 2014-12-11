@@ -92,6 +92,7 @@ public interface IController extends IObservable {
 	 * 
 	 * @return
 	 */
+	// moved
 	Player getCurrentPlayer();
 
 	/**
@@ -105,6 +106,7 @@ public interface IController extends IObservable {
 	 * 
 	 * @return
 	 */
+	// moved
 	int getNumberOfPlayers();
 
 	/**
@@ -113,6 +115,7 @@ public interface IController extends IObservable {
 	 * @param i
 	 * @return
 	 */
+	// moved
 	Player getPlayer(int i);
 
 	/**

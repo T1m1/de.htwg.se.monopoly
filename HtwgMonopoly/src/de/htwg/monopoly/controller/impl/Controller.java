@@ -17,6 +17,8 @@ import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Dice;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.Street;
+import de.htwg.monopoly.information.IStats;
+import de.htwg.monopoly.information.impl.Stats;
 import de.htwg.monopoly.observer.impl.Observable;
 import de.htwg.monopoly.util.FieldType;
 import de.htwg.monopoly.util.GameStatus;
@@ -62,7 +64,6 @@ public class Controller extends Observable implements IController {
 		this.message = new StringBuilder();
 		this.dice = new Dice();
 		this.userOptions = new UserOptionsController(this);
-		this.gameInformation = new Stats(this, players, field);
 	}
 
 	/**
@@ -354,7 +355,6 @@ public class Controller extends Observable implements IController {
 	private void updateGameStatus(GameStatus phaseToSet) {
 		phase = phaseToSet;
 		userOptions.update();
-
 		notifyObservers(phase);
 	}
 
