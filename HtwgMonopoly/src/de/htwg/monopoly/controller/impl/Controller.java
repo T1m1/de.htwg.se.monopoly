@@ -17,6 +17,8 @@ import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Dice;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.Street;
+import de.htwg.monopoly.information.IStats;
+import de.htwg.monopoly.information.impl.Stats;
 import de.htwg.monopoly.observer.impl.Observable;
 import de.htwg.monopoly.util.FieldType;
 import de.htwg.monopoly.util.GameStatus;
@@ -45,6 +47,7 @@ public class Controller extends Observable implements IController {
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
 	private int diceFlag;
+	private IStats gameInformation;
 
 	/**
 	 * public constructor for a new controller create the players, the field and
@@ -59,6 +62,7 @@ public class Controller extends Observable implements IController {
 		this.message = new StringBuilder();
 		this.dice = new Dice(fieldSize);
 		this.userOptions = new UserOptionsController(this);
+		this.gameInformation = new Stats(this, players, field);
 	}
 
 	/**
@@ -256,6 +260,7 @@ public class Controller extends Observable implements IController {
 
 		if (diceFlag < 1) {
 			message.append("Leider 3 mal kein Pasch gewürfelt. Der Nächste ist dran.");
+			// TODO: maybe end turn of player, so he doesn't need to do it himself
 		} else {
 			message.append("Leider kein Pasch gewürfelt. Noch " + diceFlag
 					+ " Versuch(e).");
@@ -342,7 +347,8 @@ public class Controller extends Observable implements IController {
 	private void updateGameStatus(GameStatus phaseToSet) {
 		phase = phaseToSet;
 		userOptions.update();
-		notifyObservers(phaseToSet);
+		gameInformation.update();
+		notifyObservers(phase);
 	}
 
 	@Override
