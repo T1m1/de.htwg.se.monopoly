@@ -10,24 +10,37 @@ import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.observer.IObservable;
 import de.htwg.monopoly.util.GameStatus;
 import de.htwg.monopoly.util.IMonopolyUtil;
+import de.htwg.monopoly.util.PlayerIcon;
 import de.htwg.monopoly.util.UserAction;
 
 public interface IController extends IObservable {
 
 	/**
+	 * Start a new game with the given list of player names. Note: The
+	 * number of players must be between
+	 * {@link IMonopolyUtil#MIN_NUMBER_OF_PLAYER} and
+	 * {@link IMonopolyUtil#MAX_NUMBER_OF_PLAYER}.
+	 * 
+	 * @param players
+	 *            a list containing the names of the players.
+	 */
+	void startNewGame(List<String> players);
+	
+	/**
+	 * Start a new game with the given map of player names and the corresponding player icon. Note: The
+	 * number of players must be between
+	 * {@link IMonopolyUtil#MIN_NUMBER_OF_PLAYER} and
+	 * {@link IMonopolyUtil#MAX_NUMBER_OF_PLAYER}.
+	 * 
+	 * @param players
+	 *            a map containing the names of the players and the icon.
+	 */
+	void startNewGame(Map<String, PlayerIcon> players);
+
+	/**
 	 * start a turn of a player
 	 */
 	void startTurn();
-
-	/**
-	 * throw the two dices
-	 */
-	void rollDiceToRedeem();
-
-	/**
-	 * end the turn of the current Player.
-	 */
-	void endTurn();
 
 	/**
 	 * the current player buys the street, where he is standing on. (This method
@@ -39,9 +52,40 @@ public interface IController extends IObservable {
 	boolean buyStreet();
 
 	/**
+	 * end the turn of the current Player.
+	 */
+	void endTurn();
+
+	/**
+	 * 
+	 * @return
+	 */
+	boolean redeemWithCard();
+
+	boolean redeemWithMoney();
+
+	boolean redeemWithDice();
+
+	/**
+	 * throw the two dices
+	 */
+	void rollDiceToRedeem();
+
+	/**
 	 * exit the game.
 	 */
 	void exitGame();
+
+	/**
+	 * Checks if the given option is valid.
+	 * 
+	 * @param action
+	 * @return true if the valid options contains the given options, false
+	 *         otherwise.
+	 */
+	boolean isCorrectOption(UserAction userOption);
+
+	void performAction(UserAction choosedOption);
 
 	/**
 	 * return object from current player
@@ -82,38 +126,11 @@ public interface IController extends IObservable {
 	Dice getDice();
 
 	/**
-	 * Start a new game with the given number of player and the names oft the
-	 * players.
-	 * 
-	 * @param numberOfPlayer
-	 * @param nameOfPlayers
-	 * @deprecated use {@link Controller#startNewGame(Map)} instead.
-	 */
-	void startNewGame(int numberOfPlayer, String[] nameOfPlayers);
-
-	/**
-	 * Start a new game with the given map of number and player names. Note: The
-	 * number of players must be between
-	 * {@link IMonopolyUtil#MIN_NUMBER_OF_PLAYER} and
-	 * {@link IMonopolyUtil#MAX_NUMBER_OF_PLAYER}.
-	 * 
-	 * @param players
-	 *            a map containing the number and the names of the players.
-	 */
-	void startNewGame(List<String> players);
-
-	/**
 	 * Get the field, where the current player is standing on.
 	 * 
 	 * @return
 	 */
 	IFieldObject getCurrentField();
-
-	boolean redeemWithCard();
-
-	boolean redeemWithMoney();
-
-	boolean redeemWithDice();
 
 	GameStatus getPhase();
 
@@ -123,17 +140,6 @@ public interface IController extends IObservable {
 	 * @return
 	 */
 	List<UserAction> getOptions();
-
-	/**
-	 * Checks if the given option is valid.
-	 * 
-	 * @param action
-	 * @return true if the valid options contains the given options, false
-	 *         otherwise.
-	 */
-	boolean isCorrectOption(UserAction userOption);
-
-	void performAction(UserAction choosedOption);
 
 	/**
 	 * Returns the size of the playfield. Meaning the number of fields existing
@@ -146,5 +152,15 @@ public interface IController extends IObservable {
 	IFieldObject getFieldAtIndex(int i);
 
 	IPlayfield getField();
+
+	/**
+	 * Start a new game with the given number of player and the names oft the
+	 * players.
+	 * 
+	 * @param numberOfPlayer
+	 * @param nameOfPlayers
+	 * @deprecated use {@link Controller#startNewGame(Map)} instead.
+	 */
+	void startNewGame(int numberOfPlayer, String[] nameOfPlayers);
 
 }

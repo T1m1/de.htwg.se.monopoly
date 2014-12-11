@@ -24,7 +24,6 @@ public class CommunityCardsStack extends CardsStack {
 
 	@Override
 	public FieldType getType() {
-		// g wie Gemeinschaftsfeld.
 		return fieldType;
 	}
 

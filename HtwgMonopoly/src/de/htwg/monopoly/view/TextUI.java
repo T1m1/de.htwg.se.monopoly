@@ -1,17 +1,7 @@
 package de.htwg.monopoly.view;
 
-import java.text.MessageFormat;
-import java.util.Arrays;
-import java.util.Locale;
-import java.util.ResourceBundle;
-import java.util.Scanner;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
-
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.observer.IObserver;
@@ -19,6 +9,14 @@ import de.htwg.monopoly.util.GameStatus;
 import de.htwg.monopoly.util.IMonopolyUtil;
 import de.htwg.monopoly.util.MonopolyUtils;
 import de.htwg.monopoly.util.UserAction;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.text.MessageFormat;
+import java.util.Arrays;
+import java.util.Locale;
+import java.util.ResourceBundle;
+import java.util.Scanner;
 
 public class TextUI implements IObserver {
 
@@ -84,8 +82,7 @@ public class TextUI implements IObserver {
 	public void update(GameStatus phase) {
 		switch (phase) {
 		case STOPPED:
-			// TODO
-
+			logger.info("Game is stopped.");
 			break;
 		case STARTED:
 			printTUI();
@@ -169,7 +166,6 @@ public class TextUI implements IObserver {
 	 * print the game field and its properties
 	 */
 	private void printTUI() {
-		/* TODO: Ausgabe formatieren */
 		StringBuilder sb = new StringBuilder();
 		StringBuilder streets = new StringBuilder();
 
@@ -238,7 +234,6 @@ public class TextUI implements IObserver {
 			return true;
 		}
 
-		// TODO: needs to be implemented:
 		// controller.performAction(choosedOption);
 
 		switch (choosedOption) {
@@ -286,7 +281,6 @@ public class TextUI implements IObserver {
 				tmpNumberOfPlayer = in.nextInt();
 				in.nextLine();
 			} else {
-				/* TODO: alles weg */
 				in.nextLine();
 				return 0;
 			}

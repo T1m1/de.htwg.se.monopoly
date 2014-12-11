@@ -24,7 +24,7 @@ public interface IMonopolyUtil {
 	int MIN_NUMBER_OF_PLAYER = 2;
 	int MAX_NUMBER_OF_PLAYER = 6;
 	int INITIAL_MONEY = 2000;
-	int MAX_PRISON_ROUND = 2;
+	int MAX_PRISON_ROUND = 4;
 	int LOS_MONEY = 500;
 	int TWICE_LOS_MONEY = 1000;
 
@@ -41,7 +41,6 @@ public interface IMonopolyUtil {
 	int TEST_PRICE_ONE = 250;
 	int TEST_PRICE_TWO = 230;
 	int TEST_PRICE_THREE = 50;
-	int TEST_PLAYFIELD_SIZE = 3;
 
 	/* Strings */
 	String GAME_NAME = "HTWG Monopoly";
@@ -49,10 +48,8 @@ public interface IMonopolyUtil {
 	String Q_NAME_PLAYER = "bitte Name eingeben: ";
 	String START = "Los gehts!";
 	
-	String ERR_NUMBER_OF_PLAYER = "Ungültige Anzahl von Spieler eingegeben (2 - 6)";
-	String ERR_NAME_OF_PLAYER = "Kann das passieren?";
-	String TEST_INPUT_STREAM = "2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n2\n";
-	
+	String ERR_NUMBER_OF_PLAYER = "Ung&uuml;ltige Anzahl von Spieler eingegeben (2 - 6)";
+
 	/* GUI */
 	int COLORSIZE = 20;
 	int WEST = 270;

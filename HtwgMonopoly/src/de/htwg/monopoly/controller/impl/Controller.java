@@ -24,6 +24,7 @@ import de.htwg.monopoly.util.FieldType;
 import de.htwg.monopoly.util.GameStatus;
 import de.htwg.monopoly.util.IMonopolyUtil;
 import de.htwg.monopoly.util.MonopolyUtils;
+import de.htwg.monopoly.util.PlayerIcon;
 import de.htwg.monopoly.util.UserAction;
 
 /**
@@ -37,6 +38,7 @@ public class Controller extends Observable implements IController {
 	private Player currentPlayer;
 	private IFieldObject currentField;
 	private Dice dice;
+	private int fieldSize;
 
 	private GameStatus phase;
 	private UserOptionsController userOptions;
@@ -58,9 +60,10 @@ public class Controller extends Observable implements IController {
 	@Inject
 	public Controller(@Named("FieldSize") int fieldSize) {
 		phase = GameStatus.STOPPED;
-		this.field = new Playfield(fieldSize);
+		this.fieldSize = fieldSize;
+
 		this.message = new StringBuilder();
-		this.dice = new Dice(fieldSize);
+		this.dice = new Dice();
 		this.userOptions = new UserOptionsController(this);
 		this.gameInformation = new Stats(this, players, field);
 	}
@@ -68,7 +71,7 @@ public class Controller extends Observable implements IController {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @deprecated use {@link Controller#startNewGame(Map)} instead.
+	 * @deprecated use {@link Controller#startNewGame(List<String>)} instead.
 	 */
 	@Override
 	public void startNewGame(int numberOfPlayer, String[] nameOfPlayers) {
@@ -91,11 +94,32 @@ public class Controller extends Observable implements IController {
 			updateGameStatus(GameStatus.STOPPED);
 		}
 
+		// create new field and player
+		this.field = new Playfield(fieldSize);
 		this.players = new PlayerController(players);
+
 		// set current player to first player, notify observers and get ready to
 		// play
 		this.currentPlayer = this.players.getFirstPlayer();
 
+		updateGameStatus(GameStatus.STARTED);
+	}
+
+	@Override
+	public void startNewGame(Map<String, PlayerIcon> players) {
+		// verify the number of players
+		if (MonopolyUtils.verifyPlayerNumber(players.size()) == false) {
+			message.append("Wrong number of players!!");
+			updateGameStatus(GameStatus.STOPPED);
+		}
+
+		// create new field and player
+		this.field = new Playfield(fieldSize);
+		this.players = new PlayerController(players);
+
+		// set current player to first player, notify observers and start
+		// playing
+		this.currentPlayer = this.players.getFirstPlayer();
 		updateGameStatus(GameStatus.STARTED);
 	}
 
@@ -117,9 +141,11 @@ public class Controller extends Observable implements IController {
 
 		// perform the action, depending on the field.
 		if (currentField.getType() == FieldType.COMMUNITY_STACK) {
-			message.append(performCommCardAction());
+			ICards currentChanceCard = field.getCommStack().getNextCard();
+			message.append(performCardAction(currentChanceCard));
 		} else if (currentField.getType() == FieldType.CHANCE_STACK) {
-			message.append(performChanceCardAction());
+			ICards currentChanceCard = field.getChanStack().getNextCard();
+			message.append(performCardAction(currentChanceCard));
 		} else {
 			message.append(field.performActionAndAppendInfo(currentField,
 					currentPlayer));
@@ -165,8 +191,12 @@ public class Controller extends Observable implements IController {
 
 		this.currentPlayer = players.getNextPlayer();
 
+		if (this.currentPlayer.isInPrison()) {
+			currentPlayer.incrementPrisonRound();
+		}
+
 		if (currentPlayer.isInPrison()) {
-			message.append("Sie sind im Gefängnis");
+			message.append("Sie sind im Gef&auml;ngnis");
 			updateGameStatus(GameStatus.BEFORE_TURN_IN_PRISON);
 		} else {
 			updateGameStatus(GameStatus.BEFORE_TURN);
@@ -177,7 +207,7 @@ public class Controller extends Observable implements IController {
 	/**
 	 * Tries to redeem the current player with a prison free card.
 	 * 
-	 * @return true if the player had a card and was set free.
+	 * @return true if the player had a card and was set free, false otherwise
 	 */
 	/**
 	 * {@inheritDoc}
@@ -234,7 +264,7 @@ public class Controller extends Observable implements IController {
 	public boolean redeemWithDice() {
 		clearMessage();
 		diceFlag = IMonopolyUtil.TIMES_TO_ROLL_DICE;
-		message.append("Versuchen sie bei 3 Würfen einen Pasch zu würfeln.");
+		message.append("Versuchen sie bei 3 W&uuml;rfen einen Pasch zu w&uuml;rfeln.");
 		updateGameStatus(GameStatus.DICE_ROLL_FOR_PRISON);
 		return true;
 	}
@@ -259,10 +289,10 @@ public class Controller extends Observable implements IController {
 		}
 
 		if (diceFlag < 1) {
-			message.append("Leider 3 mal kein Pasch gewürfelt. Der Nächste ist dran.");
 			// TODO: maybe end turn of player, so he doesn't need to do it himself
+			message.append("Leider 3 mal kein Pasch gew&uuml;rfelt. Der N&auml;chste ist dran.");
 		} else {
-			message.append("Leider kein Pasch gewürfelt. Noch " + diceFlag
+			message.append("Leider kein Pasch gew&uuml;rfelt. Noch " + diceFlag
 					+ " Versuch(e).");
 		}
 		updateGameStatus(GameStatus.DICE_ROLL_FOR_PRISON);
@@ -273,7 +303,10 @@ public class Controller extends Observable implements IController {
 	 */
 	@Override
 	public void exitGame() {
+		// "delete" players and playfield
 		this.players = null;
+		this.field = null;
+
 		updateGameStatus(GameStatus.STOPPED);
 	}
 
@@ -283,48 +316,25 @@ public class Controller extends Observable implements IController {
 	 * 
 	 * @return
 	 */
-	private String performCommCardAction() {
-		ICards currentCommCard = field.getCommStack().getNextCard();
+	private String performCardAction(ICards currentCard) {
 		StringBuilder sb = new StringBuilder();
-
 		sb.append(MessageFormat.format(bundle.getString("play_card"),
-				currentCommCard.getDescription()));
+				currentCard.getDescription()));
 
-		if (isMoveAction(currentCommCard)) {
-			sb.append(field.movePlayerTo(currentPlayer,
-					currentCommCard.getTarget()));
+		if (isMoveAction(currentCard)) {
+			sb.append(field.movePlayerTo(currentPlayer, currentCard.getTarget()));
 		} else {
-			players.transferMoney(currentPlayer, currentCommCard);
+			players.transferMoney(currentPlayer, currentCard);
 		}
 		return sb.toString();
 	}
 
 	/**
-	 * Does the same as performCommCardAction() except, for a Chance Card
-	 * 
-	 * @return
-	 */
-	private String performChanceCardAction() {
-		ICards currentChanceCard = field.getChanStack().getNextCard();
-		StringBuilder sb = new StringBuilder();
-
-		sb.append(MessageFormat.format(bundle.getString("play_card"),
-				currentChanceCard.getDescription()));
-
-		if (isMoveAction(currentChanceCard)) {
-			sb.append(field.movePlayerTo(currentPlayer,
-					currentChanceCard.getTarget()));
-		} else {
-			players.transferMoney(currentPlayer, currentChanceCard);
-		}
-		return sb.toString();
-	}
-
-	/**
-	 * Check if the Card is a "player move Card" or a "money transfer card"
+	 * Check if the Card is a "player move Card" or a "money transfer card". In
+	 * particular: Is the target a string or an integer
 	 * 
 	 * @param card
-	 * @return boolean
+	 * @return false if the target (of the card) is an integer, true otherwise.
 	 */
 	private boolean isMoveAction(ICards card) {
 		int test;
