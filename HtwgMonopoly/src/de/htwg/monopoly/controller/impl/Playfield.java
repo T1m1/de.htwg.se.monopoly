@@ -157,7 +157,8 @@ public class Playfield implements IPlayfield {
 			Bank.addParkingMoney(currentPlayer, field.getPriceToPay());
 			break;
 		case GO_TO_PRISON:
-			sb.append(bundle.getString("play_bsys"));
+			sb.append(bundle.getString("play_bsys")).append(" Wollen sie sich gleich freikaufen?");
+			// TODO: implement solution if the player wants to set himself free immediately
 			movePlayerToPrison(currentPlayer);
 			break;
 		case PRISON_VISIT_ONLY:

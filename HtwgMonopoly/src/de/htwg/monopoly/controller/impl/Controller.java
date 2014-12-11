@@ -62,6 +62,7 @@ public class Controller extends Observable implements IController {
 		this.message = new StringBuilder();
 		this.dice = new Dice();
 		this.userOptions = new UserOptionsController(this);
+		this.gameInformation = new Stats(this, players, field);
 	}
 
 	/**
@@ -285,6 +286,7 @@ public class Controller extends Observable implements IController {
 		}
 
 		if (diceFlag < 1) {
+			// TODO: maybe end turn of player, so he doesn't need to do it himself
 			message.append("Leider 3 mal kein Pasch gew&uuml;rfelt. Der N&auml;chste ist dran.");
 		} else {
 			message.append("Leider kein Pasch gew&uuml;rfelt. Noch " + diceFlag
@@ -352,7 +354,8 @@ public class Controller extends Observable implements IController {
 	private void updateGameStatus(GameStatus phaseToSet) {
 		phase = phaseToSet;
 		userOptions.update();
-		notifyObservers(phaseToSet);
+
+		notifyObservers(phase);
 	}
 
 	@Override
