@@ -61,7 +61,6 @@ public class Playfield implements IPlayfield {
 			playfield[i] = this.commStack;
 			break;
 		case TAX:
-
 			playfield[i] = new FieldObject("Zusatzsteuer",
 					IMonopolyFields.TYP[i], IMonopolyUtil.ZUSATZSTEUER,
 					IMonopolyFields.POSITION[i]);
@@ -71,11 +70,11 @@ public class Playfield implements IPlayfield {
 			playfield[i] = (IFieldObject) this.chanStack;
 			break;
 		case GO_TO_PRISON:
-			playfield[i] = new FieldObject("Gehe in das Bsys Labor",
+			playfield[i] = new FieldObject("Gehe ins Bsys Labor",
 					IMonopolyFields.TYP[i], 0, IMonopolyFields.POSITION[i]);
 			break;
 		case PRISON_VISIT_ONLY:
-			playfield[i] = new FieldObject("Bsys Labor, nur zu Besuch",
+			playfield[i] = new FieldObject("Bsys Labor",
 					IMonopolyFields.TYP[i], 0, IMonopolyFields.POSITION[i]);
 			break;
 		case FREE_PARKING:

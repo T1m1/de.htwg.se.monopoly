@@ -45,11 +45,11 @@ public interface IMonopolyFields {
 	 * 
 	 */
 	String[] NAME = { "Baf&ouml;g-Amt", "Stochastik", "Zusatzsteuer", "SM2",
-			GEMEINSCHAFTSFELD, "Konso", "SysMo", "Bsys Labor, nur zu Besuch",
+			GEMEINSCHAFTSFELD, "Konso", "SysMo", "Bsys Labor",
 			"Digitaltechnik", "Ereignisfeld", "ProgTech", "Mathe 1",
 			"Zusatzsteuer", "TI", "Frei parken", "Sekretariat",
 			GEMEINSCHAFTSFELD, "SysProg", "Mathe 2", "Ereignisfeld",
-			"ProgTech  2", "Gehe in das Bsys Labor", "ReAr",
+			"ProgTech  2", "Gehe ins Bsys Labor", "ReAr",
 			GEMEINSCHAFTSFELD, "ALDA", "DB", "Zusatzsteuer", "SE" };
 	/**
 	 * Farben in richtiger Reihenfolge. Wenn keine Strasse, dann ist Farbe null.
