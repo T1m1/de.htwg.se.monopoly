@@ -16,6 +16,7 @@ import de.htwg.monopoly.entities.ICards;
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Dice;
 import de.htwg.monopoly.entities.impl.Player;
+import de.htwg.monopoly.entities.impl.PrisonQuestion;
 import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.observer.impl.Observable;
 import de.htwg.monopoly.util.FieldType;
@@ -47,6 +48,8 @@ public class Controller extends Observable implements IController {
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
 	private int diceFlag;
+	private String currentPrisonQuestion;
+	private PrisonQuestion questions;
 
 	/**
 	 * public constructor for a new controller create the players, the field and
@@ -93,6 +96,8 @@ public class Controller extends Observable implements IController {
 		// create new field and player
 		this.field = new Playfield(fieldSize);
 		this.players = new PlayerController(players);
+		this.questions = new PrisonQuestion();
+		currentPrisonQuestion = questions.getNextQuestion();
 
 		// set current player to first player, notify observers and get ready to
 		// play
@@ -254,6 +259,24 @@ public class Controller extends Observable implements IController {
 		message.append("Erfolgreich freigekauft!");
 		updateGameStatus(GameStatus.BEFORE_TURN);
 		return true;
+	}
+
+	@Override
+	public boolean checkPlayerAnswer(boolean answer) {
+		
+		if (questions.isTrue(currentPrisonQuestion, answer)) {
+
+			currentPrisonQuestion = questions.getNextQuestion();
+			
+			currentPlayer.setInPrison(false);
+			message.append("Frage korrekt beantwortet.");
+			updateGameStatus(GameStatus.BEFORE_TURN);
+			return true;
+		} else {
+			endTurn();
+			return false;
+		}
+		
 	}
 
 	/**
@@ -468,5 +491,10 @@ public class Controller extends Observable implements IController {
 	@Override
 	public IPlayfield getField() {
 		return this.field;
+	}
+
+	@Override
+	public String getPrisonQuestion() {
+		return currentPrisonQuestion;
 	}
 }

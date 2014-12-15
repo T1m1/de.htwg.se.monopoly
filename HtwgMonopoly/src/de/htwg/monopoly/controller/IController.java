@@ -16,19 +16,18 @@ import de.htwg.monopoly.util.UserAction;
 public interface IController extends IObservable {
 
 	/**
-	 * Start a new game with the given list of player names. Note: The
-	 * number of players must be between
-	 * {@link IMonopolyUtil#MIN_NUMBER_OF_PLAYER} and
+	 * Start a new game with the given list of player names. Note: The number of
+	 * players must be between {@link IMonopolyUtil#MIN_NUMBER_OF_PLAYER} and
 	 * {@link IMonopolyUtil#MAX_NUMBER_OF_PLAYER}.
 	 * 
 	 * @param players
 	 *            a list containing the names of the players.
 	 */
 	void startNewGame(List<String> players);
-	
+
 	/**
-	 * Start a new game with the given map of player names and the corresponding player icon. Note: The
-	 * number of players must be between
+	 * Start a new game with the given map of player names and the corresponding
+	 * player icon. Note: The number of players must be between
 	 * {@link IMonopolyUtil#MIN_NUMBER_OF_PLAYER} and
 	 * {@link IMonopolyUtil#MAX_NUMBER_OF_PLAYER}.
 	 * 
@@ -100,6 +99,17 @@ public interface IController extends IObservable {
 	 * @return a string with information of current turn
 	 */
 	String getMessage();
+
+	/**
+	 * @return a Question for getting out of jail
+	 */
+	String getPrisonQuestion();
+
+	/**
+	 * Checks if the answer to the question is correct and sets the player free if so.
+	 * @param answer
+	 */
+	boolean checkPlayerAnswer(boolean answer);
 
 	/**
 	 * Return the number of Players.

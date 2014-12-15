@@ -62,6 +62,7 @@ public final class UserOptionsController {
 			options.add(UserAction.REDEEM_WITH_CARD);
 			options.add(UserAction.REDEEM_WITH_MONEY);
 			options.add(UserAction.REDEEM_WITH_DICE);
+			options.add(UserAction.REDEEM_WITH_QUESTION);
 			break;
 		case DICE_ROLL_FOR_PRISON:
 			if (controller.isDiceFlagSet()) {
