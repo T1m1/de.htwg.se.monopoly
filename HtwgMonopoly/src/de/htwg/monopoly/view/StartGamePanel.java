@@ -5,8 +5,10 @@ import de.htwg.monopoly.util.IMonopolyUtil;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -88,7 +90,7 @@ public class StartGamePanel extends JPanel implements ActionListener {
 
                 }
             }
-            contr.startNewGame(countPlayer, player);
+            contr.startNewGame(Arrays.asList(player));
         }
 
     }

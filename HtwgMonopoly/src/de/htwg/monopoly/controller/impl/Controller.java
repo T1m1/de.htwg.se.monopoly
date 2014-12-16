@@ -67,23 +67,6 @@ public class Controller extends Observable implements IController {
 		this.userOptions = new UserOptionsController(this);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @deprecated use {@link Controller#startNewGame(List<String>)} instead.
-	 */
-	@Override
-	public void startNewGame(int numberOfPlayer, String[] nameOfPlayers) {
-
-		// initialize player controller
-		this.players = new PlayerController(numberOfPlayer, nameOfPlayers);
-
-		// set current player to first player, notify observers and get ready to
-		// play
-		this.currentPlayer = players.getFirstPlayer();
-
-		updateGameStatus(GameStatus.STARTED);
-	}
 
 	@Override
 	public void startNewGame(List<String> players) {
@@ -117,6 +100,8 @@ public class Controller extends Observable implements IController {
 		// create new field and player
 		this.field = new Playfield(fieldSize);
 		this.players = new PlayerController(players);
+		this.questions = new PrisonQuestion();
+		currentPrisonQuestion = questions.getNextQuestion();
 
 		// set current player to first player, notify observers and start
 		// playing
@@ -273,6 +258,7 @@ public class Controller extends Observable implements IController {
 			updateGameStatus(GameStatus.BEFORE_TURN);
 			return true;
 		} else {
+			currentPrisonQuestion = questions.getNextQuestion();
 			endTurn();
 			return false;
 		}

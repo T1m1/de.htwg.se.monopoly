@@ -163,14 +163,5 @@ public interface IController extends IObservable {
 
 	IPlayfield getField();
 
-	/**
-	 * Start a new game with the given number of player and the names oft the
-	 * players.
-	 * 
-	 * @param numberOfPlayer
-	 * @param nameOfPlayers
-	 * @deprecated use {@link Controller#startNewGame(Map)} instead.
-	 */
-	void startNewGame(int numberOfPlayer, String[] nameOfPlayers);
 
 }
