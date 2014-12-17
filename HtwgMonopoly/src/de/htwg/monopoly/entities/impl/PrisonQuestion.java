@@ -19,7 +19,7 @@ public class PrisonQuestion {
 				.put("Gibt es einer Unterschied zwischen einer Seite und einem Segment?",
 						true);
 		questionMap
-				.put("Ist eine Leistungssteigerung zu erwarten, wenn statt eines einzelnen Pufferspeichers für die E/A zwei Pufferspeicher verwendet werden?",
+				.put("Ist eine Leistungssteigerung zu erwarten, wenn statt eines einzelnen Pufferspeichers f&uuml;r die E/A zwei Pufferspeicher verwendet werden?",
 						true);
 		questionMap
 				.put("Gibt es einen Unterschiedd zwischen einem Trap und einer Unterbrechung (Interrupt)?",
@@ -36,7 +36,7 @@ public class PrisonQuestion {
 				.put("Sollte der Befehl die aktuelle Uhrzeit zu lesen nur im Kernmodus erlaubt sein?",
 						false);
 		questionMap
-				.put("Eine Bibliotheksfunktion hat den Namen read(). Der Systemaufruf des Betriebssystems heißt auch read(). Ist es nötig, dass beide Funktionen denselben Namen haben?",
+				.put("Eine Bibliotheksfunktion hat den Namen read(). Der Systemaufruf des Betriebssystems hei&szligt auch read(). Ist es n&ouml;tig, dass beide Funktionen denselben Namen haben?",
 						false);
 		questionMap.put("ISRs sollten eher lang sein.", false);
 		questionMap
