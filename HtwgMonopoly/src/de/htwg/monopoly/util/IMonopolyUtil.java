@@ -23,15 +23,15 @@ public interface IMonopolyUtil {
 	int FIRST_PLAYER = 0;
 	int MIN_NUMBER_OF_PLAYER = 2;
 	int MAX_NUMBER_OF_PLAYER = 6;
-	int INITIAL_MONEY = 2000;
+	int INITIAL_MONEY = 1500;
 	int MAX_PRISON_ROUND = 4;
-	int LOS_MONEY = 500;
-	int TWICE_LOS_MONEY = 1000;
+	int LOS_MONEY = 200;
+	int TWICE_LOS_MONEY = 400;
 
 	int ZUSATZSTEUER = 100;
 	int TUI_FIELD_SIZE = 28;
 	int TUI_HIGH = 5;
-	int FREIKAUFEN = 200;
+	int FREIKAUFEN = 50;
 	int OPTION_FINISH = 3;
 
 	
