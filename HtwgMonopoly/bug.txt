@@ -18,7 +18,7 @@ FEATURES
 #GAME
 2.1 [ ] Gewinnen bzw. Verlieren implementieren. Sollte einer verlieren wird das Spiel ausgewertet.
 2.2 [x] Wenn Spieler ins Gefï¿½ngnis geschickt wird, nicht nur ins Gefï¿½ngnis schicken sondern auch an die Position wo das Gefï¿½ngnis ist.
-3.3 [ ] Freikaufen implementieren.
+3.3 [x] Freikaufen implementieren.
 3.4 [ ] Preise & Strassennamen aktualisieren 
 3.5 [x] GELD anpassen, damit man Spiel sinnvoll spielen kann
 3.6 [x] bei Text ausgabe "sie mï¿½ssen ihm jetzt [BETRAG] ï¿½ Zahlen, steht der name nicht der betrag.
@@ -33,7 +33,8 @@ FEATURES
 
 http://www.computerbase.de/forum/showthread.php?t=1049163
 4.3 [ ] wenn man per ereigniskarte auf ein freies Feld kommt, dann kann man es nicht kaufen
-1.2 [ ] Wenn man auf "Frei Parken" kommt. Wird man ins Gefï¿½ngnnis gesteckt. (also man steht nur drauf) (fehler von der gui. ich habs ï¿½berprï¿½ft =) )
-4.5.[ ] man bekommt die option straï¿½en kaufen angezeigt, obwohl man kein geld hat
-4.6 [ ] wenn man sich freikauft, hat man auf einmal genau 200 ï¿½ obwohl man die abgezogen bekommen sollte
+1.2 [x] Wenn man auf "Frei Parken" kommt. Wird man ins Gefï¿½ngnnis gesteckt. (also man steht nur drauf) (fehler von der gui. ich habs ï¿½berprï¿½ft =) )
+4.5.[ ] man bekommt die option straï¿½en kaufen angezeigt, obwohl man kein geld hat (it's not a bug, it's a feature)
+4.6 [x] wenn man sich freikauft, hat man auf einmal genau 200 ï¿½ obwohl man die abgezogen bekommen sollte
+4.7 [ ] extra button für "Ereigniskarte ziehen", statt gleich die Karte zu ziehen und auszuführen.
 
