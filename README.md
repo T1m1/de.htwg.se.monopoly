@@ -26,7 +26,7 @@ In case you forget the rules of monopoly, try consulting the [Wikipedia article]
 
 If everything went fine, it should look like this:
 
-![image](http://github.com/T1m1/de.htwg.se.monopoly/raw/master/HtwgMonopoly/doc/MonopolyGui.png)
+<img src="https://cdn.rawgit.com/T1m1/de.htwg.se.monopoly/master/HtwgMonopoly/doc/MonopolyGui.png">
 
 The buttons (or characters for the TUI) have following meanings:
 
