@@ -54,7 +54,12 @@ public enum UserAction {
 	/**
 	 * This option is available if the player is in prison and wants to redeem himself by trying to answer a question correctly.
 	 */
-	REDEEM_WITH_QUESTION("Eine Bsys Frage korrekt beantworten um aus dem Gef&auml;ngnis frei zu kommen.");
+	REDEEM_WITH_QUESTION("Eine Bsys Frage korrekt beantworten um aus dem Gef&auml;ngnis frei zu kommen."),
+	
+	/**
+	 * This option is available, if the current player stands on a field, where he can draw a chance or community card.
+	 */
+	DRAW_CARD("Eine Gemeinschafts-/Ereigniskarte ziehen.");
 	
 	private final String description;
 	

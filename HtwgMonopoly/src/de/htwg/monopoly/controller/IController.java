@@ -163,5 +163,7 @@ public interface IController extends IObservable {
 
 	IPlayfield getField();
 
+	void drawCard();
+
 
 }

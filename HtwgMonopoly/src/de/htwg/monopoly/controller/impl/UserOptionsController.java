@@ -100,6 +100,8 @@ public final class UserOptionsController {
 			break;
 		case CHANCE_STACK:
 		case COMMUNITY_STACK:
+			options.add(UserAction.DRAW_CARD);
+			break;
 		case FREE_PARKING:
 		case GO:
 		case PRISON_VISIT_ONLY:

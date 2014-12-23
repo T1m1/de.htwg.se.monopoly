@@ -130,11 +130,9 @@ public class Controller extends Observable implements IController {
 
 		// perform the action, depending on the field.
 		if (currentField.getType() == FieldType.COMMUNITY_STACK) {
-			ICards currentChanceCard = field.getCommStack().getNextCard();
-			message.append(performCardAction(currentChanceCard));
+			message.append("Du bist auf einem Gemeinschaftsfeld gelandet. Ziehe eine Karte");
 		} else if (currentField.getType() == FieldType.CHANCE_STACK) {
-			ICards currentChanceCard = field.getChanStack().getNextCard();
-			message.append(performCardAction(currentChanceCard));
+			message.append("Du bist auf einem Ereignisfeld gelandet. Ziehe eine Karte");
 		} else {
 			message.append(field.performActionAndAppendInfo(currentField,
 					currentPlayer));
@@ -304,6 +302,19 @@ public class Controller extends Observable implements IController {
 					+ " Versuch(e).");
 		}
 		updateGameStatus(GameStatus.DICE_ROLL_FOR_PRISON);
+	}
+	
+	@Override
+	public void drawCard() {
+		clearMessage();
+		if (currentField.getType() == FieldType.COMMUNITY_STACK) {
+			ICards currentChanceCard = field.getCommStack().getNextCard();
+			message.append(performCardAction(currentChanceCard));
+		} else if (currentField.getType() == FieldType.CHANCE_STACK) {
+			ICards currentChanceCard = field.getChanStack().getNextCard();
+			message.append(performCardAction(currentChanceCard));
+		}
+		
 	}
 
 	/**
