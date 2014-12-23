@@ -50,6 +50,7 @@ public class Controller extends Observable implements IController {
 	private int diceFlag;
 	private String currentPrisonQuestion;
 	private PrisonQuestion questions;
+	private boolean drawCardFlag;
 
 	/**
 	 * public constructor for a new controller create the players, the field and
@@ -131,8 +132,10 @@ public class Controller extends Observable implements IController {
 		// perform the action, depending on the field.
 		if (currentField.getType() == FieldType.COMMUNITY_STACK) {
 			message.append("Du bist auf einem Gemeinschaftsfeld gelandet. Ziehe eine Karte");
+			drawCardFlag = false;
 		} else if (currentField.getType() == FieldType.CHANCE_STACK) {
 			message.append("Du bist auf einem Ereignisfeld gelandet. Ziehe eine Karte");
+			drawCardFlag = false;
 		} else {
 			message.append(field.performActionAndAppendInfo(currentField,
 					currentPlayer));
@@ -307,6 +310,7 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void drawCard() {
 		clearMessage();
+		drawCardFlag = true;
 		if (currentField.getType() == FieldType.COMMUNITY_STACK) {
 			ICards currentChanceCard = field.getCommStack().getNextCard();
 			message.append(performCardAction(currentChanceCard));
@@ -314,6 +318,8 @@ public class Controller extends Observable implements IController {
 			ICards currentChanceCard = field.getChanStack().getNextCard();
 			message.append(performCardAction(currentChanceCard));
 		}
+		
+		updateGameStatus(GameStatus.DURING_TURN);
 		
 	}
 
@@ -493,5 +499,10 @@ public class Controller extends Observable implements IController {
 	@Override
 	public String getPrisonQuestion() {
 		return currentPrisonQuestion;
+	}
+
+
+	public boolean hasDrawnCard() {
+		return drawCardFlag;
 	}
 }
