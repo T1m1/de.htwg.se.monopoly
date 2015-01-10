@@ -4,7 +4,7 @@ import java.awt.*;
 
 public interface IMonopolyFields {
 
-	String GEMEINSCHAFTSFELD = "Gemeinschafts-Feld";
+	String GEMEINSCHAFTSFELD = "Gemeinschaftsfeld";
 
 	/**
 	 * l : los s : strasse g : gemeinschaftsfeld z : zusatzsteuer e :
@@ -44,7 +44,7 @@ public interface IMonopolyFields {
 	 * 
 	 * 
 	 */
-	String[] NAME = { "Baf&ouml;g-Amt", "Stochastik", "Zusatzsteuer", "SM2",
+	String[] NAME = { "Bafög-Amt", "Stochastik", "Zusatzsteuer", "SM2",
 			GEMEINSCHAFTSFELD, "Konso", "SysMo", "Bsys Labor",
 			"Digitaltechnik", "Ereignisfeld", "ProgTech", "Mathe 1",
 			"Zusatzsteuer", "TI", "Frei parken", "Sekretariat",

@@ -15,13 +15,13 @@ public class CardsStackTest {
 	@Before
 	public void setUp() throws Exception {
 		stack = new CommunityCardsStack();
-		stack.pushOnTop(new CommunityCard("Gehe in das Gefängnis",
+		stack.pushOnTop(new CommunityCard("Gehe in das Gef&auml;ngnis",
 				null, false));
 	}
 
 	@Test
 	public void testGetNextCard() {
-		assertEquals("Gehe in das Gefängnis", stack.getNextCard()
+		assertEquals("Gehe in das Gef&auml;ngnis", stack.getNextCard()
 				.getDescription());
 	}
 }

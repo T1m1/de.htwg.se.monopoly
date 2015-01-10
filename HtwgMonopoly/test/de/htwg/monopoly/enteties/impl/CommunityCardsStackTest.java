@@ -17,21 +17,21 @@ public class CommunityCardsStackTest {
 	@Before
 	public void setUp() throws Exception {
 		stack = new CommunityCardsStack();
-		stack.pushOnTop(new ChanceCard("Gehe in das Gef�ngnis", null,
+		stack.pushOnTop(new ChanceCard("Gehe in das Gef&auml;ngnis", null,
 				 false));
 		stack1 = new CommunityCardsStack(1);
 	}
 
 	@Test
 	public void testCommunityCardsStack() {
-		assertEquals("Gehe in das Gef�ngnis", stack.getNextCard()
+		assertEquals("Gehe in das Gef&auml;ngnis", stack.getNextCard()
 				.getDescription());
 		assertEquals(FieldType.COMMUNITY_STACK, stack.getType());
 	}
 
 	@Test
 	public void testToString() {
-		assertEquals("Gemeinschafts-Feld", stack.toString());
+		assertEquals("Gemeinschaftsfeld", stack.toString());
 	}
 	
 	@Test

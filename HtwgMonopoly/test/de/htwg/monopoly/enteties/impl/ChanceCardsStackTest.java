@@ -17,14 +17,14 @@ public class ChanceCardsStackTest {
 	@Before
 	public void setUp() throws Exception {
 		stack = new ChanceCardsStack();
-		stack.pushOnTop(new ChanceCard("Gehe in das Gefängnis", null,
+		stack.pushOnTop(new ChanceCard("Gehe in das Gef&auml;ngnis", null,
 				false));
 		stack1 = new ChanceCardsStack(1);
 	}
 
 	@Test
 	public void testChanceCardsStack() {
-		assertEquals("Gehe in das Gefängnis", stack.getNextCard()
+		assertEquals("Gehe in das Gef&auml;ngnis", stack.getNextCard()
 				.getDescription());
 		assertEquals(FieldType.CHANCE_STACK, stack.getType());
 	}
