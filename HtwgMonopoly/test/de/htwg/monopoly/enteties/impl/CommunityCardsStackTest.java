@@ -31,7 +31,7 @@ public class CommunityCardsStackTest {
 
 	@Test
 	public void testToString() {
-		assertEquals("Gemeinschaftsfeld", stack.toString());
+		assertEquals("Gemeinschafts-Feld", stack.toString());
 	}
 	
 	@Test
