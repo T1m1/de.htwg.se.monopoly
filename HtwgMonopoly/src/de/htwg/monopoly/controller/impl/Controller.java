@@ -77,8 +77,8 @@ public class Controller extends Observable implements IController {
 
 		if (MonopolyUtils.verifyPlayerNumber(players.size()) == false) {
 			message.append("Wrong number of players!!");
-			updateGameStatus(GameStatus.STOPPED);
-			// TODO: return statement?
+			updateGameStatus(GameStatus.NOT_STARTED);
+			return;
 		}
 
 		// create new field and player
@@ -102,8 +102,8 @@ public class Controller extends Observable implements IController {
 		// verify the number of players
 		if (MonopolyUtils.verifyPlayerNumber(players.size()) == false) {
 			message.append("Wrong number of players!!");
-			updateGameStatus(GameStatus.STOPPED);
-			// TODO: return statement?
+			updateGameStatus(GameStatus.NOT_STARTED);
+			return;
 		}
 
 		// create new field and player
