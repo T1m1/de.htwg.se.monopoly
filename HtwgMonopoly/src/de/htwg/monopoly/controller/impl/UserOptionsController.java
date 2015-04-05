@@ -51,6 +51,7 @@ public final class UserOptionsController {
 
 		switch (phase) {
 		case STOPPED:
+		case NOT_STARTED:
 			// add no user option
 			return;
 		case STARTED:
