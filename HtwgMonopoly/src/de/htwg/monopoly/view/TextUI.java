@@ -32,7 +32,7 @@ public class TextUI implements IObserver {
 
 	/* THE controller */
 	private IController controller;
-	
+
 	private boolean debug = true;
 
 	// Bidirectional map for user input and enum actions
@@ -58,12 +58,19 @@ public class TextUI implements IObserver {
 		controller.addObserver(this);
 	}
 
+	/**
+	 * Prints a welcome message and is awaiting the number and names of the
+	 * players from stdin. If successful, the actual game is started. FIXME:
+	 * This needs to happen in a Thread which can be interrupted. (Reason: If
+	 * the game initialization is happening in another Instance, e.g. GUI, the
+	 * game has to start whether the reading was successful or not).
+	 */
 	public void startGame() {
 
 		// print Hello screen
 		printInitialisation();
 
-		// read number and name of players
+		// read number and name of players from stdin
 		String[] playerArray = null;
 		in = new Scanner(System.in);
 		if (!in.next().isEmpty()) {
@@ -86,6 +93,10 @@ public class TextUI implements IObserver {
 	@Override
 	public void update(GameStatus phase) {
 		switch (phase) {
+		case NOT_STARTED:
+			logger.info(controller.getMessage());
+			startGame();
+			break;
 		case STOPPED:
 			logger.info("Game is stopped.");
 			break;
@@ -116,6 +127,8 @@ public class TextUI implements IObserver {
 		case DICE_ROLL_FOR_PRISON:
 			printMessage();
 			printOptions();
+			break;
+		default:
 			break;
 		}
 
@@ -220,7 +233,7 @@ public class TextUI implements IObserver {
 	 * handle user input
 	 *
 	 * @param line
-	 *            a char indicating the option 
+	 *            a char indicating the option
 	 * @return false, if the player has ended the game ('x'), true otherwise.
 	 */
 	public boolean processInputLine(String line) {
@@ -270,10 +283,10 @@ public class TextUI implements IObserver {
 			controller.exitGame();
 			return false;
 		case DRAW_CARD:
-			//TODO: implement functionality
+			// TODO: implement functionality
 			throw new UnsupportedOperationException("not implemented yet");
 		case REDEEM_WITH_QUESTION:
-			//TODO: implement functionality
+			// TODO: implement functionality
 			throw new UnsupportedOperationException("not implemented yet");
 		default:
 			break;
@@ -334,11 +347,11 @@ public class TextUI implements IObserver {
 	public void update(int e) {
 		throw new UnsupportedOperationException("not supported!!");
 	}
-	
+
 	private void debug(String info) {
 		if (debug) {
 			logger.info(info);
 		}
-		
+
 	}
 }
