@@ -3,7 +3,6 @@ package de.htwg.monopoly.controller;
 import java.util.List;
 import java.util.Map;
 
-import de.htwg.monopoly.controller.impl.Controller;
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Dice;
 import de.htwg.monopoly.entities.impl.Player;
