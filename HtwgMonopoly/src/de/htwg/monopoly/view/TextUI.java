@@ -283,29 +283,25 @@ public class TextUI implements IObserver {
 			controller.drawCard();
 			break;
 		case REDEEM_WITH_QUESTION:
+			logger.info(bundle.getString("tui_answer_prison_question"));
 			logger.info(controller.getPrisonQuestion());
-			boolean correct = controller.checkPlayerAnswer(retrieveAnswer());
-			if (correct) {
-				logger.info("Korrekt beantwortet");
-			} else {
-				logger.info("Falsch beantwortet");
-			}
+			controller.checkPlayerAnswer(retrieveAnswer());
 			break;
 		}
 		return true;
 	}
 
+	/**
+	 * Method retrieves an answer written to stdout. Either yes, y, no or n.
+	 * @return
+	 */
 	private boolean retrieveAnswer() {
-		logger.info("(yes/no)");
 		String answer = in.nextLine();
-		if (answer.matches("yes|y")) {
-			return true;
-		} else if (answer.matches("no|n")) {
-			return false;
-		} else {
-			logger.info("Wie Bitte? Ich hab einfach mal Nein verstanden.");
-			return false;
+		while (!answer.matches("y|n|yes|no")) {
+			logger.info(bundle.getString("tui_wrong_input"));
+			answer = in.nextLine();
 		}
+		return answer.matches("y|yes");
 	}
 
 	/**
