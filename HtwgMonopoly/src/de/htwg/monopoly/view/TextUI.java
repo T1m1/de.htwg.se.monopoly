@@ -108,9 +108,9 @@ public class TextUI implements IObserver {
 			break;
 		case BEFORE_TURN:
 		case BEFORE_TURN_IN_PRISON:
+			printMessage();
 			logger.info("Spieler " + controller.getCurrentPlayer()
 					+ ". Sie sind an der Reihe.");
-			printMessage();
 			printOptions();
 			break;
 		case DURING_TURN:
