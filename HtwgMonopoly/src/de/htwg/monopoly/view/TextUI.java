@@ -2,6 +2,7 @@ package de.htwg.monopoly.view;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
+
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.observer.IObserver;
@@ -9,6 +10,7 @@ import de.htwg.monopoly.util.GameStatus;
 import de.htwg.monopoly.util.IMonopolyUtil;
 import de.htwg.monopoly.util.MonopolyUtils;
 import de.htwg.monopoly.util.UserAction;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -267,6 +269,14 @@ public class TextUI implements IObserver {
 			logger.info("Spiel beendet!");
 			controller.exitGame();
 			return false;
+		case DRAW_CARD:
+			//TODO: implement functionality
+			throw new UnsupportedOperationException("not implemented yet");
+		case REDEEM_WITH_QUESTION:
+			//TODO: implement functionality
+			throw new UnsupportedOperationException("not implemented yet");
+		default:
+			break;
 		}
 		return true;
 	}
