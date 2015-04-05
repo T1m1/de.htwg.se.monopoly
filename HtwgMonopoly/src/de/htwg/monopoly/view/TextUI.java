@@ -47,6 +47,7 @@ public class TextUI implements IObserver {
 		ENUM_USER_OPTION.put("r", UserAction.ROLL_DICE);
 		ENUM_USER_OPTION.put("c", UserAction.REDEEM_WITH_CARD);
 		ENUM_USER_OPTION.put("w", UserAction.REDEEM_WITH_DICE);
+		ENUM_USER_OPTION.put("l", UserAction.DRAW_CARD);
 
 		CHAR_USER_OPTION = ENUM_USER_OPTION.inverse();
 	}
@@ -125,8 +126,6 @@ public class TextUI implements IObserver {
 		case DICE_ROLL_FOR_PRISON:
 			printMessage();
 			printOptions();
-			break;
-		default:
 			break;
 		}
 
@@ -250,7 +249,7 @@ public class TextUI implements IObserver {
 			return true;
 		}
 
-		// controller.performAction(choosedOption);
+		// controller.performAction(choosedOption); maybe in the future..
 
 		switch (choosedOption) {
 		case START_TURN:
@@ -274,20 +273,17 @@ public class TextUI implements IObserver {
 		case ROLL_DICE:
 			controller.rollDiceToRedeem();
 			break;
-
-		// for now the game finishes completely
 		case SURRENDER:
+			// for now the game finishes completely
 			logger.info("Spiel beendet!");
 			controller.exitGame();
 			return false;
 		case DRAW_CARD:
-			// TODO: implement functionality
-			throw new UnsupportedOperationException("not implemented yet");
+			controller.drawCard();
+			break;
 		case REDEEM_WITH_QUESTION:
 			// TODO: implement functionality
 			throw new UnsupportedOperationException("not implemented yet");
-		default:
-			break;
 		}
 		return true;
 	}
