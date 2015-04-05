@@ -33,8 +33,6 @@ public class TextUI implements IObserver {
 	/* THE controller */
 	private IController controller;
 
-	private boolean debug = true;
-
 	// Bidirectional map for user input and enum actions
 	private final static BiMap<String, UserAction> ENUM_USER_OPTION = HashBiMap
 			.create();
@@ -346,12 +344,5 @@ public class TextUI implements IObserver {
 	@Override
 	public void update(int e) {
 		throw new UnsupportedOperationException("not supported!!");
-	}
-
-	private void debug(String info) {
-		if (debug) {
-			logger.info(info);
-		}
-
 	}
 }
