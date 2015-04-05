@@ -2,7 +2,11 @@ package de.htwg.monopoly.game;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+
 import de.htwg.monopoly.controller.IController;
+import de.htwg.monopoly.controller.impl.Controller;
+import de.htwg.monopoly.util.IMonopolyUtil;
+import de.htwg.monopoly.view.GraphicUserInterface;
 import de.htwg.monopoly.view.TextUI;
 
 import java.util.Scanner;
@@ -13,7 +17,7 @@ public class Monopoly {
 	private static Monopoly instance = null;
 	private IController controller;
 	private static TextUI tui;
-	//private static GraphicUserInterface gui;
+	private static GraphicUserInterface gui;
 
 	public static Monopoly getInstance() {
 		if (instance == null) {
@@ -30,10 +34,7 @@ public class Monopoly {
 		//this.controller = new Controller(IMonopolyUtil.FIELD_SIZE);
 		
 		tui = new TextUI(controller);
-		//gui = new GraphicUserInterface(controller);
-
-		// wui = new WebUserInterface(controller);
-
+		gui = new GraphicUserInterface(controller);
 	}
 
 	public TextUI getTextUI() {
@@ -48,11 +49,11 @@ public class Monopoly {
 
 		Monopoly.getInstance();
 		
-		// Note: it is important to start gui first, otherwise the tui waits for input. Maybe fix it.
-		//gui.startGame();
-		tui.startGame();
+		// Note: it is important to start gui first, otherwise the tui waits for input. Maybe fix it. (Threads??)
 		
-		// wui.startGame();
+		tui.startGame();
+		gui.startGame();
+		
 
 		boolean run = true;
 		scanner = new Scanner(System.in);
