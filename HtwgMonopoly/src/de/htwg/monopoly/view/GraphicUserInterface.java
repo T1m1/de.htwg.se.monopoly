@@ -45,7 +45,6 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 	}
 
 	public void startGame() {
-
 		initUI();
 		setVisible(true);
 	}
@@ -106,6 +105,14 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 
 	@Override
 	public void update(GameStatus e) {
+		// TODO Needs to implemented correctly!!!
+		if (!(e == GameStatus.STARTED) ){
+			pnlOutput.update();
+			pnlPlayerInfo.update();
+			pnlOption.checkInPrison();
+			pnField.update();
+		}
+	
 	}
 
 	@Override
