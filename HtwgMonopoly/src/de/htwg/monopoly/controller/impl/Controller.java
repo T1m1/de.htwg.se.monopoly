@@ -258,6 +258,8 @@ public class Controller extends Observable implements IController {
 	@Override
 	public boolean checkPlayerAnswer(boolean answer) {
 		
+		clearMessage();
+		
 		if (questions.isTrue(currentPrisonQuestion, answer)) {
 
 			currentPrisonQuestion = questions.getNextQuestion();

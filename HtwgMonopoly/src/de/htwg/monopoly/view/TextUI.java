@@ -48,6 +48,7 @@ public class TextUI implements IObserver {
 		ENUM_USER_OPTION.put("c", UserAction.REDEEM_WITH_CARD);
 		ENUM_USER_OPTION.put("w", UserAction.REDEEM_WITH_DICE);
 		ENUM_USER_OPTION.put("l", UserAction.DRAW_CARD);
+		ENUM_USER_OPTION.put("q", UserAction.REDEEM_WITH_QUESTION);
 
 		CHAR_USER_OPTION = ENUM_USER_OPTION.inverse();
 	}
@@ -107,6 +108,8 @@ public class TextUI implements IObserver {
 			break;
 		case BEFORE_TURN:
 		case BEFORE_TURN_IN_PRISON:
+			logger.info("Spieler " + controller.getCurrentPlayer()
+					+ ". Sie sind an der Reihe.");
 			printMessage();
 			printOptions();
 			break;
@@ -117,8 +120,6 @@ public class TextUI implements IObserver {
 			break;
 		case AFTER_TURN:
 			printTUI();
-			logger.info("Spieler " + controller.getCurrentPlayer()
-					+ ". Sie sind an der Reihe.");
 			break;
 		case DICE_RESULT:
 			printRoll();
@@ -282,10 +283,29 @@ public class TextUI implements IObserver {
 			controller.drawCard();
 			break;
 		case REDEEM_WITH_QUESTION:
-			// TODO: implement functionality
-			throw new UnsupportedOperationException("not implemented yet");
+			logger.info(controller.getPrisonQuestion());
+			boolean correct = controller.checkPlayerAnswer(retrieveAnswer());
+			if (correct) {
+				logger.info("Korrekt beantwortet");
+			} else {
+				logger.info("Falsch beantwortet");
+			}
+			break;
 		}
 		return true;
+	}
+
+	private boolean retrieveAnswer() {
+		logger.info("(yes/no)");
+		String answer = in.nextLine();
+		if (answer.matches("yes|y")) {
+			return true;
+		} else if (answer.matches("no|n")) {
+			return false;
+		} else {
+			logger.info("Wie Bitte? Ich hab einfach mal Nein verstanden.");
+			return false;
+		}
 	}
 
 	/**
@@ -296,7 +316,7 @@ public class TextUI implements IObserver {
 		int tmpNumberOfPlayer = 0;
 
 		if (in.hasNext()) {
-			/* check if input an integer and in right interval */
+			// check if input is an integer
 			if (in.hasNextInt()) {
 				tmpNumberOfPlayer = in.nextInt();
 				in.nextLine();
@@ -306,12 +326,12 @@ public class TextUI implements IObserver {
 			}
 		}
 
-		/* check if input smaller as maximum of player and bigger as minimum */
+		// check if input is smaller than the maximum of player and bigger than the minimum
 		if (MonopolyUtils.verifyPlayerNumber(tmpNumberOfPlayer) == false) {
 			return 0;
 		}
 
-		/* if scanned number correct, save it */
+		// if scanned number is correct, save it
 		return tmpNumberOfPlayer;
 	}
 
