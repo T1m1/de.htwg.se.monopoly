@@ -4,8 +4,6 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import de.htwg.monopoly.controller.IController;
-import de.htwg.monopoly.controller.impl.Controller;
-import de.htwg.monopoly.util.IMonopolyUtil;
 import de.htwg.monopoly.view.GraphicUserInterface;
 import de.htwg.monopoly.view.TextUI;
 
@@ -49,7 +47,7 @@ public class Monopoly {
 
 		Monopoly.getInstance();
 		
-		// Note: it is important to start gui first, otherwise the tui waits for input. Maybe fix it. (Threads??)
+		// Note: it is important to start gui first (not really...), otherwise the tui waits for input. Maybe fix it. (Threads??)
 		
 		tui.startGame();
 		gui.startGame();
