@@ -81,7 +81,7 @@ public class StartGamePanel extends JPanel implements ActionListener {
                 return;
             }
 
-            String[] player = new String[numberOfSelectedCheckboxes+1];
+            String[] player = new String[numberOfSelectedCheckboxes];
             int countPlayer = 0;
             for(int i = 0; i < IMonopolyUtil.MAX_NUMBER_OF_PLAYER; i++) {
                 if(cbPlayers[i].isSelected()) {
