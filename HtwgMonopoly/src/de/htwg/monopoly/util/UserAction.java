@@ -1,6 +1,3 @@
-/**
- * 
- */
 package de.htwg.monopoly.util;
 
 /**

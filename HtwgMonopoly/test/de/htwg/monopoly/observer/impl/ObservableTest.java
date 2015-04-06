@@ -14,7 +14,7 @@ public class ObservableTest {
 	private Observable testObservable;
 
 	class TestObserver implements IObserver {
-		
+
 		@Override
 		public void update(GameStatus e) {
 			ping = true;
@@ -31,34 +31,44 @@ public class ObservableTest {
 	@Test
 	public void testRemoveOberserver() {
 		assertFalse(ping);
-        testObservable.notifyObservers(GameStatus.BEFORE_TURN);
-        assertTrue(ping);
+		testObservable.notifyObservers(GameStatus.BEFORE_TURN);
+		assertTrue(ping);
 	}
 
 	@Test
 	public void testNotifyObservers() {
 		assertFalse(ping);
-        testObservable.removeObserver(testObserver);
-        testObservable.notifyObservers(GameStatus.BEFORE_TURN);
-        assertFalse(ping);
+		testObservable.removeObserver(testObserver);
+		testObservable.notifyObservers(GameStatus.BEFORE_TURN);
+		assertFalse(ping);
 	}
 
 	@Test
 	public void testNotifyObserversEvent() {
 		assertFalse(ping);
-        testObservable.removeAllObservers();
-        testObservable.notifyObservers(GameStatus.BEFORE_TURN);
-        
-        assertFalse(ping);
+		testObservable.removeAllObservers();
+		testObservable.notifyObservers(GameStatus.BEFORE_TURN);
+
+		assertFalse(ping);
 	}
-	
+
 	@Test
 	public void testNotifyObserversIntEvent() {
 		assertFalse(ping);
 		testObserver = new TestObserver();
 		testObservable.addObserver(testObserver);
-        testObservable.notifyObservers(GameStatus.BEFORE_TURN);
-        assertTrue(ping);
+		testObservable.notifyObservers(GameStatus.BEFORE_TURN);
+		assertTrue(ping);
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void testWrongParameter() {
+		assertFalse(ping);
+		testObserver = new TestObserver();
+		testObservable.addObserver(testObserver);
+		
+		// test wrong argument
+		testObservable.notifyObservers(null);
+
+	}
 }

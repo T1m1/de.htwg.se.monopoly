@@ -33,8 +33,7 @@ public class ChanceCardsStackTest {
 	public void testToString() {
 		assertEquals("Ereignisfeld", stack.toString());
 	}
-	
-	
+
 	@Test
 	public void testGetPostition() {
 		assertEquals(1, stack1.getPosition());
