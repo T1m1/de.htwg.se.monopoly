@@ -40,12 +40,11 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 	public GraphicUserInterface(IController controller) {
 		this.controller = controller;
 		this.controller.addObserver(this);
-		initUI();
 
 	}
 
 	public void startGame() {
-
+		initUI();
 		setVisible(true);
 	}
 
