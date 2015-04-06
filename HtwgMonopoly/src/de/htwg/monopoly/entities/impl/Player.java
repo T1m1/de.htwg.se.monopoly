@@ -136,17 +136,6 @@ public class Player {
 	}
 
 	/**
-	 * set new budget for player
-	 * 
-	 * @param budget
-	 * @deprecated use {@link Player#incrementMoney(int)} or {@link Player#decrementMoney(int)} instead.
-	 */
-	@Deprecated
-	public void setBudget(int budget) {
-		this.budget = budget;
-	}
-
-	/**
 	 * get current position of player
 	 * 
 	 * @return
