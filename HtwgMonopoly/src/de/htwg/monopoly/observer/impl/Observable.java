@@ -27,6 +27,7 @@ public class Observable implements IObservable {
 	}
 
 	@Override
+	@Deprecated
 	public void notifyObservers() {
 		notifyObservers(null);
 	}

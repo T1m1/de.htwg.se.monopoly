@@ -28,8 +28,9 @@ public interface IObservable {
 	/**
 	 * calls the method notifyObservers(Event e) with argument null
 	 * 
-	 * 
+	 * @deprecated use {@link IObservable#notifyObservers(GameStatus)}
 	 */
+	@Deprecated
 	void notifyObservers();
 
 

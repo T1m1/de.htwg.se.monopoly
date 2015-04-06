@@ -2,6 +2,7 @@ package de.htwg.monopoly.observer;
 
 import de.htwg.monopoly.util.GameStatus;
 
+//TODO: is this class used??
 public final class Event {
 
 	private GameStatus status;
