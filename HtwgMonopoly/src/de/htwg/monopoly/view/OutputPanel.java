@@ -20,7 +20,7 @@ public class OutputPanel extends JPanel implements ActionListener {
 	private static final int LINES = 3;
 	private static final int COLUMS = 3;
 
-	private IController contr;
+	private final IController contr;
 
 	private JTextArea taOutput;
 

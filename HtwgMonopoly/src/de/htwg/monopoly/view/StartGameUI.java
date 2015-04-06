@@ -16,8 +16,8 @@ public class StartGameUI extends JFrame implements IObserver {
 	 */
 	private static final long serialVersionUID = -4630996003551288978L;
 
-	private IController controller;
-    private GraphicUserInterface gui;
+	private final IController controller;
+    private final GraphicUserInterface gui;
 
 	public StartGameUI(IController controller) {
 		this.controller = controller;

@@ -89,7 +89,7 @@ class FieldDrawPanel extends JPanel {
 			{ COMM_NORTH, COMM_EAST, COMM_SOUTH, COMM_WEST },
 			{ CHANCE_NORTH, CHANCE_EAST, CHANCE_SOUTH, CHANCE_WEST } };
 
-	private IController contr;
+	private final IController contr;
 	private Graphics2D g2d;
 
 	private Image htwgLogo;

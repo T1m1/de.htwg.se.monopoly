@@ -22,9 +22,10 @@ public class MenuBar extends JMenuBar implements ActionListener {
 	 */
 	private static final long serialVersionUID = 1262745107060789415L;
 
-	private JMenuItem miSource, miRegeln;
-	private JMenuItem miNewGame;
-	private JMenuItem miExitGame;
+	private final JMenuItem miSource;
+    private final JMenuItem miRegeln;
+	private final JMenuItem miNewGame;
+	private final JMenuItem miExitGame;
 
 	private static final String RULES = "http://de.wikipedia.org/wiki/Monopoly";
 	private static final String SOURCE = "https://github.com/T1m1/de.htwg.se.monopoly";

@@ -24,9 +24,9 @@ public class PlayerInfoPanel extends JPanel implements ActionListener {
 	private static final int LABEL_DIMENSION_Y = 10;
 	private static final int LABEL_DIMENSION_X = 20;
 
-	private IController contr;
+	private final IController contr;
 
-	private JPanel pnLabels;
+	private final JPanel pnLabels;
 
 	private List<JLabel> lbsPlayersMoney;
 	private List<JLabel> lbsPlayersOwnership;

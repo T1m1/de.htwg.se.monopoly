@@ -5,9 +5,9 @@ import de.htwg.monopoly.util.FieldType;
 
 public class FieldObject implements IFieldObject {
 
-	private int priceToPay;
-	private FieldType type;
-	private String name;
+	private final int priceToPay;
+	private final FieldType type;
+	private final String name;
 	private final int guiPosition;
 
 	/**

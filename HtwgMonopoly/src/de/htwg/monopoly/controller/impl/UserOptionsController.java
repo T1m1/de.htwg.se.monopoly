@@ -17,8 +17,8 @@ import de.htwg.monopoly.util.UserAction;
 public final class UserOptionsController {
 
 	private GameStatus phase;
-	private List<UserAction> options;
-	private Controller controller;
+	private final List<UserAction> options;
+	private final Controller controller;
 
 	/**
 	 * @param controller

@@ -9,7 +9,7 @@ import de.htwg.monopoly.util.GameStatus;
 
 public class Observable implements IObservable {
 	
-	private List<IObserver> obsList = new LinkedList<IObserver>();
+	private final List<IObserver> obsList = new LinkedList<IObserver>();
 
 	@Override
 	public void addObserver(IObserver s) {

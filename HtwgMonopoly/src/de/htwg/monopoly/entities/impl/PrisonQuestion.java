@@ -7,9 +7,9 @@ import java.util.TreeMap;
 
 public class PrisonQuestion {
 
-	private static Map<String, Boolean> questionMap = new TreeMap<String, Boolean>();
+	private static final Map<String, Boolean> questionMap = new TreeMap<String, Boolean>();
 
-	private static LinkedList<String> questions;
+	private static final LinkedList<String> questions;
 
 	static {
 		questionMap.put(

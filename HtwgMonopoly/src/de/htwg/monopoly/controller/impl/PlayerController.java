@@ -21,7 +21,7 @@ public class PlayerController implements IPlayerController {
     private List<Player> players;
 
     // the number of players
-    private int numberOfPlayer;
+    private final int numberOfPlayer;
 
     // the player of the current turn
     private int currentPlayer;

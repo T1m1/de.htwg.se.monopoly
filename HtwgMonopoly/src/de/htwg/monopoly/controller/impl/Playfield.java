@@ -13,14 +13,14 @@ import java.util.ResourceBundle;
 
 public class Playfield implements IPlayfield {
 
-	private IFieldObject[] playfield;
+	private final IFieldObject[] playfield;
 	private CommunityCardsStack commStack;
 	private ChanceCardsStack chanStack;
-	private int fieldSize;
+	private final int fieldSize;
 	private boolean wentOverGo = false;
 
 	/* internationalization */
-	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
+	private final ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
 
 	/**

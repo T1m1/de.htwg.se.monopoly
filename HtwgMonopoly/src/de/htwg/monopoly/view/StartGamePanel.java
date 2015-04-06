@@ -15,15 +15,15 @@ import java.util.ResourceBundle;
 class StartGamePanel extends JPanel implements ActionListener {
 
 
-    private IController contr;
+    private final IController contr;
 
-    private JButton startGameButton;
-    private JCheckBox[] cbPlayers;
-    private JTextField[] tfPlayers;
+    private final JButton startGameButton;
+    private final JCheckBox[] cbPlayers;
+    private final JTextField[] tfPlayers;
     private JPanel[] pnlPlayers;
 
     /* internationalization */
-    private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
+    private final ResourceBundle bundle = ResourceBundle.getBundle("Messages",
             Locale.GERMAN);
 
     public StartGamePanel(IController controller) {

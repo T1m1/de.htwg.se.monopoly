@@ -27,11 +27,11 @@ public class TextUI implements IObserver {
 	private Scanner in;
 
 	/* internationalization */
-	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
+	private final ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
 
 	/* THE controller */
-	private IController controller;
+	private final IController controller;
 
 	// Bidirectional map for user input and enum actions
 	private final static BiMap<String, UserAction> ENUM_USER_OPTION = HashBiMap

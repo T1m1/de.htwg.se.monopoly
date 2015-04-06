@@ -30,7 +30,7 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 	 */
 	private static final long serialVersionUID = -4630996003551288978L;
 
-	private IController controller;
+	private final IController controller;
 
 	private PlayerInfoPanel pnlPlayerInfo;
 	private OutputPanel pnlOutput;
