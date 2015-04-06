@@ -2,7 +2,6 @@
 package de.htwg.monopoly.entities.impl;
 
 import de.htwg.monopoly.entities.impl.Player;
-import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.util.IMonopolyUtil;
 import org.junit.Before;
 import org.junit.Test;

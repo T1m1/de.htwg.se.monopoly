@@ -12,7 +12,6 @@ import javax.swing.JTextArea;
 import javax.swing.border.Border;
 
 import de.htwg.monopoly.controller.IController;
-import de.htwg.monopoly.observer.Event;
 
 public class OutputPanel extends JPanel implements ActionListener {
 
