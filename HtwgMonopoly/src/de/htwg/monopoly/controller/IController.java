@@ -79,7 +79,7 @@ public interface IController extends IObservable {
 	/**
 	 * Checks if the given option is valid.
 	 * 
-	 * @param action
+	 * @param userOption user option of type UserAction
 	 * @return true if the valid options contains the given options, false
 	 *         otherwise.
 	 */
@@ -90,7 +90,6 @@ public interface IController extends IObservable {
 	 * 
 	 * @return
 	 */
-	// moved
 	Player getCurrentPlayer();
 
 	/**
