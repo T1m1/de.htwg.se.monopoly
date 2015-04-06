@@ -135,14 +135,14 @@ public class Player {
 		return budget;
 	}
 
-	/**
-	 * set new budget for player
-	 * 
-	 * @param budget
-	 */
-	public void setBudget(int budget) {
-		this.budget = budget;
-	}
+//	/**
+//	 * set new budget for player
+//	 * 
+//	 * @param budget
+//	 */
+//	public void setBudget(int budget) {
+//		this.budget = budget;
+//	}
 
 	/**
 	 * get current position of player

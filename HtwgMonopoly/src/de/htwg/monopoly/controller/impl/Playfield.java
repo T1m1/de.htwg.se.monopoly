@@ -157,7 +157,8 @@ public class Playfield implements IPlayfield {
 			break;
 		case GO_TO_PRISON:
 			sb.append(bundle.getString("play_bsys"));
-			// TODO: implement solution if the player wants to set himself free immediately
+			// TODO: implement solution if the player wants to set himself free
+			// immediately
 			movePlayerToPrison(currentPlayer);
 			break;
 		case PRISON_VISIT_ONLY:
@@ -271,10 +272,16 @@ public class Playfield implements IPlayfield {
 		playfield[i] = field;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean buyStreet(Player currentPlayer, Street currentStreet) {
 		if (currentStreet.getPriceForStreet() < currentPlayer.getBudget()) {
-			currentPlayer.setBudget(currentPlayer.getBudget()
-					- currentStreet.getPriceForStreet());
+			
+			// TODO: catch Assertion
+			currentPlayer.decrementMoney(currentStreet.getPriceForStreet());
+			
 			currentStreet.setOwner(currentPlayer);
 			currentPlayer.addOwnership(currentStreet);
 			currentStreet.setSold(true);
