@@ -36,7 +36,7 @@ public class PlayerInfoPanel extends JPanel implements ActionListener {
 
 		pnLabels = new JPanel();
 
-		//createPlayerPanels();
+		createPlayerPanels();
 
 		Border border = BorderFactory.createTitledBorder("Player Information");
 		JPanel pSuchenLoeschen = new JPanel();
