@@ -67,7 +67,7 @@ public class Playfield implements IPlayfield {
 			break;
 		case CHANCE_STACK:
 			this.chanStack.setPosition(IMonopolyFields.POSITION[i]);
-			playfield[i] = (IFieldObject) this.chanStack;
+			playfield[i] = this.chanStack;
 			break;
 		case GO_TO_PRISON:
 			playfield[i] = new FieldObject("Gehe ins Bsys Labor",

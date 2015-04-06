@@ -212,7 +212,7 @@ class FieldDrawPanel extends JPanel {
 	}
 
 	private void drawPrision() {
-		g2d.drawImage(bsys, 0 + 1, (NUMBER_OF_ROWS - 1) * DIFFERENC + 1,
+		g2d.drawImage(bsys, 1, (NUMBER_OF_ROWS - 1) * DIFFERENC + 1,
 				DIFFERENC - 1, DIFFERENC - 1, null);
 
 	}
