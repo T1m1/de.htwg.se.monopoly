@@ -12,7 +12,7 @@ package de.htwg.monopoly.util;
 public enum GameStatus {
 
 	/**
-	 * The game is started. This event happens only once per game, right after
+	 * The game is started. This event happens only one time per game, right after
 	 * the game has started
 	 */
 	STARTED,
@@ -40,7 +40,7 @@ public enum GameStatus {
 	AFTER_TURN,
 
 	/**
-	 * The game has ended or is not started yet.
+	 * The game has ended.
 	 */
 	STOPPED,
 
@@ -52,6 +52,11 @@ public enum GameStatus {
 	/**
 	 * When the player tries to redeem himself with a dice roll.
 	 */
-	DICE_ROLL_FOR_PRISON;
+	DICE_ROLL_FOR_PRISON,
+	
+	/**
+	 * The game hasn't started yet and is about to begin.
+	 */
+	NOT_STARTED;
 
 }

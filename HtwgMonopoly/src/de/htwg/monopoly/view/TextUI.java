@@ -2,6 +2,7 @@ package de.htwg.monopoly.view;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
+
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.observer.IObserver;
@@ -9,6 +10,7 @@ import de.htwg.monopoly.util.GameStatus;
 import de.htwg.monopoly.util.IMonopolyUtil;
 import de.htwg.monopoly.util.MonopolyUtils;
 import de.htwg.monopoly.util.UserAction;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -30,8 +32,6 @@ public class TextUI implements IObserver {
 
 	/* THE controller */
 	private IController controller;
-	
-	private boolean debug = true;
 
 	// Bidirectional map for user input and enum actions
 	private final static BiMap<String, UserAction> ENUM_USER_OPTION = HashBiMap
@@ -47,6 +47,8 @@ public class TextUI implements IObserver {
 		ENUM_USER_OPTION.put("r", UserAction.ROLL_DICE);
 		ENUM_USER_OPTION.put("c", UserAction.REDEEM_WITH_CARD);
 		ENUM_USER_OPTION.put("w", UserAction.REDEEM_WITH_DICE);
+		ENUM_USER_OPTION.put("l", UserAction.DRAW_CARD);
+		ENUM_USER_OPTION.put("q", UserAction.REDEEM_WITH_QUESTION);
 
 		CHAR_USER_OPTION = ENUM_USER_OPTION.inverse();
 	}
@@ -56,12 +58,19 @@ public class TextUI implements IObserver {
 		controller.addObserver(this);
 	}
 
+	/**
+	 * Prints a welcome message and is awaiting the number and names of the
+	 * players from stdin. If successful, the actual game is started. FIXME:
+	 * This needs to happen in a Thread which can be interrupted. (Reason: If
+	 * the game initialization is happening in another Instance, e.g. GUI, the
+	 * game has to start whether the reading was successful or not).
+	 */
 	public void startGame() {
 
 		// print Hello screen
 		printInitialisation();
 
-		// read number and name of players
+		// read number and name of players from stdin
 		String[] playerArray = null;
 		in = new Scanner(System.in);
 		if (!in.next().isEmpty()) {
@@ -84,6 +93,10 @@ public class TextUI implements IObserver {
 	@Override
 	public void update(GameStatus phase) {
 		switch (phase) {
+		case NOT_STARTED:
+			logger.info(controller.getMessage());
+			startGame();
+			break;
 		case STOPPED:
 			logger.info("Game is stopped.");
 			break;
@@ -96,6 +109,8 @@ public class TextUI implements IObserver {
 		case BEFORE_TURN:
 		case BEFORE_TURN_IN_PRISON:
 			printMessage();
+			logger.info("Spieler " + controller.getCurrentPlayer()
+					+ ". Sie sind an der Reihe.");
 			printOptions();
 			break;
 		case DURING_TURN:
@@ -105,8 +120,6 @@ public class TextUI implements IObserver {
 			break;
 		case AFTER_TURN:
 			printTUI();
-			logger.info("Spieler " + controller.getCurrentPlayer()
-					+ ". Sie sind an der Reihe.");
 			break;
 		case DICE_RESULT:
 			printRoll();
@@ -218,7 +231,7 @@ public class TextUI implements IObserver {
 	 * handle user input
 	 *
 	 * @param line
-	 *            a char indicating the option 
+	 *            a char indicating the option
 	 * @return false, if the player has ended the game ('x'), true otherwise.
 	 */
 	public boolean processInputLine(String line) {
@@ -237,7 +250,7 @@ public class TextUI implements IObserver {
 			return true;
 		}
 
-		// controller.performAction(choosedOption);
+		// controller.performAction(choosedOption); maybe in the future..
 
 		switch (choosedOption) {
 		case START_TURN:
@@ -261,14 +274,34 @@ public class TextUI implements IObserver {
 		case ROLL_DICE:
 			controller.rollDiceToRedeem();
 			break;
-
-		// for now the game finishes completely
 		case SURRENDER:
+			// for now the game finishes completely
 			logger.info("Spiel beendet!");
 			controller.exitGame();
 			return false;
+		case DRAW_CARD:
+			controller.drawCard();
+			break;
+		case REDEEM_WITH_QUESTION:
+			logger.info(bundle.getString("tui_answer_prison_question"));
+			logger.info(controller.getPrisonQuestion());
+			controller.checkPlayerAnswer(retrieveAnswer());
+			break;
 		}
 		return true;
+	}
+
+	/**
+	 * Method retrieves an answer written to stdout. Either yes, y, no or n.
+	 * @return
+	 */
+	private boolean retrieveAnswer() {
+		String answer = in.nextLine();
+		while (!answer.matches("y|n|yes|no")) {
+			logger.info(bundle.getString("tui_wrong_input"));
+			answer = in.nextLine();
+		}
+		return answer.matches("y|yes");
 	}
 
 	/**
@@ -279,7 +312,7 @@ public class TextUI implements IObserver {
 		int tmpNumberOfPlayer = 0;
 
 		if (in.hasNext()) {
-			/* check if input an integer and in right interval */
+			// check if input is an integer
 			if (in.hasNextInt()) {
 				tmpNumberOfPlayer = in.nextInt();
 				in.nextLine();
@@ -289,12 +322,12 @@ public class TextUI implements IObserver {
 			}
 		}
 
-		/* check if input smaller as maximum of player and bigger as minimum */
+		// check if input is smaller than the maximum of player and bigger than the minimum
 		if (MonopolyUtils.verifyPlayerNumber(tmpNumberOfPlayer) == false) {
 			return 0;
 		}
 
-		/* if scanned number correct, save it */
+		// if scanned number is correct, save it
 		return tmpNumberOfPlayer;
 	}
 
@@ -323,12 +356,5 @@ public class TextUI implements IObserver {
 	@Override
 	public void update(int e) {
 		throw new UnsupportedOperationException("not supported!!");
-	}
-	
-	private void debug(String info) {
-		if (debug) {
-			logger.info(info);
-		}
-		
 	}
 }

@@ -60,21 +60,25 @@ public class Controller extends Observable implements IController {
 	 */
 	@Inject
 	public Controller(@Named("FieldSize") int fieldSize) {
-		phase = GameStatus.STOPPED;
+		phase = GameStatus.NOT_STARTED;
 		this.fieldSize = fieldSize;
 
 		this.message = new StringBuilder();
 		this.dice = new Dice();
 		this.userOptions = new UserOptionsController(this);
+		
 	}
 
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void startNewGame(List<String> players) {
 
 		if (!MonopolyUtils.verifyPlayerNumber(players.size())) {
 			message.append("Wrong number of players!!");
-			updateGameStatus(GameStatus.STOPPED);
+			updateGameStatus(GameStatus.NOT_STARTED);
+			return;
 		}
 
 		// create new field and player
@@ -92,12 +96,16 @@ public class Controller extends Observable implements IController {
 		updateGameStatus(GameStatus.STARTED);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void startNewGame(Map<String, PlayerIcon> players) {
 		// verify the number of players
 		if (!MonopolyUtils.verifyPlayerNumber(players.size())) {
 			message.append("Wrong number of players!!");
-			updateGameStatus(GameStatus.STOPPED);
+			updateGameStatus(GameStatus.NOT_STARTED);
+			return;
 		}
 
 		// create new field and player
@@ -251,6 +259,8 @@ public class Controller extends Observable implements IController {
 
 	@Override
 	public boolean checkPlayerAnswer(boolean answer) {
+		
+		clearMessage();
 		
 		if (questions.isTrue(currentPrisonQuestion, answer)) {
 
