@@ -25,13 +25,6 @@ public interface IObservable {
 	 */
 	void removeAllObservers();
 
-	/**
-	 * calls the method notifyObservers(Event e) with argument null
-	 * 
-	 * 
-	 */
-	void notifyObservers();
-
 
 	/**
 	 * Notify all Observers with the current game status.
