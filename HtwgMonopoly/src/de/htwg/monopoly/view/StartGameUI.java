@@ -9,15 +9,7 @@ import java.awt.*;
 
 public class StartGameUI extends JFrame implements IObserver {
 
-	/* constants to avoid MAGIC NUMBERS */
-	private static final int SURFACE_DIMENSION_X = 600;
-	private static final int SURFACE_DIMENSION_Y = 600;
-	private static final int SURFACE_MIN_DIMENSION_X = 600;
-	private static final int SURFACE_MIN_DIMENSION_Y = 600;
-
-	private static final int DISPLAY_FIELD_SIZE = 100;
-	private static final int BUFFER = 150;
-
+	private static final int GUI_SIZE = 500;
 	private static final int BORDER_SIZE = 5;
 
 	/**
@@ -26,7 +18,6 @@ public class StartGameUI extends JFrame implements IObserver {
 	private static final long serialVersionUID = -4630996003551288978L;
 
 	private IController controller;
-
 	private StartGamePanel startGamePanel;
 
 	public StartGameUI(IController controller) {
@@ -37,27 +28,17 @@ public class StartGameUI extends JFrame implements IObserver {
 
 	public void startGame() {
 		setVisible(true);
-		pack();
 	}
 
 	private void initUI() {
-
 		/** frame options **/
 		setTitle("HTWG Monopoly");
-		/* set minimum size */
-		Dimension dimension = new Dimension(SURFACE_DIMENSION_X,
-				SURFACE_DIMENSION_Y);
-		setMaximumSize(dimension);
-		setMinimumSize(dimension);
-		setPreferredSize(dimension);
-
 		this.setJMenuBar(new MenuBar(controller));
 
 		/* main panel, containing all other panels */
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBorder(BorderFactory.createEmptyBorder(BORDER_SIZE,
 				BORDER_SIZE, BORDER_SIZE, BORDER_SIZE));
-
 
 		/* create panels */
 		startGamePanel = new StartGamePanel(controller);
@@ -68,17 +49,18 @@ public class StartGameUI extends JFrame implements IObserver {
 		/* add main panel to frame */
 		this.setContentPane(mainPanel);
 
-		/* scalable display size */
-		int baseSize = 27;
-		setSize(baseSize * DISPLAY_FIELD_SIZE + BUFFER, baseSize
-				* DISPLAY_FIELD_SIZE);
+		setSize(GUI_SIZE,GUI_SIZE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-
 	}
 
 	@Override
-	public void update(GameStatus e) {
+	public void update(GameStatus status) {
+		if(status == GameStatus.STARTED) {
+			GraphicUserInterface gui = new GraphicUserInterface(this.controller);
+			gui.startGame();
+			setVisible(false); //you can't see me!
+		}
 	}
 
 	@Override
