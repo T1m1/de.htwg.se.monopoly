@@ -11,8 +11,8 @@ import de.htwg.monopoly.util.FieldType;
 
 public class CommunityCardsStackTest {
 
-	CommunityCardsStack stack;
-	CommunityCardsStack stack1;
+	private CommunityCardsStack stack;
+	private CommunityCardsStack stack1;
 
 	@Before
 	public void setUp() throws Exception {

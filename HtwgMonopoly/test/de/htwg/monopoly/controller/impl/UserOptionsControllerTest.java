@@ -24,7 +24,7 @@ import de.htwg.monopoly.util.UserAction;
  */
 public class UserOptionsControllerTest {
 
-	IController testController;
+	private IController testController;
 
 	/**
 	 * @throws java.lang.Exception

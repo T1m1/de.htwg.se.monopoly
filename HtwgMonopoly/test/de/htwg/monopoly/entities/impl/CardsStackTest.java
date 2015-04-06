@@ -10,7 +10,7 @@ import de.htwg.monopoly.entities.impl.CommunityCardsStack;
 
 public class CardsStackTest {
 
-	CommunityCardsStack stack;
+	private CommunityCardsStack stack;
 
 	@Before
 	public void setUp() throws Exception {

@@ -16,7 +16,7 @@ import de.htwg.monopoly.entities.impl.CommunityCard;
 import de.htwg.monopoly.entities.impl.Player;
 
 public class PlayerControllerTest {
-	IPlayerController players;
+	private IPlayerController players;
 
 	@Before
 	public void setUp() throws Exception {

@@ -13,7 +13,7 @@ import de.htwg.monopoly.util.FieldType;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
 public class StreetTest {
-	Street street1;
+	private Street street1;
 
 	@Before
 	public void setUp() throws Exception {

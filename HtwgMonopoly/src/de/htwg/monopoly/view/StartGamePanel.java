@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class StartGamePanel extends JPanel implements ActionListener {
+class StartGamePanel extends JPanel implements ActionListener {
 
 
     private IController contr;

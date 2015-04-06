@@ -14,10 +14,10 @@ import de.htwg.monopoly.util.FieldType;
 
 public class BankTest {
 	
-	Player testPlayer;
-	Player testOwner;
-	Street testField;
-	IFieldObject testNotStreet;
+	private Player testPlayer;
+	private Player testOwner;
+	private Street testField;
+	private IFieldObject testNotStreet;
 
 	@Before
 	public void setUp() throws Exception {

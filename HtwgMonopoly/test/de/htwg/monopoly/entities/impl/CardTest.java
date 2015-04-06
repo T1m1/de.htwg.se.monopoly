@@ -9,7 +9,7 @@ import de.htwg.monopoly.entities.impl.CommunityCard;
 
 public class CardTest {
 
-	CommunityCard card;
+	private CommunityCard card;
 
 	@Before
 	public void setUp() throws Exception {

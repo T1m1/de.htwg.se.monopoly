@@ -15,8 +15,8 @@ import de.htwg.monopoly.util.IMonopolyUtil;
 
 public class PlayfieldTest {
 
-	Playfield field;
-	Player testplayer;
+	private Playfield field;
+	private Player testplayer;
 	IFieldObject testObject;
 
 	@Before

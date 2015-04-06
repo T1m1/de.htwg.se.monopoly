@@ -16,7 +16,7 @@ public class PositionTest {
 	private static final int SOUTH = 180;
 	private static final int WEST = 270;
 
-	Position pos;
+	private Position pos;
 
 	@Before
 	public void setUp() throws Exception {

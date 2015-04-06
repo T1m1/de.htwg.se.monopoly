@@ -9,7 +9,7 @@ import de.htwg.monopoly.entities.impl.ChanceCard;
 
 public class ChanceCardTest {
 
-	ChanceCard card;
+	private ChanceCard card;
 
 	@Before
 	public void setUp() throws Exception {

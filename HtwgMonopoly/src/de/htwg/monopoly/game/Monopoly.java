@@ -16,7 +16,7 @@ public class Monopoly {
 	private static StartGameUI start;
 
 
-	public static Monopoly getInstance() {
+	private static Monopoly getInstance() {
 		if (instance == null) {
 			instance = new Monopoly();
 		}

@@ -9,7 +9,7 @@ import static org.junit.Assert.assertTrue;
 
 public class DiceTest {
 
-	Dice dice;
+	private Dice dice;
 
 	@Before
 	public void setUp() throws Exception {
