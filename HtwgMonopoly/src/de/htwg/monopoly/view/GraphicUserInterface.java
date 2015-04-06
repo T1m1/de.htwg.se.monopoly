@@ -104,12 +104,10 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 
 	@Override
 	public void update(GameStatus e) {
-        if(e.equals(GameStatus.STARTED)) {
             pnlOutput.update();
             pnlPlayerInfo.update();
             pnlOption.checkInPrison();
             pnField.update();
-        }
 	}
 
 	@Override
