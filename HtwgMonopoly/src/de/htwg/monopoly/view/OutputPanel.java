@@ -32,24 +32,26 @@ public class OutputPanel extends JPanel implements ActionListener {
 	 */
 	public OutputPanel(IController controller) {
 		contr = controller;
-
-		JPanel pAusgabe = new JPanel();
-		taAusgabe = new JTextArea(LINES, COLUMS);
-		taAusgabe.setEditable(false);
-		Border border2 = BorderFactory.createEtchedBorder();
-		taAusgabe.setBorder(border2);
-
-		border2 = BorderFactory.createTitledBorder("Log");
-		pAusgabe.setBorder(border2);
-		pAusgabe.setLayout(new BorderLayout());
-		pAusgabe.add(BorderLayout.CENTER, new JScrollPane(taAusgabe));
-
-		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		this.add(pAusgabe);
-
+        initUI();
 	}
 
-	public void actionPerformed(Event e) {
+    private void initUI() {
+        JPanel pAusgabe = new JPanel();
+        taAusgabe = new JTextArea(LINES, COLUMS);
+        taAusgabe.setEditable(false);
+        Border border2 = BorderFactory.createEtchedBorder();
+        taAusgabe.setBorder(border2);
+
+        border2 = BorderFactory.createTitledBorder("Log");
+        pAusgabe.setBorder(border2);
+        pAusgabe.setLayout(new BorderLayout());
+        pAusgabe.add(BorderLayout.CENTER, new JScrollPane(taAusgabe));
+
+        this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        this.add(pAusgabe);
+    }
+
+    public void actionPerformed(Event e) {
 	}
 
 	@Override
@@ -59,7 +61,7 @@ public class OutputPanel extends JPanel implements ActionListener {
 
 	public void update() {
 		taAusgabe.setText(contr.getCurrentPlayer().getName() + " (" + contr.getCurrentPlayer().getFigure() + ") : "
-				+ contr.getMessage());
+                + contr.getMessage());
 
 	}
 	
