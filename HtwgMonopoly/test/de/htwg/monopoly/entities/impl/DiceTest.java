@@ -44,5 +44,17 @@ public class DiceTest {
 		}
 
 	}
+	
+	@Test
+	public void paschTest() {
+		for (int i = 0; i < 100; i++) {
+			dice.throwDice();
+			if (dice.getDice1() == dice.getDice2()) {
+				assertTrue(dice.isPasch());
+			} else {
+				assertFalse(dice.isPasch());
+			}
+		}
+	}
 
 }
