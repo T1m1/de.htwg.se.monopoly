@@ -35,14 +35,12 @@ public class OptionPanel extends JPanel implements ActionListener {
 	private JButton buttonFreikarte;
 	private JButton buttonFreiWuerfeln;
 
-	/* internationalization */
-	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
-			Locale.GERMAN);
-
-	public OptionPanel(IController controller, JTextArea ausgabe) {
+    public OptionPanel(IController controller, JTextArea ausgabe) {
 		contr = controller;
 		this.taAusgabe = ausgabe;
-		buttonWuerfeln = new JButton(bundle.getString("gui_dice"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Messages",
+                Locale.GERMAN);
+        buttonWuerfeln = new JButton(bundle.getString("gui_dice"));
 		this.add(buttonWuerfeln);
 		buttonWuerfeln.addActionListener(this);
 
@@ -128,7 +126,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 		} else if (e.getSource().equals(buttonFreikaufen)) {
 		
 			contr.getCurrentPlayer().decrementMoney(IMonopolyUtil.FREIKAUFEN);
-			// @Timi: Check mal ob das passt. Hab die Zeile hier drüber ersetzt mit der "Zeile" drunter
+			// @Timi: Check mal ob das passt. Hab die Zeile hier drï¿½ber ersetzt mit der "Zeile" drunter
 //			contr.getCurrentPlayer().setBudget(
 //					contr.getCurrentPlayer().getBudget()
 //							- IMonopolyUtil.FREIKAUFEN);
