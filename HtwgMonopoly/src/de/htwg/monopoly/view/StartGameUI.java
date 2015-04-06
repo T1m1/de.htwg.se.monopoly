@@ -60,7 +60,9 @@ public class StartGameUI extends JFrame implements IObserver {
 		if(status == GameStatus.STARTED) {
 			gui.startGame();
 			setVisible(false); //you can't see me!
-			// un-register from observerlist
+			
+			// un-register from observer list, because it is no longer needed.
+			this.controller.removeObserver(this);
 		}
 	}
 
