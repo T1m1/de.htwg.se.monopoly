@@ -10,8 +10,7 @@ import java.util.Scanner;
 
 public class Monopoly {
 
-	private static Scanner scanner;
-	private static Monopoly instance = null;
+    private static Monopoly instance = null;
 	private IController controller;
 	private static TextUI tui;
 	private static StartGameUI start;
@@ -53,7 +52,7 @@ public class Monopoly {
 		tui.startGame();
 
 		boolean run = true;
-		scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 		while (run) {
 			run = tui.processInputLine(scanner.next());
 		}
