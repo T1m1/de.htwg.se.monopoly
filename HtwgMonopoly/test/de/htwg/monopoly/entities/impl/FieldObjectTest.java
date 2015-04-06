@@ -30,7 +30,6 @@ public class FieldObjectTest {
 	@Test
 	public void testGetType() {
 		assertEquals(FieldType.STREET, testObject.getType());
-		;
 	}
 
 }

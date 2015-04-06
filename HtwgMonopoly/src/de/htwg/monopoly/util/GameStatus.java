@@ -57,6 +57,6 @@ public enum GameStatus {
 	/**
 	 * The game hasn't started yet and is about to begin.
 	 */
-	NOT_STARTED;
+	NOT_STARTED
 
 }

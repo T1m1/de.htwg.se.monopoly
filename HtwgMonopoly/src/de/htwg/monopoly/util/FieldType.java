@@ -16,6 +16,6 @@ public enum FieldType {
 	
 	COMMUNITY_STACK,
 	
-	CHANCE_STACK;
+	CHANCE_STACK
 
 }

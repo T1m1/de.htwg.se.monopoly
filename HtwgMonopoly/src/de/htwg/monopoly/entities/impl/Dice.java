@@ -6,7 +6,7 @@ public final class Dice {
 
 	private int dice1;
 	private int dice2;
-	private int resultDice;;
+	private int resultDice;
 	/**
 	 * Creates a dice class containing two separated dices. The result of the
 	 * dice depends on the field size.
