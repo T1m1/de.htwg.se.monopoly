@@ -1,5 +1,5 @@
 
-package de.htwg.monopoly.enteties.impl;
+package de.htwg.monopoly.entities.impl;
 
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.Street;
@@ -126,4 +126,5 @@ public class PlayerTest {
 	public void testPrisonWithError() {
 		player1.usePrisonFreeCard();
 	}
+	
 }
