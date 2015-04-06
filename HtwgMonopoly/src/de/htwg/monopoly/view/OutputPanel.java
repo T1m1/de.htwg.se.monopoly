@@ -22,7 +22,7 @@ public class OutputPanel extends JPanel implements ActionListener {
 
 	private IController contr;
 
-	private JTextArea taAusgabe;
+	private JTextArea taOutput;
 
 	/**
 	 * create panel for graphic user interf
@@ -32,24 +32,26 @@ public class OutputPanel extends JPanel implements ActionListener {
 	 */
 	public OutputPanel(IController controller) {
 		contr = controller;
-
-		JPanel pAusgabe = new JPanel();
-		taAusgabe = new JTextArea(LINES, COLUMS);
-		taAusgabe.setEditable(false);
-		Border border2 = BorderFactory.createEtchedBorder();
-		taAusgabe.setBorder(border2);
-
-		border2 = BorderFactory.createTitledBorder("Log");
-		pAusgabe.setBorder(border2);
-		pAusgabe.setLayout(new BorderLayout());
-		pAusgabe.add(BorderLayout.CENTER, new JScrollPane(taAusgabe));
-
-		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		this.add(pAusgabe);
-
+        initUI();
 	}
 
-	public void actionPerformed(Event e) {
+    private void initUI() {
+        JPanel pOutput = new JPanel();
+        taOutput = new JTextArea(LINES, COLUMS);
+        taOutput.setEditable(false);
+        Border border2 = BorderFactory.createEtchedBorder();
+        taOutput.setBorder(border2);
+
+        border2 = BorderFactory.createTitledBorder("Log");
+        pOutput.setBorder(border2);
+        pOutput.setLayout(new BorderLayout());
+        pOutput.add(BorderLayout.CENTER, new JScrollPane(taOutput));
+
+        this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        this.add(pOutput);
+    }
+
+    public void actionPerformed(Event e) {
 	}
 
 	@Override
@@ -58,12 +60,12 @@ public class OutputPanel extends JPanel implements ActionListener {
 	}
 
 	public void update() {
-		taAusgabe.setText(contr.getCurrentPlayer().getName() + " (" + contr.getCurrentPlayer().getFigure() + ") : "
-				+ contr.getMessage());
+		taOutput.setText(contr.getCurrentPlayer().getName() + " (" + contr.getCurrentPlayer().getFigure() + ") : "
+                + contr.getMessage());
 
 	}
 	
-	public JTextArea getTaAusgabe() {
-		return this.taAusgabe;
+	public JTextArea getTaOutput() {
+		return this.taOutput;
 	}
 }
