@@ -477,11 +477,6 @@ public class Controller extends Observable implements IController {
 		return field.getFieldOfPlayer(currentPlayer);
 	}
 
-	@Override
-	public void performAction(UserAction choosedOption) {
-		throw new UnsupportedOperationException("not implemented yet!");
-
-	}
 
 	@Override
 	public IFieldObject getFieldAtIndex(int i) {
