@@ -58,13 +58,12 @@ public class PlayerController implements IPlayerController {
 
 	}
 
-	/**
-	 * Constructor initialize all player with default values. See {@link Player}
-	 * for more information on Player.
-	 * 
-	 * @param nameOfPlayers
-	 * @param inNumberOfPlayers
-	 */
+    /**
+     * Constructor initialize all player with default values. See {@link Player}
+     * for more information on Player
+     * *
+     * @param inPlayers all players as list
+     */
 	public PlayerController(List<String> inPlayers) {
 		this.numberOfPlayer = inPlayers.size();
 
