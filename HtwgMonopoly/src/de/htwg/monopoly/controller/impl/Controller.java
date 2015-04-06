@@ -377,11 +377,8 @@ public class Controller extends Observable implements IController {
 		int test;
 		try {
 			test = Integer.parseInt(card.getTarget());
-			if (Math.abs(test) < IMonopolyUtil.MAX_NUMBER_OF_STEPS) {
-				return true;
-			}
-			return false;
-		} catch (NumberFormatException e) {
+            return Math.abs(test) < IMonopolyUtil.MAX_NUMBER_OF_STEPS;
+        } catch (NumberFormatException e) {
 			return true;
 		}
 	}
