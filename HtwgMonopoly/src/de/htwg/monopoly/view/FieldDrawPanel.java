@@ -20,9 +20,9 @@ import de.htwg.monopoly.util.IMonopolyUtil;
 import de.htwg.monopoly.view.components.Position;
 
 /**
- * 
+ *
  * @author RuprechtT
- * 
+ *
  *         handling;
  */
 class FieldDrawPanel extends JPanel {
@@ -63,7 +63,7 @@ class FieldDrawPanel extends JPanel {
 	private static final String PICTURE_USER3 = "Bittel.jpg";
 	private static final String PICTURE_USER4 = "Boger.jpg";
 	private static final String PICTURE_USER5 = "Garloff.jpg";
-	private static final String PICTURE_USER6 = "M�chtel.jpg";
+	private static final String PICTURE_USER6 = "Maechtel.jpg";
 
 	private static final String[] PICTURES = { PICTURE_USER1, PICTURE_USER2,
 			PICTURE_USER3, PICTURE_USER4, PICTURE_USER5, PICTURE_USER6 };
@@ -105,7 +105,7 @@ class FieldDrawPanel extends JPanel {
 
 	/**
 	 * Constructor
-	 * 
+	 *
 	 * @param controller
 	 */
 	public FieldDrawPanel(IController controller) {
@@ -116,7 +116,7 @@ class FieldDrawPanel extends JPanel {
 
 	/**
 	 * Draw monopoly image
-	 * 
+	 *
 	 * @param g
 	 */
 	private void doDrawing(Graphics g) {
@@ -167,7 +167,7 @@ class FieldDrawPanel extends JPanel {
 
 	/**
 	 * Function draw all IFieldObject object from field
-	 * 
+	 *
 	 * @param fieldNameAtIndex
 	 */
 	private void drawField(IFieldObject fieldNameAtIndex) {
@@ -242,7 +242,7 @@ class FieldDrawPanel extends JPanel {
 
 	/**
 	 * Draw street at calculated position with specific color
-	 * 
+	 *
 	 * @param position
 	 * @param color
 	 */
@@ -258,7 +258,7 @@ class FieldDrawPanel extends JPanel {
 
 	/**
 	 * Draw Change card picture at position POS
-	 * 
+	 *
 	 * @param pos
 	 */
 	private void drawEreignisfeld(Position pos) {
@@ -283,7 +283,7 @@ class FieldDrawPanel extends JPanel {
 
 	/**
 	 * draw name and price for street at position position
-	 * 
+	 *
 	 * @param position
 	 * @param street
 	 */
@@ -305,7 +305,7 @@ class FieldDrawPanel extends JPanel {
 
 	/**
 	 * draw go picture to field panel
-	 * 
+	 *
 	 * @param position
 	 *            of go field
 	 */
