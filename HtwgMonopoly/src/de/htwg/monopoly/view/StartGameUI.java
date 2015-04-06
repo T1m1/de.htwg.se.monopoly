@@ -17,8 +17,7 @@ public class StartGameUI extends JFrame implements IObserver {
 	private static final long serialVersionUID = -4630996003551288978L;
 
 	private IController controller;
-	private StartGamePanel startGamePanel;
-	private GraphicUserInterface gui;
+    private GraphicUserInterface gui;
 
 	public StartGameUI(IController controller) {
 		this.controller = controller;
@@ -34,7 +33,7 @@ public class StartGameUI extends JFrame implements IObserver {
 	private void initUI() {
 		/** frame options **/
 		setTitle("HTWG Monopoly");
-		this.setJMenuBar(new MenuBar(controller));
+		this.setJMenuBar(new MenuBar());
 
 		/* main panel, containing all other panels */
 		JPanel mainPanel = new JPanel();
@@ -42,7 +41,7 @@ public class StartGameUI extends JFrame implements IObserver {
 				BORDER_SIZE, BORDER_SIZE, BORDER_SIZE));
 
 		/* create panels */
-		startGamePanel = new StartGamePanel(controller);
+        StartGamePanel startGamePanel = new StartGamePanel(controller);
 
 		/* add panels to main panel */
 		mainPanel.add(startGamePanel);
