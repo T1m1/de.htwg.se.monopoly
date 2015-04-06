@@ -51,9 +51,6 @@ public class OutputPanel extends JPanel implements ActionListener {
         this.add(pOutput);
     }
 
-    public void actionPerformed(Event e) {
-	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
