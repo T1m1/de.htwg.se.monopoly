@@ -37,12 +37,6 @@ public class PlayerTest {
 	}
 
 	@Test
-	public void testGetName() {
-		player1.setName("Udo");
-		assertEquals("Udo", player1.getName());
-	}
-
-	@Test
 	public void testGetFigure() {
 		player1.setFigure("x");
 		assertEquals("x", player1.getFigure());
