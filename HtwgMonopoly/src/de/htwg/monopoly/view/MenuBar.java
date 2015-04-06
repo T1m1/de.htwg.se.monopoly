@@ -22,8 +22,6 @@ public class MenuBar extends JMenuBar implements ActionListener {
 	 */
 	private static final long serialVersionUID = 1262745107060789415L;
 
-	private IController controller;
-
 	private JMenuItem miSource, miRegeln;
 	private JMenuItem miNewGame;
 	private JMenuItem miExitGame;
@@ -31,8 +29,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 	private static final String RULES = "http://de.wikipedia.org/wiki/Monopoly";
 	private static final String SOURCE = "https://github.com/T1m1/de.htwg.se.monopoly";
 
-	public MenuBar(IController controller) {
-		this.controller = controller;
+	public MenuBar() {
 
 		// Create the menu bar.
 		JMenuBar menuBar = new JMenuBar();
@@ -75,7 +72,6 @@ public class MenuBar extends JMenuBar implements ActionListener {
 			showURL(RULES);
 
 		} else if (event.equals(miNewGame)) {
-			//controller.startNewGame();
 		}
 
 	}
