@@ -30,8 +30,8 @@ public final class Bank {
 		int rent = currentStreet.getRent();
 		Player owner = currentStreet.getOwner();
 
-		currentPlayer.setBudget(currentPlayer.getBudget() - rent);
-		owner.setBudget(owner.getBudget() + rent);
+		currentPlayer.decrementMoney(rent);
+		owner.incrementMoney(rent);
 
 	}
 
@@ -44,7 +44,7 @@ public final class Bank {
 	 * @param money
 	 */
 	public static void receiveMoney(Player currentPlayer, int money) {
-		currentPlayer.setBudget(currentPlayer.getBudget() + money);
+		currentPlayer.incrementMoney(money);
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class Bank {
 	 * @return void
 	 */
 	public static void addParkingMoney(Player currentPlayer, int priceToPay) {
-		currentPlayer.setBudget(currentPlayer.getBudget() - priceToPay);
+		currentPlayer.decrementMoney(priceToPay);
 		parkingMoney += priceToPay;
 	}
 
@@ -81,8 +81,8 @@ public final class Bank {
 	 */
 	public static void receiveMoneyFromPlayer(Player receive, Player send,
 			int money) {
-		receive.setBudget(receive.getBudget() + money);
-		send.setBudget(send.getBudget() - money);
+		receive.incrementMoney(money);
+		send.decrementMoney(money);
 	}
 
 	public static void receiveMoneyFromPlayer(Player receive, Player send,

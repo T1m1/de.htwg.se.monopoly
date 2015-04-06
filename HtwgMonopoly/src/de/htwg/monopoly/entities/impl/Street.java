@@ -12,7 +12,7 @@ import de.htwg.monopoly.util.IMonopolyUtil;
  * @author RuprechtT
  * 
  */
-public class Street implements IFieldObject{
+public class Street implements IFieldObject {
 	/* street attributes */
 	private String name;
 	private int priceForStreet;
@@ -41,6 +41,7 @@ public class Street implements IFieldObject{
 		this.rent = rent;
 		this.pricePerHotel = pricePerHotel;
 	}
+
 	/***
 	 * Constructor
 	 * 
@@ -61,7 +62,8 @@ public class Street implements IFieldObject{
 	}
 
 	/**
-	 * empty Constructor
+	 * Initialize the street with the following attributes:<li>name: "empty"</li>
+	 * <li>Streetprice/rent/Hotelprice/Hotelnumber: 0</li><li>color: black</li>
 	 */
 	public Street() {
 		this.name = "empty";
@@ -210,17 +212,18 @@ public class Street implements IFieldObject{
 	public Player getOwner() {
 		return this.owner;
 	}
-	
+
 	/**
 	 * set owner of street
+	 * 
 	 * @param newOwner
 	 */
 	public void setOwner(Player newOwner) {
 		this.owner = newOwner;
 	}
-	
+
 	@Override
-	public String toString () {
+	public String toString() {
 		return this.name;
 	}
 

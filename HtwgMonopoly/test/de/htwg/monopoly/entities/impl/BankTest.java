@@ -1,4 +1,4 @@
-package de.htwg.monopoly.enteties.impl;
+package de.htwg.monopoly.entities.impl;
 
 import static org.junit.Assert.*;
 
@@ -48,17 +48,22 @@ public class BankTest {
 	
 	@Test
 	public void testGetParkingMoney() {
-		Bank.getParkingMoney();
+		
+		Bank.getParkingMoney(); // clear all money
+		testPlayer.incrementMoney(50);
+		
 		Bank.addParkingMoney(testPlayer, 100);
 		assertEquals(100, Bank.getParkingMoney());
+		
+		testPlayer.incrementMoney(100);
 		Bank.addParkingMoney(testPlayer, 100);
 		assertEquals(100, Bank.getParkingMoney());
 	}
 	
 	@Test
 	public void testGetMoneyFromPlayer() {
-		testPlayer.setBudget(0);
-		testOwner.setBudget(100);
+		testPlayer.decrementMoney(50);
+		testOwner.incrementMoney(100);
 		Bank.receiveMoneyFromPlayer(testPlayer, testOwner, "100");
 		assertEquals(100, testPlayer.getBudget());
 		assertEquals(0, testOwner.getBudget());

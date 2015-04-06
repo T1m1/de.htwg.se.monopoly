@@ -63,9 +63,5 @@ public class StartGameUI extends JFrame implements IObserver {
 		}
 	}
 
-	@Override
-	public void update(int e) {
-
-	}
 
 }

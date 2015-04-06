@@ -126,9 +126,12 @@ public class OptionPanel extends JPanel implements ActionListener {
 			buttonZugBeenden.setEnabled(true);
 			buttonWuerfeln.setEnabled(false);
 		} else if (e.getSource().equals(buttonFreikaufen)) {
-			contr.getCurrentPlayer().setBudget(
-					contr.getCurrentPlayer().getBudget()
-							- IMonopolyUtil.FREIKAUFEN);
+		
+			contr.getCurrentPlayer().decrementMoney(IMonopolyUtil.FREIKAUFEN);
+			// @Timi: Check mal ob das passt. Hab die Zeile hier drüber ersetzt mit der "Zeile" drunter
+//			contr.getCurrentPlayer().setBudget(
+//					contr.getCurrentPlayer().getBudget()
+//							- IMonopolyUtil.FREIKAUFEN);
 			contr.getCurrentPlayer().setInPrison(false);
 			buttonFreikarte.setEnabled(false);
 			buttonFreikaufen.setEnabled(false);

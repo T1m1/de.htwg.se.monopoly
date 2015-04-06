@@ -14,16 +14,10 @@ public class ObservableTest {
 	private Observable testObservable;
 
 	class TestObserver implements IObserver {
+		
 		@Override
 		public void update(GameStatus e) {
 			ping = true;
-
-		}
-
-		@Override
-		public void update(int e) {
-			ping = true;
-			
 		}
 	}
 
@@ -54,7 +48,6 @@ public class ObservableTest {
 		assertFalse(ping);
         testObservable.removeAllObservers();
         testObservable.notifyObservers(GameStatus.BEFORE_TURN);
-        testObservable.notifyObservers(2);
         
         assertFalse(ping);
 	}
@@ -65,7 +58,6 @@ public class ObservableTest {
 		testObserver = new TestObserver();
 		testObservable.addObserver(testObserver);
         testObservable.notifyObservers(GameStatus.BEFORE_TURN);
-        testObservable.notifyObservers(2);
         assertTrue(ping);
 	}
 

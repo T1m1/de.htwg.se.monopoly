@@ -71,7 +71,7 @@ public class ControllerTest {
 	public void testBuyStreet() {
 		testController.getCurrentPlayer().setPosition(1);
 		assertTrue(testController.buyStreet());
-		testController.getCurrentPlayer().setBudget(0);
+		testController.getCurrentPlayer().decrementMoney(1440);
 		assertFalse(testController.buyStreet());
 	}
 

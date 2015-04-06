@@ -111,13 +111,4 @@ public class GraphicUserInterface extends JFrame implements IObserver {
             pnField.update();
 	}
 
-	@Override
-	public void update(int e) {
-		pnlOutput.update();
-		pnlPlayerInfo.update();
-		pnlOption.checkInPrison();
-		pnField.update();
-
-	}
-
 }

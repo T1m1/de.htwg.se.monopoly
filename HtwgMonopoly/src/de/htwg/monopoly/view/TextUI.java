@@ -353,8 +353,4 @@ public class TextUI implements IObserver {
 		return configNameOfPlayer;
 	}
 
-	@Override
-	public void update(int e) {
-		throw new UnsupportedOperationException("not supported!!");
-	}
 }

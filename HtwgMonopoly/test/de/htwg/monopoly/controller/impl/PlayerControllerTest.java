@@ -51,18 +51,18 @@ public class PlayerControllerTest {
 		Card testCard2 = new CommunityCard("bekomme geld von alle Spieler",
 				"100", false);
 		Player testplayer = players.getNextPlayer();
-		testplayer.setBudget(100);
+		testplayer.incrementMoney(100);
 
 		// perform test method
 		players.transferMoney(testplayer, testCard1);
 
 		// verify
-		assertEquals(0, testplayer.getBudget());
+		assertEquals(1500, testplayer.getBudget());
 
 		// perform other test method
 		players.transferMoney(testplayer, testCard2);
 		// verify
-		assertEquals(200, testplayer.getBudget());
+		assertEquals(1700, testplayer.getBudget());
 	}
 
 	@Test
@@ -70,10 +70,11 @@ public class PlayerControllerTest {
 		Card testCard1 = new CommunityCard("Bekomme geld von der Bank", "100",
 				true);
 		Player testplayer = players.getNextPlayer();
-		testplayer.setBudget(100);
+	
+		testplayer.incrementMoney(100);
 		players.transferMoney(testplayer, testCard1);
 
-		assertEquals(200, testplayer.getBudget());
+		assertEquals(1700, testplayer.getBudget());
 	}
 
 	@Test

@@ -2,9 +2,9 @@ package de.htwg.monopoly.entities.impl;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
+
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.util.IMonopolyUtil;
-
 import de.htwg.monopoly.util.PlayerIcon;
 
 import java.util.LinkedList;
@@ -12,19 +12,27 @@ import java.util.List;
 
 public class Player {
 
-	/* class variable for default name of player */
-	private static int number = 0;
 	/* variables representing a player object */
 	private String name;
-	private String figure;
 	private int budget;
-	// ownership ?
 	private int position = 0;
 	private int prisonRound = 0;
 	private boolean inPrison = false;
 	private List<IFieldObject> ownership;
 	private int prisonFreeCard = 0;
 	private PlayerIcon icon;
+
+	/**
+	 * This variable should be no longer used. Use {@link PlayerIcon} instead.
+	 * 
+	 * @deprecated
+	 */
+	@Deprecated
+	private String figure;
+
+	/* class variable for default name of player */
+	// TODO: still used?
+	private static int number = 0;
 
 	/**
 	 * default player constructor
@@ -68,9 +76,16 @@ public class Player {
 
 	public Player(String name) {
 		this();
-		this.setName(name);
+		this.name = name;
 	}
 
+	/**
+	 * Newest Constructor for creating a player Object. Introduced for the web
+	 * Version of this game.
+	 * 
+	 * @param name
+	 * @param playerIcon
+	 */
 	public Player(String name, PlayerIcon playerIcon) {
 		this.name = name;
 		this.figure = playerIcon.getDescription();
@@ -89,19 +104,12 @@ public class Player {
 	}
 
 	/**
-	 * set name of player
-	 * 
-	 * @param name
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	/**
 	 * get figure of player
 	 * 
 	 * @return
+	 * @deprecated use {@link Player#getIcon()} instead.
 	 */
+	@Deprecated
 	public String getFigure() {
 		return figure;
 	}
@@ -110,7 +118,10 @@ public class Player {
 	 * set figure for player
 	 * 
 	 * @param figure
+	 * @deprecated use the constructor {@link Player#Player(String, PlayerIcon)}
+	 *             instead
 	 */
+	@Deprecated
 	public void setFigure(String figure) {
 		this.figure = figure;
 	}
@@ -128,7 +139,9 @@ public class Player {
 	 * set new budget for player
 	 * 
 	 * @param budget
+	 * @deprecated use {@link Player#incrementMoney(int)} or {@link Player#decrementMoney(int)} instead.
 	 */
+	@Deprecated
 	public void setBudget(int budget) {
 		this.budget = budget;
 	}
@@ -233,18 +246,42 @@ public class Player {
 	}
 
 	/**
-	 * decrement money of player e.g. to buy a street
+	 * decrement money of player e.g. to buy a street or redeem from prison.
+	 * Throws an Assertion if the player doesn't have enough money.
 	 * 
-	 * @param freikaufen
+	 * @param money
+	 *            will be subtracted from the players budget.
 	 */
-	public void decrementMoney(int freikaufen) {
-		this.budget -= freikaufen;
+	public void decrementMoney(int money) {
+		if (this.budget < money) {
+			throw new AssertionError("Not enough Money!!");
+		}
+		this.budget -= money;
 	}
 
+	/**
+	 * Adds money to the budget of the player.
+	 * 
+	 * @param money
+	 *            will be added to the player budget
+	 */
+	public void incrementMoney(int money) {
+		this.budget += money;
+	}
+
+	/**
+	 * Increments the number of "Prison-free" - cards, which a player possess.
+	 */
 	public void incrementPrisonFreeCard() {
 		prisonFreeCard++;
 	}
 
+	/**
+	 * Just checks if the player has at least one prison free card.
+	 * 
+	 * @return true if the number of prison free cards, which the player possess
+	 *         is greater than 0.
+	 */
 	public boolean hasPrisonFreeCard() {
 		return (prisonFreeCard > 0);
 	}
