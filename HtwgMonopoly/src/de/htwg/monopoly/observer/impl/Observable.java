@@ -27,11 +27,6 @@ public class Observable implements IObservable {
 	}
 
 	@Override
-	public void notifyObservers() {
-		notifyObservers(null);
-	}
-
-	@Override
 	public void notifyObservers(GameStatus e) {
 		if (e == null) {
 			throw new IllegalArgumentException("null is not permited as a game status");
