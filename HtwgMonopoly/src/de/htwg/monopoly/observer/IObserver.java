@@ -12,7 +12,4 @@ public interface IObserver {
 	 */
 	void update(GameStatus e);
 
-	@Deprecated
-	void update(int e);
-
 }

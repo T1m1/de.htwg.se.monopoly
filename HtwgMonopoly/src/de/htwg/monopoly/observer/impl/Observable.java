@@ -41,10 +41,4 @@ public class Observable implements IObservable {
 		}
 	}
 	
-	@Override
-	public void notifyObservers(int e) {
-		for (IObserver current: obsList) {
-			current.update(e);
-		}
-	}
 }

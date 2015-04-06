@@ -32,14 +32,6 @@ public interface IObservable {
 	 */
 	void notifyObservers();
 
-	/**
-	 * Calls the method update() from every Observer in the list with the
-	 * argument int e.
-	 * 
-	 * 
-	 * @param e
-	 */
-	void notifyObservers(int e);
 
 	/**
 	 * Notify all Observers with the current game status.
