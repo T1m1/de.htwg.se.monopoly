@@ -72,7 +72,6 @@ public class MenuBar extends JMenuBar implements ActionListener {
 		} else if (event.equals(miRegeln)) {
 			showURL(RULES);
 
-		} else if (event.equals(miNewGame)) {
 		}
 
 	}
