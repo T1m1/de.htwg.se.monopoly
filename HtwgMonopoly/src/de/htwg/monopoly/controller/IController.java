@@ -25,6 +25,8 @@ public interface IController extends IObservable {
 	void startNewGame(List<String> players);
 
 	/**
+     * 
+     *  !!! IMPORTANT for WEBUI !!! -> Do not delete * *
 	 * Start a new game with the given map of player names and the corresponding
 	 * player icon. Note: The number of players must be between
 	 * {@link IMonopolyUtil#MIN_NUMBER_OF_PLAYER} and
@@ -82,8 +84,6 @@ public interface IController extends IObservable {
 	 *         otherwise.
 	 */
 	boolean isCorrectOption(UserAction userOption);
-
-	void performAction(UserAction choosedOption);
 
 	/**
 	 * return object from current player
