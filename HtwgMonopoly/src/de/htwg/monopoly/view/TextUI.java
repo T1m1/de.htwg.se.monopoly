@@ -323,7 +323,7 @@ public class TextUI implements IObserver {
 		}
 
 		// check if input is smaller than the maximum of player and bigger than the minimum
-		if (MonopolyUtils.verifyPlayerNumber(tmpNumberOfPlayer) == false) {
+		if (!MonopolyUtils.verifyPlayerNumber(tmpNumberOfPlayer)) {
 			return 0;
 		}
 

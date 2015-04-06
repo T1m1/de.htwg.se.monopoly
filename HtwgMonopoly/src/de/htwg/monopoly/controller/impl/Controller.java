@@ -170,7 +170,7 @@ public class Controller extends Observable implements IController {
 		boolean status = field.buyStreet(currentPlayer, (Street) currentStreet);
 
 		// add result of street buying to message.
-		if (status == true) {
+		if (status) {
 			message.append(bundle.getString("tui_buy"));
 		} else {
 			message.append(bundle.getString("tui_no_money"));
