@@ -3,24 +3,12 @@ package de.htwg.monopoly.entities.impl;
 import java.util.Deque;
 import java.util.LinkedList;
 
-import de.htwg.monopoly.entities.ICards;
 import de.htwg.monopoly.util.FieldType;
 
 public class ChanceCardsStack extends CardsStack {
 
 	private Deque<Integer> position;
 
-	/**
-	 * Constructor for testing
-	 * 
-	 * @param card
-	 */
-	public ChanceCardsStack(ICards card) {
-		super();
-		pushOnTop(card);
-		position = new LinkedList<Integer>();
-	}
-	
 	public ChanceCardsStack() {
 		super();
 		position = new LinkedList<Integer>();
