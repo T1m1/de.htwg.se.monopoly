@@ -81,7 +81,8 @@ public class MenuBar extends JMenuBar implements ActionListener {
 		Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop()
 				: null;
 		try {
-			desktop.browse(new URI(source));
+            assert desktop != null;
+            desktop.browse(new URI(source));
 		} catch (Exception e) {
 			logger.info("Exception in MenuBar");
 
