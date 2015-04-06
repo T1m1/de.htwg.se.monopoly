@@ -72,7 +72,7 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void startNewGame(List<String> players) {
 
-		if (MonopolyUtils.verifyPlayerNumber(players.size()) == false) {
+		if (!MonopolyUtils.verifyPlayerNumber(players.size())) {
 			message.append("Wrong number of players!!");
 			updateGameStatus(GameStatus.STOPPED);
 		}
@@ -86,14 +86,16 @@ public class Controller extends Observable implements IController {
 		// set current player to first player, notify observers and get ready to
 		// play
 		this.currentPlayer = this.players.getFirstPlayer();
-
+		
+		clearMessage();
+		message.append("Spiel gestartet!");
 		updateGameStatus(GameStatus.STARTED);
 	}
 
 	@Override
 	public void startNewGame(Map<String, PlayerIcon> players) {
 		// verify the number of players
-		if (MonopolyUtils.verifyPlayerNumber(players.size()) == false) {
+		if (!MonopolyUtils.verifyPlayerNumber(players.size())) {
 			message.append("Wrong number of players!!");
 			updateGameStatus(GameStatus.STOPPED);
 		}
