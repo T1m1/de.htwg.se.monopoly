@@ -106,17 +106,17 @@ public class OptionPanel extends JPanel implements ActionListener {
 					+ taAusgabe.getText());
 
 
-			checkEnableStatus(2);
+			checkEnableStatus();
 
 			/* button to exit current draw */
 		} else if (e.getSource() == buttonZugBeenden) {
 			buttonZugBeenden.setEnabled(false);
 			contr.endTurn();
 
-			checkEnableStatus(1);
+			checkEnableStatus();
 		} else if (e.getSource() == buttonKaufen) {
 			contr.buyStreet();
-			checkEnableStatus(1);
+			checkEnableStatus();
 
 			this.taAusgabe.setText(taAusgabe.getText() + "Sie haben "
 					+ streetName + " erfolgreich gekauft!");
@@ -126,10 +126,6 @@ public class OptionPanel extends JPanel implements ActionListener {
 		} else if (e.getSource().equals(buttonFreikaufen)) {
 		
 			contr.getCurrentPlayer().decrementMoney(IMonopolyUtil.FREIKAUFEN);
-			// @Timi: Check mal ob das passt. Hab die Zeile hier dr�ber ersetzt mit der "Zeile" drunter
-//			contr.getCurrentPlayer().setBudget(
-//					contr.getCurrentPlayer().getBudget()
-//							- IMonopolyUtil.FREIKAUFEN);
 			contr.getCurrentPlayer().setInPrison(false);
 			buttonFreikarte.setEnabled(false);
 			buttonFreikaufen.setEnabled(false);
@@ -157,7 +153,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 		}
 	}
 
-	private void checkEnableStatus(int chooseOption) {
+	private void checkEnableStatus() {
 
 		List<UserAction> options = contr.getOptions();
 
