@@ -88,7 +88,6 @@ public class Player {
 	 */
 	public Player(String name, PlayerIcon playerIcon) {
 		this.name = name;
-		this.figure = playerIcon.getDescription();
 		this.icon = playerIcon;
 		this.budget = IMonopolyUtil.INITIAL_MONEY;
 		ownership = new LinkedList<IFieldObject>();
@@ -107,7 +106,7 @@ public class Player {
 	 * get figure of player
 	 * 
 	 * @return
-	 * @deprecated use {@link Player#getIcon()} instead.
+	 * @deprecated use {@link Player#getIcon()} and then {@link PlayerIcon#getDescription()} instead.
 	 */
 	@Deprecated
 	public String getFigure() {
