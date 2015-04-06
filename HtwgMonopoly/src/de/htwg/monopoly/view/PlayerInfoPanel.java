@@ -92,7 +92,7 @@ public class PlayerInfoPanel extends JPanel implements ActionListener {
 	}
 
 	private void updateUserInformations() {
-        createPlayerPanels();
+        //createPlayerPanels();
 		for (int i = 0; i < contr.getNumberOfPlayers(); i++) {
 			lbsPlayersMoney.get(i).setText(
 					"Money:   " + contr.getPlayer(i).getBudget());
@@ -103,7 +103,7 @@ public class PlayerInfoPanel extends JPanel implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-
+        updateUserInformations();
 	}
 
 	public void update() {
