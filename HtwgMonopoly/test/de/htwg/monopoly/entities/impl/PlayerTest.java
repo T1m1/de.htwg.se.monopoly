@@ -44,10 +44,10 @@ public class PlayerTest {
 
 	@Test
 	public void testGetBudget() {
-		player1.setBudget(12345);
+		player1.incrementMoney(12345);
 		/*
 		 * ueberprueft ob die differenz 0 ist wird benutzt da asserEquals double
-		 * depracated ist
+		 * depracated ist TODO: @Timi: What???
 		 */
 		assertEquals(0, Double.compare(12345, player1.getBudget()));
 	}
@@ -99,12 +99,9 @@ public class PlayerTest {
         assertFalse(player1.isInPrison());
 	}
 
-	@Test
+	@Test(expected=AssertionError.class)
 	public void testMoney() {
 		player1.decrementMoney(2);
-		Street a = new Street("huhu", 200, null, 200, 100);
-		player1.addOwnership(a);
-		player1.getOwnership();
 	}
 	
 	@Test
