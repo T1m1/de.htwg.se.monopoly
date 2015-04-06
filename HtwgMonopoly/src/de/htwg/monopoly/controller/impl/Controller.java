@@ -483,13 +483,6 @@ public class Controller extends Observable implements IController {
 		return field.getFieldAtIndex(i);
 	}
 
-	/**
-	 * for TESTCASES - set current field
-	 */
-	void setCurrentField(IFieldObject currentField) {
-		this.currentField = currentField;
-	}
-
 	private void clearMessage() {
 		message.delete(0, message.length());
 	}
