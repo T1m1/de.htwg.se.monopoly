@@ -3,8 +3,6 @@ package de.htwg.monopoly.game;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import de.htwg.monopoly.controller.IController;
-import de.htwg.monopoly.view.GraphicUserInterface;
-import de.htwg.monopoly.view.StartGamePanel;
 import de.htwg.monopoly.view.StartGameUI;
 import de.htwg.monopoly.view.TextUI;
 

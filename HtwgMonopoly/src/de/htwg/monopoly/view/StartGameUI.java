@@ -18,10 +18,12 @@ public class StartGameUI extends JFrame implements IObserver {
 
 	private IController controller;
 	private StartGamePanel startGamePanel;
+	private GraphicUserInterface gui;
 
 	public StartGameUI(IController controller) {
 		this.controller = controller;
 		this.controller.addObserver(this);
+		gui = new GraphicUserInterface(this.controller);
 		initUI();
 	}
 
@@ -56,9 +58,9 @@ public class StartGameUI extends JFrame implements IObserver {
 	@Override
 	public void update(GameStatus status) {
 		if(status == GameStatus.STARTED) {
-			GraphicUserInterface gui = new GraphicUserInterface(this.controller);
 			gui.startGame();
 			setVisible(false); //you can't see me!
+			// un-register from observerlist
 		}
 	}
 
