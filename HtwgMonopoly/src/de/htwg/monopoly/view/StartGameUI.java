@@ -5,7 +5,6 @@ import de.htwg.monopoly.observer.IObserver;
 import de.htwg.monopoly.util.GameStatus;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class StartGameUI extends JFrame implements IObserver {
 

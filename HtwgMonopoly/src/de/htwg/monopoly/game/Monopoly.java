@@ -16,7 +16,6 @@ public class Monopoly {
 	private static Monopoly instance = null;
 	private IController controller;
 	private static TextUI tui;
-	private static GraphicUserInterface gui;
 	private static StartGameUI start;
 
 
@@ -33,10 +32,6 @@ public class Monopoly {
 
 		this.controller = injector.getInstance(IController.class);
 		//this.controller = new Controller(IMonopolyUtil.FIELD_SIZE);
-
-
-
-		// wui = new WebUserInterface(controller);
 
 		start = new StartGameUI(controller);
 		tui = new TextUI(controller);
@@ -58,8 +53,6 @@ public class Monopoly {
 		// Note: it is important to start gui first, otherwise the tui waits for input. Maybe fix it.
 		start.startGame();
 		tui.startGame();
-
-		// wui.startGame();
 
 		boolean run = true;
 		scanner = new Scanner(System.in);
