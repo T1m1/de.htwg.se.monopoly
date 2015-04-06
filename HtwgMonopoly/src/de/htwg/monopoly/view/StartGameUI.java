@@ -62,7 +62,7 @@ public class StartGameUI extends JFrame implements IObserver {
 			setVisible(false); //you can't see me!
 			
 			// un-register from observer list, because it is no longer needed.
-			this.controller.removeObserver(this);
+			//this.controller.removeObserver(this); //not allowed in the update method. Needs to called somewhere else
 		}
 	}
 
