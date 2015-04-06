@@ -92,7 +92,6 @@ public class PlayerInfoPanel extends JPanel implements ActionListener {
 	}
 
 	private void updateUserInformations() {
-        //createPlayerPanels();
 		for (int i = 0; i < contr.getNumberOfPlayers(); i++) {
 			lbsPlayersMoney.get(i).setText(
 					"Money:   " + contr.getPlayer(i).getBudget());
