@@ -160,8 +160,8 @@ class FieldDrawPanel extends JPanel {
 				DIFFERENC - 1, null);
 
 		/* add user figure at his position */
-		// setFigures();
-		// setFigureForPlayer();
+		setFigures();
+		setFigureForPlayer();
 
 	}
 
@@ -351,10 +351,6 @@ class FieldDrawPanel extends JPanel {
 
 	public void update() {
 		repaint();
-
-		// setFigures();
-		// setFigureForPlayer();
-
 	}
 
 	private void setFigureForPlayer() {
