@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+
 import de.htwg.monopoly.controller.IPlayerController;
 import de.htwg.monopoly.entities.ICards;
 import de.htwg.monopoly.entities.impl.Bank;
@@ -26,6 +27,7 @@ public class PlayerController implements IPlayerController {
 	// the player of the current turn
 	private int currentPlayer;
 
+
 	/**
 	 * Constructor initialize a controller for handling all players.
 	 * 
@@ -39,11 +41,15 @@ public class PlayerController implements IPlayerController {
 			throw new AssertionError("Ung�ltige Anzahl an Spielern.");
 		}
 
-		// create array of players.
+		// create and initialize the array of players.
 		this.players = new ArrayList<Player>();
+		for (String name : inPlayers.keySet()) {
 
-		for (String current : inPlayers.keySet()) {
-			players.add(new Player(current, inPlayers.get(current)));
+			// create player
+			Player createdPlayer = new Player(name, inPlayers.get(name));
+
+			// add player to the array
+			players.add(createdPlayer);
 		}
 
 	}

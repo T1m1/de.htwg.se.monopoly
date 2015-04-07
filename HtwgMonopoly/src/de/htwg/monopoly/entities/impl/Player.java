@@ -1,7 +1,6 @@
 package de.htwg.monopoly.entities.impl;
 
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.util.IMonopolyUtil;
@@ -30,7 +29,20 @@ public class Player {
 	@Deprecated
 	private String figure;
 
-
+	/**
+	 * Newest Constructor for creating a player Object. Introduced for the web
+	 * Version of this game.
+	 * 
+	 * @param name
+	 * @param playerIcon
+	 */
+	@Inject
+	public Player(String name, PlayerIcon playerIcon) {
+		this.name = name;
+		this.icon = playerIcon;
+		this.budget = IMonopolyUtil.INITIAL_MONEY;
+		ownership = new LinkedList<IFieldObject>();
+	}
 
 	/**
 	 * constructor for player
@@ -40,9 +52,7 @@ public class Player {
 	 * @param budget
 	 * @param position
 	 */
-	@Inject
-	public Player(String name, String figure, @Named("Budget") int budget,
-			int position) {
+	public Player(String name, String figure, int budget, int position) {
 		this.name = name;
 		this.figure = figure;
 		this.budget = budget;
@@ -57,22 +67,8 @@ public class Player {
 	 * @param figure
 	 * @param budget
 	 */
-	public Player(String name, String figure, @Named("Budget") int budget) {
+	public Player(String name, String figure, int budget) {
 		this(name, figure, budget, 0);
-	}
-
-	/**
-	 * Newest Constructor for creating a player Object. Introduced for the web
-	 * Version of this game.
-	 * 
-	 * @param name
-	 * @param playerIcon
-	 */
-	public Player(String name, PlayerIcon playerIcon) {
-		this.name = name;
-		this.icon = playerIcon;
-		this.budget = IMonopolyUtil.INITIAL_MONEY;
-		ownership = new LinkedList<IFieldObject>();
 	}
 
 	/**
@@ -88,7 +84,8 @@ public class Player {
 	 * get figure of player
 	 * 
 	 * @return
-	 * @deprecated use {@link Player#getIcon()} and then {@link PlayerIcon#getDescription()} instead.
+	 * @deprecated use {@link Player#getIcon()} and then
+	 *             {@link PlayerIcon#getDescription()} instead.
 	 */
 	@Deprecated
 	public String getFigure() {
