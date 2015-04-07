@@ -12,6 +12,7 @@ import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.util.FieldType;
 import de.htwg.monopoly.util.IMonopolyFields;
 import de.htwg.monopoly.util.IMonopolyUtil;
+import de.htwg.monopoly.util.PlayerIcon;
 
 public class PlayfieldTest {
 
@@ -22,7 +23,7 @@ public class PlayfieldTest {
 	@Before
 	public void setUp() throws Exception {
 		field = new Playfield(IMonopolyUtil.FIELD_SIZE);
-		testplayer = new Player("lulu", "A", IMonopolyUtil.INITIAL_MONEY);
+		testplayer = new Player("TestName", PlayerIcon.BITTEL);
 	}
 
 	@Test
@@ -54,7 +55,7 @@ public class PlayfieldTest {
 	@Test
 	public void testNotMyStree2t() {
 
-		Player andererPlayer = new Player("hhh", "m", 2000);
+		Player andererPlayer =  new Player("TestName", PlayerIcon.BITTEL);
 		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
 				testplayer);
 

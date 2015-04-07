@@ -12,7 +12,6 @@ import javax.swing.JMenuItem;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import de.htwg.monopoly.controller.IController;
 
 public class MenuBar extends JMenuBar implements ActionListener {
 

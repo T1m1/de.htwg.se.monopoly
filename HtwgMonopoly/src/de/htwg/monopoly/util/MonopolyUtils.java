@@ -16,9 +16,7 @@ public class MonopolyUtils {
 	/**
 	 * Hide utility constructor
 	 */
-	private MonopolyUtils() {
-		super();
-	}
+	private MonopolyUtils() {	}
 
 	/**
 	 * Verifies that the given number is between the correct boundaries.

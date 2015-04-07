@@ -15,7 +15,12 @@ import java.util.ResourceBundle;
 class StartGamePanel extends JPanel implements ActionListener {
 
 
-    private final IController contr;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -4433990758573077822L;
+
+	private final IController contr;
 
     private final JButton startGameButton;
     private final JCheckBox[] cbPlayers;

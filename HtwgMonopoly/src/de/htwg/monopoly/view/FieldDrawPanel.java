@@ -49,7 +49,7 @@ class FieldDrawPanel extends JPanel {
 	private static final int FOUR = 4;
 	private static final int FIFTY = 50;
 
-	private static final String RESOURCE_DIRECTORY = "HtwgMonopoly/resources/pictures/";
+	private static final String RESOURCE_DIRECTORY = "resources/pictures/";
 
 	private static final String PICTURE_GO = "GO.gif";
 	private static final String PICTURE_ZU_BESUCH = "ZU_BESUCH.jpg";
@@ -161,7 +161,6 @@ class FieldDrawPanel extends JPanel {
 
 		/* add user figure at his position */
 		setFigures();
-		setFigureForPlayer();
 
 	}
 
@@ -351,17 +350,6 @@ class FieldDrawPanel extends JPanel {
 
 	public void update() {
 		repaint();
-	}
-
-	private void setFigureForPlayer() {
-		for (int i = 0; i < contr.getNumberOfPlayers(); i++) {
-			Player player = contr.getPlayer(i);
-			String tmp = PICTURES[i];
-			tmp = tmp.substring(0, tmp.lastIndexOf('.'));
-			player.setFigure(tmp);
-
-		}
-
 	}
 
 	private void setFigures() {

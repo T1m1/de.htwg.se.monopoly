@@ -48,7 +48,8 @@ public final class Bank {
 	}
 
 	/**
-	 * Returns and <b>removes</b> the money in the middle ("Frei Parken") of the playfield.
+	 * Returns and <b>removes</b> the money in the middle ("Frei Parken") of the
+	 * playfield.
 	 * 
 	 * @return int
 	 */
@@ -85,6 +86,15 @@ public final class Bank {
 		send.decrementMoney(money);
 	}
 
+	/**
+	 * This method parses the String [money] and calls, if successful,
+	 * {@link Bank#receiveMoneyFromPlayer(Player, Player, int)} with the parsed
+	 * number.
+	 * 
+	 * @param receive
+	 * @param send
+	 * @param money
+	 */
 	public static void receiveMoneyFromPlayer(Player receive, Player send,
 			String money) {
 		int actualMoney;

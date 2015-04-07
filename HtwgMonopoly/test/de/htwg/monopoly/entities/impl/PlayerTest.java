@@ -1,7 +1,11 @@
 package de.htwg.monopoly.entities.impl;
 
+import java.awt.Color;
+
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.util.IMonopolyUtil;
+import de.htwg.monopoly.util.PlayerIcon;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,45 +13,38 @@ import static org.junit.Assert.*;
 
 public class PlayerTest {
 	private Player player1;
+	private Player player;
 
 	@Before
 	public void setUp() throws Exception {
-		player1 = new Player("lala", "U", 0);
-		Player player2 = new Player("lulu", "A", IMonopolyUtil.INITIAL_MONEY);
+		player1 =  new Player("TestName", PlayerIcon.BITTEL);
+		Player player2 =  new Player("TestName", PlayerIcon.BITTEL);
 		player2.decrementMoney(1);
+
+		player = new Player("TestName", PlayerIcon.BITTEL);
 	}
 
 	@Test
 	public void testPlayerStringCharDoubleStringArrayInt() {
-		Player player3 = new Player("Kenny", "K", IMonopolyUtil.TEST_PRICE_ONE);
+		Player player3 =  new Player("Kenny", PlayerIcon.BITTEL);
 		assertEquals("Kenny", player3.getName());
-		assertEquals("K", player3.getFigure());
-		assertEquals(IMonopolyUtil.TEST_PRICE_ONE, player3.getBudget());
+		assertEquals(1500, player3.getBudget());
 
 	}
 
 	@Test
 	public void testPlayerStringCharDouble() {
-		Player player2 = new Player("Manny", "M", IMonopolyUtil.TEST_PRICE_TWO);
+		Player player2 =  new Player("Manny", PlayerIcon.BITTEL);
 		assertEquals("Manny", player2.getName());
-		assertEquals("M", player2.getFigure());
-		assertEquals(IMonopolyUtil.TEST_PRICE_TWO, player2.getBudget());
+		assertEquals(1500, player2.getBudget());
 	}
 
-	@Test
-	public void testGetFigure() {
-		player1.setFigure("x");
-		assertEquals("x", player1.getFigure());
-	}
 
 	@Test
 	public void testGetBudget() {
+		player1.decrementMoney(1500);
 		player1.incrementMoney(12345);
-		/*
-		 * ueberprueft ob die differenz 0 ist wird benutzt da asserEquals double
-		 * depracated ist TODO: @Timi: What???
-		 */
-		assertEquals(0, Double.compare(12345, player1.getBudget()));
+		assertEquals(12345, player1.getBudget());
 	}
 
 	@Test
@@ -98,7 +95,7 @@ public class PlayerTest {
 
 	@Test(expected = AssertionError.class)
 	public void testMoney() {
-		player1.decrementMoney(2);
+		player1.decrementMoney(2000);
 	}
 
 	@Test
@@ -113,6 +110,40 @@ public class PlayerTest {
 	@Test(expected = AssertionError.class)
 	public void testPrisonWithError() {
 		player1.usePrisonFreeCard();
+	}
+
+	/**
+	 * Test method for {@link de.htwg.monopoly.entities.impl.Player#getBudget()}
+	 * .
+	 */
+	@Test
+	public void testGetBudget2() {
+		assertEquals("Money of player was not expected",
+				IMonopolyUtil.INITIAL_MONEY, player.getBudget());
+	}
+
+	/**
+	 * Test method for {@link de.htwg.monopoly.entities.impl.Player#getIcon()}.
+	 */
+	@Test
+	public void testGetIcon() {
+		assertEquals(PlayerIcon.BITTEL, player.getIcon());
+	}
+
+	/**
+	 * Test method for
+	 * {@link de.htwg.monopoly.entities.impl.Player#addOwnership(de.htwg.monopoly.entities.IFieldObject)}
+	 * .
+	 */
+	@Test
+	public void testgetOwnership() {
+		assertTrue(player.getOwnership().isEmpty());
+		// add street to player
+		Street testStreet = new Street("test", 50, Color.BLACK, 5, 10);
+		player.addOwnership(testStreet);
+
+		assertTrue(player.getOwnership().contains(testStreet));
+		assertEquals(player.getOwnership().size(), 1);
 	}
 
 }

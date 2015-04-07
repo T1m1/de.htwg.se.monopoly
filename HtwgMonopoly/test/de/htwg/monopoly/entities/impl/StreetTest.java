@@ -11,6 +11,7 @@ import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.util.FieldType;
 import de.htwg.monopoly.util.IMonopolyUtil;
+import de.htwg.monopoly.util.PlayerIcon;
 
 public class StreetTest {
 	private Street street1;
@@ -95,9 +96,9 @@ public class StreetTest {
 	
 	@Test
 	public void testStreetOwner() {
-		Player newOwner = new Player("ll", "p", 3330);
+		Player newOwner =  new Player("TestName", PlayerIcon.BITTEL);
 		street1.setOwner(newOwner);
-		assertEquals("ll", street1.getOwner().getName());
+		assertEquals("TestName", street1.getOwner().getName());
 	}
 
 }

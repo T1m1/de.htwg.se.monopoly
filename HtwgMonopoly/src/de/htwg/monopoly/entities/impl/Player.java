@@ -45,63 +45,12 @@ public class Player {
 	}
 
 	/**
-	 * constructor for player
-	 * 
-	 * @param name
-	 * @param figure
-	 * @param budget
-	 * @param position
-	 */
-	public Player(String name, String figure, int budget, int position) {
-		this.name = name;
-		this.figure = figure;
-		this.budget = budget;
-		this.position = position;
-		ownership = new LinkedList<IFieldObject>();
-	}
-
-	/**
-	 * constructor for player
-	 * 
-	 * @param name
-	 * @param figure
-	 * @param budget
-	 */
-	public Player(String name, String figure, int budget) {
-		this(name, figure, budget, 0);
-	}
-
-	/**
 	 * get name of player
 	 * 
 	 * @return
 	 */
 	public String getName() {
 		return this.toString();
-	}
-
-	/**
-	 * get figure of player
-	 * 
-	 * @return
-	 * @deprecated use {@link Player#getIcon()} and then
-	 *             {@link PlayerIcon#getDescription()} instead.
-	 */
-	@Deprecated
-	public String getFigure() {
-		return figure;
-	}
-
-	/**
-	 * set figure for player
-	 * 
-	 * @param figure
-	 * @deprecated use the constructor {@link Player#Player(String, PlayerIcon)}
-	 *             instead
-	 */
-	@Deprecated
-	public void setFigure(String figure) {
-		this.figure = figure;
 	}
 
 	/**

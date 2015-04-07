@@ -11,6 +11,7 @@ import de.htwg.monopoly.entities.impl.FieldObject;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.util.FieldType;
+import de.htwg.monopoly.util.PlayerIcon;
 
 public class BankTest {
 	
@@ -22,8 +23,8 @@ public class BankTest {
 	@Before
 	public void setUp() throws Exception {
 		testField = new Street("foo", 1000, null, 50, 20);
-		testPlayer = new Player("bar", "a", 50);
-		testOwner = new Player("unicorn", "b", 0);
+		testPlayer =  new Player("TestName", PlayerIcon.BITTEL);
+		testOwner =  new Player("TestName", PlayerIcon.BITTEL);
 		testNotStreet = new FieldObject("Not a Street", FieldType.GO, 0);
 		testField.setOwner(testOwner);
 	}
@@ -31,8 +32,8 @@ public class BankTest {
 	@Test
 	public void testPayRent() {
 		Bank.payRent(testPlayer, testField);
-		assertEquals(0, testPlayer.getBudget());
-		assertEquals(50, testOwner.getBudget());
+		assertEquals(1450, testPlayer.getBudget());
+		assertEquals(1550, testOwner.getBudget());
 	}
 	
 	@Test(expected = AssertionError.class)
@@ -43,7 +44,7 @@ public class BankTest {
 	@Test
 	public void testReceiveMoney() {
 		Bank.receiveMoney(testPlayer, 200);
-		assertEquals(250, testPlayer.getBudget());
+		assertEquals(1700, testPlayer.getBudget());
 	}
 	
 	@Test
@@ -65,8 +66,8 @@ public class BankTest {
 		testPlayer.decrementMoney(50);
 		testOwner.incrementMoney(100);
 		Bank.receiveMoneyFromPlayer(testPlayer, testOwner, "100");
-		assertEquals(100, testPlayer.getBudget());
-		assertEquals(0, testOwner.getBudget());
+		assertEquals(1550, testPlayer.getBudget());
+		assertEquals(1500, testOwner.getBudget());
 	}
 	
 	@Test(expected = AssertionError.class)
