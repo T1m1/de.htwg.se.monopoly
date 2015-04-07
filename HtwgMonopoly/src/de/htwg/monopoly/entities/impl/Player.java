@@ -30,20 +30,7 @@ public class Player {
 	@Deprecated
 	private String figure;
 
-	/* class variable for default name of player */
-	// TODO: still used?
-	private static int number = 0;
 
-	/**
-	 * default player constructor
-	 */
-	public Player() {
-		number++;
-		this.name = "player" + number;
-		this.figure = "" + number;
-		this.budget = IMonopolyUtil.INITIAL_MONEY;
-		ownership = new LinkedList<IFieldObject>();
-	}
 
 	/**
 	 * constructor for player
@@ -71,12 +58,7 @@ public class Player {
 	 * @param budget
 	 */
 	public Player(String name, String figure, @Named("Budget") int budget) {
-		this(name, figure, budget, 1);
-	}
-
-	public Player(String name) {
-		this();
-		this.name = name;
+		this(name, figure, budget, 0);
 	}
 
 	/**

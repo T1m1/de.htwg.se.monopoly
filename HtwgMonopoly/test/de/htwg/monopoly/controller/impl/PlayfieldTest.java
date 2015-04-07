@@ -22,7 +22,7 @@ public class PlayfieldTest {
 	@Before
 	public void setUp() throws Exception {
 		field = new Playfield(IMonopolyUtil.FIELD_SIZE);
-		testplayer = new Player();
+		testplayer = new Player("lulu", "A", IMonopolyUtil.INITIAL_MONEY);
 	}
 
 	@Test

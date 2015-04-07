@@ -41,10 +41,16 @@ public class MonopolyUtils {
 	 */
 	public static Map<String, PlayerIcon> getPlayersWithIcons(
 			List<String> players) {
+
 		Map<String, PlayerIcon> playerMap = new HashMap<String, PlayerIcon>();
 
 		// get all available Icon
 		PlayerIcon[] allIcons = PlayerIcon.values();
+
+		if (players.size() > allIcons.length) {
+			// prevent index out of bound exception
+			throw new AssertionError("Wrong numbers of players!!");
+		}
 
 		// fill the map with Names and icons
 		int i = 0;

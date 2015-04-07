@@ -1,4 +1,3 @@
-
 package de.htwg.monopoly.entities.impl;
 
 import de.htwg.monopoly.entities.impl.Player;
@@ -14,7 +13,7 @@ public class PlayerTest {
 	@Before
 	public void setUp() throws Exception {
 		player1 = new Player("lala", "U", 0);
-		Player player2 = new Player();
+		Player player2 = new Player("lulu", "A", IMonopolyUtil.INITIAL_MONEY);
 		player2.decrementMoney(1);
 	}
 
@@ -24,7 +23,7 @@ public class PlayerTest {
 		assertEquals("Kenny", player3.getName());
 		assertEquals("K", player3.getFigure());
 		assertEquals(IMonopolyUtil.TEST_PRICE_ONE, player3.getBudget());
-	
+
 	}
 
 	@Test
@@ -56,13 +55,13 @@ public class PlayerTest {
 		player1.setPosition(5);
 		assertEquals(5, player1.getPosition());
 	}
-	
+
 	@Test
 	public void testGetPrisonRound() {
 		player1.setPrisonRound(1);
 		assertEquals(1, player1.getPrisonRound());
 	}
-	
+
 	@Test
 	public void testIncrementPrisonRound() {
 		player1.setPrisonRound(3);
@@ -72,37 +71,36 @@ public class PlayerTest {
 		player1.setPrisonRound(2);
 		player1.incrementPrisonRound();
 		assertTrue(player1.isInPrison());
-		
+
 		player1.setPrisonRound(0);
 		assertFalse(player1.isInPrison());
-		
+
 	}
-	
-	@Test	
+
+	@Test
 	public void testIsInPrison() {
 		player1.setInPrison(true);
 		assertTrue(player1.isInPrison());
 
-        player1.incrementPrisonRound();
-        assertTrue(player1.isInPrison());
+		player1.incrementPrisonRound();
+		assertTrue(player1.isInPrison());
 
-        player1.incrementPrisonRound();
-        assertTrue(player1.isInPrison());
+		player1.incrementPrisonRound();
+		assertTrue(player1.isInPrison());
 
-        player1.incrementPrisonRound();
-        assertTrue("player should be in prison",player1.isInPrison());
+		player1.incrementPrisonRound();
+		assertTrue("player should be in prison", player1.isInPrison());
 
-        player1.incrementPrisonRound();
+		player1.incrementPrisonRound();
 
-
-        assertFalse(player1.isInPrison());
+		assertFalse(player1.isInPrison());
 	}
 
-	@Test(expected=AssertionError.class)
+	@Test(expected = AssertionError.class)
 	public void testMoney() {
 		player1.decrementMoney(2);
 	}
-	
+
 	@Test
 	public void testPrisonShit() {
 		assertFalse(player1.hasPrisonFreeCard());
@@ -111,10 +109,10 @@ public class PlayerTest {
 		player1.usePrisonFreeCard();
 		assertFalse(player1.hasPrisonFreeCard());
 	}
-	
+
 	@Test(expected = AssertionError.class)
 	public void testPrisonWithError() {
 		player1.usePrisonFreeCard();
 	}
-	
+
 }

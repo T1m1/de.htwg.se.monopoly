@@ -3,6 +3,7 @@ package de.htwg.monopoly.controller.impl;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.junit.Before;
@@ -14,6 +15,8 @@ import de.htwg.monopoly.entities.ICards;
 import de.htwg.monopoly.entities.impl.Card;
 import de.htwg.monopoly.entities.impl.CommunityCard;
 import de.htwg.monopoly.entities.impl.Player;
+import de.htwg.monopoly.util.MonopolyUtils;
+import de.htwg.monopoly.util.PlayerIcon;
 
 public class PlayerControllerTest {
 	private IPlayerController players;
@@ -27,7 +30,7 @@ public class PlayerControllerTest {
 		playerList.add("2");
 		
 
-		players = new PlayerController(playerList);
+		players = new PlayerController(MonopolyUtils.getPlayersWithIcons(playerList));
 	}
 
 	@Test
@@ -84,7 +87,7 @@ public class PlayerControllerTest {
 
 	@Test(expected = AssertionError.class)
 	public void expectException() {
-		new PlayerController(new ArrayList<String>());
+		new PlayerController(new HashMap<String, PlayerIcon>());
 	}
 
 	@Test(expected = AssertionError.class)
