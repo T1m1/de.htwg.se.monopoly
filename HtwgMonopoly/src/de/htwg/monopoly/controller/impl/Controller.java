@@ -75,25 +75,19 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void startNewGame(List<String> players) {
 
+		// verify number
 		if (!MonopolyUtils.verifyPlayerNumber(players.size())) {
 			message.append("Wrong number of players!!");
 			updateGameStatus(GameStatus.NOT_STARTED);
 			return;
 		}
-
-		// create new field and player
-		this.field = new Playfield(fieldSize);
-		this.players = new PlayerController(players);
-		this.questions = new PrisonQuestion();
-		currentPrisonQuestion = questions.getNextQuestion();
-
-		// set current player to first player, notify observers and get ready to
-		// play
-		this.currentPlayer = this.players.getFirstPlayer();
 		
-		clearMessage();
-		message.append("Spiel gestartet!");
-		updateGameStatus(GameStatus.STARTED);
+		// create map with players and random player icons
+		Map<String, PlayerIcon> playerMap = MonopolyUtils.getPlayersWithIcons(players);
+		
+		// start Game 
+		startNewGame(playerMap);
+
 	}
 
 	/**

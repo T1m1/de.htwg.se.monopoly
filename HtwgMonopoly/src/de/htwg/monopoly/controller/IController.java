@@ -15,8 +15,10 @@ import de.htwg.monopoly.util.UserAction;
 public interface IController extends IObservable {
 
 	/**
-	 * Start a new game with the given list of player names. Note: The number of
-	 * players must be between {@link IMonopolyUtil#MIN_NUMBER_OF_PLAYER} and
+	 * Start a new game with the given list of player names. This method is
+	 * suitable for TUI & GUI. It connects the player names with random player
+	 * icons. Note: The number of players must be between
+	 * {@link IMonopolyUtil#MIN_NUMBER_OF_PLAYER} and
 	 * {@link IMonopolyUtil#MAX_NUMBER_OF_PLAYER}.
 	 * 
 	 * @param players
@@ -25,10 +27,11 @@ public interface IController extends IObservable {
 	void startNewGame(List<String> players);
 
 	/**
-     * 
-     *  !!! IMPORTANT for WEBUI !!! -> Do not delete * *
-	 * Start a new game with the given map of player names and the corresponding
-	 * player icon. Note: The number of players must be between
+	 * 
+	 * !!! IMPORTANT for WEBUI !!! -> Do not delete * Start a new game with the
+	 * given map of player names and the corresponding player icon. This method
+	 * is suitable for WEBUI (or other instances which provide player icons).
+	 * Note: The number of players must be between
 	 * {@link IMonopolyUtil#MIN_NUMBER_OF_PLAYER} and
 	 * {@link IMonopolyUtil#MAX_NUMBER_OF_PLAYER}.
 	 * 
@@ -79,7 +82,8 @@ public interface IController extends IObservable {
 	/**
 	 * Checks if the given option is valid.
 	 * 
-	 * @param userOption user option of type UserAction
+	 * @param userOption
+	 *            user option of type UserAction
 	 * @return true if the valid options contains the given options, false
 	 *         otherwise.
 	 */
@@ -104,7 +108,9 @@ public interface IController extends IObservable {
 	String getPrisonQuestion();
 
 	/**
-	 * Checks if the answer to the question is correct and sets the player free if so.
+	 * Checks if the answer to the question is correct and sets the player free
+	 * if so.
+	 * 
 	 * @param answer
 	 */
 	boolean checkPlayerAnswer(boolean answer);
@@ -162,6 +168,5 @@ public interface IController extends IObservable {
 	IPlayfield getField();
 
 	void drawCard();
-
 
 }

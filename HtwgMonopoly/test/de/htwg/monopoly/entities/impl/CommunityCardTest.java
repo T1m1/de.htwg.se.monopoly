@@ -9,17 +9,15 @@ import de.htwg.monopoly.entities.impl.CommunityCard;
 
 public class CommunityCardTest {
 
-	private CommunityCard card;
-
 	@Before
 	public void setUp() throws Exception {
-		card = new CommunityCard("Gehe in das Gef&auml;ngnis", null,
-				false);
+		new CommunityCard("Gehe in das Gef&auml;ngnis", null, false);
 	}
 
 	@Test
 	public void testCommunityCard() {
-		CommunityCard card2 = new CommunityCard("Gehe in das Gef&auml;ngnis", "prison", false);
+		CommunityCard card2 = new CommunityCard("Gehe in das Gef&auml;ngnis",
+				"prison", false);
 		assertEquals("Gehe in das Gef&auml;ngnis", card2.getDescription());
 	}
 

@@ -57,6 +57,7 @@ public class Monopoly {
 			run = tui.processInputLine(scanner.next());
 		}
 		System.out.println("Spiel beendet!");
+		scanner.close();
 	}
 
 }
