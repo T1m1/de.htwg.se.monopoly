@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.TreeMap;
 
 import org.junit.After;
 import org.junit.Before;
@@ -40,7 +41,6 @@ public class ControllerTest {
 		playerList.add("0");
 		playerList.add("1");
 		
-		System.out.println(playerList);
 		testController.startNewGame(playerList);
 		
 	}
@@ -73,7 +73,7 @@ public class ControllerTest {
 		assertEquals("Wrong number of players!!", contr.getMessage());
 		
 		// start game with wrong parameter
-		contr.startNewGame(new HashMap<String, PlayerIcon>());
+		contr.startNewGame(new TreeMap<String, PlayerIcon>());
 		assertEquals("Wrong number of players!!", contr.getMessage());
 	}
 

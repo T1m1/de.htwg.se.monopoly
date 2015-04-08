@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.TreeMap;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -87,7 +88,7 @@ public class PlayerControllerTest {
 
 	@Test(expected = AssertionError.class)
 	public void expectException() {
-		new PlayerController(new HashMap<String, PlayerIcon>());
+		new PlayerController(new TreeMap<String, PlayerIcon>());
 	}
 
 	@Test(expected = AssertionError.class)

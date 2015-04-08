@@ -3,9 +3,9 @@
  */
 package de.htwg.monopoly.util;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * @author stgorenf
@@ -40,7 +40,7 @@ public class MonopolyUtils {
 	public static Map<String, PlayerIcon> getPlayersWithIcons(
 			List<String> players) {
 
-		Map<String, PlayerIcon> playerMap = new HashMap<String, PlayerIcon>();
+		Map<String, PlayerIcon> playerMap = new TreeMap<String, PlayerIcon>();
 
 		// get all available Icon
 		PlayerIcon[] allIcons = PlayerIcon.values();
@@ -54,7 +54,6 @@ public class MonopolyUtils {
 		int i = 0;
 		for (String currentName : players) {
 			playerMap.put(currentName, allIcons[i]);
-			System.out.println(playerMap + " (MonopolyUtils)");
 			i++;
 		}
 		
