@@ -86,7 +86,6 @@ public class Controller extends Observable implements IController {
 		Map<String, PlayerIcon> playerMap = MonopolyUtils
 				.getPlayersWithIcons(players);
 
-		System.out.println(playerMap);
 		// start Game
 		startNewGame(playerMap);
 
