@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -107,5 +108,10 @@ public class ControllerTest {
 	@Test
 	public void testGetDice() {
 		testController.getDice();
+	}
+	
+	@After
+	public void tearDown() {
+		testController = null;
 	}
 }
