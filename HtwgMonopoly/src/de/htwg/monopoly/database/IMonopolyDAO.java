@@ -9,12 +9,12 @@ package de.htwg.monopoly.database;
  */
 public interface IMonopolyDAO {
 	
-	boolean create();
+	void create();
 	
-	boolean read();
+	Object read();
 	
-	boolean update();
+	void update();
 	
-	boolean delete();
+	void delete();
 
 }

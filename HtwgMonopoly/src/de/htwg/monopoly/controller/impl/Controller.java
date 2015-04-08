@@ -73,6 +73,8 @@ public class Controller extends Observable implements IController {
 	 */
 	@Override
 	public void startNewGame(List<String> players) {
+		
+		clearMessage();
 
 		// verify number
 		if (!MonopolyUtils.verifyPlayerNumber(players.size())) {
@@ -95,6 +97,8 @@ public class Controller extends Observable implements IController {
 	 */
 	@Override
 	public void startNewGame(Map<String, PlayerIcon> players) {
+		clearMessage();
+		
 		// verify the number of players
 		if (!MonopolyUtils.verifyPlayerNumber(players.size())) {
 			message.append("Wrong number of players!!");

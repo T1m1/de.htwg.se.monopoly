@@ -27,11 +27,6 @@ public class PlayfieldTest {
 	}
 
 	@Test
-	public void getPlayfieldArray() {
-		assertEquals(IMonopolyUtil.FIELD_SIZE, field.getPlayfield().length);
-	}
-
-	@Test
 	public void testMovePlayer() {
 		testplayer.setPosition(6);
 		field.movePlayer(testplayer, 1);

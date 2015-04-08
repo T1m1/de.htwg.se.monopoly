@@ -292,8 +292,4 @@ public class Playfield implements IPlayfield {
 
 	}
 
-	@Override
-	public IFieldObject[] getPlayfield() {
-		return this.playfield;
-	}
 }

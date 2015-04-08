@@ -22,36 +22,33 @@ public class Db4oDAO implements IMonopolyDAO {
 	 * @see de.htwg.monopoly.database.IMonopolyDAO#create()
 	 */
 	@Override
-	public boolean create() {
+	public void create() {
 		// TODO Auto-generated method stub
-		return false;
 	}
 
 	/* (non-Javadoc)
 	 * @see de.htwg.monopoly.database.IMonopolyDAO#read()
 	 */
 	@Override
-	public boolean read() {
+	public Object read() {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 	/* (non-Javadoc)
 	 * @see de.htwg.monopoly.database.IMonopolyDAO#update()
 	 */
 	@Override
-	public boolean update() {
+	public void update() {
 		// TODO Auto-generated method stub
-		return false;
 	}
 
 	/* (non-Javadoc)
 	 * @see de.htwg.monopoly.database.IMonopolyDAO#delete()
 	 */
 	@Override
-	public boolean delete() {
+	public void delete() {
 		// TODO Auto-generated method stub
-		return false;
 	}
 
 }
