@@ -243,6 +243,7 @@ public class Playfield implements IPlayfield {
 		currentPlayer.setPosition(position);
 
 		// saves true, if the Player went over or stays on "Los"
+		// BUG: if the player goes backwards over los.
 		wentOverGo = (position < oldPosition);
 
 		// Important: the new position must not be a Stack !!! (for now....)
@@ -278,10 +279,10 @@ public class Playfield implements IPlayfield {
 	 */
 	public boolean buyStreet(Player currentPlayer, Street currentStreet) {
 		if (currentStreet.getPriceForStreet() < currentPlayer.getBudget()) {
-			
+
 			// TODO: catch Assertion
 			currentPlayer.decrementMoney(currentStreet.getPriceForStreet());
-			
+
 			currentStreet.setOwner(currentPlayer);
 			currentPlayer.addOwnership(currentStreet);
 			currentStreet.setSold(true);

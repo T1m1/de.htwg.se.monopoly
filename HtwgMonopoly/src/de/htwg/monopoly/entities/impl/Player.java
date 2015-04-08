@@ -1,7 +1,5 @@
 package de.htwg.monopoly.entities.impl;
 
-import com.google.inject.Inject;
-
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.util.IMonopolyUtil;
 import de.htwg.monopoly.util.PlayerIcon;
@@ -22,21 +20,12 @@ public class Player {
 	private PlayerIcon icon;
 
 	/**
-	 * This variable should be no longer used. Use {@link PlayerIcon} instead.
-	 * 
-	 * @deprecated
-	 */
-	@Deprecated
-	private String figure;
-
-	/**
 	 * Newest Constructor for creating a player Object. Introduced for the web
 	 * Version of this game.
 	 * 
 	 * @param name
 	 * @param playerIcon
 	 */
-	@Inject
 	public Player(String name, PlayerIcon playerIcon) {
 		this.name = name;
 		this.icon = playerIcon;

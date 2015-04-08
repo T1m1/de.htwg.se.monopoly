@@ -11,7 +11,7 @@ public class MonopolyModule extends AbstractModule {
 	protected void configure() {
 
 		bindConstant().annotatedWith(Names.named("FieldSize")).to("28");
-		bindConstant().annotatedWith(Names.named("PlayerBugdet")).to("100");
+		//bind(Integer.class).annotatedWith(Names.named("Budget")).toInstance(1000);
 
 		bind(IController.class).to(
 				de.htwg.monopoly.controller.impl.Controller.class);
