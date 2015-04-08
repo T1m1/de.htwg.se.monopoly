@@ -24,6 +24,13 @@
 			</plugin>
 		</plugins>
 	</build>
+	<distributionManagement>
+		<repository>
+			<id>lenny2</id>
+			<name>lenny2-releases</name>
+			<url>http://lenny2.in.htwg-konstanz.de:8081/artifactory/ext-release-local</url>
+		</repository>
+	</distributionManagement>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>

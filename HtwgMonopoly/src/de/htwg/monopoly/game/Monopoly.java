@@ -23,16 +23,18 @@ public class Monopoly {
 		return instance;
 	}
 
+	private static Injector injector = Guice.createInjector(new MonopolyModule());
+	
 	private Monopoly() {
 
-		Injector injector = Guice.createInjector(new MonopolyModule());
-
-		this.controller = injector.getInstance(IController.class);
-		//this.controller = new Controller(IMonopolyUtil.FIELD_SIZE);
+		// TODO: configure log4j
+		
+		// get instances from Guice
+		controller = injector.getInstance(IController.class);
+		tui = injector.getInstance(TextUI.class);
 
 		start = new StartGameUI(controller);
-		tui = new TextUI(controller);
-
+		
 	}
 
 	public TextUI getTextUI() {
@@ -51,12 +53,12 @@ public class Monopoly {
 		start.startGame();
 		tui.startGame();
 
-		boolean run = true;
+		
         Scanner scanner = new Scanner(System.in);
-		while (run) {
+        boolean run = true;
+        while (run) {
 			run = tui.processInputLine(scanner.next());
 		}
-		System.out.println("Spiel beendet!");
 		scanner.close();
 	}
 

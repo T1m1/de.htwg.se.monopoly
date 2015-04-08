@@ -17,6 +17,7 @@ import de.htwg.monopoly.entities.impl.Dice;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.PrisonQuestion;
 import de.htwg.monopoly.entities.impl.Street;
+import de.htwg.monopoly.factory.IControllerFactory;
 import de.htwg.monopoly.observer.impl.Observable;
 import de.htwg.monopoly.util.FieldType;
 import de.htwg.monopoly.util.GameStatus;
@@ -50,6 +51,7 @@ public class Controller extends Observable implements IController {
 	private String currentPrisonQuestion;
 	private PrisonQuestion questions;
 	private boolean drawCardFlag;
+	private IControllerFactory factory;
 
 	/**
 	 * public constructor for a new controller create the players, the field and
@@ -58,13 +60,14 @@ public class Controller extends Observable implements IController {
 	 * @param fieldSize
 	 */
 	@Inject
-	public Controller(@Named("FieldSize") int fieldSize) {
+	public Controller(@Named("FieldSize") int fieldSize, IControllerFactory controllerFactory) {
 		phase = GameStatus.NOT_STARTED;
 		this.fieldSize = fieldSize;
+		this.factory = controllerFactory;
 
 		this.message = new StringBuilder();
-		this.dice = new Dice();
-		this.userOptions = new UserOptionsController(this);
+		this.dice = factory.createDice();
+		this.userOptions = factory.createUserController(this);
 
 	}
 
@@ -106,9 +109,10 @@ public class Controller extends Observable implements IController {
 		}
 
 		// create new field and player
-		this.field = new Playfield(fieldSize);
-		this.players = new PlayerController(players);
-		this.questions = new PrisonQuestion();
+		//this.field = new Playfield(fieldSize);
+		this.field = factory.createPlayfield(fieldSize);
+		this.players = factory.createPlayerController(players);
+		this.questions = factory.createPrisonQuestions();
 		currentPrisonQuestion = questions.getNextQuestion();
 
 		// set current player to first player, notify observers and start

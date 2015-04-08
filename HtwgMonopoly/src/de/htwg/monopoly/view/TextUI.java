@@ -2,6 +2,7 @@ package de.htwg.monopoly.view;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
+import com.google.inject.Inject;
 
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.entities.impl.Player;
@@ -53,6 +54,7 @@ public class TextUI implements IObserver {
 		CHAR_USER_OPTION = ENUM_USER_OPTION.inverse();
 	}
 
+	@Inject
 	public TextUI(IController controller) {
 		this.controller = controller;
 		controller.addObserver(this);
