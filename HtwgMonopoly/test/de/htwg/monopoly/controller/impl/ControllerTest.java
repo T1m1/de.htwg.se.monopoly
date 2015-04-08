@@ -40,9 +40,9 @@ public class ControllerTest {
 		playerList.add("0");
 		playerList.add("1");
 		
-		testController.startNewGame(playerList);
 		System.out.println(playerList);
-		System.out.println(testController.getCurrentPlayer());
+		testController.startNewGame(playerList);
+		
 	}
 
 	@Test
@@ -60,9 +60,7 @@ public class ControllerTest {
 
 	@Test
 	public void testEndTurn() {
-		System.out.println("current player:" + testController.getCurrentPlayer());
 		testController.endTurn();
-		System.out.println("current player:" + testController.getCurrentPlayer());
 		assertEquals("1", testController.getCurrentPlayer().getName());
 	}
 

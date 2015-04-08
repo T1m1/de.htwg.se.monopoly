@@ -40,6 +40,7 @@ public class MonopolyUtils {
 	public static Map<String, PlayerIcon> getPlayersWithIcons(
 			List<String> players) {
 
+		System.out.println(players + " (MonopolyUtils)");
 		Map<String, PlayerIcon> playerMap = new HashMap<String, PlayerIcon>();
 
 		// get all available Icon
@@ -53,6 +54,7 @@ public class MonopolyUtils {
 		// fill the map with Names and icons
 		int i = 0;
 		for (String currentName : players) {
+			System.out.println(currentName + " (MonopolyUtils)");
 			playerMap.put(currentName, allIcons[i]);
 			i++;
 		}
