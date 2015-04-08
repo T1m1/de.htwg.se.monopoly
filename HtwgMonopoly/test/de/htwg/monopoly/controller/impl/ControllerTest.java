@@ -5,6 +5,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -17,17 +19,19 @@ import com.google.inject.Injector;
 
 import de.htwg.monopoly.TestMonopolyModule;
 import de.htwg.monopoly.controller.IController;
+import de.htwg.monopoly.util.PlayerIcon;
 
 public class ControllerTest {
 
 	private IController testController;
 	ResourceBundle bundle = ResourceBundle.getBundle("Messages", Locale.GERMAN);
+	private Injector injector;
 
 	@Before
 	public void setUp() throws Exception {
 
 		/* Initialization */
-		Injector injector = Guice.createInjector(new TestMonopolyModule());
+		injector = Guice.createInjector(new TestMonopolyModule());
 
 		testController = injector.getInstance(IController.class);
 
@@ -53,13 +57,23 @@ public class ControllerTest {
 
 	@Test
 	public void testEndTurn() {
+		System.out.println("current player:" + testController.getCurrentPlayer());
 		testController.endTurn();
+		System.out.println("current player:" + testController.getCurrentPlayer());
 		assertEquals("1", testController.getCurrentPlayer().getName());
 	}
 
 	@Test
-	public void testPerformCommCardAction() {
-
+	public void startGame() {
+		IController contr = injector.getInstance(IController.class);
+		
+		// start game with wrong parameter
+		contr.startNewGame(new LinkedList<String>());
+		assertEquals("Wrong number of players!!", contr.getMessage());
+		
+		// start game with wrong parameter
+		contr.startNewGame(new HashMap<String, PlayerIcon>());
+		assertEquals("Wrong number of players!!", contr.getMessage());
 	}
 
 	@Test
