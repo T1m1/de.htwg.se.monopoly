@@ -82,11 +82,12 @@ public class Controller extends Observable implements IController {
 			updateGameStatus(GameStatus.NOT_STARTED);
 			return;
 		}
-
+		System.out.println(players);
 		// create map with players and random player icons
 		Map<String, PlayerIcon> playerMap = MonopolyUtils
 				.getPlayersWithIcons(players);
 
+		System.out.println(playerMap);
 		// start Game
 		startNewGame(playerMap);
 
@@ -106,6 +107,7 @@ public class Controller extends Observable implements IController {
 			return;
 		}
 
+		System.out.println(players);
 		// create new field and player
 		this.field = new Playfield(fieldSize);
 		this.players = new PlayerController(players);
@@ -116,6 +118,7 @@ public class Controller extends Observable implements IController {
 		// playing
 		this.currentPlayer = this.players.getFirstPlayer();
 
+		System.out.println(this.currentPlayer);
 		clearMessage();
 		message.append("Spiel gestartet!");
 		updateGameStatus(GameStatus.STARTED);

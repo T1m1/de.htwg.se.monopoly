@@ -42,6 +42,7 @@ public class ControllerTest {
 		
 		testController.startNewGame(playerList);
 		System.out.println(playerList);
+		System.out.println(testController.getCurrentPlayer());
 	}
 
 	@Test
