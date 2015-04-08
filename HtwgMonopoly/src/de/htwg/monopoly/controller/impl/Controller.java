@@ -12,8 +12,8 @@ import com.google.inject.name.Named;
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.controller.IPlayerController;
 import de.htwg.monopoly.entities.ICards;
+import de.htwg.monopoly.entities.IDice;
 import de.htwg.monopoly.entities.IFieldObject;
-import de.htwg.monopoly.entities.impl.Dice;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.PrisonQuestion;
 import de.htwg.monopoly.entities.impl.Street;
@@ -36,7 +36,7 @@ public class Controller extends Observable implements IController {
 	private Playfield field;
 	private Player currentPlayer;
 	private IFieldObject currentField;
-	private Dice dice;
+	private IDice dice;
 	private int fieldSize;
 
 	private GameStatus phase;
@@ -66,6 +66,8 @@ public class Controller extends Observable implements IController {
 		this.factory = controllerFactory;
 
 		this.message = new StringBuilder();
+		
+		// create Dice and usercontroller with factory
 		this.dice = factory.createDice();
 		this.userOptions = factory.createUserController(this);
 
@@ -108,11 +110,12 @@ public class Controller extends Observable implements IController {
 			return;
 		}
 
-		// create new field and player
-		//this.field = new Playfield(fieldSize);
+		// create new field, player and prisonquestions with factory 
 		this.field = factory.createPlayfield(fieldSize);
 		this.players = factory.createPlayerController(players);
 		this.questions = factory.createPrisonQuestions();
+		
+		// retrieve the first prison question
 		currentPrisonQuestion = questions.getNextQuestion();
 
 		// set current player to first player, notify observers and start
@@ -402,7 +405,7 @@ public class Controller extends Observable implements IController {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Dice getDice() {
+	public IDice getDice() {
 		return dice;
 	}
 

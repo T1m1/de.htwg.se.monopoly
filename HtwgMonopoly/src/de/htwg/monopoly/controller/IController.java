@@ -3,8 +3,8 @@ package de.htwg.monopoly.controller;
 import java.util.List;
 import java.util.Map;
 
+import de.htwg.monopoly.entities.IDice;
 import de.htwg.monopoly.entities.IFieldObject;
-import de.htwg.monopoly.entities.impl.Dice;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.observer.IObservable;
 import de.htwg.monopoly.util.GameStatus;
@@ -161,7 +161,7 @@ public interface IController extends IObservable {
 	 * 
 	 * @return
 	 */
-	Dice getDice();
+	IDice getDice();
 
 	/**
 	 * Get the field, where the current player is standing on.

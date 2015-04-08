@@ -5,12 +5,14 @@ package de.htwg.monopoly.factory.impl;
 
 import java.util.Map;
 
+import com.google.inject.Inject;
+
 import de.htwg.monopoly.controller.IPlayerController;
 import de.htwg.monopoly.controller.impl.Controller;
 import de.htwg.monopoly.controller.impl.PlayerController;
 import de.htwg.monopoly.controller.impl.Playfield;
 import de.htwg.monopoly.controller.impl.UserOptionsController;
-import de.htwg.monopoly.entities.impl.Dice;
+import de.htwg.monopoly.entities.IDice;
 import de.htwg.monopoly.entities.impl.PrisonQuestion;
 import de.htwg.monopoly.factory.IControllerFactory;
 import de.htwg.monopoly.util.PlayerIcon;
@@ -20,6 +22,13 @@ import de.htwg.monopoly.util.PlayerIcon;
  *
  */
 public class MonopolyFactory implements IControllerFactory {
+
+	private IDice dice;
+
+	@Inject
+	public MonopolyFactory(IDice dice) {
+		this.dice = dice;
+	}
 
 	@Override
 	public Playfield createPlayfield(int fieldSize) {
@@ -37,8 +46,8 @@ public class MonopolyFactory implements IControllerFactory {
 	}
 
 	@Override
-	public Dice createDice() {
-		return new Dice();
+	public IDice createDice() {
+		return dice;
 	}
 
 	@Override

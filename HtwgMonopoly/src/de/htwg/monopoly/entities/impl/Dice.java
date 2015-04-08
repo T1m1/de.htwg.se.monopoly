@@ -1,8 +1,9 @@
 package de.htwg.monopoly.entities.impl;
 
+import de.htwg.monopoly.entities.IDice;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
-public final class Dice {
+public final class Dice implements IDice{
 
 	private int dice1;
 	private int dice2;
@@ -40,11 +41,11 @@ public final class Dice {
 		return (int) (Math.random() * upperBound + lowerBound);
 	}
 
-	public int getDice1() {
+	public Integer getDice1() {
 		return dice1;
 	}
 
-	public int getDice2() {
+	public Integer getDice2() {
 		return dice2;
 	}
 
