@@ -11,7 +11,6 @@ import com.google.inject.name.Named;
 
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.controller.IPlayerController;
-import de.htwg.monopoly.controller.IPlayfield;
 import de.htwg.monopoly.entities.ICards;
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Dice;
@@ -66,7 +65,7 @@ public class Controller extends Observable implements IController {
 		this.message = new StringBuilder();
 		this.dice = new Dice();
 		this.userOptions = new UserOptionsController(this);
-		
+
 	}
 
 	/**
@@ -81,11 +80,12 @@ public class Controller extends Observable implements IController {
 			updateGameStatus(GameStatus.NOT_STARTED);
 			return;
 		}
-		
+
 		// create map with players and random player icons
-		Map<String, PlayerIcon> playerMap = MonopolyUtils.getPlayersWithIcons(players);
-		
-		// start Game 
+		Map<String, PlayerIcon> playerMap = MonopolyUtils
+				.getPlayersWithIcons(players);
+
+		// start Game
 		startNewGame(playerMap);
 
 	}
@@ -111,7 +111,7 @@ public class Controller extends Observable implements IController {
 		// set current player to first player, notify observers and start
 		// playing
 		this.currentPlayer = this.players.getFirstPlayer();
-		
+
 		clearMessage();
 		message.append("Spiel gestartet!");
 		updateGameStatus(GameStatus.STARTED);
@@ -199,11 +199,6 @@ public class Controller extends Observable implements IController {
 	}
 
 	/**
-	 * Tries to redeem the current player with a prison free card.
-	 * 
-	 * @return true if the player had a card and was set free, false otherwise
-	 */
-	/**
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -225,12 +220,6 @@ public class Controller extends Observable implements IController {
 	}
 
 	/**
-	 * Tries to redeem the player with money.
-	 * 
-	 * @return true if the player had enough money and was set free from prison,
-	 *         false otherwise.
-	 */
-	/**
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -249,27 +238,6 @@ public class Controller extends Observable implements IController {
 		message.append("Erfolgreich freigekauft!");
 		updateGameStatus(GameStatus.BEFORE_TURN);
 		return true;
-	}
-
-	@Override
-	public boolean checkPlayerAnswer(boolean answer) {
-		
-		clearMessage();
-		
-		if (questions.isTrue(currentPrisonQuestion, answer)) {
-
-			currentPrisonQuestion = questions.getNextQuestion();
-			
-			currentPlayer.setInPrison(false);
-			message.append("Frage korrekt beantwortet.");
-			updateGameStatus(GameStatus.BEFORE_TURN);
-			return true;
-		} else {
-			currentPrisonQuestion = questions.getNextQuestion();
-			endTurn();
-			return false;
-		}
-		
 	}
 
 	/**
@@ -304,7 +272,8 @@ public class Controller extends Observable implements IController {
 		}
 
 		if (diceFlag < 1) {
-			// TODO: maybe end turn of player, so he doesn't need to do it himself
+			// TODO: maybe end turn of player, so he doesn't need to do it
+			// himself
 			message.append("Leider 3 mal kein Pasch gew&uuml;rfelt. Der N&auml;chste ist dran.");
 		} else {
 			message.append("Leider kein Pasch gew&uuml;rfelt. Noch " + diceFlag
@@ -312,7 +281,34 @@ public class Controller extends Observable implements IController {
 		}
 		updateGameStatus(GameStatus.DICE_ROLL_FOR_PRISON);
 	}
-	
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean checkPlayerAnswer(boolean answer) {
+
+		clearMessage();
+
+		if (questions.isTrue(currentPrisonQuestion, answer)) {
+
+			currentPrisonQuestion = questions.getNextQuestion();
+
+			currentPlayer.setInPrison(false);
+			message.append("Frage korrekt beantwortet.");
+			updateGameStatus(GameStatus.BEFORE_TURN);
+			return true;
+		} else {
+			currentPrisonQuestion = questions.getNextQuestion();
+			endTurn();
+			return false;
+		}
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void drawCard() {
 		clearMessage();
@@ -324,21 +320,28 @@ public class Controller extends Observable implements IController {
 			ICards currentChanceCard = field.getChanStack().getNextCard();
 			message.append(performCardAction(currentChanceCard));
 		}
-		
+
 		updateGameStatus(GameStatus.DURING_TURN);
-		
+
 	}
 
 	/**
-	 * End of game function
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void exitGame() {
 		// "delete" players and playfield
 		this.players = null;
 		this.field = null;
+		this.currentField = null;
+		this.currentPlayer = null;
+		this.currentPrisonQuestion = null;
+		this.questions = null;
+
+		clearMessage();
 
 		updateGameStatus(GameStatus.STOPPED);
+
 	}
 
 	/**
@@ -371,8 +374,8 @@ public class Controller extends Observable implements IController {
 		int test;
 		try {
 			test = Integer.parseInt(card.getTarget());
-            return Math.abs(test) < IMonopolyUtil.MAX_NUMBER_OF_STEPS;
-        } catch (NumberFormatException e) {
+			return Math.abs(test) < IMonopolyUtil.MAX_NUMBER_OF_STEPS;
+		} catch (NumberFormatException e) {
 			return true;
 		}
 	}
@@ -388,14 +391,14 @@ public class Controller extends Observable implements IController {
 		notifyObservers(phase);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Dice getDice() {
 		return dice;
 	}
 
-	/**
-	 * return a String with information about the current turn
-	 */
 	/**
 	 * {@inheritDoc}
 	 */
@@ -405,9 +408,6 @@ public class Controller extends Observable implements IController {
 	}
 
 	/**
-	 * @return the phase
-	 */
-	/**
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -415,6 +415,9 @@ public class Controller extends Observable implements IController {
 		return phase;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int getFieldSize() {
 		return field.getfieldSize();
@@ -468,7 +471,9 @@ public class Controller extends Observable implements IController {
 		return field.getFieldOfPlayer(currentPlayer);
 	}
 
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public IFieldObject getFieldAtIndex(int i) {
 		return field.getFieldAtIndex(i);
@@ -478,22 +483,29 @@ public class Controller extends Observable implements IController {
 		message.delete(0, message.length());
 	}
 
-	boolean isDiceFlagSet() {
-		return diceFlag != 0;
-	}
-
-	@Override
-	public IPlayfield getField() {
-		return this.field;
-	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String getPrisonQuestion() {
 		return currentPrisonQuestion;
 	}
 
-
-	public boolean hasDrawnCard() {
+	/**
+	 * Package protected method is used for the user options controller.
+	 * 
+	 * @return
+	 */
+	boolean hasDrawnCard() {
 		return drawCardFlag;
+	}
+
+	/**
+	 * Package protected method is used for the user options controller.
+	 * 
+	 * @return
+	 */
+	boolean isDiceFlagSet() {
+		return diceFlag != 0;
 	}
 }

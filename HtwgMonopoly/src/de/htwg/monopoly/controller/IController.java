@@ -41,7 +41,9 @@ public interface IController extends IObservable {
 	void startNewGame(Map<String, PlayerIcon> players);
 
 	/**
-	 * start a turn of a player
+	 * Starts a turn of a player. Means: Throwing the dice and moving the player
+	 * according to the result. The happened action is stored in the message
+	 * object and can retrieved via {@link IController#getMessage()}
 	 */
 	void startTurn();
 
@@ -55,32 +57,53 @@ public interface IController extends IObservable {
 	boolean buyStreet();
 
 	/**
-	 * end the turn of the current Player.
+	 * End the turn of the current player. Sets the current player to the next
+	 * one and clears the message Object.
 	 */
 	void endTurn();
 
 	/**
+	 * Tries to redeem the current player with a prison free card.
 	 * 
-	 * @return
+	 * @return true if the player had a card and was set free, false otherwise
 	 */
 	boolean redeemWithCard();
 
+	/**
+	 * Tries to redeem the player with money.
+	 * 
+	 * @return true if the player had enough money and was set free from prison,
+	 *         false otherwise.
+	 */
 	boolean redeemWithMoney();
 
+	/**
+	 * Activate the game phase, where the player tries to redeem by throwing a
+	 * "pasch" within 3 throws. Call {@link IController#rollDiceToRedeem()} for
+	 * throwing the dice to actual redeem the player.
+	 * 
+	 * @return always true
+	 */
 	boolean redeemWithDice();
 
 	/**
-	 * throw the two dices
+	 * Throw the two dices. If the result is a "pasch", the player is set free
+	 * from prison and is able to start his turn.
 	 */
 	void rollDiceToRedeem();
 
 	/**
-	 * exit the game.
+	 * Exit the game. Sets all instance variable to null, except the fieldsize,
+	 * dice and userOptions. The controller instance is now ready to start a new
+	 * game (or end the application.)
 	 */
 	void exitGame();
 
 	/**
-	 * Checks if the given option is valid.
+	 * Checks if the given option is valid. It is <b>highly</b> recommended to
+	 * verify your next controller call against this method. Otherwise the
+	 * outcome of the game is unpredictable. You can get all available Options
+	 * from {@link IController#getOptions()}
 	 * 
 	 * @param userOption
 	 *            user option of type UserAction
@@ -97,6 +120,9 @@ public interface IController extends IObservable {
 	Player getCurrentPlayer();
 
 	/**
+	 * The returned String represents all action, which happened during the
+	 * turn. It is suitable to display this message to the user every time there
+	 * is an update call.
 	 * 
 	 * @return a string with information of current turn
 	 */
@@ -108,8 +134,8 @@ public interface IController extends IObservable {
 	String getPrisonQuestion();
 
 	/**
-	 * Checks if the answer to the question is correct and sets the player free
-	 * if so.
+	 * Checks if the answer to the current drawn question is correct and sets
+	 * the player free if so.
 	 * 
 	 * @param answer
 	 */
@@ -120,7 +146,6 @@ public interface IController extends IObservable {
 	 * 
 	 * @return
 	 */
-	// moved
 	int getNumberOfPlayers();
 
 	/**
@@ -129,7 +154,6 @@ public interface IController extends IObservable {
 	 * @param i
 	 * @return
 	 */
-	// moved
 	Player getPlayer(int i);
 
 	/**
@@ -146,10 +170,17 @@ public interface IController extends IObservable {
 	 */
 	IFieldObject getCurrentField();
 
+	/**
+	 * Returns the current phase of the game. For more information see
+	 * {@link GameStatus}
+	 * 
+	 * @return
+	 */
 	GameStatus getPhase();
 
 	/**
-	 * Returns a list with available options for the current player.
+	 * Returns a list with available options for the current player. Suitable
+	 * for displaying it to the user.
 	 * 
 	 * @return
 	 */
@@ -163,10 +194,19 @@ public interface IController extends IObservable {
 	 */
 	int getFieldSize();
 
+	/**
+	 * Returns a field object at the index i.
+	 * 
+	 * @param i
+	 * @return
+	 */
 	IFieldObject getFieldAtIndex(int i);
 
-	IPlayfield getField();
-
+	/**
+	 * This method draws a card from the current field, where the player is
+	 * standing on. The text of the drawn card is stored in the message Object
+	 * and is retrieved via {@link IController#getMessage()}.
+	 */
 	void drawCard();
 
 }
