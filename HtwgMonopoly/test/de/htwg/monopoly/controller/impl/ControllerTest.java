@@ -41,6 +41,7 @@ public class ControllerTest {
 		playerList.add("1");
 		
 		testController.startNewGame(playerList);
+		System.out.println(playerList);
 	}
 
 	@Test
