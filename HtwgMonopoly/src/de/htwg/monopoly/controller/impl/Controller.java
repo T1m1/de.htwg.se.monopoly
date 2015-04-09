@@ -11,6 +11,7 @@ import com.google.inject.name.Named;
 
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.controller.IPlayerController;
+import de.htwg.monopoly.controller.IPlayfield;
 import de.htwg.monopoly.entities.ICards;
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Dice;
@@ -33,7 +34,7 @@ import de.htwg.monopoly.util.UserAction;
  */
 public class Controller extends Observable implements IController {
 	private IPlayerController players;
-	private Playfield field;
+	private IPlayfield field;
 	private Player currentPlayer;
 	private IFieldObject currentField;
 	private Dice dice;
