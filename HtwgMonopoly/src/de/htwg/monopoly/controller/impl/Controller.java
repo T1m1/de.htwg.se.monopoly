@@ -70,7 +70,7 @@ public class Controller extends Observable implements IController {
 		
 		// create Dice and usercontroller with factory
 		this.dice = factory.createDice();
-		this.userOptions = factory.createUserController(this);
+		this.userOptions = new UserOptionsController(this);
 
 	}
 

@@ -14,9 +14,7 @@ public class TestMonopolyModule extends AbstractModule  {
 		
 		bindConstant().annotatedWith(Names.named("FieldSize")).to("2");
 		bind(IController.class).to(de.htwg.monopoly.controller.impl.Controller.class);
-		
-		bind(IControllerFactory.class).to(
-				de.htwg.monopoly.factory.impl.TestMonopolyFactory.class);
+
 		
 		
 	}
