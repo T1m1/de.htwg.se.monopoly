@@ -43,7 +43,6 @@ public class PlayfieldTest {
 	@Test
 	public void testGetCurrentField() {
 		assertEquals(FieldType.GO, field.getFieldOfPlayer(testplayer).getType());
-		field.getFieldNameAtIndex(1);
 
 	}
 

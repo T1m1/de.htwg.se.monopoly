@@ -4,8 +4,6 @@ import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
 
 import de.htwg.monopoly.controller.IController;
-import de.htwg.monopoly.entities.IDice;
-import de.htwg.monopoly.entities.impl.Dice;
 import de.htwg.monopoly.factory.IControllerFactory;
 
 public class MonopolyModule extends AbstractModule {
@@ -21,7 +19,7 @@ public class MonopolyModule extends AbstractModule {
 
 		bind(IControllerFactory.class).to(
 				de.htwg.monopoly.factory.impl.MonopolyFactory.class);
-		bind(IDice.class).to(de.htwg.monopoly.entities.impl.Dice.class);
+		
 	}
 
 }

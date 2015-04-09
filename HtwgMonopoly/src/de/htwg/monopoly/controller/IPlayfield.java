@@ -37,22 +37,13 @@ public interface IPlayfield {
 	IFieldObject getFieldOfPlayer(Player currentPlayer);
 
 	/**
-	 * Return the name of the Field at index i *
-	 * 
-	 * @param i
-	 * @return String
-	 */
-	String getFieldNameAtIndex(int i);
-
-	
-	/**
 	 * Return the current Field at index i *
 	 * 
 	 * @param i
 	 * @return String
 	 */
 	IFieldObject getFieldAtIndex(int i);
-	
+
 	/**
 	 * Return the size of the playfield.
 	 * 
@@ -62,17 +53,21 @@ public interface IPlayfield {
 
 	/**
 	 * Build and return a String, depending on the field, the current player is
-	 * standing on. In addition, this method performs this action.
+	 * standing on. In addition, this method performs this action. Note: This is
+	 * where all the magic happens :)
 	 * 
 	 * 
 	 * @param currentField
 	 * @param currentPlayer
 	 * @return
 	 */
-	String performActionAndAppendInfo(IFieldObject currentField, Player currentPlayer);
+	String performActionAndAppendInfo(IFieldObject currentField,
+			Player currentPlayer);
 
 	/**
-	 * Moves the current Player to the field according to the String target. If
+	 * Moves the current Player to the field according to the String [target].
+	 * The String can be an integer. If that is the case, the string is parsed
+	 * and the method {@link IPlayfield#movePlayer(Player, int)} is called. If
 	 * the player went over or stays on Go, he gets money, but not if he goes in
 	 * Prison
 	 * 
@@ -96,16 +91,7 @@ public interface IPlayfield {
 	 * @return
 	 */
 	ChanceCardsStack getChanStack();
-	
-	/**
-	 * for testing
-	 * 
-	 * 
-	 * @param i
-	 * @param field
-	 */
-	void setFieldAtIndex(int i, IFieldObject field);
-	
+
 	/**
 	 * The current Player buys this current Street. Returns false if the Player
 	 * has not enough money. Otherwise true if the purchase was successful.

@@ -3,7 +3,6 @@ package de.htwg.monopoly.controller.impl;
 import de.htwg.monopoly.controller.IPlayfield;
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.*;
-import de.htwg.monopoly.util.FieldType;
 import de.htwg.monopoly.util.IMonopolyFields;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
@@ -86,11 +85,9 @@ public class Playfield implements IPlayfield {
 	}
 
 	/**
-	 * Move the Player according to the dice Result. If the Player went over Go,
-	 * it is saved in a boolean variable.
-	 * 
-	 * 
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void movePlayer(Player currentPlayer, int diceResult) {
 		int position = (currentPlayer.getPosition() + diceResult)
 				% playfield.length;
@@ -100,33 +97,33 @@ public class Playfield implements IPlayfield {
 	}
 
 	/**
-	 * get current field
+	 * {@inheritDoc}
 	 */
+	@Override
 	public IFieldObject getFieldOfPlayer(Player currentPlayer) {
 		return playfield[currentPlayer.getPosition()];
 	}
 
 	/**
-	 * get field name at comitted index
-	 */
-	public String getFieldNameAtIndex(int i) {
-		return playfield[i].toString();
-	}
-
-	/**
 	 * get field at commited index
 	 */
+	@Override
 	public IFieldObject getFieldAtIndex(int i) {
 		return playfield[i];
 	}
 
 	/**
-	 * get field size
+	 * {@inheritDoc}
 	 */
+	@Override
 	public int getfieldSize() {
 		return this.fieldSize;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public String performActionAndAppendInfo(IFieldObject currentField,
 			Player currentPlayer) {
 		StringBuilder sb = new StringBuilder();
@@ -158,7 +155,7 @@ public class Playfield implements IPlayfield {
 		case GO_TO_PRISON:
 			sb.append(bundle.getString("play_bsys"));
 			// TODO: implement solution if the player wants to set himself free
-			// immediately
+			// immediately. Naaah, we make our own rules.
 			movePlayerToPrison(currentPlayer);
 			break;
 		case PRISON_VISIT_ONLY:
@@ -206,6 +203,10 @@ public class Playfield implements IPlayfield {
 		return sb.toString();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public String movePlayerTo(Player currentPlayer, String target) {
 		int oldPosition = currentPlayer.getPosition();
 		int position = -1;
@@ -256,36 +257,40 @@ public class Playfield implements IPlayfield {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public CommunityCardsStack getCommStack() {
 		return commStack;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public ChanceCardsStack getChanStack() {
 		return chanStack;
 	}
 
-	public void setFieldAtIndex(int i, IFieldObject field) {
-		if (field.getType() == FieldType.COMMUNITY_STACK) {
-			this.commStack = (CommunityCardsStack) field;
-		} else if (field.getType() == FieldType.CHANCE_STACK) {
-			this.chanStack = (ChanceCardsStack) field;
-		}
-		playfield[i] = field;
-	}
-
 	/**
-	 * 
-	 * @return
+	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean buyStreet(Player currentPlayer, Street currentStreet) {
+
+		// check if the player has enough money
 		if (currentStreet.getPriceForStreet() < currentPlayer.getBudget()) {
 
-			// TODO: catch Assertion
+			// subtract the money from player
 			currentPlayer.decrementMoney(currentStreet.getPriceForStreet());
 
+			// set new Owner of street and add street to the possession of the
+			// player.
 			currentStreet.setOwner(currentPlayer);
-			currentPlayer.addOwnership(currentStreet);
 			currentStreet.setSold(true);
+
+			currentPlayer.addOwnership(currentStreet);
 			return true;
 		}
 		return false;

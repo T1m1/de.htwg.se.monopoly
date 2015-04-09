@@ -1,9 +1,8 @@
 package de.htwg.monopoly.entities.impl;
 
-import de.htwg.monopoly.entities.IDice;
 import de.htwg.monopoly.util.IMonopolyUtil;
 
-public final class Dice implements IDice{
+public final class Dice {
 
 	private int dice1;
 	private int dice2;

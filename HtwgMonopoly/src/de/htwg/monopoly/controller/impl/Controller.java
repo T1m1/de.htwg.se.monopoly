@@ -12,8 +12,8 @@ import com.google.inject.name.Named;
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.controller.IPlayerController;
 import de.htwg.monopoly.entities.ICards;
-import de.htwg.monopoly.entities.IDice;
 import de.htwg.monopoly.entities.IFieldObject;
+import de.htwg.monopoly.entities.impl.Dice;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.PrisonQuestion;
 import de.htwg.monopoly.entities.impl.Street;
@@ -36,7 +36,7 @@ public class Controller extends Observable implements IController {
 	private Playfield field;
 	private Player currentPlayer;
 	private IFieldObject currentField;
-	private IDice dice;
+	private Dice dice;
 	private int fieldSize;
 
 	private GameStatus phase;
@@ -405,7 +405,7 @@ public class Controller extends Observable implements IController {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public IDice getDice() {
+	public Dice getDice() {
 		return dice;
 	}
 
