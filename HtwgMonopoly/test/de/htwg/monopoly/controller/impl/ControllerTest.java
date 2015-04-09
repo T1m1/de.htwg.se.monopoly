@@ -189,22 +189,24 @@ public class ControllerTest {
 		setUpGame();
 		when(mockField.getFieldOfPlayer(isA(Player.class))).thenReturn(
 				new Street());
-		when(mockField.buyStreet(isA(Player.class), isA(Street.class))).thenReturn(true);
-		
+		when(mockField.buyStreet(isA(Player.class), isA(Street.class)))
+				.thenReturn(true);
+
 		// perform & assert
 		assertTrue(testController.buyStreet());
 		assertEquals("Erfolgreich gekauft.", testController.getMessage());
 		assertEquals(GameStatus.DURING_TURN, testController.getPhase());
 	}
-	
+
 	@Test
 	public void buyStreetNoMoney() {
 		// set up
 		setUpGame();
 		when(mockField.getFieldOfPlayer(isA(Player.class))).thenReturn(
 				new Street());
-		when(mockField.buyStreet(isA(Player.class), isA(Street.class))).thenReturn(false);
-		
+		when(mockField.buyStreet(isA(Player.class), isA(Street.class)))
+				.thenReturn(false);
+
 		// perform & assert
 		assertFalse(testController.buyStreet());
 		assertEquals("Du hast nicht genug Geld!", testController.getMessage());
@@ -213,26 +215,74 @@ public class ControllerTest {
 
 	@Test
 	public void endTurn() {
-		// set up 
+		// set up
 		setUpGame();
 		dummyPlayer.setInPrison(true);
 		when(mockPlayerController.getNextPlayer()).thenReturn(dummyPlayer);
-		
+
 		// perform
 		testController.endTurn();
-		assertEquals(GameStatus.BEFORE_TURN_IN_PRISON, testController.getPhase());
+		assertEquals(GameStatus.BEFORE_TURN_IN_PRISON,
+				testController.getPhase());
 		assertEquals(1, dummyPlayer.getPrisonRound());
 		assertEquals("Du bist im Gefängnis", testController.getMessage());
-		
+
 		dummyPlayer.incrementPrisonRound();
 		dummyPlayer.incrementPrisonRound();
 		dummyPlayer.incrementPrisonRound();
-		
+
 		testController.endTurn();
 		assertEquals(GameStatus.BEFORE_TURN, testController.getPhase());
 		assertEquals(0, dummyPlayer.getPrisonRound());
-		assertEquals("", testController.getMessage());		
+		assertEquals("", testController.getMessage());
 	}
+
+	@Test
+	public void reedemWithCard() {
+		// set up
+		setUpGame();
+		dummyPlayer.setInPrison(true);
+
+		// perform & assert
+		assertFalse(testController.redeemWithCard());
+		assertEquals(GameStatus.BEFORE_TURN_IN_PRISON,
+				testController.getPhase());
+		assertEquals("Keine Karte im Besitz", testController.getMessage());
+		assertTrue(dummyPlayer.isInPrison());
+
+		// give player a prison free card
+		dummyPlayer.incrementPrisonFreeCard();
+		assertTrue(testController.redeemWithCard());
+		assertEquals(GameStatus.BEFORE_TURN, testController.getPhase());
+		assertEquals("Erfolgreich frei gekommen.", testController.getMessage());
+		assertFalse(dummyPlayer.isInPrison());
+
+	}
+
+	@Test
+	public void redeemWithMoney() {
+		// set up
+		setUpGame();
+		dummyPlayer.decrementMoney(IMonopolyUtil.INITIAL_MONEY);
+		dummyPlayer.setInPrison(true);
+
+		// perform & assert
+		assertFalse(testController.redeemWithMoney());
+		assertEquals("Kein Geld zum Freikaufen!", testController.getMessage());
+		assertEquals(GameStatus.BEFORE_TURN_IN_PRISON,
+				testController.getPhase());
+		assertTrue(dummyPlayer.isInPrison());
+
+		// give player enough money
+		dummyPlayer.incrementMoney(IMonopolyUtil.FREIKAUFEN);
+
+		assertTrue(testController.redeemWithMoney());
+		assertEquals("Erfolgreich freigekauft!", testController.getMessage());
+		assertEquals(GameStatus.BEFORE_TURN, testController.getPhase());
+		assertFalse(dummyPlayer.isInPrison());
+	}
+
+	
 	@Test
 	public void testRollDice() {
 		testController.rollDiceToRedeem();
