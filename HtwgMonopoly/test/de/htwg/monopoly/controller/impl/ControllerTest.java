@@ -19,10 +19,16 @@ import static org.mockito.Mockito.*;
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.controller.IPlayerController;
 import de.htwg.monopoly.controller.IPlayfield;
+import de.htwg.monopoly.entities.IFieldObject;
+import de.htwg.monopoly.entities.impl.ChanceCardsStack;
+import de.htwg.monopoly.entities.impl.CommunityCardsStack;
 import de.htwg.monopoly.entities.impl.Dice;
+import de.htwg.monopoly.entities.impl.FieldObject;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.PrisonQuestion;
+import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.factory.IControllerFactory;
+import de.htwg.monopoly.util.FieldType;
 import de.htwg.monopoly.util.GameStatus;
 import de.htwg.monopoly.util.IMonopolyUtil;
 import de.htwg.monopoly.util.PlayerIcon;
@@ -40,10 +46,15 @@ public class ControllerTest {
 
 	private Player dummyPlayer;
 
+	private TreeMap<String, PlayerIcon> players;
+
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		
+		players = new TreeMap<String, PlayerIcon>();
+		players.put("Player 1", PlayerIcon.BITTEL);
+		players.put("Player 2", PlayerIcon.BOGER);
+
 		dummyPlayer = new Player("Player 1", PlayerIcon.BITTEL);
 
 		// define behavior of the mockfactory
@@ -51,9 +62,10 @@ public class ControllerTest {
 		when(
 				mockFactory.createPlayerController(anyMapOf(String.class,
 						PlayerIcon.class))).thenReturn(mockPlayerController);
-		
+
 		when(mockFactory.createDice()).thenReturn(new Dice());
-		when(mockFactory.createPrisonQuestions()).thenReturn(new PrisonQuestion());
+		when(mockFactory.createPrisonQuestions()).thenReturn(
+				new PrisonQuestion());
 
 		// create a test instance of the test controller
 		testController = new Controller(IMonopolyUtil.FIELD_SIZE, mockFactory);
@@ -62,48 +74,142 @@ public class ControllerTest {
 
 	@Test
 	public void startNewGameWithList() {
-		List<String> players = new LinkedList<String>();
+		List<String> playerlist = new LinkedList<String>();
 
 		// test wrong number of players.
-		testController.startNewGame(players);
+		testController.startNewGame(playerlist);
 		assertEquals("Wrong number of players!!", testController.getMessage());
 		assertEquals(GameStatus.NOT_STARTED, testController.getPhase());
 
 		// test correct number
-		players.add("Player 1");
-		players.add("Player 2");
+		playerlist.add("Player 1");
+		playerlist.add("Player 2");
 
 		// define behavior of player controller.
 		when(mockPlayerController.getFirstPlayer()).thenReturn(dummyPlayer);
-		
-		testController.startNewGame(players);
+
+		// perform
+		testController.startNewGame(playerlist);
 		assertEquals("Spiel gestartet!", testController.getMessage());
 		assertEquals(GameStatus.STARTED, testController.getPhase());
 	}
 
-	
 	@Test
 	public void startNewGameWithMap() {
-		Map<String, PlayerIcon> players = new TreeMap<String, PlayerIcon>();
 
 		// test wrong number of players.
-		testController.startNewGame(players);
+		testController.startNewGame(new TreeMap<String, PlayerIcon>());
 		assertEquals("Wrong number of players!!", testController.getMessage());
 		assertEquals(GameStatus.NOT_STARTED, testController.getPhase());
-		
-		// test correct number
-		players.put("Player 1", PlayerIcon.BITTEL);
-		players.put("Player 2", PlayerIcon.BOGER);
 
 		// define behavior of player controller.
 		when(mockPlayerController.getFirstPlayer()).thenReturn(dummyPlayer);
-		
+
+		// perform
 		testController.startNewGame(players);
 		assertEquals("Spiel gestartet!", testController.getMessage());
 		assertEquals(GameStatus.STARTED, testController.getPhase());
 	}
+
+	@Test
+	public void startTurn1() {
+		setUpGame();
+
+		// 1. Testcase: player lands on normal field
+
+		// define behavior
+		doNothing().when(mockField).movePlayer(any(Player.class), anyInt());
+		when(mockField.getFieldOfPlayer(any(Player.class))).thenReturn(
+				new Street());
+		when(
+				mockField.performActionAndAppendInfo(isA(IFieldObject.class),
+						isA(Player.class))).thenReturn("Confirmed");
+
+		// perform
+		testController.startTurn();
+
+		// assert
+		assertEquals("Confirmed", testController.getMessage());
+		assertEquals(GameStatus.DURING_TURN, testController.getPhase());
+	}
+
+	@Test
+	public void startTurn2() {
+		setUpGame();
+		// 2. Testcase: player lands on Community Stack field
+		// define behavior
+		doNothing().when(mockField).movePlayer(any(Player.class), anyInt());
+		when(mockField.getFieldOfPlayer(any(Player.class))).thenReturn(
+				new CommunityCardsStack());
+
+		// perform
+		testController.startTurn();
+
+		// assert
+		assertEquals(
+				"Du bist auf einem Gemeinschaftsfeld gelandet. Ziehe eine Karte",
+				testController.getMessage());
+		assertEquals(GameStatus.DURING_TURN, testController.getPhase());
+	}
+
+	@Test
+	public void startTurn3() {
+		setUpGame();
+
+		// 3. Testcase: player lands on Chance Stack field
+		// define behavior
+		doNothing().when(mockField).movePlayer(any(Player.class), anyInt());
+		when(mockField.getFieldOfPlayer(any(Player.class))).thenReturn(
+				new ChanceCardsStack());
+
+		// perform
+		testController.startTurn();
+
+		// assert
+		assertEquals(
+				"Du bist auf einem Ereignisfeld gelandet. Ziehe eine Karte",
+				testController.getMessage());
+		assertEquals(GameStatus.DURING_TURN, testController.getPhase());
+	}
+
+	@Test(expected = AssertionError.class)
+	public void buyStreetAssertion() {
+		// set up
+		setUpGame();
+		when(mockField.getFieldOfPlayer(isA(Player.class))).thenReturn(
+				new FieldObject("notAStreet", FieldType.GO, 0));
+
+		// perform
+		testController.buyStreet();
+	}
+
+	@Test
+	public void buyStreetEnoughMoney() {
+		// set up
+		setUpGame();
+		when(mockField.getFieldOfPlayer(isA(Player.class))).thenReturn(
+				new Street());
+		when(mockField.buyStreet(isA(Player.class), isA(Street.class))).thenReturn(true);
+		
+		// perform & assert
+		assertTrue(testController.buyStreet());
+		assertEquals("Erfolgreich gekauft.", testController.getMessage());
+		assertEquals(GameStatus.DURING_TURN, testController.getPhase());
+	}
 	
-	
+	@Test
+	public void buyStreetNoMoney() {
+		// set up
+		setUpGame();
+		when(mockField.getFieldOfPlayer(isA(Player.class))).thenReturn(
+				new Street());
+		when(mockField.buyStreet(isA(Player.class), isA(Street.class))).thenReturn(false);
+		
+		// perform & assert
+		assertFalse(testController.buyStreet());
+		assertEquals("Du hast nicht genug Geld!", testController.getMessage());
+		assertEquals(GameStatus.DURING_TURN, testController.getPhase());
+	}
 
 	@Test
 	public void testRollDice() {
@@ -117,28 +223,8 @@ public class ControllerTest {
 	}
 
 	@Test
-	public void startGame() {
-
-		// // start game with wrong parameter
-		// contr.startNewGame(new LinkedList<String>());
-		// assertEquals("Wrong number of players!!", contr.getMessage());
-		//
-		// // start game with wrong parameter
-		// contr.startNewGame(new TreeMap<String, PlayerIcon>());
-		// assertEquals("Wrong number of players!!", contr.getMessage());
-	}
-
-	@Test
 	public void testExitGame() {
 		testController.exitGame();
-	}
-
-	@Test
-	public void testBuyStreet() {
-		testController.getCurrentPlayer().setPosition(1);
-		assertTrue(testController.buyStreet());
-		testController.getCurrentPlayer().decrementMoney(1440);
-		assertFalse(testController.buyStreet());
 	}
 
 	@Test
@@ -164,5 +250,11 @@ public class ControllerTest {
 	@After
 	public void tearDown() {
 		testController = null;
+	}
+
+	private void setUpGame() {
+		// setUp
+		when(mockPlayerController.getFirstPlayer()).thenReturn(dummyPlayer);
+		testController.startNewGame(players);
 	}
 }
