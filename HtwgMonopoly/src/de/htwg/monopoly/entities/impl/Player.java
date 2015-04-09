@@ -98,6 +98,7 @@ public class Player {
 	 * round
 	 * 
 	 * @param roundNumber
+	 * @deprecated
 	 */
 	public void setPrisonRound(int roundNumber) {
 		if (roundNumber == 0) {

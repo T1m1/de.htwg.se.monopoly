@@ -212,6 +212,28 @@ public class ControllerTest {
 	}
 
 	@Test
+	public void endTurn() {
+		// set up 
+		setUpGame();
+		dummyPlayer.setInPrison(true);
+		when(mockPlayerController.getNextPlayer()).thenReturn(dummyPlayer);
+		
+		// perform
+		testController.endTurn();
+		assertEquals(GameStatus.BEFORE_TURN_IN_PRISON, testController.getPhase());
+		assertEquals(1, dummyPlayer.getPrisonRound());
+		assertEquals("Du bist im Gefängnis", testController.getMessage());
+		
+		dummyPlayer.incrementPrisonRound();
+		dummyPlayer.incrementPrisonRound();
+		dummyPlayer.incrementPrisonRound();
+		
+		testController.endTurn();
+		assertEquals(GameStatus.BEFORE_TURN, testController.getPhase());
+		assertEquals(0, dummyPlayer.getPrisonRound());
+		assertEquals("", testController.getMessage());		
+	}
+	@Test
 	public void testRollDice() {
 		testController.rollDiceToRedeem();
 	}
