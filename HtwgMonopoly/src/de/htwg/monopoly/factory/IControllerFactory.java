@@ -18,8 +18,6 @@ public interface IControllerFactory {
 
 	PrisonQuestion createPrisonQuestions();
 
-	UserOptionsController createUserController(Controller controller);
-
 	Dice createDice();
 
 }

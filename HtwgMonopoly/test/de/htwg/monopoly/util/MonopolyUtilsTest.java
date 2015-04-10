@@ -5,6 +5,8 @@ package de.htwg.monopoly.util;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,9 +35,9 @@ public class MonopolyUtilsTest {
 	@Test
 	public void testVerifyPlayerNumber() {
 		assertTrue(MonopolyUtils.verifyPlayerNumber(minPlayer));
-		
+
 		assertTrue(MonopolyUtils.verifyPlayerNumber(minPlayer + 1));
-		
+
 		assertFalse(MonopolyUtils.verifyPlayerNumber(minPlayer - 1));
 
 		assertTrue(MonopolyUtils.verifyPlayerNumber(maxPlayer));
@@ -45,4 +47,11 @@ public class MonopolyUtilsTest {
 		assertFalse(MonopolyUtils.verifyPlayerNumber(maxPlayer + 1));
 	}
 
+	@Test(expected = AssertionError.class)
+	public void testAssertion() {
+		String[] list = {"1","2","3","4","5","6","7","8","9"};
+		
+		MonopolyUtils.getPlayersWithIcons(Arrays.asList(list));
+
+	}
 }

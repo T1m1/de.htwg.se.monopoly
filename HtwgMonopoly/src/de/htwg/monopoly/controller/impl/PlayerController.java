@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
 import de.htwg.monopoly.controller.IPlayerController;
 import de.htwg.monopoly.entities.ICards;
 import de.htwg.monopoly.entities.impl.Bank;
@@ -27,9 +26,10 @@ public class PlayerController implements IPlayerController {
 	// the player of the current turn
 	private int currentPlayer;
 
-
 	/**
-	 * Constructor initialize a controller for handling all players.
+	 * Constructor initialize a controller for handling all players. You can use
+	 * {@link MonopolyUtils#getPlayersWithIcons(List)} for getting PlayerIcons
+	 * to a corresponding List
 	 * 
 	 * @param inPlayers
 	 */

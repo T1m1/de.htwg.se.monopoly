@@ -35,10 +35,6 @@ public class MonopolyFactory implements IControllerFactory {
 		return new PrisonQuestion();
 	}
 
-	@Override
-	public UserOptionsController createUserController(Controller controller) {
-		return new UserOptionsController(controller);
-	}
 
 	@Override
 	public Dice createDice() {
