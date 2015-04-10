@@ -61,13 +61,14 @@ public class Controller extends Observable implements IController {
 	 * @param fieldSize
 	 */
 	@Inject
-	public Controller(@Named("FieldSize") int fieldSize, IControllerFactory controllerFactory) {
+	public Controller(@Named("FieldSize") int fieldSize,
+			IControllerFactory controllerFactory) {
 		phase = GameStatus.NOT_STARTED;
 		this.fieldSize = fieldSize;
 		this.factory = controllerFactory;
 
 		this.message = new StringBuilder();
-		
+
 		// create Dice and usercontroller with factory
 		this.dice = factory.createDice();
 		this.userOptions = new UserOptionsController(this);
@@ -79,7 +80,7 @@ public class Controller extends Observable implements IController {
 	 */
 	@Override
 	public void startNewGame(List<String> players) {
-		
+
 		clearMessage();
 
 		// verify number
@@ -103,7 +104,7 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void startNewGame(Map<String, PlayerIcon> players) {
 		clearMessage();
-		
+
 		// verify the number of players
 		if (!MonopolyUtils.verifyPlayerNumber(players.size())) {
 			message.append("Wrong number of players!!");
@@ -111,11 +112,11 @@ public class Controller extends Observable implements IController {
 			return;
 		}
 
-		// create new field, player and prisonquestions with factory 
+		// create new field, player and prisonquestions with factory
 		this.field = factory.createPlayfield(fieldSize);
 		this.players = factory.createPlayerController(players);
 		this.questions = factory.createPrisonQuestions();
-		
+
 		// retrieve the first prison question
 		currentPrisonQuestion = questions.getNextQuestion();
 
@@ -330,6 +331,9 @@ public class Controller extends Observable implements IController {
 		} else if (currentField.getType() == FieldType.CHANCE_STACK) {
 			ICards currentChanceCard = field.getChanStack().getNextCard();
 			message.append(performCardAction(currentChanceCard));
+		} else {
+			throw new AssertionError(
+					"The currentfield is neither a community stack nor a chance stack");
 		}
 
 		updateGameStatus(GameStatus.DURING_TURN);

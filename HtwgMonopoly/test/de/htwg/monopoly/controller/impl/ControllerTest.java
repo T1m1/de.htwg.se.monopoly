@@ -42,6 +42,10 @@ public class ControllerTest {
 	@Mock
 	private IPlayerController mockPlayerController;
 	@Mock
+	private Dice mockDice;
+	@Mock
+	private PrisonQuestion mockQuestion;
+	@Mock
 	private IControllerFactory mockFactory;
 
 	private Player dummyPlayer;
@@ -63,9 +67,9 @@ public class ControllerTest {
 				mockFactory.createPlayerController(anyMapOf(String.class,
 						PlayerIcon.class))).thenReturn(mockPlayerController);
 
-		when(mockFactory.createDice()).thenReturn(new Dice());
-		when(mockFactory.createPrisonQuestions()).thenReturn(
-				new PrisonQuestion());
+		when(mockFactory.createDice()).thenReturn(mockDice);
+		when(mockFactory.createPrisonQuestions()).thenReturn(mockQuestion);
+		when(mockQuestion.getNextQuestion()).thenReturn("Dummy question");
 
 		// create a test instance of the test controller
 		testController = new Controller(IMonopolyUtil.FIELD_SIZE, mockFactory);
@@ -131,14 +135,8 @@ public class ControllerTest {
 		// assert
 		assertEquals("Confirmed", testController.getMessage());
 		assertEquals(GameStatus.DURING_TURN, testController.getPhase());
-	}
 
-	@Test
-	public void startTurn2() {
-		setUpGame();
 		// 2. Testcase: player lands on Community Stack field
-		// define behavior
-		doNothing().when(mockField).movePlayer(any(Player.class), anyInt());
 		when(mockField.getFieldOfPlayer(any(Player.class))).thenReturn(
 				new CommunityCardsStack());
 
@@ -150,15 +148,9 @@ public class ControllerTest {
 				"Du bist auf einem Gemeinschaftsfeld gelandet. Ziehe eine Karte",
 				testController.getMessage());
 		assertEquals(GameStatus.DURING_TURN, testController.getPhase());
-	}
-
-	@Test
-	public void startTurn3() {
-		setUpGame();
 
 		// 3. Testcase: player lands on Chance Stack field
 		// define behavior
-		doNothing().when(mockField).movePlayer(any(Player.class), anyInt());
 		when(mockField.getFieldOfPlayer(any(Player.class))).thenReturn(
 				new ChanceCardsStack());
 
@@ -282,27 +274,95 @@ public class ControllerTest {
 		assertFalse(dummyPlayer.isInPrison());
 	}
 
-	
 	@Test
-	public void testRollDice() {
+	public void redeemWithDice() {
+		// set up
+		setUpGame();
+		dummyPlayer.setInPrison(true);
+
+		// perform
+		testController.redeemWithDice();
+
+		// assert
+		assertEquals(GameStatus.DICE_ROLL_FOR_PRISON, testController.getPhase());
+		assertEquals(
+				"Versuchen sie bei 3 W&uuml;rfen einen Pasch zu w&uuml;rfeln.",
+				testController.getMessage());
+
+		// roll dice 3 times with no pasch
+		when(mockDice.isPasch()).thenReturn(false);
 		testController.rollDiceToRedeem();
+		assertEquals("Leider kein Pasch gew&uuml;rfelt. Noch 2 Versuch(e).",
+				testController.getMessage());
+		assertTrue(dummyPlayer.isInPrison());
+		assertEquals(GameStatus.DICE_ROLL_FOR_PRISON, testController.getPhase());
+
+		testController.rollDiceToRedeem();
+		testController.rollDiceToRedeem();
+		assertEquals(
+				"Leider 3 mal kein Pasch gew&uuml;rfelt. Der N&auml;chste ist dran.",
+				testController.getMessage());
+		assertTrue(dummyPlayer.isInPrison());
+		assertEquals(GameStatus.DICE_ROLL_FOR_PRISON, testController.getPhase());
+
+		// roll dice and get a pasch
+		when(mockDice.isPasch()).thenReturn(true);
+
+		testController.rollDiceToRedeem();
+		assertEquals("Erfolgreich frei gekommen", testController.getMessage());
+		assertFalse(dummyPlayer.isInPrison());
+		assertEquals(GameStatus.BEFORE_TURN, testController.getPhase());
+
 	}
 
 	@Test
-	public void testEndTurn() {
-		testController.endTurn();
-		assertEquals("1", testController.getCurrentPlayer().getName());
+	public void checkPlayerAnswer() {
+		// set up
+		setUpGame();
+		when(mockQuestion.isTrue(isA(String.class), eq(true))).thenReturn(true);
+		dummyPlayer.setInPrison(false);
+
+		// perform
+		assertTrue(testController.checkPlayerAnswer(true));
+		assertEquals("Frage korrekt beantwortet.", testController.getMessage());
+		assertEquals(GameStatus.BEFORE_TURN, testController.getPhase());
+		assertFalse(dummyPlayer.isInPrison());
+	}
+
+	@Test
+	public void checkPlayerAnswer2() {
+		// set up
+		setUpGame();
+		when(mockQuestion.isTrue(isA(String.class), eq(false))).thenReturn(
+				false);
+		when(mockPlayerController.getNextPlayer()).thenReturn(dummyPlayer);
+		dummyPlayer.setInPrison(false);
+
+		// perform
+		assertFalse(testController.checkPlayerAnswer(false));
+		assertEquals(GameStatus.BEFORE_TURN, testController.getPhase());
+		assertFalse(dummyPlayer.isInPrison());
+	}
+
+	@Test
+	public void drawCard() {
+		// set up
+		// setUpGame();
+		// when(mockField.getFieldOfPlayer(any(Player.class))).thenReturn(
+		// new CommunityCardsStack());
+		// testController.startTurn();
+		// testController.drawCard();
+		// TODO
+
 	}
 
 	@Test
 	public void testExitGame() {
 		testController.exitGame();
+		assertEquals("", testController.getMessage());
+		assertEquals(GameStatus.STOPPED, testController.getPhase());
 	}
 
-	@Test
-	public void testGetMessage() {
-		testController.getMessage();
-	}
 
 	@Test
 	public void testNumberOfPlayer() {

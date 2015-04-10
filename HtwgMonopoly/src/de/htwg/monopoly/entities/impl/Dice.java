@@ -2,7 +2,7 @@ package de.htwg.monopoly.entities.impl;
 
 import de.htwg.monopoly.util.IMonopolyUtil;
 
-public final class Dice {
+public class Dice {
 
 	private int dice1;
 	private int dice2;
