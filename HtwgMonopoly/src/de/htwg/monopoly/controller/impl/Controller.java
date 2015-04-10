@@ -333,7 +333,7 @@ public class Controller extends Observable implements IController {
 			message.append(performCardAction(currentChanceCard));
 		} else {
 			throw new AssertionError(
-					"The currentfield is neither a community stack nor a chance stack");
+					"The current field is neither a community card stack nor a chance card stack");
 		}
 
 		updateGameStatus(GameStatus.DURING_TURN);
@@ -361,7 +361,7 @@ public class Controller extends Observable implements IController {
 
 	/**
 	 * Perform the action according to the text on the card. It depends if the
-	 * player has to move or money is transferred.
+	 * player has to move or if money is transferred.
 	 * 
 	 * @return
 	 */
@@ -372,6 +372,7 @@ public class Controller extends Observable implements IController {
 
 		if (isMoveAction(currentCard)) {
 			sb.append(field.movePlayerTo(currentPlayer, currentCard.getTarget()));
+			this.currentField = field.getFieldOfPlayer(currentPlayer);
 		} else {
 			players.transferMoney(currentPlayer, currentCard);
 		}

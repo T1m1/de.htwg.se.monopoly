@@ -46,10 +46,17 @@ public class Street implements IFieldObject {
 	 * Constructor
 	 * 
 	 * @param name
+	 *            String
 	 * @param priceForStreet
+	 *            int
 	 * @param color
+	 *            color
 	 * @param rent
+	 *            int
 	 * @param pricePerHotel
+	 *            int
+	 * @param position
+	 *            int
 	 */
 	public Street(String name, int priceForStreet, Color color, int rent,
 			int pricePerHotel, int position) {

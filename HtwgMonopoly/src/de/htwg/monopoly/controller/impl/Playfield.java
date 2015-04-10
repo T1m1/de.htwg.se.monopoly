@@ -279,8 +279,12 @@ public class Playfield implements IPlayfield {
 	@Override
 	public boolean buyStreet(Player currentPlayer, Street currentStreet) {
 
+		if (currentStreet.isSold()) {
+			throw new AssertionError("Street is already sold to someone else");
+		}
+
 		// check if the player has enough money
-		if (currentStreet.getPriceForStreet() < currentPlayer.getBudget()) {
+		if (currentStreet.getPriceForStreet() <= currentPlayer.getBudget()) {
 
 			// subtract the money from player
 			currentPlayer.decrementMoney(currentStreet.getPriceForStreet());

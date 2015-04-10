@@ -2,6 +2,8 @@ package de.htwg.monopoly.controller.impl;
 
 import static org.junit.Assert.*;
 
+import java.awt.Color;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -49,7 +51,7 @@ public class PlayfieldTest {
 	@Test
 	public void testNotMyStree2t() {
 
-		Player andererPlayer =  new Player("TestName", PlayerIcon.BITTEL);
+		Player andererPlayer = new Player("TestName", PlayerIcon.BITTEL);
 		field.performActionAndAppendInfo(field.getFieldOfPlayer(testplayer),
 				testplayer);
 
@@ -206,6 +208,27 @@ public class PlayfieldTest {
 
 		field.movePlayerTo(testplayer, "1");
 		assertEquals(1, testplayer.getPosition());
+	}
+
+	@Test
+	public void buyStreet() {
+		// set money to zero
+		testplayer.decrementMoney(IMonopolyUtil.INITIAL_MONEY);
+		Street testStreet = new Street("Test", 50, Color.BLACK, 20, 20);
+		assertFalse(field.buyStreet(testplayer, testStreet));
+
+		testplayer.incrementMoney(50);
+		assertTrue(field.buyStreet(testplayer, testStreet));
+		assertTrue(testStreet.isSold());
+		assertEquals(0, testplayer.getBudget());
+		assertTrue(testplayer.getOwnership().contains(testStreet));
+	}
+
+	@Test(expected = AssertionError.class)
+	public void buyStreetAssert() {
+		Street testStreet = new Street("Test", 50, Color.BLACK, 20, 20);
+		testStreet.setSold(true);
+		field.buyStreet(testplayer, testStreet);
 	}
 
 	@Test(expected = AssertionError.class)

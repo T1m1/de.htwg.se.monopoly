@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.TreeMap;
 
 import org.junit.After;
@@ -18,9 +17,10 @@ import org.mockito.MockitoAnnotations;
 import static org.mockito.Mockito.*;
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.controller.IPlayerController;
-import de.htwg.monopoly.controller.IPlayfield;
 import de.htwg.monopoly.entities.IFieldObject;
+import de.htwg.monopoly.entities.impl.ChanceCard;
 import de.htwg.monopoly.entities.impl.ChanceCardsStack;
+import de.htwg.monopoly.entities.impl.CommunityCard;
 import de.htwg.monopoly.entities.impl.CommunityCardsStack;
 import de.htwg.monopoly.entities.impl.Dice;
 import de.htwg.monopoly.entities.impl.FieldObject;
@@ -32,19 +32,24 @@ import de.htwg.monopoly.util.FieldType;
 import de.htwg.monopoly.util.GameStatus;
 import de.htwg.monopoly.util.IMonopolyUtil;
 import de.htwg.monopoly.util.PlayerIcon;
+import de.htwg.monopoly.util.UserAction;
 
 public class ControllerTest {
 
 	private IController testController;
 
 	@Mock
-	private IPlayfield mockField;
+	private Playfield mockField;
 	@Mock
 	private IPlayerController mockPlayerController;
 	@Mock
 	private Dice mockDice;
 	@Mock
 	private PrisonQuestion mockQuestion;
+	@Mock
+	private CommunityCardsStack mockComm;
+	@Mock
+	private ChanceCardsStack mockChance;
 	@Mock
 	private IControllerFactory mockFactory;
 
@@ -70,6 +75,8 @@ public class ControllerTest {
 		when(mockFactory.createDice()).thenReturn(mockDice);
 		when(mockFactory.createPrisonQuestions()).thenReturn(mockQuestion);
 		when(mockQuestion.getNextQuestion()).thenReturn("Dummy question");
+		when(mockChance.getType()).thenReturn(FieldType.CHANCE_STACK);
+		when(mockComm.getType()).thenReturn(FieldType.COMMUNITY_STACK);
 
 		// create a test instance of the test controller
 		testController = new Controller(IMonopolyUtil.FIELD_SIZE, mockFactory);
@@ -96,6 +103,8 @@ public class ControllerTest {
 		testController.startNewGame(playerlist);
 		assertEquals("Spiel gestartet!", testController.getMessage());
 		assertEquals(GameStatus.STARTED, testController.getPhase());
+		assertTrue(testController.isCorrectOption(UserAction.START_TURN));
+		assertTrue(testController.isCorrectOption(UserAction.SURRENDER));
 	}
 
 	@Test
@@ -113,6 +122,8 @@ public class ControllerTest {
 		testController.startNewGame(players);
 		assertEquals("Spiel gestartet!", testController.getMessage());
 		assertEquals(GameStatus.STARTED, testController.getPhase());
+		assertTrue(testController.isCorrectOption(UserAction.START_TURN));
+		assertTrue(testController.isCorrectOption(UserAction.SURRENDER));
 	}
 
 	@Test
@@ -135,6 +146,9 @@ public class ControllerTest {
 		// assert
 		assertEquals("Confirmed", testController.getMessage());
 		assertEquals(GameStatus.DURING_TURN, testController.getPhase());
+		assertTrue(testController.isCorrectOption(UserAction.END_TURN));
+		assertTrue(testController.isCorrectOption(UserAction.BUY_STREET));
+		assertTrue(testController.isCorrectOption(UserAction.SURRENDER));
 
 		// 2. Testcase: player lands on Community Stack field
 		when(mockField.getFieldOfPlayer(any(Player.class))).thenReturn(
@@ -149,6 +163,9 @@ public class ControllerTest {
 				testController.getMessage());
 		assertEquals(GameStatus.DURING_TURN, testController.getPhase());
 
+		assertTrue(testController.isCorrectOption(UserAction.SURRENDER));
+		assertTrue(testController.isCorrectOption(UserAction.DRAW_CARD));
+
 		// 3. Testcase: player lands on Chance Stack field
 		// define behavior
 		when(mockField.getFieldOfPlayer(any(Player.class))).thenReturn(
@@ -162,6 +179,8 @@ public class ControllerTest {
 				"Du bist auf einem Ereignisfeld gelandet. Ziehe eine Karte",
 				testController.getMessage());
 		assertEquals(GameStatus.DURING_TURN, testController.getPhase());
+		assertTrue(testController.isCorrectOption(UserAction.DRAW_CARD));
+		assertTrue(testController.isCorrectOption(UserAction.SURRENDER));
 	}
 
 	@Test(expected = AssertionError.class)
@@ -188,6 +207,8 @@ public class ControllerTest {
 		assertTrue(testController.buyStreet());
 		assertEquals("Erfolgreich gekauft.", testController.getMessage());
 		assertEquals(GameStatus.DURING_TURN, testController.getPhase());
+		assertTrue(testController.isCorrectOption(UserAction.END_TURN));
+		assertTrue(testController.isCorrectOption(UserAction.SURRENDER));
 	}
 
 	@Test
@@ -203,6 +224,8 @@ public class ControllerTest {
 		assertFalse(testController.buyStreet());
 		assertEquals("Du hast nicht genug Geld!", testController.getMessage());
 		assertEquals(GameStatus.DURING_TURN, testController.getPhase());
+		assertTrue(testController.isCorrectOption(UserAction.END_TURN));
+		assertTrue(testController.isCorrectOption(UserAction.SURRENDER));
 	}
 
 	@Test
@@ -344,15 +367,87 @@ public class ControllerTest {
 		assertFalse(dummyPlayer.isInPrison());
 	}
 
+	@Test(expected = AssertionError.class)
+	public void drawCardAssert() {
+		// set up
+		setUpGame();
+		when(mockField.getFieldOfPlayer(dummyPlayer)).thenReturn(new Street());
+		testController.startTurn();
+		testController.drawCard();
+	}
+
 	@Test
 	public void drawCard() {
 		// set up
-		// setUpGame();
-		// when(mockField.getFieldOfPlayer(any(Player.class))).thenReturn(
-		// new CommunityCardsStack());
-		// testController.startTurn();
-		// testController.drawCard();
-		// TODO
+		setUpGame();
+		when(mockField.getFieldOfPlayer(any(Player.class)))
+				.thenReturn(mockComm);
+		testController.startTurn();
+
+		// set up method
+		when(mockField.getCommStack()).thenReturn(mockComm);
+		when(mockComm.getNextCard()).thenReturn(
+				new CommunityCard("go to frei parken", "Frei parken", false));
+		when(mockField.movePlayerTo(dummyPlayer, "Frei parken")).thenReturn(
+				"dummyReturn");
+		when(mockField.getFieldOfPlayer(dummyPlayer)).thenReturn(
+				new FieldObject("Frei parkent", FieldType.FREE_PARKING, 0));
+
+		testController.drawCard();
+		assertEquals(GameStatus.DURING_TURN, testController.getPhase());
+		assertEquals(FieldType.FREE_PARKING, testController.getCurrentField()
+				.getType());
+
+	}
+
+	@Test
+	public void drawCardCommInteger() {
+		// set up
+		setUpGame();
+		when(mockField.getFieldOfPlayer(any(Player.class)))
+				.thenReturn(mockComm);
+		testController.startTurn();
+
+		// set up method
+		when(mockField.getCommStack()).thenReturn(mockComm);
+		when(mockComm.getNextCard()).thenReturn(
+				new CommunityCard("Pay money", "20", false));
+
+		testController.drawCard();
+
+		// TODO: assert
+
+		// set up method
+		when(mockField.getCommStack()).thenReturn(mockComm);
+		when(mockComm.getNextCard()).thenReturn(
+				new CommunityCard("Go back", "2", false));
+
+		testController.drawCard();
+
+		// TODO: assert
+	}
+
+	@Test
+	public void drawCardChance() {
+		// set up
+		setUpGame();
+		when(mockField.getFieldOfPlayer(any(Player.class))).thenReturn(
+				mockChance);
+		testController.startTurn();
+
+		// set up method
+		when(mockField.getChanStack()).thenReturn(mockChance);
+		when(mockChance.getNextCard()).thenReturn(
+				new ChanceCard("go to frei parken", "Frei parken", false));
+		when(mockField.movePlayerTo(dummyPlayer, "Frei parken")).thenReturn(
+				"dummyReturn");
+		when(mockField.getFieldOfPlayer(dummyPlayer)).thenReturn(
+				new FieldObject("Frei parkent", FieldType.FREE_PARKING, 0));
+
+		testController.drawCard();
+		assertEquals(GameStatus.DURING_TURN, testController.getPhase());
+		assertEquals(FieldType.FREE_PARKING, testController.getCurrentField()
+				.getType());
 
 	}
 
@@ -363,20 +458,50 @@ public class ControllerTest {
 		assertEquals(GameStatus.STOPPED, testController.getPhase());
 	}
 
-
 	@Test
-	public void testNumberOfPlayer() {
-		testController.getNumberOfPlayers();
+	public void getFieldSize() {
+		when(mockFactory.createPlayfield(anyInt())).thenReturn(
+				new Playfield(20));
+		setUpGame();
+		assertEquals(20, testController.getFieldSize());
+		assertEquals("Bafög-Amt", testController.getFieldAtIndex(0).toString());
 	}
 
 	@Test
-	public void testGetPlayer() {
-		testController.getPlayer(0);
+	public void getCurrentPlayer() {
+		setUpGame();
+		assertEquals(dummyPlayer, testController.getCurrentPlayer());
 	}
 
 	@Test
-	public void testGetDice() {
-		testController.getDice();
+	public void getDice() {
+		assertEquals(mockDice, testController.getDice());
+	}
+
+	@Test
+	public void getOptions() {
+		setUpGame();
+		List<UserAction> expectedList = new LinkedList<UserAction>();
+		expectedList.add(UserAction.START_TURN);
+		expectedList.add(UserAction.SURRENDER);
+		assertEquals(expectedList, testController.getOptions());
+	}
+
+	@Test
+	public void getNumberOfPlayers() {
+		when(
+				mockFactory.createPlayerController(anyMapOf(String.class,
+						PlayerIcon.class))).thenReturn(
+				new PlayerController(players));
+		setUpGame();
+		assertEquals(2, testController.getNumberOfPlayers());
+		assertEquals("Player 1", testController.getPlayer(0).getName());
+	}
+	
+	@Test
+	public void getQuestion(){
+		setUpGame();
+		assertEquals("Dummy question", testController.getPrisonQuestion());
 	}
 
 	@After
