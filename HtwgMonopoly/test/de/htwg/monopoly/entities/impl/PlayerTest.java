@@ -13,15 +13,12 @@ import static org.junit.Assert.*;
 
 public class PlayerTest {
 	private Player player1;
-	private Player player;
+	private Player player2;
 
 	@Before
 	public void setUp() throws Exception {
 		player1 =  new Player("TestName", PlayerIcon.BITTEL);
-		Player player2 =  new Player("TestName", PlayerIcon.BITTEL);
-		player2.decrementMoney(1);
-
-		player = new Player("TestName", PlayerIcon.BITTEL);
+		player2 = new Player("TestName", PlayerIcon.BITTEL);
 	}
 
 	@Test
@@ -53,44 +50,28 @@ public class PlayerTest {
 		assertEquals(5, player1.getPosition());
 	}
 
-	@Test
-	public void testGetPrisonRound() {
-		player1.setPrisonRound(1);
-		assertEquals(1, player1.getPrisonRound());
-	}
-
-	@Test
-	public void testIncrementPrisonRound() {
-		player1.setPrisonRound(3);
-		player1.incrementPrisonRound();
-		assertEquals(0, player1.getPrisonRound());
-		assertFalse(player1.isInPrison());
-		player1.setPrisonRound(2);
-		player1.incrementPrisonRound();
-		assertTrue(player1.isInPrison());
-
-		player1.setPrisonRound(0);
-		assertFalse(player1.isInPrison());
-
-	}
 
 	@Test
 	public void testIsInPrison() {
 		player1.setInPrison(true);
 		assertTrue(player1.isInPrison());
+		assertEquals(0, player1.getPrisonRound());
 
 		player1.incrementPrisonRound();
 		assertTrue(player1.isInPrison());
+		assertEquals(1, player1.getPrisonRound());
 
 		player1.incrementPrisonRound();
 		assertTrue(player1.isInPrison());
+		assertEquals(2, player1.getPrisonRound());
 
 		player1.incrementPrisonRound();
 		assertTrue("player should be in prison", player1.isInPrison());
+		assertEquals(3, player1.getPrisonRound());
 
 		player1.incrementPrisonRound();
-
 		assertFalse(player1.isInPrison());
+		assertEquals(0, player1.getPrisonRound());
 	}
 
 	@Test(expected = AssertionError.class)
@@ -119,7 +100,7 @@ public class PlayerTest {
 	@Test
 	public void testGetBudget2() {
 		assertEquals("Money of player was not expected",
-				IMonopolyUtil.INITIAL_MONEY, player.getBudget());
+				IMonopolyUtil.INITIAL_MONEY, player2.getBudget());
 	}
 
 	/**
@@ -127,7 +108,7 @@ public class PlayerTest {
 	 */
 	@Test
 	public void testGetIcon() {
-		assertEquals(PlayerIcon.BITTEL, player.getIcon());
+		assertEquals(PlayerIcon.BITTEL, player2.getIcon());
 	}
 
 	/**
@@ -137,13 +118,34 @@ public class PlayerTest {
 	 */
 	@Test
 	public void testgetOwnership() {
-		assertTrue(player.getOwnership().isEmpty());
+		assertTrue(player2.getOwnership().isEmpty());
 		// add street to player
 		Street testStreet = new Street("test", 50, Color.BLACK, 5, 10);
-		player.addOwnership(testStreet);
+		player2.addOwnership(testStreet);
 
-		assertTrue(player.getOwnership().contains(testStreet));
-		assertEquals(player.getOwnership().size(), 1);
+		assertTrue(player2.getOwnership().contains(testStreet));
+		assertEquals(player2.getOwnership().size(), 1);
+	}
+	
+	@Test
+	public void buyStreet() {
+		// set money to zero
+		player1.decrementMoney(IMonopolyUtil.INITIAL_MONEY);
+		Street testStreet = new Street("Test", 50, Color.BLACK, 20, 20);
+		assertFalse(player1.buyStreet(testStreet));
+
+		player1.incrementMoney(50);
+		assertTrue(player1.buyStreet(testStreet));
+		assertTrue(testStreet.isSold());
+		assertEquals(0, player1.getBudget());
+		assertTrue(player1.getOwnership().contains(testStreet));
+	}
+
+	@Test(expected = AssertionError.class)
+	public void buyStreetAssert() {
+		Street testStreet = new Street("Test", 50, Color.BLACK, 20, 20);
+		testStreet.setSold(true);
+		player1.buyStreet(testStreet);
 	}
 
 }

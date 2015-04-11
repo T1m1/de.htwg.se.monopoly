@@ -273,32 +273,4 @@ public class Playfield implements IPlayfield {
 		return chanStack;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean buyStreet(Player currentPlayer, Street currentStreet) {
-
-		if (currentStreet.isSold()) {
-			throw new AssertionError("Street is already sold to someone else");
-		}
-
-		// check if the player has enough money
-		if (currentStreet.getPriceForStreet() <= currentPlayer.getBudget()) {
-
-			// subtract the money from player
-			currentPlayer.decrementMoney(currentStreet.getPriceForStreet());
-
-			// set new Owner of street and add street to the possession of the
-			// player.
-			currentStreet.setOwner(currentPlayer);
-			currentStreet.setSold(true);
-
-			currentPlayer.addOwnership(currentStreet);
-			return true;
-		}
-		return false;
-
-	}
-
 }

@@ -11,8 +11,6 @@ import java.util.TreeMap;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.monopoly.controller.impl.Playfield;
-import de.htwg.monopoly.util.IMonopolyUtil;
 import de.htwg.monopoly.util.PlayerIcon;
 
 /**

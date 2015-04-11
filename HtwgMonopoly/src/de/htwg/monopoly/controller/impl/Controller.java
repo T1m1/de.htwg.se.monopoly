@@ -12,6 +12,7 @@ import com.google.inject.name.Named;
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.controller.IPlayerController;
 import de.htwg.monopoly.controller.IPlayfield;
+import de.htwg.monopoly.database.IMonopolyDAO;
 import de.htwg.monopoly.entities.ICards;
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Dice;
@@ -53,6 +54,9 @@ public class Controller extends Observable implements IController {
 	private PrisonQuestion questions;
 	private boolean drawCardFlag;
 	private IControllerFactory factory;
+	
+	@SuppressWarnings("unused")
+	private IMonopolyDAO database;
 
 	/**
 	 * public constructor for a new controller create the players, the field and
@@ -62,10 +66,11 @@ public class Controller extends Observable implements IController {
 	 */
 	@Inject
 	public Controller(@Named("FieldSize") int fieldSize,
-			IControllerFactory controllerFactory) {
+			IControllerFactory controllerFactory, IMonopolyDAO database) {
 		phase = GameStatus.NOT_STARTED;
 		this.fieldSize = fieldSize;
 		this.factory = controllerFactory;
+		this.database = database;
 
 		this.message = new StringBuilder();
 
@@ -173,17 +178,17 @@ public class Controller extends Observable implements IController {
 					"Current player is not standing on a street!");
 		}
 
-		boolean status = field.buyStreet(currentPlayer, (Street) currentStreet);
+		boolean success = currentPlayer.buyStreet((Street) currentStreet);
 
 		// add result of street buying to message.
-		if (status) {
+		if (success) {
 			message.append(bundle.getString("tui_buy"));
 		} else {
 			message.append(bundle.getString("tui_no_money"));
 		}
 
 		updateGameStatus(GameStatus.DURING_TURN);
-		return status;
+		return success;
 	}
 
 	/**

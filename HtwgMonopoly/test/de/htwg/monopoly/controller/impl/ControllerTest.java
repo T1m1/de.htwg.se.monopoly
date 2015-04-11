@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.TreeMap;
@@ -16,7 +17,7 @@ import org.mockito.MockitoAnnotations;
 
 import static org.mockito.Mockito.*;
 import de.htwg.monopoly.controller.IController;
-import de.htwg.monopoly.controller.IPlayerController;
+import de.htwg.monopoly.entities.ICards;
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.ChanceCard;
 import de.htwg.monopoly.entities.impl.ChanceCardsStack;
@@ -41,7 +42,7 @@ public class ControllerTest {
 	@Mock
 	private Playfield mockField;
 	@Mock
-	private IPlayerController mockPlayerController;
+	private PlayerController mockPlayerController;
 	@Mock
 	private Dice mockDice;
 	@Mock
@@ -79,7 +80,7 @@ public class ControllerTest {
 		when(mockComm.getType()).thenReturn(FieldType.COMMUNITY_STACK);
 
 		// create a test instance of the test controller
-		testController = new Controller(IMonopolyUtil.FIELD_SIZE, mockFactory);
+		testController = new Controller(IMonopolyUtil.FIELD_SIZE, mockFactory, null);
 
 	}
 
@@ -200,8 +201,6 @@ public class ControllerTest {
 		setUpGame();
 		when(mockField.getFieldOfPlayer(isA(Player.class))).thenReturn(
 				new Street());
-		when(mockField.buyStreet(isA(Player.class), isA(Street.class)))
-				.thenReturn(true);
 
 		// perform & assert
 		assertTrue(testController.buyStreet());
@@ -216,9 +215,8 @@ public class ControllerTest {
 		// set up
 		setUpGame();
 		when(mockField.getFieldOfPlayer(isA(Player.class))).thenReturn(
-				new Street());
-		when(mockField.buyStreet(isA(Player.class), isA(Street.class)))
-				.thenReturn(false);
+				new Street("Test", 500, Color.black, 10, 10));
+		dummyPlayer.decrementMoney(IMonopolyUtil.INITIAL_MONEY);
 
 		// perform & assert
 		assertFalse(testController.buyStreet());
@@ -404,27 +402,30 @@ public class ControllerTest {
 	public void drawCardCommInteger() {
 		// set up
 		setUpGame();
-		when(mockField.getFieldOfPlayer(any(Player.class)))
-				.thenReturn(mockComm);
+		when(mockField.getFieldOfPlayer(dummyPlayer)).thenReturn(mockComm);
 		testController.startTurn();
 
 		// set up method
 		when(mockField.getCommStack()).thenReturn(mockComm);
 		when(mockComm.getNextCard()).thenReturn(
-				new CommunityCard("Pay money", "20", false));
-
+				new CommunityCard("Pay money", "-20", true));
+		doCallRealMethod().when(mockPlayerController).transferMoney(eq(dummyPlayer), isA(ICards.class));
+		
 		testController.drawCard();
-
-		// TODO: assert
+		assertEquals(IMonopolyUtil.INITIAL_MONEY - 20, dummyPlayer.getBudget());
+		assertEquals("Auf der Karte steht: Pay money", testController.getMessage());
+		assertEquals(GameStatus.DURING_TURN, testController.getPhase());
 
 		// set up method
 		when(mockField.getCommStack()).thenReturn(mockComm);
 		when(mockComm.getNextCard()).thenReturn(
-				new CommunityCard("Go back", "2", false));
+				new CommunityCard("Go forward", "2", false));
+		when(mockField.movePlayerTo(dummyPlayer, "2")).thenReturn("");
 
 		testController.drawCard();
 
-		// TODO: assert
+		assertEquals("Auf der Karte steht: Go forward", testController.getMessage());
+		assertEquals(GameStatus.DURING_TURN, testController.getPhase());
 	}
 
 	@Test
@@ -497,9 +498,9 @@ public class ControllerTest {
 		assertEquals(2, testController.getNumberOfPlayers());
 		assertEquals("Player 1", testController.getPlayer(0).getName());
 	}
-	
+
 	@Test
-	public void getQuestion(){
+	public void getQuestion() {
 		setUpGame();
 		assertEquals("Dummy question", testController.getPrisonQuestion());
 	}

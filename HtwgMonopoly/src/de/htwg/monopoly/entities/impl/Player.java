@@ -93,21 +93,6 @@ public class Player {
 	}
 
 	/**
-	 * Set the Number of Rounds in prison of this player; 0 means the Player is
-	 * not in prison. 1-3 means the Player is in prison and number indicate the
-	 * round
-	 * 
-	 * @param roundNumber
-	 * @deprecated
-	 */
-	public void setPrisonRound(int roundNumber) {
-		if (roundNumber == 0) {
-			this.inPrison = false;
-		}
-		this.prisonRound = roundNumber;
-	}
-
-	/**
 	 * If the Player is in prison this method returns true, otherwise false.
 	 * 
 	 * @return
@@ -208,6 +193,38 @@ public class Player {
 	 */
 	public PlayerIcon getIcon() {
 		return icon;
+	}
+
+	/**
+	 * The current Player buys this current Street. Returns false if the Player
+	 * has not enough money. Otherwise true if the purchase was successful.
+	 * 
+	 * 
+	 * @param currentPlayer
+	 * @param currentStreet
+	 * @return
+	 */
+	public boolean buyStreet(Street currentStreet) {
+		if (currentStreet.isSold()) {
+			throw new AssertionError("Street is already sold to someone else");
+		}
+
+		// check if the player has enough money
+		if (currentStreet.getPriceForStreet() <= this.budget) {
+
+			// subtract the money from player
+			decrementMoney(currentStreet.getPriceForStreet());
+
+			// set new Owner of street and add street to the possession of the
+			// player.
+			currentStreet.setOwner(this);
+			currentStreet.setSold(true);
+
+			addOwnership(currentStreet);
+			return true;
+		}
+		return false;
+
 	}
 
 }
