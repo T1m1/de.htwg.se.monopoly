@@ -161,7 +161,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 			buttonFreiWuerfeln.setEnabled(true);
 		}
 		if (options.contains(UserAction.REDEEM_WITH_CARD)) {
-
+            buttonFreikarte.setEnabled(true);
 		}
 	}
 
