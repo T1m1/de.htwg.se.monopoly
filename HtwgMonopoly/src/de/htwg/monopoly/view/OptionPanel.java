@@ -137,7 +137,12 @@ public class OptionPanel extends JPanel implements ActionListener {
 			buttonFreikarte.setEnabled(false);
 			buttonFreikaufen.setEnabled(false);
 			buttonFreiWuerfeln.setEnabled(false);
-		}
+		} else if(e.getSource().equals(buttonDrawCard)) {
+            contr.drawCard();
+            buttonDrawCard.setEnabled(false);
+            
+            checkEnableStatus();
+        }
 
 
 	}
