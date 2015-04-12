@@ -105,7 +105,7 @@ public class OptionPanel extends JPanel implements ActionListener {
         String streetName = contr.getCurrentField().toString();
 
 		/* if button for dice is clicked */
-        if (e.getSource() == buttonWuerfeln) {
+        if (e.getSource().equals(buttonWuerfeln)) {
             contr.startTurn();
             int diceResult = contr.getDice().getResultDice()
                     % (contr.getFieldSize() + 1);
@@ -116,12 +116,12 @@ public class OptionPanel extends JPanel implements ActionListener {
             checkEnableStatus();
 
 			/* button to exit current draw */
-        } else if (e.getSource() == buttonZugBeenden) {
+        } else if (e.getSource().equals(buttonZugBeenden)) {
             buttonZugBeenden.setEnabled(false);
             contr.endTurn();
 
             checkEnableStatus();
-        } else if (e.getSource() == buttonKaufen) {
+        } else if (e.getSource().equals(buttonKaufen)) {
             contr.buyStreet();
             checkEnableStatus();
 
