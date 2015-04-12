@@ -30,6 +30,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 	private JButton buttonKaufen;
 	private JButton buttonHotelBauen;
 	private JButton buttonWuerfeln;
+	private JButton buttonDrawCard;
 
 	private JButton buttonFreikaufen;
 	private JButton buttonFreikarte;
@@ -66,6 +67,11 @@ public class OptionPanel extends JPanel implements ActionListener {
 		this.add(buttonHotelBauen);
 		buttonHotelBauen.addActionListener(this);
 
+        buttonDrawCard= new JButton(bundle.getString("gui_drawCard"));
+		buttonDrawCard.setEnabled(false);
+		this.add(buttonDrawCard);
+		buttonDrawCard.addActionListener(this);
+
 		buttonFreikaufen = new JButton("Freikaufen " + IMonopolyUtil.FREIKAUFEN);
 		buttonFreikaufen.setEnabled(false);
 		buttonFreikaufen.addActionListener(this);
@@ -83,6 +89,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 		pnlOptionen.add(buttonZugBeenden);
 		pnlOptionen.add(buttonKaufen);
 		pnlOptionen.add(buttonHotelBauen);
+		pnlOptionen.add(buttonDrawCard);
 
 		pnlOptionen.add(buttonFreikarte);
 		pnlOptionen.add(buttonFreikaufen);
