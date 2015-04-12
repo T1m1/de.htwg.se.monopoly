@@ -26,6 +26,7 @@ public class OptionPanel extends JPanel implements ActionListener {
     private IController contr;
     private JTextArea taAusgabe;
 
+
     private JButton buttonZugBeenden;
     private JButton buttonKaufen;
     private JButton buttonHotelBauen;
