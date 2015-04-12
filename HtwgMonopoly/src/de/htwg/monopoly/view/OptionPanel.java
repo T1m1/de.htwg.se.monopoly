@@ -131,7 +131,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 			buttonZugBeenden.setEnabled(true);
 			buttonWuerfeln.setEnabled(false);
 		} else if (e.getSource().equals(buttonFreikaufen)) {
-		
+
 			contr.getCurrentPlayer().decrementMoney(IMonopolyUtil.FREIKAUFEN);
 			contr.getCurrentPlayer().setInPrison(false);
 			buttonFreikarte.setEnabled(false);
@@ -140,7 +140,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 		} else if(e.getSource().equals(buttonDrawCard)) {
             contr.drawCard();
             buttonDrawCard.setEnabled(false);
-            
+
             checkEnableStatus();
         }
 
@@ -173,6 +173,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 		buttonKaufen.setEnabled(false);
 		buttonWuerfeln.setEnabled(false);
 		buttonZugBeenden.setEnabled(false);
+		buttonDrawCard.setEnabled(false);
 
 		if (options.contains(UserAction.BUY_STREET)) {
 			buttonKaufen.setEnabled(true);
@@ -184,7 +185,8 @@ public class OptionPanel extends JPanel implements ActionListener {
 				|| options.contains(UserAction.START_TURN)) {
 			buttonWuerfeln.setEnabled(true);
 		}
-		// parse options and set buttons enable
-
-	}
+        if (options.contains(UserAction.DRAW_CARD)) {
+            buttonDrawCard.setEnabled(true);
+        }
+    }
 }
