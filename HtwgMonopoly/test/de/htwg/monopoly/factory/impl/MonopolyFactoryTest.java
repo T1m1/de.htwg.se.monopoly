@@ -11,6 +11,7 @@ import java.util.TreeMap;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.htwg.monopoly.util.IMonopolyUtil;
 import de.htwg.monopoly.util.PlayerIcon;
 
 /**
@@ -26,7 +27,7 @@ public class MonopolyFactoryTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		testFactory = new MonopolyFactory();
+		testFactory = new MonopolyFactory(IMonopolyUtil.FIELD_SIZE);
 	}
 
 	/**
@@ -36,7 +37,7 @@ public class MonopolyFactoryTest {
 	 */
 	@Test
 	public void testCreatePlayfield() {
-		assertTrue((testFactory.createPlayfield(28)) instanceof de.htwg.monopoly.controller.impl.Playfield);
+		assertTrue((testFactory.createPlayfield()) instanceof de.htwg.monopoly.controller.impl.Playfield);
 
 	}
 

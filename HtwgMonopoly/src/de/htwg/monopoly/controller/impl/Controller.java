@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.controller.IPlayerController;
@@ -37,24 +36,29 @@ public class Controller extends Observable implements IController {
 	/* internationalization */
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
-	
+
+	// Essential for the game context
 	private IPlayerController players;
 	private IPlayfield field;
+	private GameStatus phase;
+	private PrisonQuestion questions;
+
+	// TODO: Is it necessary to persist these 3 values??
+	private int diceFlag;
+	private boolean drawCardFlag;
+	private StringBuilder message;
+
+	// Not Essential for the game context (can retrieved from the essential
+	// ones)
 	private Player currentPlayer;
 	private IFieldObject currentField;
 	private Dice dice;
-	private int fieldSize;
-
-	private GameStatus phase;
 	private UserOptionsController userOptions;
 
-	private StringBuilder message;
-
-	private int diceFlag;
-	private PrisonQuestion questions;
-	private boolean drawCardFlag;
+	// only used before a game is started
 	private IControllerFactory factory;
-	
+
+	// Database
 	@SuppressWarnings("unused")
 	private IMonopolyDAO database;
 
@@ -65,10 +69,8 @@ public class Controller extends Observable implements IController {
 	 * @param fieldSize
 	 */
 	@Inject
-	public Controller(@Named("FieldSize") int fieldSize,
-			IControllerFactory controllerFactory, IMonopolyDAO database) {
+	public Controller(IControllerFactory controllerFactory, IMonopolyDAO database) {
 		phase = GameStatus.NOT_STARTED;
-		this.fieldSize = fieldSize;
 		this.factory = controllerFactory;
 		this.database = database;
 
@@ -118,7 +120,7 @@ public class Controller extends Observable implements IController {
 		}
 
 		// create new field, player and prisonquestions with factory
-		this.field = factory.createPlayfield(fieldSize);
+		this.field = factory.createPlayfield();
 		this.players = factory.createPlayerController(players);
 		this.questions = factory.createPrisonQuestions();
 
