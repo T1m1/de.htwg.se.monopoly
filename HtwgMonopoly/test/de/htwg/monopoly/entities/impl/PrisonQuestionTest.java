@@ -35,13 +35,15 @@ public class PrisonQuestionTest {
 	}
 
 	/**
-	 * Test method for {@link de.htwg.monopoly.entities.impl.PrisonQuestion#getNextQuestion()}.
+	 * Test method for {@link de.htwg.monopoly.entities.impl.PrisonQuestion#drawNextQuestion()}.
 	 */
 	@Test
 	public void testGetNextQuestion() {
-		String question1 = testQuestions.getNextQuestion();
+		String question1 = testQuestions.getCurrentQuestion();
 		
-		assertFalse(question1.equals(testQuestions.getNextQuestion()));
+		testQuestions.drawNextQuestion();
+		
+		assertFalse(question1.equals(testQuestions.getCurrentQuestion()));
 		
 	}
 

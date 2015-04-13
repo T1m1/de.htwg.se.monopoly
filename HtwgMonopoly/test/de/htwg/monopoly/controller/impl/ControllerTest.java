@@ -75,7 +75,7 @@ public class ControllerTest {
 
 		when(mockFactory.createDice()).thenReturn(mockDice);
 		when(mockFactory.createPrisonQuestions()).thenReturn(mockQuestion);
-		when(mockQuestion.getNextQuestion()).thenReturn("Dummy question");
+		when(mockQuestion.getCurrentQuestion()).thenReturn("Dummy question");
 		when(mockChance.getType()).thenReturn(FieldType.CHANCE_STACK);
 		when(mockComm.getType()).thenReturn(FieldType.COMMUNITY_STACK);
 

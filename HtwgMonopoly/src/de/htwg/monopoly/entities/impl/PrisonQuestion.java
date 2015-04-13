@@ -46,18 +46,31 @@ public class PrisonQuestion {
 		questions = new LinkedList<String>(questionMap.keySet());
 	}
 
+	private String currentQuestion;
+
 	public PrisonQuestion() {
 		Collections.shuffle(questions);
+		drawNextQuestion();
 	}
 
 	public boolean isTrue(String prisonQuestion, boolean answer) {
 		return (questionMap.get(prisonQuestion) == answer);
 	}
 
-	public String getNextQuestion() {
+	/**
+	 * Draws the first card. The Card can retrieved via
+	 * {@link PrisonQuestion#getcurrentQuestion()}
+	 * 
+	 * @return
+	 */
+	public void drawNextQuestion() {
 		String first = questions.pollFirst();
 		questions.offerLast(first);
-		return first;
+		currentQuestion = first;
+	}
+
+	public String getCurrentQuestion() {
+		return currentQuestion;
 	}
 
 }

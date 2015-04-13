@@ -34,6 +34,10 @@ import de.htwg.monopoly.util.UserAction;
  * 
  */
 public class Controller extends Observable implements IController {
+	/* internationalization */
+	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
+			Locale.GERMAN);
+	
 	private IPlayerController players;
 	private IPlayfield field;
 	private Player currentPlayer;
@@ -46,11 +50,7 @@ public class Controller extends Observable implements IController {
 
 	private StringBuilder message;
 
-	/* internationalization */
-	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
-			Locale.GERMAN);
 	private int diceFlag;
-	private String currentPrisonQuestion;
 	private PrisonQuestion questions;
 	private boolean drawCardFlag;
 	private IControllerFactory factory;
@@ -121,9 +121,6 @@ public class Controller extends Observable implements IController {
 		this.field = factory.createPlayfield(fieldSize);
 		this.players = factory.createPlayerController(players);
 		this.questions = factory.createPrisonQuestions();
-
-		// retrieve the first prison question
-		currentPrisonQuestion = questions.getNextQuestion();
 
 		// set current player to first player, notify observers and start
 		// playing
@@ -307,16 +304,16 @@ public class Controller extends Observable implements IController {
 
 		clearMessage();
 
-		if (questions.isTrue(currentPrisonQuestion, answer)) {
+		if (questions.isTrue(questions.getCurrentQuestion(), answer)) {
 
-			currentPrisonQuestion = questions.getNextQuestion();
+			questions.drawNextQuestion();
 
 			currentPlayer.setInPrison(false);
 			message.append("Frage korrekt beantwortet.");
 			updateGameStatus(GameStatus.BEFORE_TURN);
 			return true;
 		} else {
-			currentPrisonQuestion = questions.getNextQuestion();
+			questions.drawNextQuestion();
 			endTurn();
 			return false;
 		}
@@ -355,7 +352,6 @@ public class Controller extends Observable implements IController {
 		this.field = null;
 		this.currentField = null;
 		this.currentPlayer = null;
-		this.currentPrisonQuestion = null;
 		this.questions = null;
 
 		clearMessage();
@@ -509,7 +505,7 @@ public class Controller extends Observable implements IController {
 	 */
 	@Override
 	public String getPrisonQuestion() {
-		return currentPrisonQuestion;
+		return questions.getCurrentQuestion();
 	}
 
 	/**
