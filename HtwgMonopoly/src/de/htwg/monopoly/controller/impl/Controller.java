@@ -8,6 +8,8 @@ import java.util.ResourceBundle;
 
 import com.google.inject.Inject;
 
+import de.htwg.monopoly.context.IMonopolyGame;
+import de.htwg.monopoly.context.impl.MonopolyGame;
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.controller.IPlayerController;
 import de.htwg.monopoly.controller.IPlayfield;
@@ -43,23 +45,21 @@ public class Controller extends Observable implements IController {
 	private GameStatus phase;
 	private PrisonQuestion questions;
 
-	// TODO: Is it necessary to persist these 3 values??
+	// TODO: Is it necessary to persist these 4 values??
 	private int diceFlag;
 	private boolean drawCardFlag;
 	private StringBuilder message;
+	private Dice dice;
 
-	// Not Essential for the game context (can retrieved from the essential
-	// ones)
+	// Not Essential (or can retrieved from the essential ones)
 	private Player currentPlayer;
 	private IFieldObject currentField;
-	private Dice dice;
 	private UserOptionsController userOptions;
 
 	// only used before a game is started
 	private IControllerFactory factory;
 
 	// Database
-	@SuppressWarnings("unused")
 	private IMonopolyDAO database;
 
 	/**
@@ -69,7 +69,8 @@ public class Controller extends Observable implements IController {
 	 * @param fieldSize
 	 */
 	@Inject
-	public Controller(IControllerFactory controllerFactory, IMonopolyDAO database) {
+	public Controller(IControllerFactory controllerFactory,
+			IMonopolyDAO database) {
 		phase = GameStatus.NOT_STARTED;
 		this.factory = controllerFactory;
 		this.database = database;
@@ -526,5 +527,40 @@ public class Controller extends Observable implements IController {
 	 */
 	boolean isDiceFlagSet() {
 		return diceFlag != 0;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void saveGameToDB(String name) {
+		// TODO: error handling: all values must be non null
+		IMonopolyGame context = new MonopolyGame(players, field, questions,
+				phase, name);
+
+		database.saveGame(context);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void loadGameFromDB(String id) {
+		IMonopolyGame gameById = database.getGameById(id);
+		
+		// re-initialize all instance values
+		this.field = gameById.getPlayfield();
+		this.players = gameById.getPlayerController();
+		this.phase = gameById.getCurrentGamePhase();
+		this.questions = gameById.getPrisonQuestions();
+		
+		// Important! Order!
+		this.currentPlayer = players.getCurrentPlayer();
+		this.currentField = field.getFieldOfPlayer(currentPlayer);
+		
+		updateGameStatus(phase);
+		
+		// TODO: much much much error handling: what about those other instance values
+		
 	}
 }

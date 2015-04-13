@@ -209,4 +209,17 @@ public interface IController extends IObservable {
 	 */
 	void drawCard();
 
+	/**
+	 * Saves a game of Monopoly to a database
+	 * 
+	 * @param name
+	 */
+	void saveGameToDB(String name);
+	
+	/**
+	 * Loads a previous game of Monopoly from a database
+	 * @param id
+	 */
+	void loadGameFromDB(String id);
+
 }

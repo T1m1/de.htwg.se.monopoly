@@ -3,6 +3,7 @@
  */
 package de.htwg.monopoly.context.impl;
 
+import java.util.UUID;
 
 import de.htwg.monopoly.context.IMonopolyGame;
 import de.htwg.monopoly.controller.IPlayerController;
@@ -21,14 +22,18 @@ public class MonopolyGame implements IMonopolyGame {
 	private PrisonQuestion questions;
 	private GameStatus phase;
 	private String id;
+	private String name;
 
 	public MonopolyGame(IPlayerController players, IPlayfield field,
-			PrisonQuestion questions, GameStatus currentPhase) {
+			PrisonQuestion questions, GameStatus currentPhase, String name) {
 		this.field = field;
 		this.phase = currentPhase;
 		this.players = players;
 		this.questions = questions;
-		// TODO generate an ID
+		this.name = name;
+
+		// Set a unique ID for this game context
+		this.id = UUID.randomUUID().toString();
 	}
 
 	/**
@@ -101,6 +106,22 @@ public class MonopolyGame implements IMonopolyGame {
 	@Override
 	public String getId() {
 		return id;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

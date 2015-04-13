@@ -24,5 +24,9 @@ public interface IMonopolyGame {
 	void setCurrentGamePhase(GameStatus currentPhase);
 
 	String getId();
+	
+	String getName();
+	
+	void setName(String name);
 
 }

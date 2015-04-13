@@ -3,6 +3,8 @@
  */
 package de.htwg.monopoly.database.db4o;
 
+import java.util.List;
+
 import de.htwg.monopoly.context.IMonopolyGame;
 import de.htwg.monopoly.database.IMonopolyDAO;
 
@@ -45,6 +47,20 @@ public class MonopolyDb4oDAO implements IMonopolyDAO {
 	public void updateGameById(String id) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	@Override
+	public List<IMonopolyGame> getAllGames() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public boolean containsGameById(String id) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
