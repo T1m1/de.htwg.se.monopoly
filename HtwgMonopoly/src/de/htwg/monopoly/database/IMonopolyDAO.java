@@ -3,18 +3,20 @@
  */
 package de.htwg.monopoly.database;
 
+import de.htwg.monopoly.context.IMonopolyGame;
+
 /**
  * @author Steffen
  *
  */
 public interface IMonopolyDAO {
 	
-	void create();
+	void saveGame(final IMonopolyGame context);
 	
-	Object read();
+	IMonopolyGame getGameById(final String id);
+		
+	void deleteGameById(final String id);
 	
-	void update();
-	
-	void delete();
+	void updateGameById(final String id);
 
 }
