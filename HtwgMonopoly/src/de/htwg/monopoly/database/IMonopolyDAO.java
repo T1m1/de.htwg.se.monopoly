@@ -24,7 +24,8 @@ public interface IMonopolyDAO {
 	 * Retrieves a game of monopoly for the corresponding ID.
 	 * 
 	 * @param id
-	 * @return
+	 * @return an instance of a saved game or <code>null</code> if there was no
+	 *         game in the database
 	 */
 	IMonopolyGame getGameById(final String id);
 
@@ -40,7 +41,7 @@ public interface IMonopolyDAO {
 	 * 
 	 * @param id
 	 */
-	void updateGameById(final String id);
+	void updateGame(final IMonopolyGame game);
 
 	/**
 	 * Get all existing games from the database.

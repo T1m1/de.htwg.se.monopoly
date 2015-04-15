@@ -5,6 +5,11 @@ package de.htwg.monopoly.database.db4o;
 
 import java.util.List;
 
+import com.db4o.Db4oEmbedded;
+import com.db4o.EmbeddedObjectContainer;
+import com.db4o.ObjectSet;
+import com.db4o.query.Predicate;
+
 import de.htwg.monopoly.context.IMonopolyGame;
 import de.htwg.monopoly.database.IMonopolyDAO;
 
@@ -14,53 +19,83 @@ import de.htwg.monopoly.database.IMonopolyDAO;
  */
 public class MonopolyDb4oDAO implements IMonopolyDAO {
 
+	private EmbeddedObjectContainer db;
+
 	/**
 	 * 
 	 */
 	public MonopolyDb4oDAO() {
-		// TODO Auto-generated constructor stub
+		db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),
+				"monopoly.data");
 	}
 
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void saveGame(IMonopolyGame context) {
-		// TODO Auto-generated method stub
-		
+		db.store(context);
 	}
 
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public IMonopolyGame getGameById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public IMonopolyGame getGameById(final String id) {
+		List<IMonopolyGame> games = db.query(new Predicate<IMonopolyGame>() {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public boolean match(IMonopolyGame game) {
+				return (game.getId().equals(id));
+			}
+		});
+
+		if (games.isEmpty()) {
+			// no game found
+			return null;
+		}
+
+		// return the retrieved game.
+		return games.get(0);
 	}
 
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void deleteGameById(String id) {
-		// TODO Auto-generated method stub
-		
+		db.delete(getGameById(id));
 	}
 
-
-	@Override
-	public void updateGameById(String id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<IMonopolyGame> getAllGames() {
-		// TODO Auto-generated method stub
-		return null;
+		return db.query(IMonopolyGame.class);
 	}
 
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean containsGameById(String id) {
-		// TODO Auto-generated method stub
-		return false;
+		IMonopolyGame game = getGameById(id);
+		return (game != null);
+	}
+	
+	public void closeDB() {
+		db.close();
+	}
+
+	@Override
+	public void updateGame(IMonopolyGame game) {
+		// naive code FIXME: better solution?
+		deleteGameById(game.getId());
+		saveGame(game);
+		
 	}
 
 }

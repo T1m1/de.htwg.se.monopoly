@@ -547,20 +547,23 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void loadGameFromDB(String id) {
 		IMonopolyGame gameById = database.getGameById(id);
-		
+
 		// re-initialize all instance values
 		this.field = gameById.getPlayfield();
 		this.players = gameById.getPlayerController();
 		this.phase = gameById.getCurrentGamePhase();
 		this.questions = gameById.getPrisonQuestions();
-		
+
 		// Important! Order!
 		this.currentPlayer = players.getCurrentPlayer();
 		this.currentField = field.getFieldOfPlayer(currentPlayer);
-		
+
+		// FIXME: What about the BANK??
+
 		updateGameStatus(phase);
-		
-		// TODO: much much much error handling: what about those other instance values
-		
+
+		// TODO: much much much error handling: what about those other instance
+		// values
+
 	}
 }
