@@ -16,6 +16,7 @@ import de.htwg.monopoly.controller.IPlayfield;
 import de.htwg.monopoly.database.IMonopolyDAO;
 import de.htwg.monopoly.entities.ICards;
 import de.htwg.monopoly.entities.IFieldObject;
+import de.htwg.monopoly.entities.impl.Bank;
 import de.htwg.monopoly.entities.impl.Dice;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.PrisonQuestion;
@@ -48,7 +49,7 @@ public class Controller extends Observable implements IController {
 	// TODO: Is it necessary to persist these 4 values??
 	private int diceFlag;
 	private boolean drawCardFlag;
-	private StringBuilder message;
+	private StringBuilder message = new StringBuilder();
 	private Dice dice;
 
 	// Not Essential (or can retrieved from the essential ones)
@@ -72,10 +73,10 @@ public class Controller extends Observable implements IController {
 	public Controller(IControllerFactory controllerFactory,
 			IMonopolyDAO database) {
 		phase = GameStatus.NOT_STARTED;
+
+		// set dependencies
 		this.factory = controllerFactory;
 		this.database = database;
-
-		this.message = new StringBuilder();
 
 		// create Dice and usercontroller with factory
 		this.dice = factory.createDice();
@@ -531,13 +532,29 @@ public class Controller extends Observable implements IController {
 
 	/**
 	 * {@inheritDoc}
+	 * 
+	 * @throws IllegalAccessException
 	 */
 	@Override
-	public void saveGameToDB(String name) {
-		// TODO: error handling: all values must be non null
-		IMonopolyGame context = new MonopolyGame(players, field, questions,
-				phase, name);
+	public void saveGameToDB(String name) throws IllegalAccessException {
 
+		if (phase.equals(GameStatus.NOT_STARTED)
+				|| phase.equals(GameStatus.STOPPED)) {
+			throw new IllegalAccessException(
+					"Its not possible to save game at this phase of the game.");
+		}
+
+		// retrieve and save money from bank
+		int parkingMoney = Bank.getParkingMoney();
+		Bank.setParkingMoney(parkingMoney);
+
+		// create an instance with all context information of the current game
+		IMonopolyGame context = new MonopolyGame(players, field, questions,
+				phase, name, parkingMoney);
+
+		// TODO: what about those other instance variables of the controller?
+		
+		// save the game to database
 		database.saveGame(context);
 	}
 
@@ -553,12 +570,11 @@ public class Controller extends Observable implements IController {
 		this.players = gameById.getPlayerController();
 		this.phase = gameById.getCurrentGamePhase();
 		this.questions = gameById.getPrisonQuestions();
+		Bank.setParkingMoney(gameById.getParkingMoney());
 
-		// Important! Order!
+		// re-initialize all other values
 		this.currentPlayer = players.getCurrentPlayer();
 		this.currentField = field.getFieldOfPlayer(currentPlayer);
-
-		// FIXME: What about the BANK??
 
 		updateGameStatus(phase);
 

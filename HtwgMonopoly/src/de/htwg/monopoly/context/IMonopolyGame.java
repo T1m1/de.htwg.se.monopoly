@@ -29,4 +29,8 @@ public interface IMonopolyGame {
 	
 	void setName(String name);
 
+	int getParkingMoney();
+
+	void setParkingMoney(int parkingMoney);
+
 }

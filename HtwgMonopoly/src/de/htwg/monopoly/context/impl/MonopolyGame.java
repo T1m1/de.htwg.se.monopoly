@@ -23,14 +23,16 @@ public class MonopolyGame implements IMonopolyGame {
 	private GameStatus phase;
 	private String id;
 	private String name;
+	private int parkingMoney;
 
 	public MonopolyGame(IPlayerController players, IPlayfield field,
-			PrisonQuestion questions, GameStatus currentPhase, String name) {
+			PrisonQuestion questions, GameStatus currentPhase, String name, int parkingMoney) {
 		this.field = field;
 		this.phase = currentPhase;
 		this.players = players;
 		this.questions = questions;
 		this.name = name;
+		this.setParkingMoney(parkingMoney);
 
 		// Set a unique ID for this game context
 		this.id = UUID.randomUUID().toString();
@@ -98,6 +100,21 @@ public class MonopolyGame implements IMonopolyGame {
 	@Override
 	public void setCurrentGamePhase(GameStatus currentPhase) {
 		this.phase = currentPhase;
+	}
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int getParkingMoney() {
+		return parkingMoney;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void setParkingMoney(int parkingMoney) {
+		this.parkingMoney = parkingMoney;
 	}
 
 	/**

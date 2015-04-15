@@ -7,7 +7,6 @@ import java.util.List;
 
 import com.db4o.Db4oEmbedded;
 import com.db4o.EmbeddedObjectContainer;
-import com.db4o.ObjectSet;
 import com.db4o.query.Predicate;
 
 import de.htwg.monopoly.context.IMonopolyGame;
