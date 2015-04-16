@@ -3,7 +3,6 @@ package de.htwg.monopoly.view;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.google.inject.Inject;
-
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.observer.IObserver;
@@ -11,7 +10,6 @@ import de.htwg.monopoly.util.GameStatus;
 import de.htwg.monopoly.util.IMonopolyUtil;
 import de.htwg.monopoly.util.MonopolyUtils;
 import de.htwg.monopoly.util.UserAction;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

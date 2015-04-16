@@ -1,14 +1,7 @@
 package de.htwg.monopoly.controller.impl;
 
-import java.text.MessageFormat;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.ResourceBundle;
-
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.controller.IPlayerController;
 import de.htwg.monopoly.controller.IPlayfield;
@@ -21,12 +14,13 @@ import de.htwg.monopoly.entities.impl.PrisonQuestion;
 import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.factory.IControllerFactory;
 import de.htwg.monopoly.observer.impl.Observable;
-import de.htwg.monopoly.util.FieldType;
-import de.htwg.monopoly.util.GameStatus;
-import de.htwg.monopoly.util.IMonopolyUtil;
-import de.htwg.monopoly.util.MonopolyUtils;
-import de.htwg.monopoly.util.PlayerIcon;
-import de.htwg.monopoly.util.UserAction;
+import de.htwg.monopoly.util.*;
+
+import java.text.MessageFormat;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.ResourceBundle;
 
 /**
  * 

@@ -1,9 +1,5 @@
 package de.htwg.monopoly.controller.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import de.htwg.monopoly.controller.IPlayerController;
 import de.htwg.monopoly.entities.ICards;
 import de.htwg.monopoly.entities.impl.Bank;
@@ -11,6 +7,10 @@ import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.util.IMonopolyUtil;
 import de.htwg.monopoly.util.MonopolyUtils;
 import de.htwg.monopoly.util.PlayerIcon;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Controller for player

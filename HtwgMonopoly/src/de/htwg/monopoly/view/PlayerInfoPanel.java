@@ -1,19 +1,15 @@
 package de.htwg.monopoly.view;
 
-import java.awt.Dimension;
+import de.htwg.monopoly.controller.IController;
+import de.htwg.monopoly.entities.impl.Player;
+
+import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.List;
-
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.border.Border;
-
-import de.htwg.monopoly.controller.IController;
-import de.htwg.monopoly.entities.impl.Player;
 
 public class PlayerInfoPanel extends JPanel implements ActionListener {
 

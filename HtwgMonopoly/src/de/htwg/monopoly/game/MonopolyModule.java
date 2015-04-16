@@ -2,7 +2,6 @@ package de.htwg.monopoly.game;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
-
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.database.IMonopolyDAO;
 import de.htwg.monopoly.factory.IControllerFactory;

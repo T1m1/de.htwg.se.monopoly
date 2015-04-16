@@ -1,23 +1,17 @@
 package de.htwg.monopoly.view;
 
-import java.awt.Image;
+import de.htwg.monopoly.controller.IController;
+import de.htwg.monopoly.util.IMonopolyUtil;
+import de.htwg.monopoly.util.UserAction;
+
+import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
-
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.border.Border;
-
-import de.htwg.monopoly.controller.IController;
-import de.htwg.monopoly.util.IMonopolyUtil;
-import de.htwg.monopoly.util.UserAction;
 
 public class OptionPanel extends JPanel implements ActionListener {
 

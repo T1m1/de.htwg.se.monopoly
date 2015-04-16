@@ -3,12 +3,12 @@
  */
 package de.htwg.monopoly.controller.impl;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.util.GameStatus;
 import de.htwg.monopoly.util.UserAction;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author stgorenf

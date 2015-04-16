@@ -1,16 +1,11 @@
 package de.htwg.monopoly.view;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.observer.IObserver;
 import de.htwg.monopoly.util.GameStatus;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class GraphicUserInterface extends JFrame implements IObserver {
 

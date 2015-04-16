@@ -1,17 +1,12 @@
 package de.htwg.monopoly.view;
 
-import java.awt.BorderLayout;
+import de.htwg.monopoly.controller.IController;
+
+import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.border.Border;
-
-import de.htwg.monopoly.controller.IController;
 
 public class OutputPanel extends JPanel implements ActionListener {
 

@@ -1,11 +1,11 @@
 package de.htwg.monopoly.observer.impl;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import de.htwg.monopoly.observer.IObservable;
 import de.htwg.monopoly.observer.IObserver;
 import de.htwg.monopoly.util.GameStatus;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class Observable implements IObservable {
 	

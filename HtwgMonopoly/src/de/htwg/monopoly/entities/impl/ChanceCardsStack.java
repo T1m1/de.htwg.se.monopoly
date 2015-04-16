@@ -1,9 +1,9 @@
 package de.htwg.monopoly.entities.impl;
 
+import de.htwg.monopoly.util.FieldType;
+
 import java.util.Deque;
 import java.util.LinkedList;
-
-import de.htwg.monopoly.util.FieldType;
 
 public class ChanceCardsStack extends CardsStack {
 

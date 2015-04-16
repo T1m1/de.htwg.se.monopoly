@@ -1,10 +1,10 @@
 package de.htwg.monopoly.entities.impl;
 
-import java.awt.Color;
-
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.util.FieldType;
 import de.htwg.monopoly.util.IMonopolyUtil;
+
+import java.awt.*;
 
 /**
  * class to represent a street

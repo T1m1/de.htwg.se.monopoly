@@ -1,16 +1,5 @@
 package de.htwg.monopoly.view;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
-
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Player;
@@ -18,6 +7,11 @@ import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.util.FieldType;
 import de.htwg.monopoly.util.IMonopolyUtil;
 import de.htwg.monopoly.view.components.Position;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
