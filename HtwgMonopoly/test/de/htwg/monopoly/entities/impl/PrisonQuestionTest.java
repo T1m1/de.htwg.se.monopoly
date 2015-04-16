@@ -3,10 +3,11 @@
  */
 package de.htwg.monopoly.entities.impl;
 
-import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author Steffen

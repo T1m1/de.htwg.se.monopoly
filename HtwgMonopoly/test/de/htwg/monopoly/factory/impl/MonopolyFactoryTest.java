@@ -3,15 +3,14 @@
  */
 package de.htwg.monopoly.factory.impl;
 
-import static org.junit.Assert.*;
+import de.htwg.monopoly.util.PlayerIcon;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import de.htwg.monopoly.util.PlayerIcon;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author Steffen

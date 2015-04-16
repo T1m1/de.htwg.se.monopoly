@@ -1,17 +1,12 @@
 package de.htwg.monopoly.entities.impl;
 
-import static org.junit.Assert.*;
-
+import de.htwg.monopoly.entities.IFieldObject;
+import de.htwg.monopoly.util.FieldType;
+import de.htwg.monopoly.util.PlayerIcon;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.monopoly.entities.IFieldObject;
-import de.htwg.monopoly.entities.impl.Bank;
-import de.htwg.monopoly.entities.impl.FieldObject;
-import de.htwg.monopoly.entities.impl.Player;
-import de.htwg.monopoly.entities.impl.Street;
-import de.htwg.monopoly.util.FieldType;
-import de.htwg.monopoly.util.PlayerIcon;
+import static org.junit.Assert.assertEquals;
 
 public class BankTest {
 	

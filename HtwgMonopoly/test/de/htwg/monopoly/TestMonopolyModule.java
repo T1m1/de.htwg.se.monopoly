@@ -3,7 +3,6 @@ package de.htwg.monopoly;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
-
 import de.htwg.monopoly.controller.IController;
 
 public class TestMonopolyModule extends AbstractModule  {

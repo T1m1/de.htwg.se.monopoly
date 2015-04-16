@@ -1,39 +1,24 @@
 package de.htwg.monopoly.controller.impl;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
-import java.awt.Color;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.TreeMap;
-
+import de.htwg.monopoly.controller.IController;
+import de.htwg.monopoly.entities.ICards;
+import de.htwg.monopoly.entities.IFieldObject;
+import de.htwg.monopoly.entities.impl.*;
+import de.htwg.monopoly.factory.IControllerFactory;
+import de.htwg.monopoly.util.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.awt.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.TreeMap;
+
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
-import de.htwg.monopoly.controller.IController;
-import de.htwg.monopoly.entities.ICards;
-import de.htwg.monopoly.entities.IFieldObject;
-import de.htwg.monopoly.entities.impl.ChanceCard;
-import de.htwg.monopoly.entities.impl.ChanceCardsStack;
-import de.htwg.monopoly.entities.impl.CommunityCard;
-import de.htwg.monopoly.entities.impl.CommunityCardsStack;
-import de.htwg.monopoly.entities.impl.Dice;
-import de.htwg.monopoly.entities.impl.FieldObject;
-import de.htwg.monopoly.entities.impl.Player;
-import de.htwg.monopoly.entities.impl.PrisonQuestion;
-import de.htwg.monopoly.entities.impl.Street;
-import de.htwg.monopoly.factory.IControllerFactory;
-import de.htwg.monopoly.util.FieldType;
-import de.htwg.monopoly.util.GameStatus;
-import de.htwg.monopoly.util.IMonopolyUtil;
-import de.htwg.monopoly.util.PlayerIcon;
-import de.htwg.monopoly.util.UserAction;
 
 public class ControllerTest {
 

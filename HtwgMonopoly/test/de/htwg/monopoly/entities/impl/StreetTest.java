@@ -1,17 +1,15 @@
 package de.htwg.monopoly.entities.impl;
 
-import static org.junit.Assert.*;
-
-import java.awt.Color;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import de.htwg.monopoly.entities.impl.Player;
-import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.util.FieldType;
 import de.htwg.monopoly.util.IMonopolyUtil;
 import de.htwg.monopoly.util.PlayerIcon;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.awt.*;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class StreetTest {
 	private Street street1;

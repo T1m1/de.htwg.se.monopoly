@@ -1,6 +1,5 @@
 package de.htwg.monopoly.entities.impl;
 
-import de.htwg.monopoly.entities.impl.Dice;
 import org.junit.Before;
 import org.junit.Test;
 

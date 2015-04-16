@@ -3,20 +3,6 @@
  */
 package de.htwg.monopoly.controller.impl;
 
-import static org.junit.Assert.*;
-
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.mockito.Mockito.*;
-
-import org.mockito.MockitoAnnotations;
-import org.mockito.Mock;
-
 import de.htwg.monopoly.entities.impl.ChanceCardsStack;
 import de.htwg.monopoly.entities.impl.CommunityCardsStack;
 import de.htwg.monopoly.entities.impl.FieldObject;
@@ -24,6 +10,18 @@ import de.htwg.monopoly.entities.impl.Street;
 import de.htwg.monopoly.util.FieldType;
 import de.htwg.monopoly.util.GameStatus;
 import de.htwg.monopoly.util.UserAction;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.when;
 
 /**
  * @author stgorenf

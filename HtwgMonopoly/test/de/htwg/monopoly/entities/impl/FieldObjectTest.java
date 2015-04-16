@@ -1,12 +1,10 @@
 package de.htwg.monopoly.entities.impl;
 
-import static org.junit.Assert.*;
-
+import de.htwg.monopoly.util.FieldType;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.monopoly.entities.impl.FieldObject;
-import de.htwg.monopoly.util.FieldType;
+import static org.junit.Assert.assertEquals;
 
 public class FieldObjectTest {
 

@@ -1,22 +1,20 @@
 package de.htwg.monopoly.controller.impl;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.TreeMap;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import de.htwg.monopoly.controller.IPlayerController;
-import de.htwg.monopoly.controller.impl.PlayerController;
 import de.htwg.monopoly.entities.ICards;
 import de.htwg.monopoly.entities.impl.Card;
 import de.htwg.monopoly.entities.impl.CommunityCard;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.util.MonopolyUtils;
 import de.htwg.monopoly.util.PlayerIcon;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TreeMap;
+
+import static org.junit.Assert.assertEquals;
 
 public class PlayerControllerTest {
 	private IPlayerController players;

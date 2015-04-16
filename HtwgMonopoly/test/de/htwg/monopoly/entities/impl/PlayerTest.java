@@ -1,13 +1,11 @@
 package de.htwg.monopoly.entities.impl;
 
-import java.awt.Color;
-
-import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.util.IMonopolyUtil;
 import de.htwg.monopoly.util.PlayerIcon;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import java.awt.*;
 
 import static org.junit.Assert.*;
 

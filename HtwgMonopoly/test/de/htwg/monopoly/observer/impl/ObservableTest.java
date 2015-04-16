@@ -1,12 +1,12 @@
 package de.htwg.monopoly.observer.impl;
 
-import static org.junit.Assert.*;
-
+import de.htwg.monopoly.observer.IObserver;
+import de.htwg.monopoly.util.GameStatus;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.monopoly.observer.IObserver;
-import de.htwg.monopoly.util.GameStatus;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class ObservableTest {
 	private boolean ping = false;

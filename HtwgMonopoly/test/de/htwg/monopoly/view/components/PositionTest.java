@@ -1,11 +1,10 @@
 package de.htwg.monopoly.view.components;
 
-import static org.junit.Assert.*;
-
+import de.htwg.monopoly.util.IMonopolyUtil;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.monopoly.util.IMonopolyUtil;
+import static org.junit.Assert.assertEquals;
 
 public class PositionTest {
 
