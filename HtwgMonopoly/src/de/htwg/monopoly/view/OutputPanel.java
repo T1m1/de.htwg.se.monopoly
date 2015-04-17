@@ -12,14 +12,14 @@ public class OutputPanel extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = -3497906149119900058L;
 	private static final int LINES = 3;
-	private static final int COLUMS = 3;
+	private static final int COLUMNS = 3;
 
 	private final IController contr;
 
 	private JTextArea taOutput;
 
 	/**
-	 * create panel for graphic user interf
+	 * create panel for graphic user interface
 	 * ace logger
 	 * 
 	 * @param controller
@@ -31,7 +31,7 @@ public class OutputPanel extends JPanel implements ActionListener {
 
     private void initUI() {
         JPanel pOutput = new JPanel();
-        taOutput = new JTextArea(LINES, COLUMS);
+        taOutput = new JTextArea(LINES, COLUMNS);
         taOutput.setEditable(false);
         Border border2 = BorderFactory.createEtchedBorder();
         taOutput.setBorder(border2);

@@ -18,77 +18,77 @@ public class OptionPanel extends JPanel implements ActionListener {
     private static final long serialVersionUID = 5849970700974325497L;
 
     private IController contr;
-    private JTextArea taAusgabe;
+    private JTextArea taOutput;
 
 
-    private JButton buttonZugBeenden;
-    private JButton buttonKaufen;
-    private JButton buttonHotelBauen;
-    private JButton buttonWuerfeln;
+    private JButton btnEndTurn;
+    private JButton btnBuy;
+    private JButton btnBuyMotel;
+    private JButton btnRollDice;
     private JButton buttonDrawCard;
 
-    private JButton buttonFreikaufen;
-    private JButton buttonFreikarte;
-    private JButton buttonFreiWuerfeln;
+    private JButton btnPrisonBuy;
+    private JButton btnPrisonCard;
+    private JButton btnPrisonRollDice;
 
-    public OptionPanel(IController controller, JTextArea ausgabe) {
+    public OptionPanel(IController controller, JTextArea output) {
         contr = controller;
-        this.taAusgabe = ausgabe;
+        this.taOutput = output;
         ResourceBundle bundle = ResourceBundle.getBundle("Messages",
                 Locale.GERMAN);
-        buttonWuerfeln = new JButton(bundle.getString("gui_dice"));
-        this.add(buttonWuerfeln);
-        buttonWuerfeln.addActionListener(this);
+        btnRollDice = new JButton(bundle.getString("gui_dice"));
+        this.add(btnRollDice);
+        btnRollDice.addActionListener(this);
 
         Image img = new ImageIcon("resources/pictures/DICE.gif").getImage();
-        buttonWuerfeln.setIcon(new ImageIcon(img));
+        btnRollDice.setIcon(new ImageIcon(img));
 
-        buttonZugBeenden = new JButton(bundle.getString("contr_finish"));
-        buttonZugBeenden.setEnabled(false);
-        this.add(buttonZugBeenden);
-        buttonZugBeenden.addActionListener(this);
+        btnEndTurn = new JButton(bundle.getString("contr_finish"));
+        btnEndTurn.setEnabled(false);
+        this.add(btnEndTurn);
+        btnEndTurn.addActionListener(this);
 
         Border border = BorderFactory.createTitledBorder("Optionen");
         JPanel pnlOptionen = new JPanel();
         pnlOptionen.setBorder(border);
 
-        buttonKaufen = new JButton(bundle.getString("gui_buy"));
-        buttonKaufen.setEnabled(false);
-        this.add(buttonKaufen);
-        buttonKaufen.addActionListener(this);
+        btnBuy = new JButton(bundle.getString("gui_buy"));
+        btnBuy.setEnabled(false);
+        this.add(btnBuy);
+        btnBuy.addActionListener(this);
 
-        buttonHotelBauen = new JButton(bundle.getString("gui_motel"));
-        buttonHotelBauen.setEnabled(false);
-        this.add(buttonHotelBauen);
-        buttonHotelBauen.addActionListener(this);
+        btnBuyMotel = new JButton(bundle.getString("gui_motel"));
+        btnBuyMotel.setEnabled(false);
+        this.add(btnBuyMotel);
+        btnBuyMotel.addActionListener(this);
 
         buttonDrawCard = new JButton(bundle.getString("gui_drawCard"));
         buttonDrawCard.setEnabled(false);
         this.add(buttonDrawCard);
         buttonDrawCard.addActionListener(this);
 
-        buttonFreikaufen = new JButton("Freikaufen " + IMonopolyUtil.FREIKAUFEN);
-        buttonFreikaufen.setEnabled(false);
-        buttonFreikaufen.addActionListener(this);
+        btnPrisonBuy = new JButton("Freikaufen " + IMonopolyUtil.FREIKAUFEN);
+        btnPrisonBuy.setEnabled(false);
+        btnPrisonBuy.addActionListener(this);
 
-        buttonFreikarte = new JButton("Freikarte einl�sen");
-        buttonFreikarte.setEnabled(false);
-        buttonFreikarte.addActionListener(this);
+        btnPrisonCard = new JButton("Freikarte einlösen");
+        btnPrisonCard.setEnabled(false);
+        btnPrisonCard.addActionListener(this);
 
-        buttonFreiWuerfeln = new JButton("3 x W�rfeln");
-        buttonFreiWuerfeln.setEnabled(false);
-        buttonFreiWuerfeln.addActionListener(this);
+        btnPrisonRollDice = new JButton("3 x Würfeln");
+        btnPrisonRollDice.setEnabled(false);
+        btnPrisonRollDice.addActionListener(this);
 
 		/* add components */
-        pnlOptionen.add(buttonWuerfeln);
-        pnlOptionen.add(buttonZugBeenden);
-        pnlOptionen.add(buttonKaufen);
-        pnlOptionen.add(buttonHotelBauen);
+        pnlOptionen.add(btnRollDice);
+        pnlOptionen.add(btnEndTurn);
+        pnlOptionen.add(btnBuy);
+        pnlOptionen.add(btnBuyMotel);
         pnlOptionen.add(buttonDrawCard);
 
-        pnlOptionen.add(buttonFreikarte);
-        pnlOptionen.add(buttonFreikaufen);
-        pnlOptionen.add(buttonFreikarte);
+        pnlOptionen.add(btnPrisonCard);
+        pnlOptionen.add(btnPrisonBuy);
+        pnlOptionen.add(btnPrisonCard);
 
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         this.add(pnlOptionen);
@@ -100,66 +100,66 @@ public class OptionPanel extends JPanel implements ActionListener {
         String streetName = contr.getCurrentField().toString();
 
 		/* if button for dice is clicked */
-        if (e.getSource().equals(buttonWuerfeln)) {
+        if (e.getSource().equals(btnRollDice)) {
             contr.startTurn();
             int diceResult = contr.getDice().getResultDice()
                     % (contr.getFieldSize() + 1);
-            taAusgabe.setText("Sie haben " + diceResult + " gewürfelt\n"
-                    + taAusgabe.getText());
+            taOutput.setText("Sie haben " + diceResult + " gewürfelt\n"
+                    + taOutput.getText());
 
 
             checkEnableStatus();
 
 			/* button to exit current draw */
-        } else if (e.getSource().equals(buttonZugBeenden)) {
-            buttonZugBeenden.setEnabled(false);
+        } else if (e.getSource().equals(btnEndTurn)) {
+            btnEndTurn.setEnabled(false);
             contr.endTurn();
 
             checkEnableStatus();
-        } else if (e.getSource().equals(buttonKaufen)) {
+        } else if (e.getSource().equals(btnBuy)) {
             contr.buyStreet();
             checkEnableStatus();
 
-            this.taAusgabe.setText(taAusgabe.getText() + "Sie haben "
+            this.taOutput.setText(taOutput.getText() + "Sie haben "
                     + streetName + " erfolgreich gekauft!");
 
-            buttonZugBeenden.setEnabled(true);
-            buttonWuerfeln.setEnabled(false);
-        } else if (e.getSource().equals(buttonFreikaufen)) {
+            btnEndTurn.setEnabled(true);
+            btnRollDice.setEnabled(false);
+        } else if (e.getSource().equals(btnPrisonBuy)) {
             contr.redeemWithMoney();
-            buttonFreikarte.setEnabled(false);
-            buttonFreikaufen.setEnabled(false);
-            buttonFreiWuerfeln.setEnabled(false);
+            btnPrisonCard.setEnabled(false);
+            btnPrisonBuy.setEnabled(false);
+            btnPrisonRollDice.setEnabled(false);
         } else if (e.getSource().equals(buttonDrawCard)) {
             contr.drawCard();
             buttonDrawCard.setEnabled(false);
 
             checkEnableStatus();
-        } else if (e.getSource().equals(buttonFreikarte)) {
+        } else if (e.getSource().equals(btnPrisonCard)) {
             contr.redeemWithCard();
-            buttonFreikarte.setEnabled(false);
-            buttonFreikaufen.setEnabled(false);
-            buttonFreiWuerfeln.setEnabled(false);
+            btnPrisonCard.setEnabled(false);
+            btnPrisonBuy.setEnabled(false);
+            btnPrisonRollDice.setEnabled(false);
         }
 
 
     }
 
     public void checkInPrison() {
-        buttonFreikarte.setEnabled(false);
-        buttonFreikaufen.setEnabled(false);
-        buttonFreiWuerfeln.setEnabled(false);
+        btnPrisonCard.setEnabled(false);
+        btnPrisonBuy.setEnabled(false);
+        btnPrisonRollDice.setEnabled(false);
 
         List<UserAction> options = contr.getOptions();
 
         if (options.contains(UserAction.REDEEM_WITH_MONEY)) {
-            buttonFreikaufen.setEnabled(true);
+            btnPrisonBuy.setEnabled(true);
         }
         if (options.contains(UserAction.REDEEM_WITH_DICE)) {
-            buttonFreiWuerfeln.setEnabled(true);
+            btnPrisonRollDice.setEnabled(true);
         }
         if (options.contains(UserAction.REDEEM_WITH_CARD)) {
-            buttonFreikarte.setEnabled(true);
+            btnPrisonCard.setEnabled(true);
         }
     }
 
@@ -167,21 +167,21 @@ public class OptionPanel extends JPanel implements ActionListener {
 
         List<UserAction> options = contr.getOptions();
 
-        buttonHotelBauen.setEnabled(false);
-        buttonKaufen.setEnabled(false);
-        buttonWuerfeln.setEnabled(false);
-        buttonZugBeenden.setEnabled(false);
+        btnBuyMotel.setEnabled(false);
+        btnBuy.setEnabled(false);
+        btnRollDice.setEnabled(false);
+        btnEndTurn.setEnabled(false);
         buttonDrawCard.setEnabled(false);
 
         if (options.contains(UserAction.BUY_STREET)) {
-            buttonKaufen.setEnabled(true);
+            btnBuy.setEnabled(true);
         }
         if (options.contains(UserAction.END_TURN)) {
-            buttonZugBeenden.setEnabled(true);
+            btnEndTurn.setEnabled(true);
         }
         if (options.contains(UserAction.ROLL_DICE)
                 || options.contains(UserAction.START_TURN)) {
-            buttonWuerfeln.setEnabled(true);
+            btnRollDice.setEnabled(true);
         }
         if (options.contains(UserAction.DRAW_CARD)) {
             buttonDrawCard.setEnabled(true);
