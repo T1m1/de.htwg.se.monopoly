@@ -19,7 +19,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 	private static final long serialVersionUID = 1262745107060789415L;
 
 	private final JMenuItem miSource;
-    private final JMenuItem miRegeln;
+    private final JMenuItem miRule;
 	private final JMenuItem miNewGame;
 	private final JMenuItem miExitGame;
 
@@ -51,9 +51,9 @@ public class MenuBar extends JMenuBar implements ActionListener {
 		miSource = new JMenuItem("Source Code");
 		miSource.addActionListener(this);
 		mHelp.add(miSource);
-		miRegeln = new JMenuItem("Monopoly Rules");
-		miRegeln.addActionListener(this);
-		mHelp.add(miRegeln);
+		miRule = new JMenuItem("Monopoly Rules");
+		miRule.addActionListener(this);
+		mHelp.add(miRule);
 
 		this.add(menuBar);
 
@@ -65,7 +65,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 			System.exit(0);
 		} else if (event.equals(miSource)) {
 			showURL(SOURCE);
-		} else if (event.equals(miRegeln)) {
+		} else if (event.equals(miRule)) {
 			showURL(RULES);
 
 		}
