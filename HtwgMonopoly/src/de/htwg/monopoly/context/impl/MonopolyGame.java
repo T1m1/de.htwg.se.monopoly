@@ -8,6 +8,7 @@ import java.util.UUID;
 import de.htwg.monopoly.context.IMonopolyGame;
 import de.htwg.monopoly.controller.IPlayerController;
 import de.htwg.monopoly.controller.IPlayfield;
+import de.htwg.monopoly.entities.impl.Dice;
 import de.htwg.monopoly.entities.impl.PrisonQuestion;
 import de.htwg.monopoly.util.GameStatus;
 
@@ -24,15 +25,25 @@ public class MonopolyGame implements IMonopolyGame {
 	private String id;
 	private String name;
 	private int parkingMoney;
+	private String message;
+	private int diceFlag;
+	private boolean drawCardFlag;
+	private Dice dice;
 
 	public MonopolyGame(IPlayerController players, IPlayfield field,
-			PrisonQuestion questions, GameStatus currentPhase, String name, int parkingMoney) {
+			PrisonQuestion questions, GameStatus currentPhase, String name,
+			int parkingMoney, String string, int diceFlag,
+			boolean drawCardFlag, Dice dice) {
 		this.field = field;
 		this.phase = currentPhase;
 		this.players = players;
 		this.questions = questions;
 		this.name = name;
-		this.setParkingMoney(parkingMoney);
+		this.parkingMoney = parkingMoney;
+		this.message = string;
+		this.diceFlag = diceFlag;
+		this.drawCardFlag = drawCardFlag;
+		this.dice = dice;
 
 		// Set a unique ID for this game context
 		this.id = UUID.randomUUID().toString();
@@ -74,47 +85,8 @@ public class MonopolyGame implements IMonopolyGame {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void setPlayfield(IPlayfield field) {
-		this.field = field;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void setPlayerController(IPlayerController players) {
-		this.players = players;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void setPrisonQuestions(PrisonQuestion questions) {
-		this.questions = questions;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void setCurrentGamePhase(GameStatus currentPhase) {
-		this.phase = currentPhase;
-	}
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
 	public int getParkingMoney() {
 		return parkingMoney;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void setParkingMoney(int parkingMoney) {
-		this.parkingMoney = parkingMoney;
 	}
 
 	/**
@@ -137,8 +109,32 @@ public class MonopolyGame implements IMonopolyGame {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void setName(String name) {
-		this.name = name;
+	public Dice getDice() {
+		return this.dice;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean getDrawCardFlag() {
+		return this.drawCardFlag;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int getDiceFlag() {
+		return this.diceFlag;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getMessage() {
+		return this.message;
 	}
 
 }

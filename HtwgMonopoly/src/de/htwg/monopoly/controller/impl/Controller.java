@@ -550,7 +550,7 @@ public class Controller extends Observable implements IController {
 
 		// create an instance with all context information of the current game
 		IMonopolyGame context = new MonopolyGame(players, field, questions,
-				phase, name, parkingMoney);
+				phase, name, parkingMoney, getMessage(), diceFlag, drawCardFlag, dice);
 
 		// TODO: what about those other instance variables of the controller?
 		
@@ -575,6 +575,10 @@ public class Controller extends Observable implements IController {
 		// re-initialize all other values
 		this.currentPlayer = players.getCurrentPlayer();
 		this.currentField = field.getFieldOfPlayer(currentPlayer);
+		this.message = new StringBuilder(gameById.getMessage());
+		this.diceFlag = gameById.getDiceFlag();
+		this.drawCardFlag = gameById.getDrawCardFlag();
+		this.dice = gameById.getDice();
 
 		updateGameStatus(phase);
 
