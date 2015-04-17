@@ -538,6 +538,7 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void saveGameToDB(String name) throws IllegalAccessException {
 
+		// don't save the game if its just not possible
 		if (phase.equals(GameStatus.NOT_STARTED)
 				|| phase.equals(GameStatus.STOPPED)) {
 			throw new IllegalAccessException(
@@ -551,8 +552,6 @@ public class Controller extends Observable implements IController {
 		// create an instance with all context information of the current game
 		IMonopolyGame context = new MonopolyGame(players, field, questions,
 				phase, name, parkingMoney, getMessage(), diceFlag, drawCardFlag, dice);
-
-		// TODO: what about those other instance variables of the controller?
 		
 		// save the game to database
 		database.saveGame(context);
@@ -579,11 +578,9 @@ public class Controller extends Observable implements IController {
 		this.diceFlag = gameById.getDiceFlag();
 		this.drawCardFlag = gameById.getDrawCardFlag();
 		this.dice = gameById.getDice();
-
+		
+		// restart game
 		updateGameStatus(phase);
-
-		// TODO: much much much error handling: what about those other instance
-		// values
 
 	}
 }
