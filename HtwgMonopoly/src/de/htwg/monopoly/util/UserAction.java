@@ -56,7 +56,17 @@ public enum UserAction {
 	/**
 	 * This option is available, if the current player stands on a field, where he can draw a chance or community card.
 	 */
-	DRAW_CARD("Eine Gemeinschafts-/Ereigniskarte ziehen.");
+	DRAW_CARD("Eine Gemeinschafts-/Ereigniskarte ziehen."),
+	
+	/**
+	 * Used for saving a current on going game into the database.
+	 */
+	SAVE_GAME("Spiel speichern"),
+	
+	/**
+	 * Used for loading a saved game from the database to continue playing.
+	 */
+	LOAD_GAME("Spiel laden");
 	
 	private final String description;
 	

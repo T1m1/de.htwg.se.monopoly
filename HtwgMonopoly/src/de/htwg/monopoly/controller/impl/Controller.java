@@ -1,7 +1,6 @@
 package de.htwg.monopoly.controller.impl;
 
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 
 import de.htwg.monopoly.context.IMonopolyGame;
 import de.htwg.monopoly.context.impl.MonopolyGame;
@@ -42,7 +41,6 @@ public class Controller extends Observable implements IController {
 	private GameStatus phase;
 	private PrisonQuestion questions;
 
-	// TODO: Is it necessary to persist these 4 values??
 	private int diceFlag;
 	private boolean drawCardFlag;
 	private StringBuilder message = new StringBuilder();
