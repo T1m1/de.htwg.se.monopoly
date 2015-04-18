@@ -24,7 +24,7 @@ public class PlayerController implements IPlayerController {
 	private final int numberOfPlayer;
 
 	// the player of the current turn
-	private int currentPlayer;
+	private int currentPlayerIndex;
 
 	/**
 	 * Constructor initialize a controller for handling all players. You can use
@@ -59,7 +59,7 @@ public class PlayerController implements IPlayerController {
 	 */
 	@Override
 	public Player getNextPlayer() {
-		currentPlayer = (currentPlayer + 1) % numberOfPlayer;
+		currentPlayerIndex = (currentPlayerIndex + 1) % numberOfPlayer;
 		return getCurrentPlayer();
 	}
 
@@ -68,7 +68,7 @@ public class PlayerController implements IPlayerController {
 	 */
 	@Override
 	public Player getFirstPlayer() {
-		currentPlayer = IMonopolyUtil.FIRST_PLAYER;
+		currentPlayerIndex = IMonopolyUtil.FIRST_PLAYER;
 		return getCurrentPlayer();
 	}
 
@@ -77,7 +77,7 @@ public class PlayerController implements IPlayerController {
 	 */
 	@Override
 	public Player getCurrentPlayer() {
-		return players.get(currentPlayer);
+		return players.get(currentPlayerIndex);
 	}
 
 	/**

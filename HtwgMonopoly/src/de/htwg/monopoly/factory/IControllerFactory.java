@@ -21,7 +21,7 @@ public interface IControllerFactory {
 	 * @param fieldSize
 	 * @return
 	 */
-	IPlayfield createPlayfield(int fieldSize);
+	IPlayfield createPlayfield();
 
 	/**
 	 * Creates an instance of a player controller, which holds all players of a

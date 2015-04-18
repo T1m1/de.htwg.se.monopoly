@@ -2,12 +2,16 @@ package de.htwg.monopoly.controller.impl;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
+
+import de.htwg.monopoly.context.IMonopolyGame;
+import de.htwg.monopoly.context.impl.MonopolyGame;
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.controller.IPlayerController;
 import de.htwg.monopoly.controller.IPlayfield;
 import de.htwg.monopoly.database.IMonopolyDAO;
 import de.htwg.monopoly.entities.ICards;
 import de.htwg.monopoly.entities.IFieldObject;
+import de.htwg.monopoly.entities.impl.Bank;
 import de.htwg.monopoly.entities.impl.Dice;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.PrisonQuestion;
@@ -28,28 +32,31 @@ import java.util.ResourceBundle;
  * 
  */
 public class Controller extends Observable implements IController {
-	private IPlayerController players;
-	private IPlayfield field;
-	private Player currentPlayer;
-	private IFieldObject currentField;
-	private Dice dice;
-	private int fieldSize;
-
-	private GameStatus phase;
-	private UserOptionsController userOptions;
-
-	private StringBuilder message;
-
 	/* internationalization */
 	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
-	private int diceFlag;
-	private String currentPrisonQuestion;
+
+	// Essential for the game context
+	private IPlayerController players;
+	private IPlayfield field;
+	private GameStatus phase;
 	private PrisonQuestion questions;
+
+	// TODO: Is it necessary to persist these 4 values??
+	private int diceFlag;
 	private boolean drawCardFlag;
+	private StringBuilder message = new StringBuilder();
+	private Dice dice;
+
+	// Not Essential (or can retrieved from the essential ones)
+	private Player currentPlayer;
+	private IFieldObject currentField;
+	private UserOptionsController userOptions;
+
+	// only used before a game is started
 	private IControllerFactory factory;
-	
-	@SuppressWarnings("unused")
+
+	// Database
 	private IMonopolyDAO database;
 
 	/**
@@ -59,14 +66,13 @@ public class Controller extends Observable implements IController {
 	 * @param fieldSize
 	 */
 	@Inject
-	public Controller(@Named("FieldSize") int fieldSize,
-			IControllerFactory controllerFactory, IMonopolyDAO database) {
+	public Controller(IControllerFactory controllerFactory,
+			IMonopolyDAO database) {
 		phase = GameStatus.NOT_STARTED;
-		this.fieldSize = fieldSize;
+
+		// set dependencies
 		this.factory = controllerFactory;
 		this.database = database;
-
-		this.message = new StringBuilder();
 
 		// create Dice and usercontroller with factory
 		this.dice = factory.createDice();
@@ -112,12 +118,9 @@ public class Controller extends Observable implements IController {
 		}
 
 		// create new field, player and prisonquestions with factory
-		this.field = factory.createPlayfield(fieldSize);
+		this.field = factory.createPlayfield();
 		this.players = factory.createPlayerController(players);
 		this.questions = factory.createPrisonQuestions();
-
-		// retrieve the first prison question
-		currentPrisonQuestion = questions.getNextQuestion();
 
 		// set current player to first player, notify observers and start
 		// playing
@@ -301,16 +304,16 @@ public class Controller extends Observable implements IController {
 
 		clearMessage();
 
-		if (questions.isTrue(currentPrisonQuestion, answer)) {
+		if (questions.isTrue(questions.getCurrentQuestion(), answer)) {
 
-			currentPrisonQuestion = questions.getNextQuestion();
+			questions.drawNextQuestion();
 
 			currentPlayer.setInPrison(false);
 			message.append("Frage korrekt beantwortet.");
 			updateGameStatus(GameStatus.BEFORE_TURN);
 			return true;
 		} else {
-			currentPrisonQuestion = questions.getNextQuestion();
+			questions.drawNextQuestion();
 			endTurn();
 			return false;
 		}
@@ -349,7 +352,6 @@ public class Controller extends Observable implements IController {
 		this.field = null;
 		this.currentField = null;
 		this.currentPlayer = null;
-		this.currentPrisonQuestion = null;
 		this.questions = null;
 
 		clearMessage();
@@ -503,7 +505,7 @@ public class Controller extends Observable implements IController {
 	 */
 	@Override
 	public String getPrisonQuestion() {
-		return currentPrisonQuestion;
+		return questions.getCurrentQuestion();
 	}
 
 	/**
@@ -522,5 +524,59 @@ public class Controller extends Observable implements IController {
 	 */
 	boolean isDiceFlagSet() {
 		return diceFlag != 0;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @throws IllegalAccessException
+	 */
+	@Override
+	public void saveGameToDB(String name) throws IllegalAccessException {
+
+		// don't save the game if its just not possible
+		if (phase.equals(GameStatus.NOT_STARTED)
+				|| phase.equals(GameStatus.STOPPED)) {
+			throw new IllegalAccessException(
+					"Its not possible to save game at this phase of the game.");
+		}
+
+		// retrieve and save money from bank
+		int parkingMoney = Bank.getParkingMoney();
+		Bank.setParkingMoney(parkingMoney);
+
+		// create an instance with all context information of the current game
+		IMonopolyGame context = new MonopolyGame(players, field, questions,
+				phase, name, parkingMoney, getMessage(), diceFlag, drawCardFlag, dice);
+		
+		// save the game to database
+		database.saveGame(context);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void loadGameFromDB(String id) {
+		IMonopolyGame gameById = database.getGameById(id);
+
+		// re-initialize all instance values
+		this.field = gameById.getPlayfield();
+		this.players = gameById.getPlayerController();
+		this.phase = gameById.getCurrentGamePhase();
+		this.questions = gameById.getPrisonQuestions();
+		Bank.setParkingMoney(gameById.getParkingMoney());
+
+		// re-initialize all other values
+		this.currentPlayer = players.getCurrentPlayer();
+		this.currentField = field.getFieldOfPlayer(currentPlayer);
+		this.message = new StringBuilder(gameById.getMessage());
+		this.diceFlag = gameById.getDiceFlag();
+		this.drawCardFlag = gameById.getDrawCardFlag();
+		this.dice = gameById.getDice();
+		
+		// restart game
+		updateGameStatus(phase);
+
 	}
 }

@@ -188,13 +188,17 @@ public class Playfield implements IPlayfield {
 		StringBuilder sb = new StringBuilder();
 		String out;
 		Street street = (Street) currentField;
+		
 		if (street.getOwner() == null) {
+			// there is no owner of the street
 			out = MessageFormat.format(bundle.getString("play_street_free"),
 					street.getPriceForStreet());
 			sb.append(out);
 		} else if (street.getOwner().equals(currentPlayer)) {
+			// current player is the owner
 			sb.append(bundle.getString("play_street_own"));
 		} else {
+			// The street is sold to somebody else -> pay rent
 			out = MessageFormat.format(bundle.getString("play_street_busy"),
 					street.getOwner(), street.getRent());
 			sb.append(out);

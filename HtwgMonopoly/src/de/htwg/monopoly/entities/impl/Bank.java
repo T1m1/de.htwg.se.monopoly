@@ -105,4 +105,8 @@ public final class Bank {
 		}
 		receiveMoneyFromPlayer(receive, send, actualMoney);
 	}
+
+	public static void setParkingMoney(int i) {
+		parkingMoney = i;
+	}
 }

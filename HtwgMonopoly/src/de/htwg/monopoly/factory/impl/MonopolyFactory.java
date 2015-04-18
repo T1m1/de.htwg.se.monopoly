@@ -3,6 +3,9 @@
  */
 package de.htwg.monopoly.factory.impl;
 
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
+
 import de.htwg.monopoly.controller.IPlayerController;
 import de.htwg.monopoly.controller.impl.PlayerController;
 import de.htwg.monopoly.controller.impl.Playfield;
@@ -19,14 +22,18 @@ import java.util.Map;
  */
 public class MonopolyFactory implements IControllerFactory {
 
-	public MonopolyFactory() {
+	private int fieldSize;
+
+	@Inject
+	public MonopolyFactory(@Named("FieldSize") int fieldsize) {
+		this.fieldSize = fieldsize;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Playfield createPlayfield(int fieldSize) {
+	public Playfield createPlayfield() {
 		return new Playfield(fieldSize);
 	}
 

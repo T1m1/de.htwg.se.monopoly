@@ -53,19 +53,19 @@ public class ControllerTest {
 		dummyPlayer = new Player("Player 1", PlayerIcon.BITTEL);
 
 		// define behavior of the mockfactory
-		when(mockFactory.createPlayfield(anyInt())).thenReturn(mockField);
+		when(mockFactory.createPlayfield()).thenReturn(mockField);
 		when(
 				mockFactory.createPlayerController(anyMapOf(String.class,
 						PlayerIcon.class))).thenReturn(mockPlayerController);
 
 		when(mockFactory.createDice()).thenReturn(mockDice);
 		when(mockFactory.createPrisonQuestions()).thenReturn(mockQuestion);
-		when(mockQuestion.getNextQuestion()).thenReturn("Dummy question");
+		when(mockQuestion.getCurrentQuestion()).thenReturn("Dummy question");
 		when(mockChance.getType()).thenReturn(FieldType.CHANCE_STACK);
 		when(mockComm.getType()).thenReturn(FieldType.COMMUNITY_STACK);
 
 		// create a test instance of the test controller
-		testController = new Controller(IMonopolyUtil.FIELD_SIZE, mockFactory, null);
+		testController = new Controller(mockFactory, null);
 
 	}
 
@@ -446,7 +446,7 @@ public class ControllerTest {
 
 	@Test
 	public void getFieldSize() {
-		when(mockFactory.createPlayfield(anyInt())).thenReturn(
+		when(mockFactory.createPlayfield()).thenReturn(
 				new Playfield(20));
 		setUpGame();
 		assertEquals(20, testController.getFieldSize());
