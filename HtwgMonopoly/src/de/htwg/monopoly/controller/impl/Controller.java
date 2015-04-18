@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.TreeMap;
 
 /**
  * 
@@ -549,6 +550,8 @@ public class Controller extends Observable implements IController {
 		
 		// save the game to database
 		database.saveGame(context);
+		
+		updateGameStatus(phase);
 	}
 
 	/**
@@ -576,5 +579,15 @@ public class Controller extends Observable implements IController {
 		// restart game
 		updateGameStatus(phase);
 
+	}
+
+	@Override
+	public Map<String, String> getSavedGames() {
+		Map<String, String> savedGames = new TreeMap<String, String>();
+		
+		for (IMonopolyGame current: database.getAllGames()) {
+			savedGames.put(current.getId(), current.getName());
+		}
+		return savedGames;
 	}
 }

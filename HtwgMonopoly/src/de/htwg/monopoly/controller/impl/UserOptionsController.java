@@ -80,8 +80,10 @@ public final class UserOptionsController {
 			break;
 		}
 
-		// always add the surrender option, if game is running.
+		// always add surrender, save and load option, if game is running.
 		options.add(UserAction.SURRENDER);
+		options.add(UserAction.LOAD_GAME);
+		options.add(UserAction.SAVE_GAME);
 
 	}
 
