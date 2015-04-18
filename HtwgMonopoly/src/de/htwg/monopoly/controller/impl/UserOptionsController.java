@@ -52,7 +52,7 @@ public final class UserOptionsController {
 		switch (phase) {
 		case STOPPED:
 		case NOT_STARTED:
-			// add no user option
+			options.add(UserAction.LOAD_GAME);
 			return;
 		case STARTED:
 		case AFTER_TURN:

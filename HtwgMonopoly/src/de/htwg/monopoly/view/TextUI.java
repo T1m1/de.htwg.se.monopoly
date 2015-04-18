@@ -321,6 +321,7 @@ public class TextUI implements IObserver {
 	private void loadGame() {
 		Map<String, String> savedGames = controller.getSavedGames();
 		Map<Integer, String> tuiSavedGames = new TreeMap<Integer, String>();
+		int size = savedGames.size();
 
 		if (savedGames.isEmpty()) {
 			logger.info("Keine gespeicherten Spiele");
@@ -328,8 +329,7 @@ public class TextUI implements IObserver {
 		}
 
 		// print saved games
-		logger.info("Folgende Spiele sind gespeichert: (" + savedGames.size()
-				+ ")");
+		logger.info("Folgende Spiele sind gespeichert: (" + size + ")");
 		int i = 0;
 		for (String currentID : savedGames.keySet()) {
 			i++;
@@ -359,7 +359,7 @@ public class TextUI implements IObserver {
 			id = in.nextInt();
 
 			// if read integer is not valid
-		} while (id > tuiSavedGames.size() || id < 1);
+		} while (id > size || id < 1);
 
 		controller.loadGameFromDB(tuiSavedGames.get(id));
 	}
