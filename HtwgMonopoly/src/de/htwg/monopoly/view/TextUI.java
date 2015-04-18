@@ -3,6 +3,7 @@ package de.htwg.monopoly.view;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.google.inject.Inject;
+
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.observer.IObserver;
@@ -10,14 +11,17 @@ import de.htwg.monopoly.util.GameStatus;
 import de.htwg.monopoly.util.IMonopolyUtil;
 import de.htwg.monopoly.util.MonopolyUtils;
 import de.htwg.monopoly.util.UserAction;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class TextUI implements IObserver {
 
@@ -46,8 +50,10 @@ public class TextUI implements IObserver {
 		ENUM_USER_OPTION.put("r", UserAction.ROLL_DICE);
 		ENUM_USER_OPTION.put("c", UserAction.REDEEM_WITH_CARD);
 		ENUM_USER_OPTION.put("w", UserAction.REDEEM_WITH_DICE);
-		ENUM_USER_OPTION.put("l", UserAction.DRAW_CARD);
+		ENUM_USER_OPTION.put("k", UserAction.DRAW_CARD);
 		ENUM_USER_OPTION.put("q", UserAction.REDEEM_WITH_QUESTION);
+		ENUM_USER_OPTION.put("s", UserAction.SAVE_GAME);
+		ENUM_USER_OPTION.put("l", UserAction.LOAD_GAME);
 
 		CHAR_USER_OPTION = ENUM_USER_OPTION.inverse();
 	}
@@ -287,12 +293,80 @@ public class TextUI implements IObserver {
 			logger.info(controller.getPrisonQuestion());
 			controller.checkPlayerAnswer(retrieveAnswer());
 			break;
+		case LOAD_GAME:
+			loadGame();
+			break;
+		case SAVE_GAME:
+			saveGame();
+			break;
 		}
 		return true;
 	}
 
+	private void saveGame() {
+
+		logger.info("Name für das aktuelle Spiel vergeben:");
+
+		String name = in.nextLine();
+
+		try {
+			controller.saveGameToDB(name);
+		} catch (IllegalAccessException e) {
+			logger.info("Nicht möglich das Spiel zu speichern."
+					+ e.getMessage());
+		}
+
+	}
+
+	private void loadGame() {
+		Map<String, String> savedGames = controller.getSavedGames();
+		Map<Integer, String> tuiSavedGames = new TreeMap<Integer, String>();
+
+		if (savedGames.isEmpty()) {
+			logger.info("Keine gespeicherten Spiele");
+			return;
+		}
+
+		// print saved games
+		logger.info("Folgende Spiele sind gespeichert: (" + savedGames.size()
+				+ ")");
+		int i = 0;
+		for (String currentID : savedGames.keySet()) {
+			i++;
+			tuiSavedGames.put(i, currentID);
+			logger.info(i + ": " + savedGames.get(currentID));
+
+			// stop every 10 items
+			if ((i % 10) == 0) {
+				logger.info("Nächste 10 Einträge zeigen? (y/n).");
+				if (!retrieveAnswer()) {
+					break;
+				}
+			}
+		}
+
+		// o_O that do-while-while block needs to be verified
+		int id;
+		do {
+			logger.info("Korrekte Spielnummer auswählen");
+
+			// if next token is not an integer
+			while (!in.hasNextInt()) {
+				logger.info("Bitte eine Nummer eingeben.");
+				in.next();
+			}
+
+			id = in.nextInt();
+
+			// if read integer is not valid
+		} while (id > tuiSavedGames.size() || id < 1);
+
+		controller.loadGameFromDB(tuiSavedGames.get(id));
+	}
+
 	/**
 	 * Method retrieves an answer written to stdout. Either yes, y, no or n.
+	 * 
 	 * @return
 	 */
 	private boolean retrieveAnswer() {
@@ -322,7 +396,8 @@ public class TextUI implements IObserver {
 			}
 		}
 
-		// check if input is smaller than the maximum of player and bigger than the minimum
+		// check if input is smaller than the maximum of player and bigger than
+		// the minimum
 		if (!MonopolyUtils.verifyPlayerNumber(tmpNumberOfPlayer)) {
 			return 0;
 		}
