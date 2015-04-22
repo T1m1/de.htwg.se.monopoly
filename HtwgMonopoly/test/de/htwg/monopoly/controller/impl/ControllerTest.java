@@ -470,6 +470,8 @@ public class ControllerTest {
 		List<UserAction> expectedList = new LinkedList<UserAction>();
 		expectedList.add(UserAction.START_TURN);
 		expectedList.add(UserAction.SURRENDER);
+		expectedList.add(UserAction.LOAD_GAME);
+		expectedList.add(UserAction.SAVE_GAME);
 		assertEquals(expectedList, testController.getOptions());
 	}
 

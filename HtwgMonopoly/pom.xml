@@ -24,14 +24,13 @@
 			</plugin>
 		</plugins>
 	</build>
-	<distributionManagement>
-		<repository>
-			<id>lenny2</id>
-			<name>lenny2-releases</name>
-			<url>http://lenny2.in.htwg-konstanz.de:8081/artifactory/ext-release-local</url>
-		</repository>
-	</distributionManagement>
-	<dependencies>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>lenny2</id>
+            <name>lenny2-snapshots</name>
+            <url>http://lenny2.in.htwg-konstanz.de:8081/artifactory/libs-snapshot-local</url>
+        </snapshotRepository>
+    </distributionManagement>	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -68,11 +67,25 @@
 			<artifactId>mockito-core</artifactId>
 			<version>1.10.19</version>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.db4o</groupId> -->
-<!-- 			<artifactId>db4o-core-java5</artifactId> -->
-<!-- 			<version>8.0.184.15484</version> -->
-<!-- 		</dependency> -->
+    <dependency>
+        <groupId>com.db4o</groupId>
+        <artifactId>db4o-full-java5</artifactId>
+        <version>8.0-SNAPSHOT</version>
+    </dependency>
 	</dependencies>
+    <!-- Additional Remote Repositories -->
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+                <checksumPolicy>fail</checksumPolicy>
+            </snapshots>
+            <id>db4o</id>
+            <name>DB4O</name>
+            <url>http://source.db4o.com/maven</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
 	<artifactId>HtwgMonopoly</artifactId>
 </project>
