@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package de.htwg.monopoly.controller.impl;
 
@@ -22,7 +22,7 @@ public final class UserOptionsController {
 
 	/**
 	 * @param controller
-	 * 
+	 *
 	 *            Initialize a new game status controller
 	 */
 	public UserOptionsController(Controller controller) {
@@ -34,7 +34,7 @@ public final class UserOptionsController {
 
 	/**
 	 * Returns all available options for the current user.
-	 * 
+	 *
 	 * @return
 	 */
 	public List<UserAction> getCurrentPlayerOptions() {
@@ -93,10 +93,9 @@ public final class UserOptionsController {
 
 		switch (controller.getCurrentField().getType()) {
 		case STREET:
-			if (((Street) controller.getCurrentField()).isSold()) {
+			if (!((Street) controller.getCurrentField()).isSold()) {
 				// add no user options
-			} else {
-				options.add(UserAction.BUY_STREET);
+                options.add(UserAction.BUY_STREET);
 			}
 			break;
 		case GO_TO_PRISON:
@@ -105,11 +104,10 @@ public final class UserOptionsController {
 			break;
 		case CHANCE_STACK:
 		case COMMUNITY_STACK:
-			if (controller.hasDrawnCard()) {
+			if (!controller.hasDrawnCard()) {
 				// add no option
-			} else {
-				options.add(UserAction.DRAW_CARD);
-				return;
+                options.add(UserAction.DRAW_CARD);
+                return;
 			}
 		case FREE_PARKING:
 		case GO:
