@@ -26,9 +26,6 @@ Timi.xml
 *.iml
 
 
-
-HtwgMonopoly/monopoly.data
-HtwgMonopoly/doc/Thumbs.db
-HtwgMonopoly/doc/Thumbs.db
-HtwgMonopoly/doc/Thumbs.db
-HtwgMonopoly/doc/Thumbs.db
+# database stuff
+monopoly.data
+Thumbs.db
