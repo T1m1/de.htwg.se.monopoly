@@ -68,6 +68,9 @@ public interface IMonopolyUtil {
 	int TIMES_TO_ROLL_DICE = 3;
 
 
+	int MAX_NUMBER_GAMES_TO_DISPAY = 10;
+
+
 	
 
 }

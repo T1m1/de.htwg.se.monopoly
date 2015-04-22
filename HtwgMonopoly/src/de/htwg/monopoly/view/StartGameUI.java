@@ -58,7 +58,7 @@ public class StartGameUI extends JFrame implements IObserver {
 	public void update(GameStatus status) {
 		if(status == GameStatus.STARTED) {
 			gui.startGame();
-			setVisible(false); //you can't see me!
+			setVisible(false);
 		}
 	}
 

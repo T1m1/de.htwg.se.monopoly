@@ -37,9 +37,9 @@ public class TextUI implements IObserver {
 	private final IController controller;
 
 	// Bidirectional map for user input and enum actions
-	private final static BiMap<String, UserAction> ENUM_USER_OPTION = HashBiMap
+	private static final BiMap<String, UserAction> ENUM_USER_OPTION = HashBiMap
 			.create();
-	private final static BiMap<UserAction, String> CHAR_USER_OPTION;
+	private static final BiMap<UserAction, String> CHAR_USER_OPTION;
 
 	static {
 		ENUM_USER_OPTION.put("d", UserAction.START_TURN);
@@ -349,7 +349,7 @@ public class TextUI implements IObserver {
 			logger.info(i + ": " + savedGames.get(currentID));
 
 			// stop every 10 items
-			if ((i % 10) == 0) {
+			if ((i % IMonopolyUtil.MAX_NUMBER_GAMES_TO_DISPAY) == 0) {
 				logger.info("Nächste 10 Einträge zeigen? (y/n).");
 				if (!retrieveAnswer()) {
 					break;
