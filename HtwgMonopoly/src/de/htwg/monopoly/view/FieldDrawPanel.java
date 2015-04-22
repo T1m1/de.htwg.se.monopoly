@@ -335,8 +335,8 @@ class FieldDrawPanel extends JPanel {
 
 		figures = new ArrayList<Image>();
 
-        for (String PICTURE : PICTURES) {
-            img = new ImageIcon(RESOURCE_DIRECTORY + PICTURE).getImage();
+        for (String picture : PICTURES) {
+            img = new ImageIcon(RESOURCE_DIRECTORY + picture).getImage();
             figures.add(img);
         }
 

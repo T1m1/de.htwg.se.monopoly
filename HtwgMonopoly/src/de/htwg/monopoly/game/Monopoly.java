@@ -8,7 +8,7 @@ import de.htwg.monopoly.view.TextUI;
 
 import java.util.Scanner;
 
-public class Monopoly {
+public final class Monopoly {
 
     private static Monopoly instance = null;
 	private IController controller;

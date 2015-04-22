@@ -11,7 +11,7 @@ import java.util.TreeMap;
  * @author stgorenf
  *
  */
-public class MonopolyUtils {
+public final class MonopolyUtils {
 
 	/**
 	 * Hide utility constructor
