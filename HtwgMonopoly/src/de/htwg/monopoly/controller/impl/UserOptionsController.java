@@ -53,6 +53,7 @@ public final class UserOptionsController {
 		case STOPPED:
 		case NOT_STARTED:
 			options.add(UserAction.LOAD_GAME);
+			options.add(UserAction.DELETE_GAME);
 			return;
 		case STARTED:
 		case AFTER_TURN:
@@ -84,6 +85,7 @@ public final class UserOptionsController {
 		options.add(UserAction.SURRENDER);
 		options.add(UserAction.LOAD_GAME);
 		options.add(UserAction.SAVE_GAME);
+		options.add(UserAction.DELETE_GAME);
 
 	}
 
