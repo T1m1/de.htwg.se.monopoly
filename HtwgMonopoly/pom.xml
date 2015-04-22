@@ -88,5 +88,4 @@
             <layout>default</layout>
         </repository>
     </repositories>
-	<artifactId>HtwgMonopoly</artifactId>
 </project>
