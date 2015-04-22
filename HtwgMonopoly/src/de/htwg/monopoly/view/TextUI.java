@@ -54,6 +54,7 @@ public class TextUI implements IObserver {
 		ENUM_USER_OPTION.put("q", UserAction.REDEEM_WITH_QUESTION);
 		ENUM_USER_OPTION.put("s", UserAction.SAVE_GAME);
 		ENUM_USER_OPTION.put("l", UserAction.LOAD_GAME);
+		ENUM_USER_OPTION.put("y", UserAction.DELETE_GAME);
 
 		CHAR_USER_OPTION = ENUM_USER_OPTION.inverse();
 	}
@@ -299,8 +300,19 @@ public class TextUI implements IObserver {
 		case SAVE_GAME:
 			saveGame();
 			break;
+		case DELETE_GAME:
+			deleteGame();
+			break;
 		}
 		return true;
+	}
+
+	private void loadGame() {
+		performDbAction("load");
+	}
+
+	private void deleteGame() {
+		performDbAction("delete");
 	}
 
 	private void saveGame() {
@@ -318,7 +330,7 @@ public class TextUI implements IObserver {
 
 	}
 
-	private void loadGame() {
+	private void performDbAction(String action) {
 		Map<String, String> savedGames = controller.getSavedGames();
 		Map<Integer, String> tuiSavedGames = new TreeMap<Integer, String>();
 		int size = savedGames.size();
@@ -361,7 +373,13 @@ public class TextUI implements IObserver {
 			// if read integer is not valid
 		} while (id > size || id < 1);
 
-		controller.loadGameFromDB(tuiSavedGames.get(id));
+		if (action.equals("load")) {
+			controller.loadGameFromDB(tuiSavedGames.get(id));
+		} else if (action.equals("delete")) {
+			controller.deleteGame(tuiSavedGames.get(id));
+		} else {
+			throw new AssertionError("not implemented!!");
+		}
 	}
 
 	/**

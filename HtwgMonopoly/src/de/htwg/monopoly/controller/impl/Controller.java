@@ -594,4 +594,12 @@ public class Controller extends Observable implements IController {
 		}
 		return savedGames;
 	}
+	
+	@Override
+	public void deleteGame(String id) {
+		assert database.containsGameById(id) : "There is no such game saved in the database";
+		database.deleteGameById(id);
+		
+		updateGameStatus(phase);
+	}
 }
