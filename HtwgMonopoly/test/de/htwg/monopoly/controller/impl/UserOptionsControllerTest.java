@@ -56,47 +56,53 @@ public class UserOptionsControllerTest {
 	public void testPhases() {
 		// Game not started, no expected Actions
 		when(mockController.getPhase()).thenReturn(GameStatus.STOPPED);
-		expectAction();
+		expectAction(UserAction.LOAD_GAME, UserAction.DELETE_GAME);
 		verifyActions();
-		
+
 		when(mockController.getPhase()).thenReturn(GameStatus.NOT_STARTED);
-		expectAction();
+		expectAction(UserAction.LOAD_GAME, UserAction.DELETE_GAME);
 		verifyActions();
 
 		// Game started
 		when(mockController.getPhase()).thenReturn(GameStatus.STARTED);
-		expectAction(UserAction.SURRENDER, UserAction.START_TURN);
+		expectAction(UserAction.SURRENDER, UserAction.START_TURN,
+				UserAction.LOAD_GAME, UserAction.SAVE_GAME, UserAction.DELETE_GAME);
 		verifyActions();
-		
+
 		when(mockController.getPhase()).thenReturn(GameStatus.AFTER_TURN);
-		expectAction(UserAction.SURRENDER, UserAction.START_TURN);
+		expectAction(UserAction.SURRENDER, UserAction.START_TURN,
+				UserAction.LOAD_GAME, UserAction.SAVE_GAME, UserAction.DELETE_GAME);
 		verifyActions();
 
 		when(mockController.getPhase()).thenReturn(GameStatus.BEFORE_TURN);
-		expectAction(UserAction.SURRENDER, UserAction.START_TURN);
+		expectAction(UserAction.SURRENDER, UserAction.START_TURN,
+				UserAction.LOAD_GAME, UserAction.SAVE_GAME, UserAction.DELETE_GAME);
 		verifyActions();
 
 		when(mockController.getPhase()).thenReturn(
 				GameStatus.BEFORE_TURN_IN_PRISON);
 		expectAction(UserAction.SURRENDER, UserAction.REDEEM_WITH_CARD,
 				UserAction.REDEEM_WITH_DICE, UserAction.REDEEM_WITH_MONEY,
-				UserAction.REDEEM_WITH_QUESTION);
+				UserAction.REDEEM_WITH_QUESTION, UserAction.LOAD_GAME, UserAction.SAVE_GAME, UserAction.DELETE_GAME);
 		verifyActions();
 
 		when(mockController.getPhase()).thenReturn(
 				GameStatus.DICE_ROLL_FOR_PRISON);
 		when(mockController.isDiceFlagSet()).thenReturn(true);
-		expectAction(UserAction.SURRENDER, UserAction.ROLL_DICE);
+		expectAction(UserAction.SURRENDER, UserAction.ROLL_DICE,
+				UserAction.LOAD_GAME, UserAction.SAVE_GAME, UserAction.DELETE_GAME);
 		verifyActions();
 
 		when(mockController.getPhase()).thenReturn(
 				GameStatus.DICE_ROLL_FOR_PRISON);
 		when(mockController.isDiceFlagSet()).thenReturn(false);
-		expectAction(UserAction.SURRENDER, UserAction.END_TURN);
+		expectAction(UserAction.SURRENDER, UserAction.END_TURN,
+				UserAction.LOAD_GAME, UserAction.SAVE_GAME, UserAction.DELETE_GAME);
 		verifyActions();
 
 		when(mockController.getPhase()).thenReturn(GameStatus.DICE_RESULT);
-		expectAction(UserAction.SURRENDER, UserAction.ROLL_DICE);
+		expectAction(UserAction.SURRENDER, UserAction.ROLL_DICE,
+				UserAction.LOAD_GAME, UserAction.SAVE_GAME, UserAction.DELETE_GAME);
 		verifyActions();
 
 		Street dummyStreet = new Street();
@@ -104,52 +110,61 @@ public class UserOptionsControllerTest {
 		when(mockController.getPhase()).thenReturn(GameStatus.DURING_TURN);
 		when(mockController.getCurrentField()).thenReturn(dummyStreet);
 		expectAction(UserAction.SURRENDER, UserAction.END_TURN,
-				UserAction.BUY_STREET);
+				UserAction.BUY_STREET, UserAction.LOAD_GAME, UserAction.SAVE_GAME, UserAction.DELETE_GAME);
 		verifyActions();
 
 		dummyStreet.setSold(true);
 		when(mockController.getCurrentField()).thenReturn(dummyStreet);
-		expectAction(UserAction.SURRENDER, UserAction.END_TURN);
+		expectAction(UserAction.SURRENDER, UserAction.END_TURN,
+				UserAction.LOAD_GAME, UserAction.SAVE_GAME, UserAction.DELETE_GAME);
 		verifyActions();
 
 		when(mockController.getCurrentField()).thenReturn(
 				new CommunityCardsStack());
-		expectAction(UserAction.SURRENDER, UserAction.DRAW_CARD);
+		expectAction(UserAction.SURRENDER, UserAction.DRAW_CARD,
+				UserAction.LOAD_GAME, UserAction.SAVE_GAME, UserAction.DELETE_GAME);
 		verifyActions();
 
 		when(mockController.getCurrentField()).thenReturn(
 				new ChanceCardsStack());
-		expectAction(UserAction.SURRENDER, UserAction.DRAW_CARD);
+		expectAction(UserAction.SURRENDER, UserAction.DRAW_CARD,
+				UserAction.LOAD_GAME, UserAction.SAVE_GAME, UserAction.DELETE_GAME);
 		verifyActions();
 
 		when(mockController.hasDrawnCard()).thenReturn(true);
-		expectAction(UserAction.SURRENDER, UserAction.END_TURN);
+		expectAction(UserAction.SURRENDER, UserAction.END_TURN,
+				UserAction.LOAD_GAME, UserAction.SAVE_GAME, UserAction.DELETE_GAME);
 		verifyActions();
 
 		when(mockController.getCurrentField()).thenReturn(
 				new FieldObject("", FieldType.FREE_PARKING, 0));
-		expectAction(UserAction.SURRENDER, UserAction.END_TURN);
+		expectAction(UserAction.SURRENDER, UserAction.END_TURN,
+				UserAction.LOAD_GAME, UserAction.SAVE_GAME, UserAction.DELETE_GAME);
 		verifyActions();
 
 		when(mockController.getCurrentField()).thenReturn(
 				new FieldObject("", FieldType.GO, 0));
-		expectAction(UserAction.SURRENDER, UserAction.END_TURN);
+		expectAction(UserAction.SURRENDER, UserAction.END_TURN,
+				UserAction.LOAD_GAME, UserAction.SAVE_GAME, UserAction.DELETE_GAME);
 		verifyActions();
 
 		when(mockController.getCurrentField()).thenReturn(
 				new FieldObject("", FieldType.GO_TO_PRISON, 0));
 		expectAction(UserAction.SURRENDER, UserAction.END_TURN,
-				UserAction.REDEEM_WITH_CARD, UserAction.REDEEM_WITH_MONEY);
+				UserAction.REDEEM_WITH_CARD, UserAction.REDEEM_WITH_MONEY,
+				UserAction.LOAD_GAME, UserAction.SAVE_GAME, UserAction.DELETE_GAME);
 		verifyActions();
 
 		when(mockController.getCurrentField()).thenReturn(
 				new FieldObject("", FieldType.PRISON_VISIT_ONLY, 0));
-		expectAction(UserAction.SURRENDER, UserAction.END_TURN);
+		expectAction(UserAction.SURRENDER, UserAction.END_TURN,
+				UserAction.LOAD_GAME, UserAction.SAVE_GAME, UserAction.DELETE_GAME);
 		verifyActions();
 
 		when(mockController.getCurrentField()).thenReturn(
 				new FieldObject("", FieldType.TAX, 0));
-		expectAction(UserAction.SURRENDER, UserAction.END_TURN);
+		expectAction(UserAction.SURRENDER, UserAction.END_TURN,
+				UserAction.LOAD_GAME, UserAction.SAVE_GAME, UserAction.DELETE_GAME);
 		verifyActions();
 
 	}

@@ -472,6 +472,7 @@ public class ControllerTest {
 		expectedList.add(UserAction.SURRENDER);
 		expectedList.add(UserAction.LOAD_GAME);
 		expectedList.add(UserAction.SAVE_GAME);
+		expectedList.add(UserAction.DELETE_GAME);
 		assertEquals(expectedList, testController.getOptions());
 	}
 
