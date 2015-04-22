@@ -137,4 +137,10 @@ public class MonopolyGame implements IMonopolyGame {
 		return this.message;
 	}
 
+	@Override
+	public void makeReady() {
+		// set the Resource bundle to null or other way round
+		this.field.switchResourceBundle();
+	}
+
 }

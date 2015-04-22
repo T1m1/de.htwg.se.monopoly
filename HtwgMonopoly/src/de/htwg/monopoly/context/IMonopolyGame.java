@@ -30,4 +30,6 @@ public interface IMonopolyGame {
 
 	String getMessage();
 
+	void makeReady();
+
 }

@@ -19,7 +19,7 @@ public class Playfield implements IPlayfield {
 	private boolean wentOverGo = false;
 
 	/* internationalization */
-	private final ResourceBundle bundle = ResourceBundle.getBundle("Messages",
+	private ResourceBundle bundle = ResourceBundle.getBundle("Messages",
 			Locale.GERMAN);
 
 	/**
@@ -188,7 +188,7 @@ public class Playfield implements IPlayfield {
 		StringBuilder sb = new StringBuilder();
 		String out;
 		Street street = (Street) currentField;
-		
+
 		if (street.getOwner() == null) {
 			// there is no owner of the street
 			out = MessageFormat.format(bundle.getString("play_street_free"),
@@ -275,6 +275,19 @@ public class Playfield implements IPlayfield {
 	@Override
 	public ChanceCardsStack getChanStack() {
 		return chanStack;
+	}
+
+	@Override
+	public void switchResourceBundle() {
+		if (bundle == null) {
+			bundle = ResourceBundle.getBundle("Messages", Locale.GERMAN);
+		} else {
+			bundle = null;
+		}
+
+		commStack.setResourceBundle(bundle);
+		chanStack.setResourceBundle(bundle);
+
 	}
 
 }

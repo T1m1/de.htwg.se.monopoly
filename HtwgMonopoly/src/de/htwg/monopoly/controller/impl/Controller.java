@@ -548,6 +548,8 @@ public class Controller extends Observable implements IController {
 		IMonopolyGame context = new MonopolyGame(players, field, questions,
 				phase, name, parkingMoney, getMessage(), diceFlag, drawCardFlag, dice);
 		
+		context.makeReady();
+		
 		// save the game to database
 		database.saveGame(context);
 		
@@ -560,6 +562,8 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void loadGameFromDB(String id) {
 		IMonopolyGame gameById = database.getGameById(id);
+		
+		gameById.makeReady();
 
 		// re-initialize all instance values
 		this.field = gameById.getPlayfield();

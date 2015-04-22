@@ -31,8 +31,7 @@ public class Monopoly {
 		
 		// get instances from Guice
 		controller = injector.getInstance(IController.class);
-		tui = injector.getInstance(TextUI.class);
-
+		tui = new TextUI(controller);
 		start = new StartGameUI(controller);
 		
 	}

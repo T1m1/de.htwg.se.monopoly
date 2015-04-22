@@ -70,4 +70,9 @@ public abstract class CardsStack implements ICardStack, IFieldObject {
 		this.shuffle();
 
 	}
+	
+	@Override
+	public void setResourceBundle(ResourceBundle bundle) {
+		this.bundle = bundle;
+	}
 }

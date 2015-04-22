@@ -1,5 +1,7 @@
 package de.htwg.monopoly.entities;
 
+import java.util.ResourceBundle;
+
 
 public interface ICardStack {
 	
@@ -16,5 +18,7 @@ public interface ICardStack {
 	 * 
 	 */
 	void shuffle();
+
+	void setResourceBundle(ResourceBundle bundle);
 
 }
