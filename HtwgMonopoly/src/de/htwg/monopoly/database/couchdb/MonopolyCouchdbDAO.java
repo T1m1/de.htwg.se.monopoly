@@ -2,6 +2,8 @@ package de.htwg.monopoly.database.couchdb;
 
 import de.htwg.monopoly.context.IMonopolyGame;
 import de.htwg.monopoly.database.IMonopolyDAO;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.ektorp.CouchDbConnector;
 import org.ektorp.CouchDbInstance;
 import org.ektorp.http.HttpClient;
@@ -16,6 +18,7 @@ import java.util.List;
  */
 public class MonopolyCouchdbDAO implements IMonopolyDAO {
 
+    private final Logger logger = LogManager.getLogger("CouchDb");
     CouchDbConnector db;
 
     public MonopolyCouchdbDAO() {
@@ -23,6 +26,7 @@ public class MonopolyCouchdbDAO implements IMonopolyDAO {
         try {
             client = new StdHttpClient.Builder().url("http://lenny2.in.htwg-konstanz.de:5984").build();
         } catch (MalformedURLException e) {
+            logger.error(e);
         }
         CouchDbInstance dbInstance = new StdCouchDbInstance(client);
         db = dbInstance.createConnector("htwg_monopoly", true);
