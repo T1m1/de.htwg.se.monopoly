@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-public final class PrisonQuestion {
+public class PrisonQuestion {
 
 	private static final Map<String, Boolean> QUESTIONMAP = new TreeMap<String, Boolean>();
 
