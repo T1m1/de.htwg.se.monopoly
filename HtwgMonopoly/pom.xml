@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.htwg.sa</groupId>
 	<artifactId>HtwgMonopoly</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>SA2015SS-02-HtwgMonopoly</name>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
