@@ -2,16 +2,31 @@ package de.htwg.monopoly.database.couchdb;
 
 import de.htwg.monopoly.context.IMonopolyGame;
 import de.htwg.monopoly.database.IMonopolyDAO;
+import org.ektorp.CouchDbConnector;
+import org.ektorp.CouchDbInstance;
+import org.ektorp.http.HttpClient;
+import org.ektorp.http.StdHttpClient;
+import org.ektorp.impl.StdCouchDbInstance;
 
+import java.net.MalformedURLException;
 import java.util.List;
 
 /**
- * Created by Timi on 24.04.2015.
+ * @author Timi.
  */
 public class MonopolyCouchdbDAO implements IMonopolyDAO {
 
+    CouchDbConnector db;
+
     public MonopolyCouchdbDAO() {
-        
+        HttpClient client = null;
+        try {
+            client = new StdHttpClient.Builder().url("http://lenny2.in.htwg-konstanz.de:5984").build();
+        } catch (MalformedURLException e) {
+        }
+        CouchDbInstance dbInstance = new StdCouchDbInstance(client);
+        db = dbInstance.createConnector("htwg_monopoly", true);
+        db.createDatabaseIfNotExists();
     }
 
     @Override
