@@ -10,6 +10,10 @@ import java.util.List;
  */
 public class MonopolyCouchdbDAO implements IMonopolyDAO {
 
+    public MonopolyCouchdbDAO() {
+        
+    }
+
     @Override
     public void saveGame(IMonopolyGame context) {
 
