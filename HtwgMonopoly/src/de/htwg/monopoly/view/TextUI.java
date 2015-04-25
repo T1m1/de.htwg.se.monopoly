@@ -350,7 +350,8 @@ public class TextUI implements IObserver {
 
 			// stop every 10 items
 			if ((i % IMonopolyUtil.MAX_NUMBER_GAMES_TO_DISPAY) == 0) {
-				logger.info("Nächste 10 Einträge zeigen? (y/n).");
+				logger.info("Nächste " + ((size - i) > 10 ? 10 : (size - i))
+						+ " Einträge zeigen? (y/n).");
 				if (!retrieveAnswer()) {
 					break;
 				}
