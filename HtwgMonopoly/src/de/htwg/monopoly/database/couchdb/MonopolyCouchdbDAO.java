@@ -18,13 +18,14 @@ import java.util.List;
  */
 public class MonopolyCouchdbDAO implements IMonopolyDAO {
 
+    public static final String HTTP_LENNY2 = "http://lenny2.in.htwg-konstanz.de:5984";
     private final Logger logger = LogManager.getLogger("CouchDb");
     CouchDbConnector db;
 
     public MonopolyCouchdbDAO() {
         HttpClient client = null;
         try {
-            client = new StdHttpClient.Builder().url("http://lenny2.in.htwg-konstanz.de:5984").build();
+            client = new StdHttpClient.Builder().url(HTTP_LENNY2).build();
         } catch (MalformedURLException e) {
             logger.error(e);
         }
