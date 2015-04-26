@@ -20,8 +20,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 
 	private final JMenuItem miSource;
     private final JMenuItem miRule;
-	private final JMenuItem miNewGame;
-	private final JMenuItem miExitGame;
+    private final JMenuItem miExitGame;
 
 	private static final String RULES = "http://de.wikipedia.org/wiki/Monopoly";
 	private static final String SOURCE = "https://github.com/T1m1/de.htwg.se.monopoly";
@@ -35,7 +34,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 		menuBar.add(mDatei);
 		menuBar.add(mHelp);
 
-		miNewGame = new JMenuItem("Neues Spiel starten...");
+        JMenuItem miNewGame = new JMenuItem("Neues Spiel starten...");
 		miNewGame.addActionListener(this);
 		mDatei.add(miNewGame);
 
