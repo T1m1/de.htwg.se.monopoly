@@ -137,6 +137,9 @@ public class MonopolyGame implements IMonopolyGame {
 		return this.message;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void makeReady() {
 		// set the Resource bundle to null or other way round
