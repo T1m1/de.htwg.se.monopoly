@@ -193,14 +193,12 @@ public class TextUI implements IObserver {
 		StringBuilder streets = new StringBuilder();
 
 		sb.append("\n_________________________________\n");
-		sb.append(bundle.getString("player") + "\t|Budget\t|"
-				+ bundle.getString("ownership") + "\n");
+		sb.append(bundle.getString("player")).append("\t|Budget\t|").append(bundle.getString("ownership")).append("\n");
 		sb.append("-------\t|------\t|--------------\n");
 		for (int i = 0; i < controller.getNumberOfPlayers(); i++) {
 
 			Player player = controller.getPlayer(i);
-			sb.append(player.getName() + "\t|" + player.getBudget() + "\t|"
-					+ player.getOwnership() + "\n");
+			sb.append(player.getName()).append("\t|").append(player.getBudget()).append("\t|").append(player.getOwnership()).append("\n");
 		}
 
 		int z = IMonopolyUtil.TUI_HIGH;
@@ -317,14 +315,14 @@ public class TextUI implements IObserver {
 
 	private void saveGame() {
 
-		logger.info("Name für das aktuelle Spiel vergeben:");
+		logger.info("Name fï¿½r das aktuelle Spiel vergeben:");
 
 		String name = in.nextLine();
 
 		try {
 			controller.saveGameToDB(name);
 		} catch (IllegalAccessException e) {
-			logger.info("Nicht möglich das Spiel zu speichern."
+			logger.info("Nicht mï¿½glich das Spiel zu speichern."
 					+ e.getMessage());
 		}
 
@@ -350,7 +348,7 @@ public class TextUI implements IObserver {
 
 			// stop every 10 items
 			if ((i % IMonopolyUtil.MAX_NUMBER_GAMES_TO_DISPAY) == 0) {
-				logger.info("Nächste 10 Einträge zeigen? (y/n).");
+				logger.info("Nï¿½chste 10 Eintrï¿½ge zeigen? (y/n).");
 				if (!retrieveAnswer()) {
 					break;
 				}
@@ -360,7 +358,7 @@ public class TextUI implements IObserver {
 		// o_O that do-while-while block needs to be verified
 		int id;
 		do {
-			logger.info("Korrekte Spielnummer auswählen");
+			logger.info("Korrekte Spielnummer auswï¿½hlen");
 
 			// if next token is not an integer
 			while (!in.hasNextInt()) {
