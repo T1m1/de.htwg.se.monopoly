@@ -243,6 +243,7 @@ public class TextUI implements IObserver {
 	 */
 	public boolean processInputLine(String line) {
 
+		// map the input from stdin with an Enum
 		UserAction choosedOption = ENUM_USER_OPTION.get(line);
 
 		if (choosedOption == null) {
@@ -259,6 +260,7 @@ public class TextUI implements IObserver {
 
 		// controller.performAction(choosedOption); maybe in the future..
 
+		// perform action according to the input of the user
 		switch (choosedOption) {
 		case START_TURN:
 			controller.startTurn();
@@ -290,6 +292,7 @@ public class TextUI implements IObserver {
 			controller.drawCard();
 			break;
 		case REDEEM_WITH_QUESTION:
+			// display question and wait for answer of the user
 			logger.info(bundle.getString("tui_answer_prison_question"));
 			logger.info(controller.getPrisonQuestion());
 			controller.checkPlayerAnswer(retrieveAnswer());
@@ -304,6 +307,8 @@ public class TextUI implements IObserver {
 			deleteGame();
 			break;
 		}
+
+		// always return true in order to keep the game going.
 		return true;
 	}
 
@@ -334,6 +339,7 @@ public class TextUI implements IObserver {
 		Map<String, String> savedGames = controller.getSavedGames();
 		Map<Integer, String> tuiSavedGames = new TreeMap<Integer, String>();
 		int size = savedGames.size();
+		int max = IMonopolyUtil.MAX_NUMBER_GAMES_TO_DISPAY;
 
 		if (savedGames.isEmpty()) {
 			logger.info("Keine gespeicherten Spiele");
@@ -349,8 +355,8 @@ public class TextUI implements IObserver {
 			logger.info(i + ": " + savedGames.get(currentID));
 
 			// stop every 10 items
-			if ((i % IMonopolyUtil.MAX_NUMBER_GAMES_TO_DISPAY) == 0) {
-				logger.info("Nächste " + ((size - i) > 10 ? 10 : (size - i))
+			if ((i % max) == 0) {
+				logger.info("Nächste " + ((size - i) > max ? max : (size - i))
 						+ " Einträge zeigen? (y/n).");
 				if (!retrieveAnswer()) {
 					break;
@@ -378,8 +384,6 @@ public class TextUI implements IObserver {
 			controller.loadGameFromDB(tuiSavedGames.get(id));
 		} else if (action.equals("delete")) {
 			controller.deleteGame(tuiSavedGames.get(id));
-		} else {
-			throw new AssertionError("not implemented!!");
 		}
 	}
 
