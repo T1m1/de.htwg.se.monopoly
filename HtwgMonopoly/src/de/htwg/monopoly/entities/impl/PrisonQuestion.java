@@ -64,7 +64,7 @@ public class PrisonQuestion {
 	 * 
 	 * @return
 	 */
-	public void drawNextQuestion() {
+	public final void drawNextQuestion() {
 		String first = ((LinkedList<String>) QUESTIONS).pollFirst();
 		((LinkedList<String>) QUESTIONS).offerLast(first);
 		currentQuestion = first;
