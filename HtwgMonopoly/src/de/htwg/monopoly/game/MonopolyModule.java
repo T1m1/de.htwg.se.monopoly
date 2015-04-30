@@ -24,7 +24,7 @@ public class MonopolyModule extends AbstractModule {
 
 		// define the database of the game
 		bind(IMonopolyDAO.class).to(
-				de.htwg.monopoly.database.db4o.MonopolyDb4oDAO.class);
+				de.htwg.monopoly.database.couchdb.MonopolyCouchdbDAO.class);
 
 	}
 
