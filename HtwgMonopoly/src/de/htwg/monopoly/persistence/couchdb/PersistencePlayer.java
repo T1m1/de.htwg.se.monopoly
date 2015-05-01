@@ -1,12 +1,11 @@
 package de.htwg.monopoly.persistence.couchdb;
 
-import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.util.PlayerIcon;
 import lombok.Getter;
 import lombok.Setter;
 import org.ektorp.support.CouchDbDocument;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * @author Timi.
@@ -32,7 +31,7 @@ public class PersistencePlayer extends CouchDbDocument{
     @Getter
     @Setter
     // Save only position of ownerships
-    private List<Integer> ownershipPositions;
+    private Collection<Integer> ownershipPositions;
     @Getter
     @Setter
     private Integer prisonFreeCard;
