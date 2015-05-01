@@ -58,7 +58,7 @@ public class MonopolyCouchdbDAO implements IMonopolyDAO {
 
     @Override
     public void deleteGameById(String id) {
-
+        db.delete(getGameById(id));
     }
 
     @Override
