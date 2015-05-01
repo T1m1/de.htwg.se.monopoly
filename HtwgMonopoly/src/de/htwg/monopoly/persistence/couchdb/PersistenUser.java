@@ -19,22 +19,22 @@ public class PersistenUser extends CouchDbDocument{
     private String name;
     @Getter
     @Setter
-    private int budget;
+    private Integer budget;
     @Getter
     @Setter
-    private int position;
+    private Integer position;
     @Getter
     @Setter
-    private int prisonRound;
+    private Integer prisonRound;
     @Getter
     @Setter
-    private boolean inPrison;
+    private Boolean inPrison;
     @Getter
     @Setter
     private List<IFieldObject> ownership;
     @Getter
     @Setter
-    private int prisonFreeCard;
+    private Integer prisonFreeCard;
     @Getter
     @Setter
     private PlayerIcon icon;
