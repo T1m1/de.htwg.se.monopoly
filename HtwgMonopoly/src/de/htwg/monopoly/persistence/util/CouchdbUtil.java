@@ -6,6 +6,7 @@ import de.htwg.monopoly.controller.IPlayerController;
 import de.htwg.monopoly.controller.IPlayfield;
 import de.htwg.monopoly.controller.impl.PlayerController;
 import de.htwg.monopoly.controller.impl.Playfield;
+import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Dice;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.PrisonQuestion;
@@ -54,6 +55,13 @@ public class CouchdbUtil {
             user.setName(player.getName());
             user.setPrisonRound(player.getPrisonRound());
             user.setPosition(player.getPosition());
+            
+            List<Integer> fields = new ArrayList<Integer>();
+            for(IFieldObject field : player.getOwnership()){
+                fields.add(field.getPosition());
+            }
+            user.setOwnershipPositions(fields);
+            
             persistencePlayer.add(user);
         }
 
