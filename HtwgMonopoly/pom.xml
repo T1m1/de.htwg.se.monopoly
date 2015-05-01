@@ -75,6 +75,12 @@
             <artifactId>org.ektorp</artifactId>
             <version>1.2.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.4</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <!-- Additional Remote Repositories -->
