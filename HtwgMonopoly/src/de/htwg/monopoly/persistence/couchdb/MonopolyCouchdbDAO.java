@@ -1,7 +1,7 @@
-package de.htwg.monopoly.database.couchdb;
+package de.htwg.monopoly.persistence.couchdb;
 
 import de.htwg.monopoly.context.IMonopolyGame;
-import de.htwg.monopoly.database.IMonopolyDAO;
+import de.htwg.monopoly.persistence.IMonopolyDAO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.ektorp.CouchDbConnector;

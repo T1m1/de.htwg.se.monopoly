@@ -7,7 +7,7 @@ import de.htwg.monopoly.context.impl.MonopolyGame;
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.controller.IPlayerController;
 import de.htwg.monopoly.controller.IPlayfield;
-import de.htwg.monopoly.database.IMonopolyDAO;
+import de.htwg.monopoly.persistence.IMonopolyDAO;
 import de.htwg.monopoly.entities.ICards;
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Bank;
