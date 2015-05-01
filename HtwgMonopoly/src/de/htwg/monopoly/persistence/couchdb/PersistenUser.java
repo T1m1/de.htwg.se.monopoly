@@ -1,7 +1,10 @@
 package de.htwg.monopoly.persistence.couchdb;
 
+import org.ektorp.support.CouchDbDocument;
+
 /**
- * Created by Timi on 01.05.2015.
+ * @author Timi.
  */
-public class PersistenUser {
+public class PersistenUser extends CouchDbDocument{
+    
 }
