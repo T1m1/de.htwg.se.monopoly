@@ -24,16 +24,16 @@ public class StartGameUI extends JFrame implements IObserver {
 		this.controller.addObserver(this);
 		gui = new GraphicUserInterface(this.controller);
 		initUI();
-	}
+    }
 
-	public void startGame() {
+    public void startGame() {
 		setVisible(true);
 	}
 
 	private void initUI() {
 		/** frame options **/
 		setTitle("HTWG Monopoly");
-		this.setJMenuBar(new MenuBar());
+		this.setJMenuBar(new MenuBar(controller));
 
 		/* main panel, containing all other panels */
 		JPanel mainPanel = new JPanel();
