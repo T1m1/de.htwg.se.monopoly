@@ -8,11 +8,13 @@ import org.apache.logging.log4j.Logger;
 import org.ektorp.CouchDbConnector;
 import org.ektorp.CouchDbInstance;
 import org.ektorp.DocumentNotFoundException;
+import org.ektorp.ViewQuery;
 import org.ektorp.http.HttpClient;
 import org.ektorp.http.StdHttpClient;
 import org.ektorp.impl.StdCouchDbInstance;
 
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -68,7 +70,14 @@ public class MonopolyCouchdbDAO implements IMonopolyDAO {
 
     @Override
     public List<IMonopolyGame> getAllGames() {
-        return null;
+        ViewQuery query = new ViewQuery().allDocs().includeDocs(true);
+
+        List<IMonopolyGame> chessGames = new ArrayList<IMonopolyGame>();
+        for(PersistenceGame pChessGame: db.queryView(query, PersistenceGame.class)) {
+            chessGames.add(util.transformFromCouchDb(pChessGame));
+        }
+
+        return chessGames;
     }
 
     @Override
