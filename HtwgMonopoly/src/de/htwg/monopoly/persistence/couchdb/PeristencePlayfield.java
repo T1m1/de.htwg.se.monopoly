@@ -7,7 +7,7 @@ import org.ektorp.support.CouchDbDocument;
 /**
  * @author Timi.
  */
-public class PeristentPlayfield  extends CouchDbDocument{
+public class PeristencePlayfield extends CouchDbDocument{
     
     @Getter
     @Setter
