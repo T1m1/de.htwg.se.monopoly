@@ -8,8 +8,10 @@ import de.htwg.monopoly.controller.impl.PlayerController;
 import de.htwg.monopoly.controller.impl.Playfield;
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Dice;
+import de.htwg.monopoly.entities.impl.FieldObject;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.PrisonQuestion;
+import de.htwg.monopoly.persistence.couchdb.PersistenceFieldObject;
 import de.htwg.monopoly.persistence.couchdb.PersistencePlayfield;
 import de.htwg.monopoly.persistence.couchdb.PersistencePlayer;
 import de.htwg.monopoly.persistence.couchdb.PersistenceGame;
@@ -43,7 +45,6 @@ public class CouchdbUtil {
         // Player
         // TODO:
         // - prison free card
-        // - ownership
         List<PersistencePlayer> persistencePlayer = new ArrayList<PersistencePlayer>();
 
         for (int i = 0; i < game.getPlayerController().getNumberOfPlayer(); i++) {
@@ -55,13 +56,13 @@ public class CouchdbUtil {
             user.setName(player.getName());
             user.setPrisonRound(player.getPrisonRound());
             user.setPosition(player.getPosition());
-            
+
             List<Integer> fields = new ArrayList<Integer>();
-            for(IFieldObject field : player.getOwnership()){
+            for (IFieldObject field : player.getOwnership()) {
                 fields.add(field.getPosition());
             }
             user.setOwnershipPositions(fields);
-            
+
             persistencePlayer.add(user);
         }
 
@@ -74,16 +75,36 @@ public class CouchdbUtil {
     public IMonopolyGame transformFromCouchDb(PersistenceGame game) {
 
         // player controller
-        Map<String, PlayerIcon> players = new HashMap<String, PlayerIcon>();
+        Map<String, PlayerIcon> playersDb = new HashMap<String, PlayerIcon>();
+        ArrayList<Player> tmpPlayer = new ArrayList<Player>();
+
+        Playfield playfield = new Playfield(game.getPlayfield().getNumberOfFields());
+
+        int count = 0;
         for (PersistencePlayer player : game.getPlayers()) {
-            players.put(player.getName(), player.getIcon());
+            tmpPlayer.get(count).setPosition(player.getPosition());
+            tmpPlayer.get(count).setInPrison(player.getInPrison());
+            for (Integer index : player.getOwnershipPositions()) {
+                tmpPlayer.get(count).addOwnership(playfield.getFieldAtIndex(index));
+            }
+
+            playersDb.put(player.getName(), player.getIcon());
+
         }
-        IPlayerController playerController = new PlayerController(players);
+//        for (PersistencePlayer player : game.getPlayers()) {
+//            playersDb.put(player.getName(), player.getIcon());
+//        }
+        IPlayerController playerController = new PlayerController(playersDb);
 
-        // playfield
-        IPlayfield playfield = new Playfield(game.getPlayfield().getNumberOfFields());
+        for (int i = 0; i < playerController.getNumberOfPlayer(); i++) {
+            playerController.getPlayer(i).setPosition(tmpPlayer.get(i).getPosition());
+            playerController.getPlayer(i).setInPrison(tmpPlayer.get(i).getPrisonRound() != 0);
+            for(IFieldObject field : tmpPlayer.get(i).getOwnership()){
+                playerController.getPlayer(i).addOwnership(field);
+            }
+        }
 
-        // TODO: 
+        // TODO:
         // - prison questions
         // -last message
         // -diceFlag
@@ -92,10 +113,12 @@ public class CouchdbUtil {
         PrisonQuestion question = new PrisonQuestion();
         Dice dice = new Dice();
 
+
         // playfield.
         IMonopolyGame monopolyGame = new MonopolyGame(playerController, playfield, question,
                 GameStatus.valueOf(game.getPlayfield().getGamePhase()), game.getId(),
-                game.getPlayfield().getParkingMoney(), null, 0, false, dice);
+                game.getPlayfield().getParkingMoney(), game.getId(), 0, false, dice);
+
 
         return monopolyGame;
     }
