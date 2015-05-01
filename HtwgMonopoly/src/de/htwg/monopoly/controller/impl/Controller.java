@@ -203,7 +203,7 @@ public class Controller extends Observable implements IController {
 		}
 
 		if (currentPlayer.isInPrison()) {
-			message.append("Du bist im Gefängnis");
+			message.append("Du bist im Knast");
 			updateGameStatus(GameStatus.BEFORE_TURN_IN_PRISON);
 		} else {
 			updateGameStatus(GameStatus.BEFORE_TURN);
