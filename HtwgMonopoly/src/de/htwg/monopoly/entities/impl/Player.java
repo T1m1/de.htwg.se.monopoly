@@ -200,7 +200,6 @@ public class Player {
 	 * has not enough money. Otherwise true if the purchase was successful.
 	 * 
 	 * 
-	 * @param currentPlayer
 	 * @param currentStreet
 	 * @return
 	 */
