@@ -31,7 +31,8 @@ public class PersistenUser extends CouchDbDocument{
     private Boolean inPrison;
     @Getter
     @Setter
-    private List<IFieldObject> ownership;
+    // Save only position of ownerships
+    private List<Integer> ownershipPositions;
     @Getter
     @Setter
     private Integer prisonFreeCard;
