@@ -73,7 +73,7 @@ public class MonopolyCouchdbDAO implements IMonopolyDAO {
         ViewQuery query = new ViewQuery().allDocs().includeDocs(true);
 
         List<IMonopolyGame> monopolyGames = new ArrayList<IMonopolyGame>();
-        for(PersistenceGame pChessGame: db.queryView(query, PersistenceGame.class)) {
+        for (PersistenceGame pChessGame : db.queryView(query, PersistenceGame.class)) {
             monopolyGames.add(util.transformFromCouchDb(pChessGame));
         }
 
@@ -82,6 +82,9 @@ public class MonopolyCouchdbDAO implements IMonopolyDAO {
 
     @Override
     public boolean containsGameById(String id) {
-        return false;
+        if (null == getGameById(id)) {
+            return false;
+        }
+        return true;
     }
 }
