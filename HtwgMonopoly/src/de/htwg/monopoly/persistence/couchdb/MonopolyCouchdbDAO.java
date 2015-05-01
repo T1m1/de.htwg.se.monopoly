@@ -2,7 +2,7 @@ package de.htwg.monopoly.persistence.couchdb;
 
 import de.htwg.monopoly.context.IMonopolyGame;
 import de.htwg.monopoly.persistence.IMonopolyDAO;
-import de.htwg.monopoly.persistence.util.MonopolyToPersistenceUtil;
+import de.htwg.monopoly.persistence.util.CouchdbUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.ektorp.CouchDbConnector;
@@ -37,27 +37,8 @@ public class MonopolyCouchdbDAO implements IMonopolyDAO {
 
     @Override
     public void saveGame(IMonopolyGame context) {
-        /**
-         * json object
-         * 
-         * for each player:
-         *      name
-         *      in prison
-         *      prisonFreeCard
-         *      icon
-         *      posiotion
-         *      budget
-         *      ownership
-         *      
-         * Playfiled:
-         *      numberOfFields
-         *      current player      
-         *      parking money
-         *      Game phase      
-         * * * * *
-         */
-        MonopolyToPersistenceUtil util = new MonopolyToPersistenceUtil();
-        PersistenceGame game =  util.transformToCouchDb(context);
+        CouchdbUtil util = new CouchdbUtil();
+        PersistenceGame game = util.transformToCouchDb(context);
         db.create(game);
     }
 

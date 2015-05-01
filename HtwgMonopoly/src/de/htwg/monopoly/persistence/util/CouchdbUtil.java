@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @author Timi.
  */
-public class MonopolyToPersistenceUtil {
+public class CouchdbUtil {
     
     public PersistenceGame transformToCouchDb(IMonopolyGame game) {
         PersistenceGame persistenceGame = new PersistenceGame();
