@@ -9,7 +9,7 @@ import java.util.Collection;
 /**
  * @author Timi,
  */
-public class PersistentGame extends CouchDbDocument {
+public class PersistenceGame extends CouchDbDocument {
 
     @Getter
     @Setter

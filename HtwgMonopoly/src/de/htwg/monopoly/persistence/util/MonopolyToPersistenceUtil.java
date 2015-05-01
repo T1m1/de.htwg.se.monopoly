@@ -4,7 +4,7 @@ import de.htwg.monopoly.context.IMonopolyGame;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.persistence.couchdb.PeristentPlayfield;
 import de.htwg.monopoly.persistence.couchdb.PersistenUser;
-import de.htwg.monopoly.persistence.couchdb.PersistentGame;
+import de.htwg.monopoly.persistence.couchdb.PersistenceGame;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +14,8 @@ import java.util.List;
  */
 public class MonopolyToPersistenceUtil {
     
-    public PersistentGame transformToCouchDb(IMonopolyGame game) {
-        PersistentGame persistentGame= new PersistentGame();
+    public PersistenceGame transformToCouchDb(IMonopolyGame game) {
+        PersistenceGame persistenceGame = new PersistenceGame();
 
         // Playfield
         // TODO:
@@ -45,9 +45,9 @@ public class MonopolyToPersistenceUtil {
             persistenceUser.add(user);
         }
         
-        persistentGame.setPlayfield(peristentPlayfield);
-        persistentGame.setUser(persistenceUser);
+        persistenceGame.setPlayfield(peristentPlayfield);
+        persistenceGame.setUser(persistenceUser);
         
-        return persistentGame;
+        return persistenceGame;
     }
 }

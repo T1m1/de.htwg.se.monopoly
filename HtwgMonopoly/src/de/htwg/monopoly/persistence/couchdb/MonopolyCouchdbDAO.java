@@ -57,7 +57,7 @@ public class MonopolyCouchdbDAO implements IMonopolyDAO {
          * * * * *
          */
         MonopolyToPersistenceUtil util = new MonopolyToPersistenceUtil();
-        PersistentGame game =  util.transformToCouchDb(context);
+        PersistenceGame game =  util.transformToCouchDb(context);
         db.create(game);
     }
 
