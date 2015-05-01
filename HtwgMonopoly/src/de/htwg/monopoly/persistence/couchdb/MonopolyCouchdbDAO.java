@@ -63,7 +63,7 @@ public class MonopolyCouchdbDAO implements IMonopolyDAO {
 
     @Override
     public void updateGame(IMonopolyGame game) {
-
+        saveGame(game);
     }
 
     @Override
