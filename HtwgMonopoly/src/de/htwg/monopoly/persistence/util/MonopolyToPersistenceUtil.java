@@ -1,6 +1,7 @@
 package de.htwg.monopoly.persistence.util;
 
 import de.htwg.monopoly.context.IMonopolyGame;
+import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.persistence.couchdb.PeristentPlayfield;
 import de.htwg.monopoly.persistence.couchdb.PersistenUser;
 import de.htwg.monopoly.persistence.couchdb.PersistentGame;
@@ -25,7 +26,22 @@ public class MonopolyToPersistenceUtil {
         peristentPlayfield.setParkingMoney(game.getParkingMoney());
         
 
-        Collection<PersistenUser> persistenUser;
+        // Player
+        // TODO:
+        // - prison free card
+        // - ownership
+        Collection<PersistenUser> persistenUser = null;
+        for(int i = 0; i < game.getPlayerController().getNumberOfPlayer(); i++) {
+            Player player = game.getPlayerController().getPlayer(i);
+            PersistenUser user = new PersistenUser();
+            user.setBudget(player.getBudget());
+            user.setIcon(player.getIcon());
+            user.setInPrison(player.getPrisonRound()!=0);
+            user.setName(player.getName());
+            user.setPrisonRound(player.getPrisonRound());
+            user.setPosition(player.getPosition());
+            persistenUser.add(user);
+        }
         
         
         return persistentGame;
