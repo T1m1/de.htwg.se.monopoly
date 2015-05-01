@@ -56,7 +56,7 @@ public class CouchdbUtil {
             user.setName(player.getName());
             user.setPrisonRound(player.getPrisonRound());
             user.setPosition(player.getPosition());
-
+            user.setPrisonFreeCard(player.hasPrisonFreeCard() ? 1 : 0);
             List<Integer> fields = new ArrayList<Integer>();
             for (IFieldObject field : player.getOwnership()) {
                 fields.add(field.getPosition());
