@@ -36,6 +36,25 @@ public class MonopolyCouchdbDAO implements IMonopolyDAO {
 
     @Override
     public void saveGame(IMonopolyGame context) {
+        /**
+         * json object
+         * 
+         * for each player:
+         *      name
+         *      in prison
+         *      prisonFreeCard
+         *      icon
+         *      posiotion
+         *      budget
+         *      ownership
+         *      
+         * Playfiled:
+         *      numberOfFields
+         *      current player      
+         *      parking money
+         *      Game phase      
+         * * * * *
+         */
 
     }
 
