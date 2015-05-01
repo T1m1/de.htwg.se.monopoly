@@ -82,9 +82,6 @@ public class MonopolyCouchdbDAO implements IMonopolyDAO {
 
     @Override
     public boolean containsGameById(String id) {
-        if (null == getGameById(id)) {
-            return false;
-        }
-        return true;
+        return null != getGameById(id);
     }
 }
