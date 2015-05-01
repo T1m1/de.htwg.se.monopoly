@@ -92,6 +92,8 @@ public class MonopolyDb4oDAO implements IMonopolyDAO {
 	@Override
 	public void updateGame(IMonopolyGame game) {
 		// naive code FIXME: better solution?
+        // MAYBE -> Save db id in IMonopolyGame and call method 'update" to update a game
+        // -> updateGame will be replaceable by "saveGame"
 		deleteGameById(game.getId());
 		saveGame(game);
 		
