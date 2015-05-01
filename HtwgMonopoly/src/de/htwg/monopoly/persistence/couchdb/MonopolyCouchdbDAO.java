@@ -72,12 +72,12 @@ public class MonopolyCouchdbDAO implements IMonopolyDAO {
     public List<IMonopolyGame> getAllGames() {
         ViewQuery query = new ViewQuery().allDocs().includeDocs(true);
 
-        List<IMonopolyGame> chessGames = new ArrayList<IMonopolyGame>();
+        List<IMonopolyGame> monopolyGames = new ArrayList<IMonopolyGame>();
         for(PersistenceGame pChessGame: db.queryView(query, PersistenceGame.class)) {
-            chessGames.add(util.transformFromCouchDb(pChessGame));
+            monopolyGames.add(util.transformFromCouchDb(pChessGame));
         }
 
-        return chessGames;
+        return monopolyGames;
     }
 
     @Override
