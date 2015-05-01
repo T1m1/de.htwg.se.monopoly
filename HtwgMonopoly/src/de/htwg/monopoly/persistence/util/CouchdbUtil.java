@@ -33,14 +33,14 @@ public class CouchdbUtil {
         PersistenceGame persistenceGame = new PersistenceGame();
 
         // Playfield
-        // TODO:
-        // - id
-        // - currentPlayer (int or name)
         PersistencePlayfield persistencePlayfield = new PersistencePlayfield();
         persistencePlayfield.setNumberOfFields(game.getPlayfield().getfieldSize());
         persistencePlayfield.setGamePhase(game.getCurrentGamePhase().toString());
         persistencePlayfield.setParkingMoney(game.getParkingMoney());
-
+        persistencePlayfield.setCurrentPlayer(game.getPlayerController().getCurrentPlayer().getName());
+        if(!game.getId().isEmpty()) {
+            persistencePlayfield.setId(game.getId());
+        }
 
         // Player
         // TODO:
@@ -91,9 +91,7 @@ public class CouchdbUtil {
             playersDb.put(player.getName(), player.getIcon());
 
         }
-//        for (PersistencePlayer player : game.getPlayers()) {
-//            playersDb.put(player.getName(), player.getIcon());
-//        }
+
         IPlayerController playerController = new PlayerController(playersDb);
 
         for (int i = 0; i < playerController.getNumberOfPlayer(); i++) {
