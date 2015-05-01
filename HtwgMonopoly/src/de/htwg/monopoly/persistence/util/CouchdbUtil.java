@@ -3,21 +3,17 @@ package de.htwg.monopoly.persistence.util;
 import de.htwg.monopoly.context.IMonopolyGame;
 import de.htwg.monopoly.context.impl.MonopolyGame;
 import de.htwg.monopoly.controller.IPlayerController;
-import de.htwg.monopoly.controller.IPlayfield;
 import de.htwg.monopoly.controller.impl.PlayerController;
 import de.htwg.monopoly.controller.impl.Playfield;
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Dice;
-import de.htwg.monopoly.entities.impl.FieldObject;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.entities.impl.PrisonQuestion;
-import de.htwg.monopoly.persistence.couchdb.PersistenceFieldObject;
 import de.htwg.monopoly.persistence.couchdb.PersistencePlayfield;
 import de.htwg.monopoly.persistence.couchdb.PersistencePlayer;
 import de.htwg.monopoly.persistence.couchdb.PersistenceGame;
 import de.htwg.monopoly.util.GameStatus;
 import de.htwg.monopoly.util.PlayerIcon;
-import javafx.beans.binding.MapBinding;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,8 +39,6 @@ public class CouchdbUtil {
         }
 
         // Player
-        // TODO:
-        // - prison free card
         List<PersistencePlayer> persistencePlayer = new ArrayList<PersistencePlayer>();
 
         for (int i = 0; i < game.getPlayerController().getNumberOfPlayer(); i++) {
