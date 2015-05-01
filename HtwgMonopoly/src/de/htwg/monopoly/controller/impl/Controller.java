@@ -62,7 +62,6 @@ public class Controller extends Observable implements IController {
 	 * public constructor for a new controller create the players, the field and
 	 * the dice
 	 * 
-	 * @param fieldSize
 	 */
 	@Inject
 	public Controller(IControllerFactory controllerFactory,
@@ -128,6 +127,7 @@ public class Controller extends Observable implements IController {
 		clearMessage();
 		message.append("Spiel gestartet!");
 		updateGameStatus(GameStatus.STARTED);
+        
 	}
 
 	/**
