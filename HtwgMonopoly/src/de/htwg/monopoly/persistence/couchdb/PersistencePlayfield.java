@@ -14,7 +14,7 @@ public class PersistencePlayfield extends CouchDbDocument{
     private Integer numberOfFields;
     @Getter
     @Setter
-    private Integer currentPlayer;
+    private String currentPlayer;
     @Getter
     @Setter
     private Integer parkingMoney;
