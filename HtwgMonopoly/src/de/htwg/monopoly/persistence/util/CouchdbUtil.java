@@ -3,11 +3,16 @@ package de.htwg.monopoly.persistence.util;
 import de.htwg.monopoly.context.IMonopolyGame;
 import de.htwg.monopoly.context.impl.MonopolyGame;
 import de.htwg.monopoly.controller.IPlayerController;
+import de.htwg.monopoly.controller.IPlayfield;
 import de.htwg.monopoly.controller.impl.PlayerController;
+import de.htwg.monopoly.controller.impl.Playfield;
+import de.htwg.monopoly.entities.impl.Dice;
 import de.htwg.monopoly.entities.impl.Player;
+import de.htwg.monopoly.entities.impl.PrisonQuestion;
 import de.htwg.monopoly.persistence.couchdb.PersistencePlayfield;
 import de.htwg.monopoly.persistence.couchdb.PersistencePlayer;
 import de.htwg.monopoly.persistence.couchdb.PersistenceGame;
+import de.htwg.monopoly.util.GameStatus;
 import de.htwg.monopoly.util.PlayerIcon;
 import javafx.beans.binding.MapBinding;
 
@@ -60,13 +65,30 @@ public class CouchdbUtil {
 
     public IMonopolyGame transformFromCouchDb(PersistenceGame game) {
 
+        // player controller
         Map<String, PlayerIcon> players = new HashMap<String, PlayerIcon>();
-        
         for (PersistencePlayer player : game.getPlayers()) {
             players.put(player.getName(), player.getIcon());
         }
-
         IPlayerController playerController = new PlayerController(players);
-        return null;
+
+        // playfield
+        IPlayfield playfield = new Playfield(game.getPlayfield().getNumberOfFields());
+
+        // TODO: 
+        // - prison questions
+        // -last message
+        // -diceFlag
+        // -diceCardFlag
+        // -dice
+        PrisonQuestion question = new PrisonQuestion();
+        Dice dice = new Dice();
+
+        // playfield.
+        IMonopolyGame monopolyGame = new MonopolyGame(playerController, playfield, question,
+                GameStatus.valueOf(game.getPlayfield().getGamePhase()), game.getId(),
+                game.getPlayfield().getParkingMoney(), null, 0, false, dice);
+
+        return monopolyGame;
     }
 }
