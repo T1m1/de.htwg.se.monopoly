@@ -2,6 +2,7 @@ package de.htwg.monopoly.persistence.couchdb;
 
 import de.htwg.monopoly.context.IMonopolyGame;
 import de.htwg.monopoly.persistence.IMonopolyDAO;
+import de.htwg.monopoly.persistence.util.MonopolyToPersistenceUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.ektorp.CouchDbConnector;
@@ -55,7 +56,9 @@ public class MonopolyCouchdbDAO implements IMonopolyDAO {
          *      Game phase      
          * * * * *
          */
-
+        MonopolyToPersistenceUtil util = new MonopolyToPersistenceUtil();
+        PersistentGame game =  util.transformToCouchDb(context);
+        db.create(game);
     }
 
     @Override
