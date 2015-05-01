@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.ektorp.CouchDbConnector;
 import org.ektorp.CouchDbInstance;
+import org.ektorp.DocumentNotFoundException;
 import org.ektorp.http.HttpClient;
 import org.ektorp.http.StdHttpClient;
 import org.ektorp.impl.StdCouchDbInstance;
@@ -46,7 +47,13 @@ public class MonopolyCouchdbDAO implements IMonopolyDAO {
 
     @Override
     public IMonopolyGame getGameById(String id) {
-        return null;
+        try {
+            PersistenceGame game = db.get(PersistenceGame.class, id);
+            return util.transformFromCouchDb(game);
+        } catch (DocumentNotFoundException e) {
+            logger.error(e);
+            return null;
+        }
     }
 
     @Override
