@@ -1,19 +1,26 @@
 package de.htwg.monopoly.persistence.util;
 
 import de.htwg.monopoly.context.IMonopolyGame;
+import de.htwg.monopoly.context.impl.MonopolyGame;
+import de.htwg.monopoly.controller.IPlayerController;
+import de.htwg.monopoly.controller.impl.PlayerController;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.persistence.couchdb.PersistencePlayfield;
 import de.htwg.monopoly.persistence.couchdb.PersistencePlayer;
 import de.htwg.monopoly.persistence.couchdb.PersistenceGame;
+import de.htwg.monopoly.util.PlayerIcon;
+import javafx.beans.binding.MapBinding;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Timi.
  */
 public class CouchdbUtil {
-    
+
     public PersistenceGame transformToCouchDb(IMonopolyGame game) {
         PersistenceGame persistenceGame = new PersistenceGame();
 
@@ -25,15 +32,15 @@ public class CouchdbUtil {
         persistencePlayfield.setNumberOfFields(game.getPlayfield().getfieldSize());
         persistencePlayfield.setGamePhase(game.getCurrentGamePhase().toString());
         persistencePlayfield.setParkingMoney(game.getParkingMoney());
-        
+
 
         // Player
         // TODO:
         // - prison free card
         // - ownership
         List<PersistencePlayer> persistencePlayer = new ArrayList<PersistencePlayer>();
-       
-        for(int i = 0; i < game.getPlayerController().getNumberOfPlayer(); i++) {
+
+        for (int i = 0; i < game.getPlayerController().getNumberOfPlayer(); i++) {
             Player player = game.getPlayerController().getPlayer(i);
             PersistencePlayer user = new PersistencePlayer();
             user.setBudget(player.getBudget());
@@ -44,15 +51,22 @@ public class CouchdbUtil {
             user.setPosition(player.getPosition());
             persistencePlayer.add(user);
         }
-        
+
         persistenceGame.setPlayfield(persistencePlayfield);
         persistenceGame.setPlayers(persistencePlayer);
-        
+
         return persistenceGame;
     }
 
     public IMonopolyGame transformFromCouchDb(PersistenceGame game) {
-       // IMonopolyGame monopolyGame = new MonopolyGame(game.getPlayers(), )
+
+        Map<String, PlayerIcon> players = new HashMap<String, PlayerIcon>();
+        
+        for (PersistencePlayer player : game.getPlayers()) {
+            players.put(player.getName(), player.getIcon());
+        }
+
+        IPlayerController playerController = new PlayerController(players);
         return null;
     }
 }
