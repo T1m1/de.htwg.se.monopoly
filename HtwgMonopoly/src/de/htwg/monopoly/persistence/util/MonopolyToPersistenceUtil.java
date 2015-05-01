@@ -2,7 +2,7 @@ package de.htwg.monopoly.persistence.util;
 
 import de.htwg.monopoly.context.IMonopolyGame;
 import de.htwg.monopoly.entities.impl.Player;
-import de.htwg.monopoly.persistence.couchdb.PeristencePlayfield;
+import de.htwg.monopoly.persistence.couchdb.PersistencePlayfield;
 import de.htwg.monopoly.persistence.couchdb.PersistenceUser;
 import de.htwg.monopoly.persistence.couchdb.PersistenceGame;
 
@@ -21,10 +21,10 @@ public class MonopolyToPersistenceUtil {
         // TODO:
         // - id
         // - currentPlayer (int or name)
-        PeristencePlayfield peristencePlayfield = new PeristencePlayfield();
-        peristencePlayfield.setNumberOfFields(game.getPlayfield().getfieldSize());
-        peristencePlayfield.setGamePhase(game.getCurrentGamePhase().toString());
-        peristencePlayfield.setParkingMoney(game.getParkingMoney());
+        PersistencePlayfield persistencePlayfield = new PersistencePlayfield();
+        persistencePlayfield.setNumberOfFields(game.getPlayfield().getfieldSize());
+        persistencePlayfield.setGamePhase(game.getCurrentGamePhase().toString());
+        persistencePlayfield.setParkingMoney(game.getParkingMoney());
         
 
         // Player
@@ -45,7 +45,7 @@ public class MonopolyToPersistenceUtil {
             persistenceUser.add(user);
         }
         
-        persistenceGame.setPlayfield(peristencePlayfield);
+        persistenceGame.setPlayfield(persistencePlayfield);
         persistenceGame.setUser(persistenceUser);
         
         return persistenceGame;
