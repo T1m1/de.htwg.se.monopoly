@@ -22,8 +22,11 @@ public class MonopolyCouchdbDAO implements IMonopolyDAO {
     public static final String HTTP_LENNY2 = "http://lenny2.in.htwg-konstanz.de:5984";
     private final Logger logger = LogManager.getLogger("CouchDb");
     CouchDbConnector db;
+    CouchdbUtil util;
+
 
     public MonopolyCouchdbDAO() {
+        util = new CouchdbUtil();
         HttpClient client = null;
         try {
             client = new StdHttpClient.Builder().url(HTTP_LENNY2).build();
@@ -37,7 +40,6 @@ public class MonopolyCouchdbDAO implements IMonopolyDAO {
 
     @Override
     public void saveGame(IMonopolyGame context) {
-        CouchdbUtil util = new CouchdbUtil();
         PersistenceGame game = util.transformToCouchDb(context);
         db.create(game);
     }
