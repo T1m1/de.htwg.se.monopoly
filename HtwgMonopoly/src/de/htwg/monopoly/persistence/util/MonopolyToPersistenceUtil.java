@@ -6,7 +6,8 @@ import de.htwg.monopoly.persistence.couchdb.PeristentPlayfield;
 import de.htwg.monopoly.persistence.couchdb.PersistenUser;
 import de.htwg.monopoly.persistence.couchdb.PersistentGame;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Timi.
@@ -30,19 +31,22 @@ public class MonopolyToPersistenceUtil {
         // TODO:
         // - prison free card
         // - ownership
-        Collection<PersistenUser> persistenUser = null;
+        List<PersistenUser> persistenceUser = new ArrayList<PersistenUser>();
+       
         for(int i = 0; i < game.getPlayerController().getNumberOfPlayer(); i++) {
             Player player = game.getPlayerController().getPlayer(i);
             PersistenUser user = new PersistenUser();
             user.setBudget(player.getBudget());
             user.setIcon(player.getIcon());
-            user.setInPrison(player.getPrisonRound()!=0);
+            user.setInPrison(player.getPrisonRound() != 0);
             user.setName(player.getName());
             user.setPrisonRound(player.getPrisonRound());
             user.setPosition(player.getPosition());
-            persistenUser.add(user);
+            persistenceUser.add(user);
         }
         
+        persistentGame.setPlayfield(peristentPlayfield);
+        persistentGame.setUser(persistenceUser);
         
         return persistentGame;
     }
