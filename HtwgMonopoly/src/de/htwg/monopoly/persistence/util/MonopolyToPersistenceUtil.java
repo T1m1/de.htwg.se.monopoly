@@ -3,7 +3,7 @@ package de.htwg.monopoly.persistence.util;
 import de.htwg.monopoly.context.IMonopolyGame;
 import de.htwg.monopoly.entities.impl.Player;
 import de.htwg.monopoly.persistence.couchdb.PeristentPlayfield;
-import de.htwg.monopoly.persistence.couchdb.PersistenUser;
+import de.htwg.monopoly.persistence.couchdb.PersistenceUser;
 import de.htwg.monopoly.persistence.couchdb.PersistenceGame;
 
 import java.util.ArrayList;
@@ -31,11 +31,11 @@ public class MonopolyToPersistenceUtil {
         // TODO:
         // - prison free card
         // - ownership
-        List<PersistenUser> persistenceUser = new ArrayList<PersistenUser>();
+        List<PersistenceUser> persistenceUser = new ArrayList<PersistenceUser>();
        
         for(int i = 0; i < game.getPlayerController().getNumberOfPlayer(); i++) {
             Player player = game.getPlayerController().getPlayer(i);
-            PersistenUser user = new PersistenUser();
+            PersistenceUser user = new PersistenceUser();
             user.setBudget(player.getBudget());
             user.setIcon(player.getIcon());
             user.setInPrison(player.getPrisonRound() != 0);

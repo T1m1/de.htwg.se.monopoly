@@ -13,7 +13,7 @@ public class PersistenceGame extends CouchDbDocument {
 
     @Getter
     @Setter
-    Collection<PersistenUser> user;
+    Collection<PersistenceUser> user;
     
     @Getter
     @Setter
