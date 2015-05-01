@@ -5,6 +5,10 @@
     <artifactId>HtwgMonopoly</artifactId>
     <version>0.0.3-SNAPSHOT</version>
     <name>SA2015SS-02-HtwgMonopoly</name>
+    <properties>
+        <slf4j-version>1.7.7</slf4j-version>
+        <slf4j-log4j2-version>2.0.1</slf4j-log4j2-version>
+    </properties>
     <build>
         <sourceDirectory>src</sourceDirectory>
         <testSourceDirectory>test</testSourceDirectory>
@@ -40,9 +44,19 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>2.0-beta9</version>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${slf4j-log4j2-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.2</version>
         </dependency>
         <dependency>
             <groupId>com.google.inject</groupId>
