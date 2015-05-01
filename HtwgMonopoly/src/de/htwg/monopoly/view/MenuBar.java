@@ -1,5 +1,6 @@
 package de.htwg.monopoly.view;
 
+import de.htwg.monopoly.controller.IController;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -8,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URI;
+import java.util.Date;
 
 
 public class MenuBar extends JMenuBar implements ActionListener {
@@ -21,12 +23,16 @@ public class MenuBar extends JMenuBar implements ActionListener {
 	private final JMenuItem miSource;
     private final JMenuItem miRule;
     private final JMenuItem miExitGame;
+    private final JMenuItem miSaveGame;
 
 	private static final String RULES = "http://de.wikipedia.org/wiki/Monopoly";
 	private static final String SOURCE = "https://github.com/T1m1/de.htwg.se.monopoly";
 
-	public MenuBar() {
-
+    private IController controller;
+    
+	public MenuBar(IController controller) {
+        this.controller = controller;
+        
 		// Create the menu bar.
 		JMenuBar menuBar = new JMenuBar();
 		JMenu mDatei = new JMenu("Game");
@@ -41,12 +47,18 @@ public class MenuBar extends JMenuBar implements ActionListener {
 		JMenuItem subMenu = new JMenuItem("Optionen Einstellen");
 		mDatei.add(subMenu);
 
-		mDatei.addSeparator();
+        mDatei.addSeparator();
+
+        miSaveGame= new JMenuItem("Spiel speichern");
+        miSaveGame.addActionListener(this);
+        mDatei.add(miSaveGame);
+
+        mDatei.addSeparator();
 
 		miExitGame = new JMenuItem("Spiel beenden");
 		miExitGame.addActionListener(this);
 		mDatei.add(miExitGame);
-
+        
 		miSource = new JMenuItem("Source Code");
 		miSource.addActionListener(this);
 		mHelp.add(miSource);
@@ -67,7 +79,15 @@ public class MenuBar extends JMenuBar implements ActionListener {
 		} else if (event.equals(miRule)) {
 			showURL(RULES);
 
-		}
+		} else if(event.equals(miSaveGame)) {
+            try {
+                // TODO: only for tmp testing
+                Date date = new Date();
+                controller.saveGameToDB(date.toString());
+            } catch (IllegalAccessException e1) {
+                e1.printStackTrace();
+            }
+        }
 
 	}
 
