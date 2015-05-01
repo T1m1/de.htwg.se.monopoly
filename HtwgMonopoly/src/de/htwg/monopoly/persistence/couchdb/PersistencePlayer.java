@@ -12,7 +12,7 @@ import java.util.List;
  * @author Timi.
  */
 
-public class PersistenceUser extends CouchDbDocument{
+public class PersistencePlayer extends CouchDbDocument{
     
     @Getter
     @Setter
