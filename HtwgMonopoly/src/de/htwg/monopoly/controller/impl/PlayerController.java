@@ -53,6 +53,12 @@ public class PlayerController implements IPlayerController {
 		}
 
 	}
+    
+    public PlayerController(List<Player> players, int numberOfPlayer, int currentPlayerIndex) {
+        this.players = players;
+        this.numberOfPlayer = numberOfPlayer;
+        this.currentPlayerIndex = currentPlayerIndex;
+    }
 
 	/**
 	 * {@inheritDoc}

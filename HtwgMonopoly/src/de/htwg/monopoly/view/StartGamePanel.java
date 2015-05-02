@@ -24,7 +24,6 @@ class StartGamePanel extends JPanel implements ActionListener {
     private final JButton startGameButton;
     private final JCheckBox[] cbPlayers;
     private final JTextField[] tfPlayers;
-    private JPanel[] pnlPlayers;
 
     /* internationalization */
     private final ResourceBundle bundle = ResourceBundle.getBundle("Messages",
@@ -40,7 +39,7 @@ class StartGamePanel extends JPanel implements ActionListener {
 
         cbPlayers = new JCheckBox[IMonopolyUtil.MAX_NUMBER_OF_PLAYER];
         tfPlayers = new JTextField[IMonopolyUtil.MAX_NUMBER_OF_PLAYER];
-        pnlPlayers = new JPanel[IMonopolyUtil.MAX_NUMBER_OF_PLAYER];
+        JPanel[] pnlPlayers = new JPanel[IMonopolyUtil.MAX_NUMBER_OF_PLAYER];
 
         for (int i = 0; i < IMonopolyUtil.MAX_NUMBER_OF_PLAYER; i++) {
             cbPlayers[i] = new JCheckBox();

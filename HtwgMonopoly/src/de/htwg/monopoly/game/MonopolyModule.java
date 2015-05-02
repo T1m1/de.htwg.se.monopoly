@@ -3,7 +3,7 @@ package de.htwg.monopoly.game;
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
 import de.htwg.monopoly.controller.IController;
-import de.htwg.monopoly.database.IMonopolyDAO;
+import de.htwg.monopoly.persistence.IMonopolyDAO;
 import de.htwg.monopoly.factory.IControllerFactory;
 
 public class MonopolyModule extends AbstractModule {
@@ -24,7 +24,7 @@ public class MonopolyModule extends AbstractModule {
 
 		// define the database of the game
 		bind(IMonopolyDAO.class).to(
-				de.htwg.monopoly.database.db4o.MonopolyDb4oDAO.class);
+				de.htwg.monopoly.persistence.couchdb.MonopolyCouchdbDAO.class);
 
 	}
 
