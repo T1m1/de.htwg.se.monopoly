@@ -19,5 +19,9 @@ public class PersistenceGame extends CouchDbDocument {
 
     @Getter
     @Setter
+    Integer currentPlayerIndex;
+
+    @Getter
+    @Setter
     PersistencePlayfield playfield;
 }
