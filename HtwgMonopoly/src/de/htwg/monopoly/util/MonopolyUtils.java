@@ -14,7 +14,9 @@ import java.util.TreeMap;
  */
 public final class MonopolyUtils {
 
-	/**
+    public static final int MAX_RANDOM = 100;
+
+    /**
 	 * Hide utility constructor
 	 */
 	private MonopolyUtils() {	}
@@ -57,7 +59,7 @@ public final class MonopolyUtils {
             if(playerMap.containsKey(currentName)) {
                 // change name because using a map
                 Random ran = new Random();
-                currentName = currentName + "" + ran.nextInt(100);
+                currentName = currentName + "" + ran.nextInt(MAX_RANDOM);
             }
 			playerMap.put(currentName, allIcons[i]);
 			i++;
