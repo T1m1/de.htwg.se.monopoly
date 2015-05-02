@@ -103,8 +103,8 @@ public class CouchdbUtil {
 
         // playfield.
         IMonopolyGame monopolyGame = new MonopolyGame(playerController, playfield, question,
-                GameStatus.valueOf(game.getPlayfield().getGamePhase()), game.getId(),
-                game.getPlayfield().getParkingMoney(), game.getId(), 0, false, dice);
+                GameStatus.valueOf(game.getPlayfield().getGamePhase()), game.getName(),
+                game.getPlayfield().getParkingMoney(), game.getId(), 0, false, dice, game.getId(), game.getRevision());
 
 
         return monopolyGame;
