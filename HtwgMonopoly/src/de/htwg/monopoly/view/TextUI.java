@@ -54,7 +54,7 @@ public class TextUI implements IObserver {
         ENUM_USER_OPTION.put("q", UserAction.REDEEM_WITH_QUESTION);
         ENUM_USER_OPTION.put("s", UserAction.SAVE_GAME);
         ENUM_USER_OPTION.put("l", UserAction.LOAD_GAME);
-        ENUM_USER_OPTION.put("y", UserAction.DELETE_GAME);
+        ENUM_USER_OPTION.put("del", UserAction.DELETE_GAME);
 
         CHAR_USER_OPTION = ENUM_USER_OPTION.inverse();
     }
