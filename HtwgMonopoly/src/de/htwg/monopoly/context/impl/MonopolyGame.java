@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package de.htwg.monopoly.context.impl;
 
@@ -13,134 +13,146 @@ import de.htwg.monopoly.entities.impl.PrisonQuestion;
 import de.htwg.monopoly.util.GameStatus;
 
 /**
- * @author Steffen
- *
+ * @author Steffen & Timi
  */
 public class MonopolyGame implements IMonopolyGame {
 
-	private IPlayfield field;
-	private IPlayerController players;
-	private PrisonQuestion questions;
-	private GameStatus phase;
-	private String id;
-	private String name;
-	private int parkingMoney;
-	private String message;
-	private int diceFlag;
-	private boolean drawCardFlag;
-	private Dice dice;
+    private IPlayfield field;
+    private IPlayerController players;
+    private PrisonQuestion questions;
+    private GameStatus phase;
+    private String id;
+    private String rev;
+    private String name;
+    private int parkingMoney;
+    private String message;
+    private int diceFlag;
+    private boolean drawCardFlag;
+    private Dice dice;
 
-	public MonopolyGame(IPlayerController players, IPlayfield field,
-			PrisonQuestion questions, GameStatus currentPhase, String name,
-			int parkingMoney, String string, int diceFlag,
-			boolean drawCardFlag, Dice dice) {
-		this.field = field;
-		this.phase = currentPhase;
-		this.players = players;
-		this.questions = questions;
-		this.name = name;
-		this.parkingMoney = parkingMoney;
-		this.message = string;
-		this.diceFlag = diceFlag;
-		this.drawCardFlag = drawCardFlag;
-		this.dice = dice;
+    public MonopolyGame(IPlayerController players, IPlayfield field,
+                        PrisonQuestion questions, GameStatus currentPhase, String name,
+                        int parkingMoney, String message, int diceFlag,
+                        boolean drawCardFlag, Dice dice) {
+        this(players, field, questions, currentPhase, name, parkingMoney, message, diceFlag, drawCardFlag, dice, UUID.randomUUID().toString(), null);
+    }
 
-		// Set a unique ID for this game context
-		this.id = UUID.randomUUID().toString();
-	}
+    public MonopolyGame(IPlayerController players, IPlayfield field,
+                        PrisonQuestion questions, GameStatus currentPhase, String name,
+                        int parkingMoney, String message, int diceFlag,
+                        boolean drawCardFlag, Dice dice, String id, String rev) {
+        this.field = field;
+        this.phase = currentPhase;
+        this.players = players;
+        this.questions = questions;
+        this.name = name;
+        this.parkingMoney = parkingMoney;
+        this.message = message;
+        this.diceFlag = diceFlag;
+        this.drawCardFlag = drawCardFlag;
+        this.dice = dice;
+        this.id = id;
+        this.rev = rev;
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public IPlayfield getPlayfield() {
-		return field;
-	}
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public IPlayerController getPlayerController() {
-		return players;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public IPlayfield getPlayfield() {
+        return field;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public PrisonQuestion getPrisonQuestions() {
-		return questions;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public IPlayerController getPlayerController() {
+        return players;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public GameStatus getCurrentGamePhase() {
-		return phase;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public PrisonQuestion getPrisonQuestions() {
+        return questions;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int getParkingMoney() {
-		return parkingMoney;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public GameStatus getCurrentGamePhase() {
+        return phase;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String getId() {
-		return id;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getParkingMoney() {
+        return parkingMoney;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String getName() {
-		return name;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getId() {
+        return id;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Dice getDice() {
-		return this.dice;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean getDrawCardFlag() {
-		return this.drawCardFlag;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Dice getDice() {
+        return this.dice;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int getDiceFlag() {
-		return this.diceFlag;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean getDrawCardFlag() {
+        return this.drawCardFlag;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String getMessage() {
-		return this.message;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getDiceFlag() {
+        return this.diceFlag;
+    }
 
-	@Override
-	public void makeReady() {
-		// set the Resource bundle to null or other way round
-		this.field.switchResourceBundle();
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getMessage() {
+        return this.message;
+    }
+
+    @Override
+    public void makeReady() {
+        // set the Resource bundle to null or other way round
+        this.field.switchResourceBundle();
+    }
+
+    @Override
+    public String getRev() {
+        return this.rev;
+    }
 
 }
