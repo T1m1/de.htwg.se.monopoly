@@ -13,12 +13,10 @@ import de.htwg.monopoly.persistence.couchdb.PersistencePlayfield;
 import de.htwg.monopoly.persistence.couchdb.PersistencePlayer;
 import de.htwg.monopoly.persistence.couchdb.PersistenceGame;
 import de.htwg.monopoly.util.GameStatus;
-import de.htwg.monopoly.util.PlayerIcon;
+import de.htwg.monopoly.util.IMonopolyUtil;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Timi.
@@ -68,33 +66,30 @@ public class CouchdbUtil {
 
     public IMonopolyGame transformFromCouchDb(PersistenceGame game) {
 
-        // player controller
-        Map<String, PlayerIcon> playersDb = new HashMap<String, PlayerIcon>();
-        ArrayList<Player> tmpPlayer = new ArrayList<Player>();
+        ArrayList<Player> players = new ArrayList<Player>();
 
         Playfield playfield = new Playfield(game.getPlayfield().getNumberOfFields());
 
         int count = 0;
-        for (PersistencePlayer player : game.getPlayers()) {
-            tmpPlayer.get(count).setPosition(player.getPosition());
-            tmpPlayer.get(count).setInPrison(player.getInPrison());
-            for (Integer index : player.getOwnershipPositions()) {
-                tmpPlayer.get(count).addOwnership(playfield.getFieldAtIndex(index));
+        for (PersistencePlayer persistencePlayer : game.getPlayers()) {
+            Player playerFromDatabase = new Player(persistencePlayer.getName(), persistencePlayer.getIcon());
+            playerFromDatabase.setInPrison(persistencePlayer.getInPrison());
+            playerFromDatabase.setPosition(persistencePlayer.getPosition());
+            // set default money to 0
+            playerFromDatabase.decrementMoney(IMonopolyUtil.INITIAL_MONEY);
+            playerFromDatabase.incrementMoney(persistencePlayer.getBudget());
+            if(persistencePlayer.getPrisonFreeCard() > 0) {
+                playerFromDatabase.incrementPrisonFreeCard();
             }
 
-            playersDb.put(player.getName(), player.getIcon());
-
-        }
-
-        IPlayerController playerController = new PlayerController(playersDb);
-
-        for (int i = 0; i < playerController.getNumberOfPlayer(); i++) {
-            playerController.getPlayer(i).setPosition(tmpPlayer.get(i).getPosition());
-            playerController.getPlayer(i).setInPrison(tmpPlayer.get(i).getPrisonRound() != 0);
-            for(IFieldObject field : tmpPlayer.get(i).getOwnership()){
-                playerController.getPlayer(i).addOwnership(field);
+            for (Integer index : persistencePlayer.getOwnershipPositions()) {
+                playerFromDatabase.addOwnership(playfield.getFieldAtIndex(index));
             }
+
+            players.add(count, playerFromDatabase);
         }
+
+        IPlayerController playerController = new PlayerController(players, players.size(), game.getCurrentPlayerIndex());
 
         // TODO:
         // - prison questions
