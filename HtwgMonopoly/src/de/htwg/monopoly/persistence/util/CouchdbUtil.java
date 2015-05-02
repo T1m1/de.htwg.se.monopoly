@@ -60,6 +60,11 @@ public class CouchdbUtil {
 
         persistenceGame.setPlayfield(persistencePlayfield);
         persistenceGame.setPlayers(persistencePlayer);
+        persistenceGame.setName(game.getName());
+        // TODO: replace 0 with current player index or name
+        persistenceGame.setCurrentPlayerIndex(0);
+        persistenceGame.setId(game.getId());
+        persistenceGame.setRevision(game.getRev());
 
         return persistenceGame;
     }
