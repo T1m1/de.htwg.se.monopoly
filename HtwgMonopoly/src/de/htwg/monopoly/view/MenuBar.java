@@ -85,7 +85,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
                 Date date = new Date();
                 controller.saveGameToDB(date.toString());
             } catch (IllegalAccessException e1) {
-                e1.printStackTrace();
+                logger.error(e1);
             }
         }
 
