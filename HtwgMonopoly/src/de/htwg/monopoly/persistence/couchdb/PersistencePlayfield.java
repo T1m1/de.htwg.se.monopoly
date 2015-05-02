@@ -7,6 +7,7 @@ import org.ektorp.support.CouchDbDocument;
 /**
  * @author Timi.
  */
+@SuppressWarnings("PMD.UnusedPrivateField")
 public class PersistencePlayfield extends CouchDbDocument{
     
     @Getter

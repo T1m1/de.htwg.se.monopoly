@@ -10,6 +10,7 @@ import java.util.Collection;
 /**
  * @author Timi,
  */
+@SuppressWarnings("PMD.UnusedPrivateField")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PersistenceGame extends CouchDbDocument {
 
