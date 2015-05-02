@@ -10,9 +10,8 @@ import java.util.Collection;
 /**
  * @author Timi.
  */
-
+@SuppressWarnings("PMD.UnusedPrivateField")
 public class PersistencePlayer extends CouchDbDocument{
-    
     @Getter
     @Setter
     private String name;
