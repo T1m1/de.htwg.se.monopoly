@@ -13,41 +13,46 @@ import de.htwg.monopoly.entities.impl.PrisonQuestion;
 import de.htwg.monopoly.util.GameStatus;
 
 /**
- * @author Steffen
- *
+ * @author Steffen & Timi
  */
 public class MonopolyGame implements IMonopolyGame {
 
-	private IPlayfield field;
-	private IPlayerController players;
-	private PrisonQuestion questions;
-	private GameStatus phase;
-	private String id;
-	private String name;
-	private int parkingMoney;
-	private String message;
-	private int diceFlag;
-	private boolean drawCardFlag;
-	private Dice dice;
+    private IPlayfield field;
+    private IPlayerController players;
+    private PrisonQuestion questions;
+    private GameStatus phase;
+    private String id;
+    private String rev;
+    private String name;
+    private int parkingMoney;
+    private String message;
+    private int diceFlag;
+    private boolean drawCardFlag;
+    private Dice dice;
 
-	public MonopolyGame(IPlayerController players, IPlayfield field,
-			PrisonQuestion questions, GameStatus currentPhase, String name,
-			int parkingMoney, String string, int diceFlag,
-			boolean drawCardFlag, Dice dice) {
-		this.field = field;
-		this.phase = currentPhase;
-		this.players = players;
-		this.questions = questions;
-		this.name = name;
-		this.parkingMoney = parkingMoney;
-		this.message = string;
-		this.diceFlag = diceFlag;
-		this.drawCardFlag = drawCardFlag;
-		this.dice = dice;
+    public MonopolyGame(IPlayerController players, IPlayfield field,
+                        PrisonQuestion questions, GameStatus currentPhase, String name,
+                        int parkingMoney, String message, int diceFlag,
+                        boolean drawCardFlag, Dice dice) {
+        this(players, field, questions, currentPhase, name, parkingMoney, message, diceFlag, drawCardFlag, dice, UUID.randomUUID().toString(), null);
+    }
 
-		// Set a unique ID for this game context
-		this.id = UUID.randomUUID().toString();
-	}
+    public MonopolyGame(IPlayerController players, IPlayfield field,
+                        PrisonQuestion questions, GameStatus currentPhase, String name,
+                        int parkingMoney, String message, int diceFlag,
+                        boolean drawCardFlag, Dice dice, String id, String rev) {
+        this.field = field;
+        this.phase = currentPhase;
+        this.players = players;
+        this.questions = questions;
+        this.name = name;
+        this.parkingMoney = parkingMoney;
+        this.message = message;
+        this.diceFlag = diceFlag;
+        this.drawCardFlag = drawCardFlag;
+        this.dice = dice;
+        this.id = id;
+        this.rev = rev;
 
 	/**
 	 * {@inheritDoc}
@@ -129,21 +134,23 @@ public class MonopolyGame implements IMonopolyGame {
 		return this.diceFlag;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String getMessage() {
-		return this.message;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getMessage() {
+        return this.message;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void makeReady() {
-		// set the Resource bundle to null or other way round
-		this.field.switchResourceBundle();
-	}
+    @Override
+    public void makeReady() {
+        // set the Resource bundle to null or other way round
+        this.field.switchResourceBundle();
+    }
+
+    @Override
+    public String getRev() {
+        return this.rev;
+    }
 
 }
