@@ -53,6 +53,7 @@ public class MonopolyGame implements IMonopolyGame {
         this.dice = dice;
         this.id = id;
         this.rev = rev;
+    }
 
 	/**
 	 * {@inheritDoc}

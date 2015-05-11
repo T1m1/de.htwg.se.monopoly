@@ -9,7 +9,7 @@ import org.hibernate.classic.Session;
 
 import de.htwg.monopoly.context.IMonopolyGame;
 import de.htwg.monopoly.context.impl.MonopolyGame;
-import de.htwg.monopoly.database.IMonopolyDAO;
+import de.htwg.monopoly.persistence.IMonopolyDAO;
 
 /**
  * @author Steffen
