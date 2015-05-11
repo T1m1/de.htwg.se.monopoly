@@ -5,6 +5,7 @@ package de.htwg.monopoly.util;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.TreeMap;
 
 /**
@@ -13,7 +14,9 @@ import java.util.TreeMap;
  */
 public final class MonopolyUtils {
 
-	/**
+    public static final int MAX_RANDOM = 100;
+
+    /**
 	 * Hide utility constructor
 	 */
 	private MonopolyUtils() {	}
@@ -53,6 +56,11 @@ public final class MonopolyUtils {
 		// fill the map with Names and icons
 		int i = 0;
 		for (String currentName : players) {
+            if(playerMap.containsKey(currentName)) {
+                // change name because using a map
+                Random ran = new Random();
+                currentName = currentName + "" + ran.nextInt(MAX_RANDOM);
+            }
 			playerMap.put(currentName, allIcons[i]);
 			i++;
 		}

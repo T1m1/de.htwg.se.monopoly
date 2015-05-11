@@ -18,13 +18,13 @@ class StartGamePanel extends JPanel implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = -4433990758573077822L;
+    public static final int SIZE = 30;
 
-	private final IController contr;
+    private final IController contr;
 
     private final JButton startGameButton;
     private final JCheckBox[] cbPlayers;
     private final JTextField[] tfPlayers;
-    private JPanel[] pnlPlayers;
 
     /* internationalization */
     private final ResourceBundle bundle = ResourceBundle.getBundle("Messages",
@@ -40,11 +40,11 @@ class StartGamePanel extends JPanel implements ActionListener {
 
         cbPlayers = new JCheckBox[IMonopolyUtil.MAX_NUMBER_OF_PLAYER];
         tfPlayers = new JTextField[IMonopolyUtil.MAX_NUMBER_OF_PLAYER];
-        pnlPlayers = new JPanel[IMonopolyUtil.MAX_NUMBER_OF_PLAYER];
+        JPanel[] pnlPlayers = new JPanel[IMonopolyUtil.MAX_NUMBER_OF_PLAYER];
 
         for (int i = 0; i < IMonopolyUtil.MAX_NUMBER_OF_PLAYER; i++) {
             cbPlayers[i] = new JCheckBox();
-            tfPlayers[i] = new JTextField("Player" + (i+1), 30);
+            tfPlayers[i] = new JTextField("Player" + (i+1), SIZE);
             pnlPlayers[i] = new JPanel();
 
             pnlPlayers[i].add(cbPlayers[i]);

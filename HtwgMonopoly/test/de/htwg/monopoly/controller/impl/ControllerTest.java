@@ -223,7 +223,7 @@ public class ControllerTest {
 		assertEquals(GameStatus.BEFORE_TURN_IN_PRISON,
 				testController.getPhase());
 		assertEquals(1, dummyPlayer.getPrisonRound());
-		assertEquals("Du bist im Gefängnis", testController.getMessage());
+		assertEquals("Du bist im Knast", testController.getMessage());
 
 		dummyPlayer.incrementPrisonRound();
 		dummyPlayer.incrementPrisonRound();

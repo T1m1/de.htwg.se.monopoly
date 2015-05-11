@@ -7,7 +7,7 @@ import de.htwg.monopoly.context.impl.MonopolyGame;
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.controller.IPlayerController;
 import de.htwg.monopoly.controller.IPlayfield;
-import de.htwg.monopoly.database.IMonopolyDAO;
+import de.htwg.monopoly.persistence.IMonopolyDAO;
 import de.htwg.monopoly.entities.ICards;
 import de.htwg.monopoly.entities.IFieldObject;
 import de.htwg.monopoly.entities.impl.Bank;
@@ -62,7 +62,6 @@ public class Controller extends Observable implements IController {
 	 * public constructor for a new controller create the players, the field and
 	 * the dice
 	 * 
-	 * @param fieldSize
 	 */
 	@Inject
 	public Controller(IControllerFactory controllerFactory,
@@ -128,6 +127,7 @@ public class Controller extends Observable implements IController {
 		clearMessage();
 		message.append("Spiel gestartet!");
 		updateGameStatus(GameStatus.STARTED);
+        
 	}
 
 	/**
@@ -203,7 +203,7 @@ public class Controller extends Observable implements IController {
 		}
 
 		if (currentPlayer.isInPrison()) {
-			message.append("Du bist im Gefängnis");
+			message.append("Du bist im Knast");
 			updateGameStatus(GameStatus.BEFORE_TURN_IN_PRISON);
 		} else {
 			updateGameStatus(GameStatus.BEFORE_TURN);
