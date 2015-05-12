@@ -3,40 +3,49 @@
  */
 package de.htwg.monopoly.persistence.hibernate;
 
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import lombok.Data;
+
 /**
  * @author Steffen
  *
  */
+@Entity
+@Table(name = "game")
+@Data
 public class PersistentGame {
 
-	public void setId(String id) {
-		// TODO Auto-generated method stub
-		
-	}
+	@Id
+	@Column(name = "id")
+	String id;
 
-	public void setDrawnCardFlag(Boolean drawCardFlag) {
-		// TODO Auto-generated method stub
-		
-	}
+	@OneToMany(mappedBy = "game")
+	@Column(name = "player")
+	List<PersistentPlayer> players;
 
-	public void setDiceFlag(Integer id) {
-		// TODO Auto-generated method stub
-		
-	}
+	@OneToOne(mappedBy = "game")
+	@Column(name = "field")
+	PersistentPlayfield playfield;
 
-	public void setMessage(String message) {
-		// TODO Auto-generated method stub
-		
-	}
+	String name;
 
-	public void setParkingMoney(int parkingMoney) {
-		// TODO Auto-generated method stub
-		
-	}
+	Integer currentPlayerIndex;
 
-	public void setName(String name) {
-		// TODO Auto-generated method stub
-		
-	}
+	boolean drawnCardFlag;
 
+	int diceFlag;
+
+	String message;
+
+	int parkingMoney;
+
+	String phase;
 }
