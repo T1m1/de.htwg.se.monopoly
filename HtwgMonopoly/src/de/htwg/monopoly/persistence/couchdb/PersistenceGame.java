@@ -13,7 +13,12 @@ import java.util.Collection;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PersistenceGame extends CouchDbDocument {
 
-    @Getter
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8167905109800696178L;
+
+	@Getter
     @Setter
     String name;
     
