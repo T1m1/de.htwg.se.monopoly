@@ -37,7 +37,7 @@ public class MonopolyHibernateDAO implements IMonopolyDAO {
 			session.saveOrUpdate(pGame.getPlayfield());
 			for (PersistentPlayer pPlayer : pGame.getPlayers()) {
 				session.saveOrUpdate(pPlayer);
-			 }
+			}
 
 			tx.commit();
 		} catch (HibernateException ex) {
@@ -114,7 +114,7 @@ public class MonopolyHibernateDAO implements IMonopolyDAO {
 
 		PersistentGame pGame;
 		PersistentPlayfield pPlayfield;
-		List<PersistentPlayer> pPlayerList = new ArrayList<PersistentPlayer>();
+		List<PersistentPlayer> pPlayerList;
 
 		String id = game.getId();
 		// check if game already exist in database and update it
@@ -122,22 +122,23 @@ public class MonopolyHibernateDAO implements IMonopolyDAO {
 
 			// game does not exist --> create a new one
 
-			// create new persistence playfield
+			// create new persistence playfield and save static data
 			pPlayfield = new PersistentPlayfield();
 			pPlayfield.setNumberOfFields(game.getPlayfield().getfieldSize());
 
-			// create new player
+			// create new player and save static data
+			pPlayerList = new ArrayList<PersistentPlayer>();
 			for (int i = 0; i < game.getPlayerController().getNumberOfPlayer(); i++) {
 				Player player = game.getPlayerController().getPlayer(i);
 				PersistentPlayer pPlayer = new PersistentPlayer();
 
-				pPlayer.setIcon(player.getIcon()); // FIXME: enum??
+				pPlayer.setIcon(player.getIcon().toString());
 				pPlayer.setName(player.getName());
 
 				pPlayerList.add(pPlayer);
 			}
 
-			// create new database entry
+			// create new game and save static data
 			pGame = new PersistentGame();
 			pGame.setId(id);
 			pGame.setName(game.getName());
@@ -147,7 +148,6 @@ public class MonopolyHibernateDAO implements IMonopolyDAO {
 		} else {
 
 			// game already exist --> retrieve data
-			
 			Session session = HibernateUtil.getInstance().getCurrentSession();
 			pGame = (PersistentGame) session.get(PersistentGame.class, id);
 			pPlayfield = pGame.getPlayfield();
@@ -155,7 +155,7 @@ public class MonopolyHibernateDAO implements IMonopolyDAO {
 
 		}
 
-		// player update and save
+		// update player with dynamic data
 		for (int i = 0; i < game.getPlayerController().getNumberOfPlayer(); i++) {
 			Player player = game.getPlayerController().getPlayer(i);
 			PersistentPlayer pPlayer = pPlayerList.get(i);
@@ -172,25 +172,24 @@ public class MonopolyHibernateDAO implements IMonopolyDAO {
 			pPlayer.setOwnershipPositions(fields);
 		}
 
+		// update field with dynamic data
+		pPlayfield.setCurrentPlayer(game.getPlayerController()
+				.getCurrentPlayer().getName());
 
 		// TODO: synchronize values:
-		// - all players
-		// - gamePhase
-		// - parking money
 		// - prisonquestion
-		// - all flag variable
 		// - the dice
-		
-		// set simple values
+
+		// update game with dynamic data
 		pGame.setDrawnCardFlag(game.getDrawCardFlag());
 		pGame.setDiceFlag(game.getDiceFlag());
 		pGame.setMessage(game.getMessage());
 		pGame.setParkingMoney(game.getParkingMoney());
 		pGame.setPhase(game.getCurrentGamePhase().toString());
-		pPlayfield.setCurrentPlayer(game.getPlayerController()
-				.getCurrentPlayer().getName());
 
 		return pGame;
 	}
+	
+	
 
 }
