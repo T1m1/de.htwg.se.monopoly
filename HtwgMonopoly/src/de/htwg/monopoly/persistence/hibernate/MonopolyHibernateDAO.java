@@ -6,6 +6,7 @@ package de.htwg.monopoly.persistence.hibernate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
@@ -59,32 +60,65 @@ public class MonopolyHibernateDAO implements IMonopolyDAO {
 
 	@Override
 	public IMonopolyGame getGameById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = HibernateUtil.getInstance().getCurrentSession();
+		session.beginTransaction();
+		return transformFromHibernate((PersistentGame) session.get(
+				PersistentGame.class, id));
 	}
 
 	@Override
 	public void deleteGameById(String id) {
-		// TODO Auto-generated method stub
+		Transaction tx = null;
+		Session session = null;
+
+		try {
+			session = HibernateUtil.getInstance().getCurrentSession();
+			tx = session.beginTransaction();
+
+			PersistentGame pGame = (PersistentGame) session.get(
+					PersistentGame.class, id);
+			session.delete(pGame.getPlayfield());
+			for (PersistentPlayer c : pGame.getPlayers()) {
+				session.delete(c);
+			}
+			session.delete(pGame);
+
+			tx.commit();
+		} catch (HibernateException ex) {
+			if (tx != null) {
+				tx.rollback();
+			}
+		}
 
 	}
 
 	@Override
 	public void updateGame(IMonopolyGame game) {
-		// TODO Auto-generated method stub
-
+		saveGame(game);
 	}
 
 	@Override
 	public List<IMonopolyGame> getAllGames() {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = HibernateUtil.getInstance().getCurrentSession();
+		session.beginTransaction();
+
+		Criteria criteria = session.createCriteria(PersistentGame.class);
+
+		@SuppressWarnings("unchecked")
+		List<PersistentGame> results = criteria.list();
+
+		List<IMonopolyGame> games = new ArrayList<IMonopolyGame>();
+		for (PersistentGame current : results) {
+			IMonopolyGame game = transformFromHibernate(current);
+			games.add(game);
+		}
+
+		return games;
 	}
 
 	@Override
 	public boolean containsGameById(String id) {
-		// TODO Auto-generated method stub
-		return false;
+		return getGameById(id) != null;
 	}
 
 	private PersistentGame transformToHibernate(IMonopolyGame game) {
