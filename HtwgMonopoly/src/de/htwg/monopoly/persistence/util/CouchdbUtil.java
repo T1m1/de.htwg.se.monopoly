@@ -95,6 +95,7 @@ public class CouchdbUtil {
             }
 
             players.add(count, playerFromDatabase);
+            count++;
         }
 
         IPlayerController playerController = new PlayerController(players, players.size(), game.getCurrentPlayerIndex());

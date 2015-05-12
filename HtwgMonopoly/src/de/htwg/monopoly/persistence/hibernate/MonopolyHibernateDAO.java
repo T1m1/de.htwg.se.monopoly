@@ -11,10 +11,19 @@ import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
 
 import de.htwg.monopoly.context.IMonopolyGame;
+import de.htwg.monopoly.context.impl.MonopolyGame;
+import de.htwg.monopoly.controller.IPlayerController;
+import de.htwg.monopoly.controller.impl.PlayerController;
+import de.htwg.monopoly.controller.impl.Playfield;
 import de.htwg.monopoly.entities.IFieldObject;
+import de.htwg.monopoly.entities.impl.Dice;
 import de.htwg.monopoly.entities.impl.Player;
+import de.htwg.monopoly.entities.impl.PrisonQuestion;
 import de.htwg.monopoly.persistence.IMonopolyDAO;
 import de.htwg.monopoly.persistence.util.HibernateUtil;
+import de.htwg.monopoly.util.GameStatus;
+import de.htwg.monopoly.util.IMonopolyUtil;
+import de.htwg.monopoly.util.PlayerIcon;
 
 /**
  * @author Steffen
@@ -48,59 +57,30 @@ public class MonopolyHibernateDAO implements IMonopolyDAO {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.htwg.monopoly.database.IMonopolyDAO#getGameById(java.lang.String)
-	 */
 	@Override
 	public IMonopolyGame getGameById(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * de.htwg.monopoly.database.IMonopolyDAO#deleteGameById(java.lang.String)
-	 */
 	@Override
 	public void deleteGameById(String id) {
 		// TODO Auto-generated method stub
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * de.htwg.monopoly.database.IMonopolyDAO#updateGame(de.htwg.monopoly.context
-	 * .IMonopolyGame)
-	 */
 	@Override
 	public void updateGame(IMonopolyGame game) {
 		// TODO Auto-generated method stub
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.htwg.monopoly.database.IMonopolyDAO#getAllGames()
-	 */
 	@Override
 	public List<IMonopolyGame> getAllGames() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * de.htwg.monopoly.database.IMonopolyDAO#containsGameById(java.lang.String)
-	 */
 	@Override
 	public boolean containsGameById(String id) {
 		// TODO Auto-generated method stub
@@ -189,7 +169,48 @@ public class MonopolyHibernateDAO implements IMonopolyDAO {
 
 		return pGame;
 	}
-	
-	
 
+	private IMonopolyGame transformFromHibernate(PersistentGame game) {
+
+		List<Player> players = new ArrayList<Player>();
+		Playfield playfield = new Playfield(game.getPlayfield()
+				.getNumberOfFields());
+
+		int count = 0;
+
+		for (PersistentPlayer pPlayer : game.getPlayers()) {
+			Player player = new Player(pPlayer.getName(),
+					PlayerIcon.valueOf(pPlayer.getIcon()));
+
+			player.setInPrison(pPlayer.getInPrison());
+			player.setPosition(pPlayer.getPosition());
+
+			// set budget to 0 and then increment the value from database
+			player.decrementMoney(IMonopolyUtil.INITIAL_MONEY);
+			player.incrementMoney(pPlayer.getBudget());
+
+			for (int i = 0; i < pPlayer.getPrisonFreeCard(); i++) {
+				player.incrementPrisonFreeCard();
+			}
+
+			for (Integer index : pPlayer.getOwnershipPositions()) {
+				player.addOwnership(playfield.getFieldAtIndex(index));
+			}
+
+			players.add(count, player);
+			count++;
+		}
+
+		IPlayerController playerController = new PlayerController(players,
+				players.size(), game.getCurrentPlayerIndex());
+
+		// TODO: these two values?
+		PrisonQuestion question = new PrisonQuestion();
+		Dice dice = new Dice();
+
+		return new MonopolyGame(playerController, playfield, question,
+				GameStatus.valueOf(game.getPhase()), game.getName(),
+				game.getParkingMoney(), game.getMessage(), game.getDiceFlag(),
+				game.isDrawnCardFlag(), dice, game.getId(), null);
+	}
 }
