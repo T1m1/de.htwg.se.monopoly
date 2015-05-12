@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import de.htwg.monopoly.util.PlayerIcon;
 import lombok.Data;
 
 @Entity
@@ -30,5 +29,5 @@ public class PersistentPlayer {
 	// Save only position of ownerships
 	private Collection<Integer> ownershipPositions;
 	private Integer prisonFreeCard;
-	private PlayerIcon icon;
+	private String icon;
 }
