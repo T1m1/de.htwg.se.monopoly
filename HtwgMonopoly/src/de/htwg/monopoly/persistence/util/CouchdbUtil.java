@@ -32,6 +32,8 @@ public class CouchdbUtil {
         persistencePlayfield.setGamePhase(game.getCurrentGamePhase().toString());
         persistencePlayfield.setParkingMoney(game.getParkingMoney());
         persistencePlayfield.setCurrentPlayer(game.getPlayerController().getCurrentPlayer().getName());
+        
+     // FIXME: What? why?
         if(!game.getId().isEmpty()) {
             persistencePlayfield.setId(game.getId());
         }
@@ -43,12 +45,12 @@ public class CouchdbUtil {
             Player player = game.getPlayerController().getPlayer(i);
             PersistencePlayer user = new PersistencePlayer();
             user.setBudget(player.getBudget());
-            user.setIcon(player.getIcon());
+			user.setIcon(player.getIcon()); // FIXME: ENUM abspeichern??
             user.setInPrison(player.getPrisonRound() != 0);
             user.setName(player.getName());
             user.setPrisonRound(player.getPrisonRound());
             user.setPosition(player.getPosition());
-            user.setPrisonFreeCard(player.hasPrisonFreeCard() ? 1 : 0);
+            user.setPrisonFreeCard(player.getNumberOfPrisonFreeCards());
             List<Integer> fields = new ArrayList<Integer>();
             for (IFieldObject field : player.getOwnership()) {
                 fields.add(field.getPosition());
@@ -83,8 +85,9 @@ public class CouchdbUtil {
             // set default money to 0
             playerFromDatabase.decrementMoney(IMonopolyUtil.INITIAL_MONEY);
             playerFromDatabase.incrementMoney(persistencePlayer.getBudget());
-            if(persistencePlayer.getPrisonFreeCard() > 0) {
-                playerFromDatabase.incrementPrisonFreeCard();
+            
+            for (int i = 0; i< persistencePlayer.getPrisonFreeCard(); i++ ){
+            	 playerFromDatabase.incrementPrisonFreeCard();
             }
 
             for (Integer index : persistencePlayer.getOwnershipPositions()) {
@@ -114,7 +117,6 @@ public class CouchdbUtil {
 
         return monopolyGame;
     }
-		// FIXME: What? why?
-			user.setIcon(player.getIcon()); // FIXME: ENUM abspeichern??
-			user.setPrisonFreeCard(player.getNumberOfPrisonFreeCards());
+		
+			
 }
