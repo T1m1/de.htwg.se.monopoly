@@ -3,9 +3,6 @@ package de.htwg.monopoly.persistence.util;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
-import de.htwg.monopoly.context.IMonopolyGame;
-import de.htwg.monopoly.persistence.hibernate.PersistentGame;
-
 public class HibernateUtil {
 
 	private static final SessionFactory SESSIONFACTORY;
@@ -24,12 +21,5 @@ public class HibernateUtil {
 		return SESSIONFACTORY;
 	}
 
-	public static PersistentGame transformToHibernate(IMonopolyGame game) {
-		return null;
-	}
 
-	
-	public static IMonopolyGame transformFromHibernate(PersistentGame game) {
-		return null;
-	}
 }
