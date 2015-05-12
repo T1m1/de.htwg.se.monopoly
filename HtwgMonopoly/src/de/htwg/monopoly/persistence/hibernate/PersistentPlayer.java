@@ -1,5 +1,6 @@
 package de.htwg.monopoly.persistence.hibernate;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -13,8 +14,13 @@ import lombok.Data;
 @Entity
 @Table(name = "player")
 @Data
-public class PersistentPlayer {
+public class PersistentPlayer implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1082407840689454944L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;

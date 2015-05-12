@@ -3,6 +3,7 @@
  */
 package de.htwg.monopoly.persistence.hibernate;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -21,7 +22,12 @@ import lombok.Data;
 @Entity
 @Table(name = "game")
 @Data
-public class PersistentGame {
+public class PersistentGame implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1932693982664231288L;
 
 	@Id
 	@Column(name = "id")
