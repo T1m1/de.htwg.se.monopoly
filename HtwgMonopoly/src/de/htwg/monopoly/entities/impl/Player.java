@@ -187,6 +187,10 @@ public class Player {
 		prisonFreeCard--;
 
 	}
+	
+	public int getNumberOfPrisonFreeCards() {
+		return prisonFreeCard;
+	}
 
 	/**
 	 * @return the icon
