@@ -114,4 +114,7 @@ public class CouchdbUtil {
 
         return monopolyGame;
     }
+		// FIXME: What? why?
+			user.setIcon(player.getIcon()); // FIXME: ENUM abspeichern??
+			user.setPrisonFreeCard(player.getNumberOfPrisonFreeCards());
 }
