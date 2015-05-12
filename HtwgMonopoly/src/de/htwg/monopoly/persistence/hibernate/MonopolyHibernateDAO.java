@@ -69,7 +69,27 @@ public class MonopolyHibernateDAO implements IMonopolyDAO {
 	 */
 	@Override
 	public void saveGame(IMonopolyGame context) {
-		// TODO Auto-generated method stub
+		Transaction tx = null;
+		Session session = null;
+
+		try {
+			session = HibernateUtil.getInstance().getCurrentSession();
+			tx = session.beginTransaction();
+
+			PersistentGame pGame = transformToHibernate(context);
+
+			session.saveOrUpdate(pGame);
+			session.saveOrUpdate(pGame.getPlayfield());
+			for (PersistentPlayer pPlayer : pGame.getPlayers()) {
+				session.saveOrUpdate(pPlayer);
+			 }
+
+			tx.commit();
+		} catch (HibernateException ex) {
+			if (tx != null) {
+				tx.rollback();
+			}
+		}
 
 	}
 
