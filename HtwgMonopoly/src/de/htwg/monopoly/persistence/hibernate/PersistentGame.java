@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.htwg.monopoly.database.hibernate;
+package de.htwg.monopoly.persistence.hibernate;
 
 /**
  * @author Steffen

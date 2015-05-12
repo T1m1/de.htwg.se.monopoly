@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.htwg.monopoly.database.hibernate;
+package de.htwg.monopoly.persistence.hibernate;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import org.hibernate.classic.Session;
 import de.htwg.monopoly.context.IMonopolyGame;
 import de.htwg.monopoly.context.impl.MonopolyGame;
 import de.htwg.monopoly.persistence.IMonopolyDAO;
+import de.htwg.monopoly.persistence.util.HibernateUtil;
 
 /**
  * @author Steffen
