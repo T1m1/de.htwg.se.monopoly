@@ -31,21 +31,25 @@ import de.htwg.monopoly.util.PlayerIcon;
  *
  */
 public class MonopolyHibernateDAO implements IMonopolyDAO {
+	
+	 private Session session;
+
+	public MonopolyHibernateDAO() {
+		 this.session = HibernateUtil.getInstance().openSession();
+	}
 
 	@Override
 	public void saveGame(IMonopolyGame context) {
 		Transaction tx = null;
-		Session session = null;
 
 		try {
-			session = HibernateUtil.getInstance().getCurrentSession();
-			tx = session.beginTransaction();
+			tx = this.session.beginTransaction();
 
 			PersistentGame pGame = transformToHibernate(context);
 
-			session.saveOrUpdate(pGame);
+			this.session.saveOrUpdate(pGame);
 			for (PersistentPlayer pPlayer : pGame.getPlayers()) {
-				session.saveOrUpdate(pPlayer);
+				this.session.saveOrUpdate(pPlayer);
 			}
 
 			tx.commit();
@@ -59,27 +63,26 @@ public class MonopolyHibernateDAO implements IMonopolyDAO {
 
 	@Override
 	public IMonopolyGame getGameById(String id) {
-		Session session = HibernateUtil.getInstance().getCurrentSession();
-		session.beginTransaction();
-		return transformFromHibernate((PersistentGame) session.get(
+		this.session.beginTransaction();
+		return transformFromHibernate((PersistentGame) this.session.get(
 				PersistentGame.class, id));
+		
+		// TODO: error handling
 	}
 
 	@Override
 	public void deleteGameById(String id) {
 		Transaction tx = null;
-		Session session = null;
 
 		try {
-			session = HibernateUtil.getInstance().getCurrentSession();
-			tx = session.beginTransaction();
+			tx = this.session.beginTransaction();
 
-			PersistentGame pGame = (PersistentGame) session.get(
+			PersistentGame pGame = (PersistentGame) this.session.get(
 					PersistentGame.class, id);
 			for (PersistentPlayer c : pGame.getPlayers()) {
-				session.delete(c);
+				this.session.delete(c);
 			}
-			session.delete(pGame);
+			this.session.delete(pGame);
 
 			tx.commit();
 		} catch (HibernateException ex) {
@@ -97,10 +100,9 @@ public class MonopolyHibernateDAO implements IMonopolyDAO {
 
 	@Override
 	public List<IMonopolyGame> getAllGames() {
-		Session session = HibernateUtil.getInstance().getCurrentSession();
-		session.beginTransaction();
+		this.session.beginTransaction();
 
-		Criteria criteria = session.createCriteria(PersistentGame.class);
+		Criteria criteria = this.session.createCriteria(PersistentGame.class);
 
 		@SuppressWarnings("unchecked")
 		List<PersistentGame> results = criteria.list();

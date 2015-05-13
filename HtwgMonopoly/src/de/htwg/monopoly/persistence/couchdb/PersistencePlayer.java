@@ -10,7 +10,7 @@ import java.util.Collection;
 /**
  * @author Timi.
  */
-@SuppressWarnings("PMD.UnusedPrivateField") // FIXME: used?
+@SuppressWarnings("PMD.UnusedPrivateField") 
 public class PersistencePlayer extends CouchDbDocument{
     /**
 	 * 
