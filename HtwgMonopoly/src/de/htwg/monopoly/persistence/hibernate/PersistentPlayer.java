@@ -2,11 +2,15 @@ package de.htwg.monopoly.persistence.hibernate;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -23,9 +27,14 @@ public class PersistentPlayer implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private Integer id;
 	
 	private Integer value = 0; // TODO: what? why?
+	
+	@ManyToOne
+	@JoinColumn(name = "gameid")
+	private PersistentGame game;
 	
 	private String name;
 	private Integer budget;
@@ -33,7 +42,7 @@ public class PersistentPlayer implements Serializable {
 	private Integer prisonRound;
 	private Boolean inPrison;
 	// Save only position of ownerships
-	private Collection<Integer> ownershipPositions;
+	private Integer[] ownershipPositions;
 	private Integer prisonFreeCard;
 	private String icon;
 }

@@ -51,6 +51,4 @@ public class PersistentGame implements Serializable {
 	String phase;
 
 	int numberOfFields;
-
-	String currentPlayer;
 }

@@ -31,11 +31,11 @@ import de.htwg.monopoly.util.PlayerIcon;
  *
  */
 public class MonopolyHibernateDAO implements IMonopolyDAO {
-	
-	 private Session session;
+
+	private Session session;
 
 	public MonopolyHibernateDAO() {
-		 this.session = HibernateUtil.getInstance().openSession();
+		this.session = HibernateUtil.getInstance().openSession();
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class MonopolyHibernateDAO implements IMonopolyDAO {
 		this.session.beginTransaction();
 		return transformFromHibernate((PersistentGame) this.session.get(
 				PersistentGame.class, id));
-		
+
 		// TODO: error handling
 	}
 
@@ -173,9 +173,11 @@ public class MonopolyHibernateDAO implements IMonopolyDAO {
 			pPlayer.setPosition(player.getPosition());
 			pPlayer.setPrisonFreeCard(player.getNumberOfPrisonFreeCards());
 
-			List<Integer> fields = new ArrayList<Integer>();
+			Integer[] fields = new Integer[player.getOwnership().size()];
+			int current = 0;
 			for (IFieldObject field : player.getOwnership()) {
-				fields.add(field.getPosition());
+				fields[current] = field.getPosition();
+				current++;
 			}
 			pPlayer.setOwnershipPositions(fields);
 		}
@@ -190,13 +192,16 @@ public class MonopolyHibernateDAO implements IMonopolyDAO {
 		pGame.setMessage(game.getMessage());
 		pGame.setParkingMoney(game.getParkingMoney());
 		pGame.setPhase(game.getCurrentGamePhase().toString());
-		pGame.setCurrentPlayer(game.getPlayerController().getCurrentPlayer()
-				.getName());
+		pGame.setCurrentPlayerIndex(game.getPlayerController()
+				.getCurrentPlayerIndex());
 
 		return pGame;
 	}
 
 	private IMonopolyGame transformFromHibernate(PersistentGame game) {
+		if (game == null) {
+			return null;
+		}
 
 		List<Player> players = new ArrayList<Player>();
 		Playfield playfield = new Playfield(game.getNumberOfFields());
