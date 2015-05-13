@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+   "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+   "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+   <session-factory>
+      <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+      <property name="connection.url">jdbc:mysql://localhost:3306/monopoly</property>
+      <property name="connection.username">htwg</property>
+      <property name="connection.password">htwg</property>
+      <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+      <property name="current_session_context_class">thread</property>
+      <property name="hibernate.hbm2ddl.auto">update</property>
+      <property name="show_sql">false</property>
+      <mapping class="de.htwg.monopoly.persistence.hibernate.PersistentGame"/>
+      <mapping class="de.htwg.monopoly.persistence.hibernate.PersistentPlayer"/>
+   </session-factory>
+</hibernate-configuration>
