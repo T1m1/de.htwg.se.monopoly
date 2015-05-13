@@ -7,6 +7,7 @@ import org.ektorp.support.CouchDbDocument;
 /**
  * @author Timi.
  */
+@SuppressWarnings("PMD.UnusedPrivateField")
 public class PersistencePlayfield extends CouchDbDocument{
     
     /**
@@ -24,5 +25,5 @@ public class PersistencePlayfield extends CouchDbDocument{
     private Integer parkingMoney;
     @Getter
     @Setter
-    private String GamePhase;
+    private String gamePhase;
 }
