@@ -10,7 +10,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -37,10 +36,6 @@ public class PersistentGame implements Serializable {
 	@Column(name = "player")
 	List<PersistentPlayer> players;
 
-	@OneToOne(mappedBy = "game")
-	@Column(name = "field")
-	PersistentPlayfield playfield;
-
 	String name;
 
 	Integer currentPlayerIndex;
@@ -54,4 +49,8 @@ public class PersistentGame implements Serializable {
 	int parkingMoney;
 
 	String phase;
+
+	int numberOfFields;
+
+	String currentPlayer;
 }
