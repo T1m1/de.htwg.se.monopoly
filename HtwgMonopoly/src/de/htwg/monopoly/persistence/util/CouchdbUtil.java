@@ -33,7 +33,6 @@ public class CouchdbUtil {
         persistencePlayfield.setParkingMoney(game.getParkingMoney());
         persistencePlayfield.setCurrentPlayer(game.getPlayerController().getCurrentPlayer().getName());
         
-     // FIXME: What? why?
         if(!game.getId().isEmpty()) {
             persistencePlayfield.setId(game.getId());
         }
@@ -45,7 +44,7 @@ public class CouchdbUtil {
             Player player = game.getPlayerController().getPlayer(i);
             PersistencePlayer user = new PersistencePlayer();
             user.setBudget(player.getBudget());
-			user.setIcon(player.getIcon()); // FIXME: ENUM abspeichern??
+			user.setIcon(player.getIcon()); 
             user.setInPrison(player.getPrisonRound() != 0);
             user.setName(player.getName());
             user.setPrisonRound(player.getPrisonRound());
@@ -63,10 +62,12 @@ public class CouchdbUtil {
         persistenceGame.setPlayfield(persistencePlayfield);
         persistenceGame.setPlayers(persistencePlayer);
         persistenceGame.setName(game.getName());
-        // TODO: replace 0 with current player index or name
-        persistenceGame.setCurrentPlayerIndex(0);
+        persistenceGame.setCurrentPlayerIndex(game.getPlayerController().getCurrentPlayerIndex());
         persistenceGame.setId(game.getId());
         persistenceGame.setRevision(game.getRev());
+        persistenceGame.setDiceFlag(game.getDiceFlag());
+        persistenceGame.setDrawnCardFlag(game.getDrawCardFlag());
+        persistenceGame.setMessage(game.getMessage());
 
         return persistenceGame;
     }
@@ -102,18 +103,15 @@ public class CouchdbUtil {
 
         // TODO:
         // - prison questions
-        // -last message
-        // -diceFlag
-        // -diceCardFlag
         // -dice
         PrisonQuestion question = new PrisonQuestion();
         Dice dice = new Dice();
 
 
-        // playfield.
         IMonopolyGame monopolyGame = new MonopolyGame(playerController, playfield, question,
                 GameStatus.valueOf(game.getPlayfield().getGamePhase()), game.getName(),
-                game.getPlayfield().getParkingMoney(), game.getId(), 0, false, dice, game.getId(), game.getRevision());
+                game.getPlayfield().getParkingMoney(), game.getMessage(), game.getDiceFlag(), 
+                game.isDrawnCardFlag(), dice, game.getId(), game.getRevision());
 
 
         return monopolyGame;

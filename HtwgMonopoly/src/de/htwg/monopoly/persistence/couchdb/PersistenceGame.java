@@ -33,4 +33,16 @@ public class PersistenceGame extends CouchDbDocument {
     @Getter
     @Setter
     PersistencePlayfield playfield;
+    
+    @Getter
+    @Setter
+    String message;
+    
+    @Getter
+    @Setter
+    boolean drawnCardFlag;
+    
+    @Getter
+    @Setter
+    int diceFlag;
 }
