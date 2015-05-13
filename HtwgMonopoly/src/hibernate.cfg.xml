@@ -1,18 +1,21 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC
-   "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-   "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-   <session-factory>
-      <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-      <property name="connection.url">jdbc:mysql://localhost:3306/monopoly?createDatabaseIfNotExist=true</property>
-      <property name="connection.username">htwg</property>
-      <property name="connection.password">htwg</property>
-      <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
-      <property name="current_session_context_class">thread</property>
-      <property name="hibernate.hbm2ddl.auto">update</property>
-      <property name="show_sql">true</property>
-      <mapping class="de.htwg.monopoly.persistence.hibernate.PersistentGame"/>
-      <mapping class="de.htwg.monopoly.persistence.hibernate.PersistentPlayer"/>
-   </session-factory>
+	<session-factory>
+		<!-- Database connection properties - Driver, URL, user, password -->
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://lenny2.in.htwg-konstanz.de:3306/games?createDatabaseIfNotExist=true</property>
+		<property name="hibernate.connection.username">htwg</property>
+		<property name="hibernate.connection.password">htwg</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+		<property name="hibernate.current_session_context_class">thread</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="hibernate.show_sql">true</property>
+
+		<!-- Mapped classes -->
+		<mapping class="de.htwg.monopoly.persistence.hibernate.PersistentGame" />
+		<mapping class="de.htwg.monopoly.persistence.hibernate.PersistentPlayer" />
+	</session-factory>
 </hibernate-configuration>
