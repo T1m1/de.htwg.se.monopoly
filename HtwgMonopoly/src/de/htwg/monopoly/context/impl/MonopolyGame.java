@@ -1,5 +1,5 @@
 /**
- *
+ * 
  */
 package de.htwg.monopoly.context.impl;
 
@@ -53,88 +53,87 @@ public class MonopolyGame implements IMonopolyGame {
         this.dice = dice;
         this.id = id;
         this.rev = rev;
-
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public IPlayfield getPlayfield() {
-        return field;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public IPlayfield getPlayfield() {
+		return field;
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public IPlayerController getPlayerController() {
-        return players;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public IPlayerController getPlayerController() {
+		return players;
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public PrisonQuestion getPrisonQuestions() {
-        return questions;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public PrisonQuestion getPrisonQuestions() {
+		return questions;
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public GameStatus getCurrentGamePhase() {
-        return phase;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public GameStatus getCurrentGamePhase() {
+		return phase;
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getParkingMoney() {
-        return parkingMoney;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int getParkingMoney() {
+		return parkingMoney;
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getId() {
-        return id;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getId() {
+		return id;
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return name;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getName() {
+		return name;
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Dice getDice() {
-        return this.dice;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Dice getDice() {
+		return this.dice;
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean getDrawCardFlag() {
-        return this.drawCardFlag;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean getDrawCardFlag() {
+		return this.drawCardFlag;
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getDiceFlag() {
-        return this.diceFlag;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int getDiceFlag() {
+		return this.diceFlag;
+	}
 
     /**
      * {@inheritDoc}

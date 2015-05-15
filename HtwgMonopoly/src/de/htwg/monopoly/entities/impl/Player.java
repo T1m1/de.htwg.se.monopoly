@@ -189,6 +189,15 @@ public class Player {
 	}
 
 	/**
+	 * Returns the number of "prison free cards" this user holds.
+	 * 
+	 * @return integer
+	 */
+	public int getNumberOfPrisonFreeCards() {
+		return prisonFreeCard;
+	}
+
+	/**
 	 * @return the icon
 	 */
 	public PlayerIcon getIcon() {

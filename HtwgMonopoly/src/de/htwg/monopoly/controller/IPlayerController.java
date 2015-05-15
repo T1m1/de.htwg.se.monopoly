@@ -52,4 +52,9 @@ public interface IPlayerController {
 	 */
 	Player getFirstPlayer();
 
+	/**
+	 * @return the currentPlayerIndex
+	 */
+	int getCurrentPlayerIndex();
+
 }
