@@ -1,7 +1,9 @@
 package de.htwg.monopoly.game;
 
 import com.google.inject.AbstractModule;
+import com.google.inject.Singleton;
 import com.google.inject.name.Names;
+
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.persistence.IMonopolyDAO;
 import de.htwg.monopoly.factory.IControllerFactory;
@@ -16,7 +18,7 @@ public class MonopolyModule extends AbstractModule {
 
 		// define the main controller of the game
 		bind(IController.class).to(
-				de.htwg.monopoly.controller.impl.Controller.class);
+				de.htwg.monopoly.controller.impl.Controller.class).in(Singleton.class);
 
 		// define the factory for the underlying model
 		bind(IControllerFactory.class).to(
