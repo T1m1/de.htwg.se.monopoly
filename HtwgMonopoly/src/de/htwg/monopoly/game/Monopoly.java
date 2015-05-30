@@ -2,7 +2,9 @@ package de.htwg.monopoly.game;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+
 import de.htwg.monopoly.controller.IController;
+import de.htwg.monopoly.view.GraphicUserInterface;
 import de.htwg.monopoly.view.StartGameUI;
 import de.htwg.monopoly.view.TextUI;
 
@@ -10,11 +12,10 @@ import java.util.Scanner;
 
 public final class Monopoly {
 
-    private static Monopoly instance = null;
+	private static Monopoly instance = null;
 	private IController controller;
 	private static TextUI tui;
 	private static StartGameUI start;
-
 
 	private static Monopoly getInstance() {
 		if (instance == null) {
@@ -23,17 +24,21 @@ public final class Monopoly {
 		return instance;
 	}
 
-	private static Injector injector = Guice.createInjector(new MonopolyModule());
-	
+	private static Injector injector = Guice
+			.createInjector(new MonopolyModule());
+
 	private Monopoly() {
 
 		// TODO: configure log4j
-		
+
 		// get instances from Guice
 		controller = injector.getInstance(IController.class);
-		tui = new TextUI(controller);
-		start = new StartGameUI(controller);
-		
+		tui = injector.getInstance(TextUI.class);
+		GraphicUserInterface gui = injector.getInstance(GraphicUserInterface.class);
+
+		// create welcome panel
+		start = new StartGameUI(controller, gui);
+
 	}
 
 	public TextUI getTextUI() {
@@ -48,14 +53,14 @@ public final class Monopoly {
 
 		Monopoly.getInstance();
 
-		// Note: it is important to start gui first, otherwise the tui waits for input. Maybe fix it.
+		// Note: it is important to start gui first, otherwise the tui waits for
+		// input. Maybe fix it.
 		start.startGame();
 		tui.startGame();
 
-		
-        Scanner scanner = new Scanner(System.in);
-        boolean run = true;
-        while (run) {
+		Scanner scanner = new Scanner(System.in);
+		boolean run = true;
+		while (run) {
 			run = tui.processInputLine(scanner.next());
 		}
 		scanner.close();
