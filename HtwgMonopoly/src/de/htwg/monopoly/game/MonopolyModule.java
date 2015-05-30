@@ -31,7 +31,9 @@ public class MonopolyModule extends AbstractModule {
 		plugins.addBinding().to(de.htwg.monopoly.plugins.DummyOnePlugin.class);
 		plugins.addBinding().to(de.htwg.monopoly.plugins.DummyTwoPlugin.class);
 		
-		// define the database of the game
+		
+		/** define the database of the game **/
+		
 		// hibernate
 		//bind(IMonopolyDAO.class).to(de.htwg.monopoly.persistence.hibernate.MonopolyHibernateDAO.class);
 
