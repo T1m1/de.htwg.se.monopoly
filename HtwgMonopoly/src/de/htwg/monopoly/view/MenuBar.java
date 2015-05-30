@@ -1,15 +1,19 @@
 package de.htwg.monopoly.view;
 
 import de.htwg.monopoly.controller.IController;
+import de.htwg.monopoly.plugins.MonopolyPlugin;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URI;
 import java.util.Date;
+import java.util.Set;
 
 
 public class MenuBar extends JMenuBar implements ActionListener {
@@ -30,7 +34,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 
     private IController controller;
     
-	public MenuBar(IController controller) {
+	public MenuBar(IController controller, Set<MonopolyPlugin> plugins) {
         this.controller = controller;
         
 		// Create the menu bar.
@@ -65,9 +69,23 @@ public class MenuBar extends JMenuBar implements ActionListener {
 		miRule = new JMenuItem("Monopoly Rules");
 		miRule.addActionListener(this);
 		mHelp.add(miRule);
+		
+		// add plugin checkboxes
+		if(!plugins.isEmpty()) {
+			JMenu pluginMenu = new JMenu("Plugins");
+			for (MonopolyPlugin current: plugins) {
+				addPluginItem(current, pluginMenu);
+			}
+			menuBar.add(pluginMenu);
+		}
 
 		this.add(menuBar);
 
+	}
+
+	private void addPluginItem(MonopolyPlugin current, JMenu pluginMenu) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public void actionPerformed(ActionEvent e) {

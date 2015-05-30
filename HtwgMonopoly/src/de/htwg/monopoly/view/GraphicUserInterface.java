@@ -63,7 +63,7 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 		setMinimumSize(dimension);
 		setPreferredSize(dimension);
 
-		this.setJMenuBar(new MenuBar(this.controller));
+		this.setJMenuBar(new MenuBar(this.controller, this.plugins));
 
 		/* main panel, containing all other panels */
 		JPanel mainPanel = new JPanel();
