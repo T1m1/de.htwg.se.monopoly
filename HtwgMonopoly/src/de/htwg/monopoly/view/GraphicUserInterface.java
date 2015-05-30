@@ -15,7 +15,7 @@ import java.util.Set;
 public class GraphicUserInterface extends JFrame implements IObserver {
 
 	/* constants to avoid MAGIC NUMBERS */
-	private static final int SURFACE_DIMENSION_X = 800;
+	private static final int SURFACE_DIMENSION_X = 1000;
 	private static final int SURFACE_DIMENSION_Y = 800;
 	private static final int SURFACE_MIN_DIMENSION_X = 600;
 	private static final int SURFACE_MIN_DIMENSION_Y = 600;
@@ -108,6 +108,9 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 
 	@Override
 	public void update(GameStatus e) {
+		if (e.equals(GameStatus.STARTED)) {
+			return;
+		}
             pnlOutput.update();
             pnlPlayerInfo.update();
             pnlOption.checkInPrison();
