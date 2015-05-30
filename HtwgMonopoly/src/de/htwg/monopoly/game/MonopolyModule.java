@@ -28,7 +28,8 @@ public class MonopolyModule extends AbstractModule {
 		
 		// define Plugins
 		Multibinder<MonopolyPlugin> plugins = Multibinder.newSetBinder(binder(), MonopolyPlugin.class);
-		//TODO: plugins.addBinding().to();
+		plugins.addBinding().to(de.htwg.monopoly.plugins.DummyOnePlugin.class);
+		plugins.addBinding().to(de.htwg.monopoly.plugins.DummyTwoPlugin.class);
 		
 		// define the database of the game
 		// hibernate
