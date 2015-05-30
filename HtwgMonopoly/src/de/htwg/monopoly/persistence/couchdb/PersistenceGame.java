@@ -21,29 +21,29 @@ public class PersistenceGame extends CouchDbDocument {
 
 	@Getter
     @Setter
-    String name;
+    private String name;
     
     @Getter
     @Setter
-    Collection<PersistencePlayer> players;
+    private Collection<PersistencePlayer> players;
 
     @Getter
     @Setter
-    Integer currentPlayerIndex;
+    private Integer currentPlayerIndex;
 
     @Getter
     @Setter
-    PersistencePlayfield playfield;
+    private PersistencePlayfield playfield;
     
     @Getter
     @Setter
-    String message;
+    private String message;
     
     @Getter
     @Setter
-    boolean drawnCardFlag;
+    private boolean drawnCardFlag;
     
     @Getter
     @Setter
-    int diceFlag;
+    private int diceFlag;
 }
