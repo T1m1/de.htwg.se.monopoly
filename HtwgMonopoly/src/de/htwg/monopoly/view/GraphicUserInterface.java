@@ -2,16 +2,21 @@ package de.htwg.monopoly.view;
 
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.observer.IObserver;
+import de.htwg.monopoly.plugins.MonopolyPlugin;
 import de.htwg.monopoly.util.GameStatus;
 
 import javax.swing.*;
+
+import com.google.inject.Inject;
+
 import java.awt.*;
+import java.util.Set;
 
 public class GraphicUserInterface extends JFrame implements IObserver {
 
 	/* constants to avoid MAGIC NUMBERS */
-	private static final int SURFACE_DIMENSION_X = 600;
-	private static final int SURFACE_DIMENSION_Y = 600;
+	private static final int SURFACE_DIMENSION_X = 800;
+	private static final int SURFACE_DIMENSION_Y = 800;
 	private static final int SURFACE_MIN_DIMENSION_X = 600;
 	private static final int SURFACE_MIN_DIMENSION_Y = 600;
 
@@ -31,10 +36,13 @@ public class GraphicUserInterface extends JFrame implements IObserver {
 	private OutputPanel pnlOutput;
 	private FieldDrawPanel pnField;
 	private OptionPanel pnlOption;
+	private Set<MonopolyPlugin> plugins;
 
-	public GraphicUserInterface(IController controller) {
+	@Inject
+	public GraphicUserInterface(final IController controller, Set<MonopolyPlugin> plugins) {
 		this.controller = controller;
 		this.controller.addObserver(this);
+		this.plugins = plugins;
 
 	}
 

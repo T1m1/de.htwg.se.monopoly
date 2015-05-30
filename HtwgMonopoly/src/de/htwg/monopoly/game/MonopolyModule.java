@@ -3,9 +3,11 @@ package de.htwg.monopoly.game;
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
+import com.google.inject.multibindings.Multibinder;
 
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.persistence.IMonopolyDAO;
+import de.htwg.monopoly.plugins.MonopolyPlugin;
 import de.htwg.monopoly.factory.IControllerFactory;
 
 public class MonopolyModule extends AbstractModule {
@@ -23,9 +25,12 @@ public class MonopolyModule extends AbstractModule {
 		// define the factory for the underlying model
 		bind(IControllerFactory.class).to(
 				de.htwg.monopoly.factory.impl.MonopolyFactory.class);
-
+		
+		// define Plugins
+		Multibinder<MonopolyPlugin> plugins = Multibinder.newSetBinder(binder(), MonopolyPlugin.class);
+		//TODO: plugins.addBinding().to();
+		
 		// define the database of the game
-
 		// hibernate
 		//bind(IMonopolyDAO.class).to(de.htwg.monopoly.persistence.hibernate.MonopolyHibernateDAO.class);
 

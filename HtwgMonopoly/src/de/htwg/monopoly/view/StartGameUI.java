@@ -1,10 +1,13 @@
 package de.htwg.monopoly.view;
 
 import de.htwg.monopoly.controller.IController;
+import de.htwg.monopoly.game.MonopolyModule;
 import de.htwg.monopoly.observer.IObserver;
 import de.htwg.monopoly.util.GameStatus;
 
 import javax.swing.*;
+
+import com.google.inject.Guice;
 
 public class StartGameUI extends JFrame implements IObserver {
 
@@ -19,10 +22,10 @@ public class StartGameUI extends JFrame implements IObserver {
 	private final IController controller;
     private final GraphicUserInterface gui;
 
-	public StartGameUI(IController controller) {
+	public StartGameUI(IController controller, GraphicUserInterface gui) {
 		this.controller = controller;
 		this.controller.addObserver(this);
-		gui = new GraphicUserInterface(this.controller);
+		this.gui = gui;
 		initUI();
     }
 
