@@ -104,7 +104,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 			}
 		});
 		
-		
+		// add to plugin menu
 		pluginMenu.add(checkbox);
 	}
 
