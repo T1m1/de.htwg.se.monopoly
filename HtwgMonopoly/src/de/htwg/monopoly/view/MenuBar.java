@@ -83,9 +83,29 @@ public class MenuBar extends JMenuBar implements ActionListener {
 
 	}
 
-	private void addPluginItem(MonopolyPlugin current, JMenu pluginMenu) {
-		// TODO Auto-generated method stub
+	private void addPluginItem(final MonopolyPlugin plugin, JMenu pluginMenu) {
+		final JCheckBoxMenuItem checkbox = new JCheckBoxMenuItem(plugin.getName());
+
+		checkbox.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (checkbox.isSelected()) {
+					controller.addObserver(plugin);
+					plugin.enable(controller);
+					// TODO add something from the plugin to the gui
+				} else {
+					controller.removeObserver(plugin);
+					// TODO: remove the added component from gui 
+					plugin.disable();
+				}
+				
+				// TODO: maybe update gui 
+			}
+		});
 		
+		
+		pluginMenu.add(checkbox);
 	}
 
 	public void actionPerformed(ActionEvent e) {
