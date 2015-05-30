@@ -127,7 +127,7 @@ public class Controller extends Observable implements IController {
 		clearMessage();
 		message.append("Spiel gestartet!");
 		updateGameStatus(GameStatus.STARTED);
-        
+
 	}
 
 	/**
@@ -546,13 +546,14 @@ public class Controller extends Observable implements IController {
 
 		// create an instance with all context information of the current game
 		IMonopolyGame context = new MonopolyGame(players, field, questions,
-				phase, name, parkingMoney, getMessage(), diceFlag, drawCardFlag, dice);
-		
+				phase, name, parkingMoney, getMessage(), diceFlag,
+				drawCardFlag, dice);
+
 		context.makeReady();
-		
+
 		// save the game to database
 		database.saveGame(context);
-		
+
 		updateGameStatus(phase);
 	}
 
@@ -562,7 +563,7 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void loadGameFromDB(String id) {
 		IMonopolyGame gameById = database.getGameById(id);
-		
+
 		gameById.makeReady();
 
 		// re-initialize all instance values
@@ -579,7 +580,7 @@ public class Controller extends Observable implements IController {
 		this.diceFlag = gameById.getDiceFlag();
 		this.drawCardFlag = gameById.getDrawCardFlag();
 		this.dice = gameById.getDice();
-		
+
 		// restart game
 		updateGameStatus(phase);
 
@@ -588,18 +589,18 @@ public class Controller extends Observable implements IController {
 	@Override
 	public Map<String, String> getSavedGames() {
 		Map<String, String> savedGames = new TreeMap<String, String>();
-		
-		for (IMonopolyGame current: database.getAllGames()) {
+
+		for (IMonopolyGame current : database.getAllGames()) {
 			savedGames.put(current.getId(), current.getName());
 		}
 		return savedGames;
 	}
-	
+
 	@Override
 	public void deleteGame(String id) {
 		assert database.containsGameById(id) : "There is no such game saved in the database";
 		database.deleteGameById(id);
-		
+
 		updateGameStatus(phase);
 	}
 }
