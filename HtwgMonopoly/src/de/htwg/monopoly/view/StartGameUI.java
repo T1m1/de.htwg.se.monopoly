@@ -1,8 +1,12 @@
 package de.htwg.monopoly.view;
 
+import java.util.Collections;
+import java.util.Set;
+
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.game.MonopolyModule;
 import de.htwg.monopoly.observer.IObserver;
+import de.htwg.monopoly.plugins.MonopolyPlugin;
 import de.htwg.monopoly.util.GameStatus;
 
 import javax.swing.*;
@@ -36,7 +40,7 @@ public class StartGameUI extends JFrame implements IObserver {
 	private void initUI() {
 		/** frame options **/
 		setTitle("HTWG Monopoly");
-		this.setJMenuBar(new MenuBar(controller));
+		this.setJMenuBar(new MenuBar(controller, Collections.<MonopolyPlugin> emptySet()));
 
 		/* main panel, containing all other panels */
 		JPanel mainPanel = new JPanel();
