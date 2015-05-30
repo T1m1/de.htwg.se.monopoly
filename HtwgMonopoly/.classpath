@@ -25,5 +25,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="D:/Downloads/db4o-core-java5-8.0.184.15484.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Steffen/.m2/repository/com/google/inject/extensions/guice-multibindings/3.0/guice-multibindings-3.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
