@@ -25,13 +25,13 @@ public class MonopolyModule extends AbstractModule {
 		// define the database of the game
 
 		// hibernate
-		bind(IMonopolyDAO.class).to(de.htwg.monopoly.persistence.hibernate.MonopolyHibernateDAO.class);
+	//	bind(IMonopolyDAO.class).to(de.htwg.monopoly.persistence.hibernate.MonopolyHibernateDAO.class);
 
 		// couchdb
 		// bind(IMonopolyDAO.class).to(de.htwg.monopoly.persistence.couchdb.MonopolyCouchdbDAO.class);
 
 		// db40
-		//bind(IMonopolyDAO.class).to(de.htwg.monopoly.persistence.db4o.MonopolyDb4oDAO.class);
+	bind(IMonopolyDAO.class).to(de.htwg.monopoly.persistence.db4o.MonopolyDb4oDAO.class);
 
 	}
 
