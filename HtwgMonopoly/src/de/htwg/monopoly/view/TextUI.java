@@ -35,6 +35,7 @@ public class TextUI implements IObserver {
 
     /* THE controller */
     private final IController controller;
+	private boolean gameStarted;
 
     // Bidirectional map for user input and enum actions
     private static final BiMap<String, UserAction> ENUM_USER_OPTION = HashBiMap
@@ -80,7 +81,11 @@ public class TextUI implements IObserver {
         // read number and name of players from stdin
         String[] playerArray = null;
         in = new Scanner(System.in);
-        if (!in.next().isEmpty()) {
+        if (in.hasNext()) {
+        	if (gameStarted) {
+        		processInputLine(in.nextLine());
+        		return;
+        	}
             int number = setNumberOfPlayer();
             playerArray = setNameOfPlayers(number);
         }
@@ -112,6 +117,7 @@ public class TextUI implements IObserver {
                 logger.info("Spieler " + controller.getCurrentPlayer()
                         + ". Sie sind an der Reihe.");
                 printOptions();
+                gameStarted = true;
                 break;
             case BEFORE_TURN:
             case BEFORE_TURN_IN_PRISON:
