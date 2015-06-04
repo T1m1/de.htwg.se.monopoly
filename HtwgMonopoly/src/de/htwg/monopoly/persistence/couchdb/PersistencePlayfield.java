@@ -10,7 +10,11 @@ import org.ektorp.support.CouchDbDocument;
 @SuppressWarnings("PMD.UnusedPrivateField")
 public class PersistencePlayfield extends CouchDbDocument{
     
-    @Getter
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2907621521937300350L;
+	@Getter
     @Setter
     private Integer numberOfFields;
     @Getter

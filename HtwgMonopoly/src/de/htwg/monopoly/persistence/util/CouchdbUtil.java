@@ -32,6 +32,7 @@ public class CouchdbUtil {
         persistencePlayfield.setGamePhase(game.getCurrentGamePhase().toString());
         persistencePlayfield.setParkingMoney(game.getParkingMoney());
         persistencePlayfield.setCurrentPlayer(game.getPlayerController().getCurrentPlayer().getName());
+        
         if(!game.getId().isEmpty()) {
             persistencePlayfield.setId(game.getId());
         }
@@ -43,12 +44,12 @@ public class CouchdbUtil {
             Player player = game.getPlayerController().getPlayer(i);
             PersistencePlayer user = new PersistencePlayer();
             user.setBudget(player.getBudget());
-            user.setIcon(player.getIcon());
+			user.setIcon(player.getIcon()); 
             user.setInPrison(player.getPrisonRound() != 0);
             user.setName(player.getName());
             user.setPrisonRound(player.getPrisonRound());
             user.setPosition(player.getPosition());
-            user.setPrisonFreeCard(player.hasPrisonFreeCard() ? 1 : 0);
+            user.setPrisonFreeCard(player.getNumberOfPrisonFreeCards());
             List<Integer> fields = new ArrayList<Integer>();
             for (IFieldObject field : player.getOwnership()) {
                 fields.add(field.getPosition());
@@ -61,10 +62,12 @@ public class CouchdbUtil {
         persistenceGame.setPlayfield(persistencePlayfield);
         persistenceGame.setPlayers(persistencePlayer);
         persistenceGame.setName(game.getName());
-        // TODO: replace 0 with current player index or name
-        persistenceGame.setCurrentPlayerIndex(0);
+        persistenceGame.setCurrentPlayerIndex(game.getPlayerController().getCurrentPlayerIndex());
         persistenceGame.setId(game.getId());
         persistenceGame.setRevision(game.getRev());
+        persistenceGame.setDiceFlag(game.getDiceFlag());
+        persistenceGame.setDrawnCardFlag(game.getDrawCardFlag());
+        persistenceGame.setMessage(game.getMessage());
 
         return persistenceGame;
     }
@@ -83,8 +86,9 @@ public class CouchdbUtil {
             // set default money to 0
             playerFromDatabase.decrementMoney(IMonopolyUtil.INITIAL_MONEY);
             playerFromDatabase.incrementMoney(persistencePlayer.getBudget());
-            if(persistencePlayer.getPrisonFreeCard() > 0) {
-                playerFromDatabase.incrementPrisonFreeCard();
+            
+            for (int i = 0; i< persistencePlayer.getPrisonFreeCard(); i++ ){
+            	 playerFromDatabase.incrementPrisonFreeCard();
             }
 
             for (Integer index : persistencePlayer.getOwnershipPositions()) {
@@ -92,26 +96,26 @@ public class CouchdbUtil {
             }
 
             players.add(count, playerFromDatabase);
+            count++;
         }
 
         IPlayerController playerController = new PlayerController(players, players.size(), game.getCurrentPlayerIndex());
 
         // TODO:
         // - prison questions
-        // -last message
-        // -diceFlag
-        // -diceCardFlag
         // -dice
         PrisonQuestion question = new PrisonQuestion();
         Dice dice = new Dice();
 
 
-        // playfield.
         IMonopolyGame monopolyGame = new MonopolyGame(playerController, playfield, question,
                 GameStatus.valueOf(game.getPlayfield().getGamePhase()), game.getName(),
-                game.getPlayfield().getParkingMoney(), game.getId(), 0, false, dice, game.getId(), game.getRevision());
+                game.getPlayfield().getParkingMoney(), game.getMessage(), game.getDiceFlag(), 
+                game.isDrawnCardFlag(), dice, game.getId(), game.getRevision());
 
 
         return monopolyGame;
     }
+		
+			
 }

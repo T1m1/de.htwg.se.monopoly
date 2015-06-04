@@ -1,3 +1,5 @@
+> Under construction, not safe to use until at least summer 2015
+
 # HTWG Monopoly
 A Java implementation of the board-game **Monopoly** in a *HTWG style*.
 ## What

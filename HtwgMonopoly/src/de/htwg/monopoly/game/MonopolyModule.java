@@ -13,7 +13,7 @@ class MonopolyModule extends AbstractModule {
 
 		// define the size of the game
 		bindConstant().annotatedWith(Names.named("FieldSize")).to("28");
-		
+
 		// define the main controller of the game
 		bind(IController.class).to(
 				de.htwg.monopoly.controller.impl.Controller.class);
@@ -23,8 +23,15 @@ class MonopolyModule extends AbstractModule {
 				de.htwg.monopoly.factory.impl.MonopolyFactory.class);
 
 		// define the database of the game
-		bind(IMonopolyDAO.class).to(
-				de.htwg.monopoly.persistence.couchdb.MonopolyCouchdbDAO.class);
+
+		// hibernate
+	//	bind(IMonopolyDAO.class).to(de.htwg.monopoly.persistence.hibernate.MonopolyHibernateDAO.class);
+
+		// couchdb
+		// bind(IMonopolyDAO.class).to(de.htwg.monopoly.persistence.couchdb.MonopolyCouchdbDAO.class);
+
+		// db40
+	bind(IMonopolyDAO.class).to(de.htwg.monopoly.persistence.db4o.MonopolyDb4oDAO.class);
 
 	}
 

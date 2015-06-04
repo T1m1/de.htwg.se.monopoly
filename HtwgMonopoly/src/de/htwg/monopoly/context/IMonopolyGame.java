@@ -30,6 +30,9 @@ public interface IMonopolyGame {
 
 	String getMessage();
 
+	/**
+	 * Needs to be called every time before or after the object is going to be saved/restored 
+	 */
 	void makeReady();
     
     String getRev();

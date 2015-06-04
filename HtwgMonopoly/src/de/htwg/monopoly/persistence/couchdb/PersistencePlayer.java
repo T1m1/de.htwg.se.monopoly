@@ -10,9 +10,13 @@ import java.util.Collection;
 /**
  * @author Timi.
  */
-@SuppressWarnings("PMD.UnusedPrivateField")
+@SuppressWarnings("PMD.UnusedPrivateField") 
 public class PersistencePlayer extends CouchDbDocument{
-    @Getter
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8872737973382516790L;
+	@Getter
     @Setter
     private String name;
     @Getter

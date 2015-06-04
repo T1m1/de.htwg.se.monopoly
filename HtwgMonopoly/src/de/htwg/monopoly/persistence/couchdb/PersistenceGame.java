@@ -14,19 +14,36 @@ import java.util.Collection;
 @SuppressWarnings("PMD.UnusedPrivateField")
 public class PersistenceGame extends CouchDbDocument {
 
-    @Getter
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8167905109800696178L;
+
+	@Getter
     @Setter
-    String name;
+    private String name;
     
     @Getter
     @Setter
-    Collection<PersistencePlayer> players;
+    private Collection<PersistencePlayer> players;
 
     @Getter
     @Setter
-    Integer currentPlayerIndex;
+    private Integer currentPlayerIndex;
 
     @Getter
     @Setter
-    PersistencePlayfield playfield;
+    private PersistencePlayfield playfield;
+    
+    @Getter
+    @Setter
+    private String message;
+    
+    @Getter
+    @Setter
+    private boolean drawnCardFlag;
+    
+    @Getter
+    @Setter
+    private int diceFlag;
 }
