@@ -6,7 +6,7 @@ import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.persistence.IMonopolyDAO;
 import de.htwg.monopoly.factory.IControllerFactory;
 
-public class MonopolyModule extends AbstractModule {
+class MonopolyModule extends AbstractModule {
 
 	@Override
 	protected void configure() {

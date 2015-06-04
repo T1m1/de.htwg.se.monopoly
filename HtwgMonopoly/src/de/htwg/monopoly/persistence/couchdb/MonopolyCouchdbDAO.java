@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class MonopolyCouchdbDAO implements IMonopolyDAO {
 
-    public static final String HTTP_LENNY2 = "http://lenny2.in.htwg-konstanz.de:5984";
+    private static final String HTTP_LENNY2 = "http://lenny2.in.htwg-konstanz.de:5984";
     private final Logger logger = LogManager.getLogger("CouchDb");
     private CouchDbConnector db;
     private CouchdbUtil util;
