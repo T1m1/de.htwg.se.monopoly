@@ -1,15 +1,16 @@
 package de.htwg.monopoly.view;
 
 import de.htwg.monopoly.controller.IController;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URI;
-import java.util.Date;
 
 
 public class MenuBar extends JMenuBar implements ActionListener {
@@ -29,6 +30,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 	private static final String SOURCE = "https://github.com/T1m1/de.htwg.se.monopoly";
 
     private IController controller;
+	private JMenuItem miLoadGame;
     
 	public MenuBar(IController controller) {
         this.controller = controller;
@@ -52,6 +54,10 @@ public class MenuBar extends JMenuBar implements ActionListener {
         miSaveGame= new JMenuItem("Spiel speichern");
         miSaveGame.addActionListener(this);
         mDatei.add(miSaveGame);
+        
+        miLoadGame = new JMenuItem("Spiel laden");
+        miLoadGame.addActionListener(this);
+        mDatei.add(miLoadGame);
 
         mDatei.addSeparator();
 
