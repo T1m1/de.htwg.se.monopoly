@@ -1,5 +1,6 @@
 package de.htwg.monopoly.plugins;
 
+
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.observer.IObserver;
 

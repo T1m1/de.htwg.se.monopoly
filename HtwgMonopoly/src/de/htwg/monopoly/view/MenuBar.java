@@ -12,7 +12,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URI;
-import java.util.Date;
 import java.util.Set;
 
 
@@ -83,6 +82,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 			}
 			menuBar.add(pluginMenu);
 		}
+		
 
 		this.add(menuBar);
 
@@ -98,14 +98,10 @@ public class MenuBar extends JMenuBar implements ActionListener {
 				if (checkbox.isSelected()) {
 					controller.addObserver(plugin);
 					plugin.enable(controller);
-					// TODO add something from the plugin to the gui
 				} else {
 					controller.removeObserver(plugin);
-					// TODO: remove the added component from gui 
 					plugin.disable();
 				}
-				
-				// TODO: maybe update gui 
 			}
 		});
 		

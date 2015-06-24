@@ -19,7 +19,7 @@ import java.util.List;
  *
  *         handling;
  */
-class FieldDrawPanel extends JPanel {
+public class FieldDrawPanel extends JPanel {
 	/**
 	 * automatic generated serial version UDI
 	 */
