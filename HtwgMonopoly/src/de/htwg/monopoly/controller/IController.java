@@ -232,5 +232,7 @@ public interface IController extends IObservable {
 	Map<String, String> getSavedGames();
 
 	void deleteGame(String id);
+	
+	void cheatAndGetMoney(int money);
 
 }

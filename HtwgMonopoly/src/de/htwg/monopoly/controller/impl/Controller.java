@@ -602,4 +602,11 @@ public class Controller extends Observable implements IController {
 
 		updateGameStatus(phase);
 	}
+
+	@Override
+	public void cheatAndGetMoney(int money) {
+		getCurrentPlayer().incrementMoney(money);
+		updateGameStatus(phase);
+		
+	}
 }
