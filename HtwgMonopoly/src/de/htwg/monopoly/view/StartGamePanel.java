@@ -18,7 +18,7 @@ class StartGamePanel extends JPanel implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = -4433990758573077822L;
-    public static final int SIZE = 30;
+    private static final int SIZE = 30;
 
     private final IController contr;
 

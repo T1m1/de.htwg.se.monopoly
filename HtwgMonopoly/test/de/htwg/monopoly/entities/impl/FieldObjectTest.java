@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 public class FieldObjectTest {
 
-	FieldObject testObject;
+	private FieldObject testObject;
 
 	@Before
 	public void setUp() throws Exception {

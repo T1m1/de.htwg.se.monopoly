@@ -7,7 +7,7 @@ import java.util.LinkedList;
 
 public class ChanceCardsStack extends CardsStack {
 
-	private Deque<Integer> position;
+	private final Deque<Integer> position;
 
 	public ChanceCardsStack() {
 		super();

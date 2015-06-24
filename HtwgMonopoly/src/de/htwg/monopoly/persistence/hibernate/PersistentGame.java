@@ -30,25 +30,25 @@ public class PersistentGame implements Serializable {
 
 	@Id
 	@Column(name = "id")
-	String id;
+	private String id;
 
 	@OneToMany(mappedBy = "game")
 	@Column(name = "player")
 	List<PersistentPlayer> players;
 
-	String name;
+	private String name;
 
-	Integer currentPlayerIndex;
+	private Integer currentPlayerIndex;
 
-	boolean drawnCardFlag;
+	private boolean drawnCardFlag;
 
-	int diceFlag;
+	private int diceFlag;
 
-	String message;
+	private String message;
 
-	int parkingMoney;
+	private int parkingMoney;
 
-	String phase;
+	private String phase;
 
-	int numberOfFields;
+	private	int numberOfFields;
 }

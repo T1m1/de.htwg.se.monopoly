@@ -289,8 +289,7 @@ public class Controller extends Observable implements IController {
 			// himself
 			message.append("Leider 3 mal kein Pasch gew&uuml;rfelt. Der N&auml;chste ist dran.");
 		} else {
-			message.append("Leider kein Pasch gew&uuml;rfelt. Noch " + diceFlag
-					+ " Versuch(e).");
+			message.append("Leider kein Pasch gew&uuml;rfelt. Noch ").append(diceFlag).append(" Versuch(e).");
 		}
 		updateGameStatus(GameStatus.DICE_ROLL_FOR_PRISON);
 	}

@@ -33,6 +33,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 	private static final String SOURCE = "https://github.com/T1m1/de.htwg.se.monopoly";
 
     private IController controller;
+	private JMenuItem miLoadGame;
     
 	public MenuBar(IController controller, Set<MonopolyPlugin> plugins) {
         this.controller = controller;
@@ -56,6 +57,10 @@ public class MenuBar extends JMenuBar implements ActionListener {
         miSaveGame= new JMenuItem("Spiel speichern");
         miSaveGame.addActionListener(this);
         mDatei.add(miSaveGame);
+        
+        miLoadGame = new JMenuItem("Spiel laden");
+        miLoadGame.addActionListener(this);
+        mDatei.add(miLoadGame);
 
         mDatei.addSeparator();
 
@@ -117,15 +122,17 @@ public class MenuBar extends JMenuBar implements ActionListener {
 		} else if (event.equals(miRule)) {
 			showURL(RULES);
 
-		} else if(event.equals(miSaveGame)) {
-            try {
-                // TODO: only for tmp testing
-                Date date = new Date();
-                controller.saveGameToDB(date.toString());
-            } catch (IllegalAccessException e1) {
-                logger.error(e1);
-            }
-        }
+		} else if (event.equals(miSaveGame)) {
+			// open dialog
+			String gameName = JOptionPane.showInputDialog(this,
+					"Bitte Name f�r Spiel eingeben", "Spiel speichern",
+					JOptionPane.QUESTION_MESSAGE);
+			try {
+				controller.saveGameToDB(gameName);
+			} catch (IllegalAccessException e1) {
+				logger.error(e1);
+			}
+		}
 
 	}
 
