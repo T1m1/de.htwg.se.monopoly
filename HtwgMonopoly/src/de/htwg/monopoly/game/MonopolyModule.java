@@ -9,7 +9,6 @@ import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.persistence.IMonopolyDAO;
 import de.htwg.monopoly.plugins.MonopolyPlugin;
 import de.htwg.monopoly.factory.IControllerFactory;
-import de.htwg.monopoly.plugins.PluginTwo;
 
 public class MonopolyModule extends AbstractModule {
 
