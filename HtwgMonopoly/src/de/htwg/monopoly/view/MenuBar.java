@@ -32,9 +32,8 @@ public class MenuBar extends JMenuBar implements ActionListener {
 	private static final String SOURCE = "https://github.com/T1m1/de.htwg.se.monopoly";
 
     private IController controller;
-	private JMenuItem miLoadGame;
-    
-	public MenuBar(IController controller, Set<MonopolyPlugin> plugins) {
+
+    public MenuBar(IController controller, Set<MonopolyPlugin> plugins) {
         this.controller = controller;
         
 		// Create the menu bar.
@@ -56,8 +55,8 @@ public class MenuBar extends JMenuBar implements ActionListener {
         miSaveGame= new JMenuItem("Spiel speichern");
         miSaveGame.addActionListener(this);
         mDatei.add(miSaveGame);
-        
-        miLoadGame = new JMenuItem("Spiel laden");
+
+        JMenuItem miLoadGame = new JMenuItem("Spiel laden");
         miLoadGame.addActionListener(this);
         mDatei.add(miLoadGame);
 
