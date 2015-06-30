@@ -1,7 +1,12 @@
 package de.htwg.monopoly.controller.impl;
 
+import akka.actor.ActorRef;
+import akka.actor.ActorSystem;
+import akka.actor.Props;
+
 import com.google.inject.Inject;
 
+import de.htwg.monopoly.actor.Actor;
 import de.htwg.monopoly.context.IMonopolyGame;
 import de.htwg.monopoly.context.impl.MonopolyGame;
 import de.htwg.monopoly.controller.IController;
@@ -57,6 +62,11 @@ public class Controller extends Observable implements IController {
 
 	// Database
 	private IMonopolyDAO database;
+	
+
+	// Actors
+	final ActorSystem actorSystem = ActorSystem.create("actor-system");
+	final ActorRef actorRef = actorSystem.actorOf(Props.create(Actor.class),"actor");
 
 	/**
 	 * public constructor for a new controller create the players, the field and
