@@ -10,9 +10,6 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.util.GameStatus;
 
@@ -21,11 +18,10 @@ import de.htwg.monopoly.util.GameStatus;
  */
 public class PluginOne extends JFrame implements MonopolyPlugin {
 
-    public static final int WIDTH = 200;
+	private static final long serialVersionUID = 1L;
+	public static final int WIDTH = 200;
     public static final int HEIGHT = 200;
     public static final int SIZE = 30;
-    private IController controller;
-    private final Logger logger = LogManager.getLogger("DummyOne");
 
     private JLabel label;
 

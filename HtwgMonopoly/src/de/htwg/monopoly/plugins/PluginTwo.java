@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import de.htwg.monopoly.controller.IController;
@@ -18,7 +17,6 @@ public class PluginTwo extends JFrame implements MonopolyPlugin {
 
     private IController controller;
 
-	private JLabel label;
 
 	@Override
 	public void update(GameStatus e) {
