@@ -13,6 +13,7 @@ import java.util.Map;
 
 public interface IController extends IObservable {
 
+
 	/**
 	 * Start a new game with the given list of player names. This method is
 	 * suitable for TUI & GUI. It connects the player names with random player
@@ -230,6 +231,13 @@ public interface IController extends IObservable {
 	 * @return
 	 */
 	Map<String, String> getSavedGames();
+	
+	/**
+	 * Returns all saved game ids from database
+	 * @return
+	 */
+	String[][] getAllSavedGames();
+
 
 	void deleteGame(String id);
 	
