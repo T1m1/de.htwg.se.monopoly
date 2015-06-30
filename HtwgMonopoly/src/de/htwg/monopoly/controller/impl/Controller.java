@@ -414,7 +414,7 @@ public class Controller extends Observable implements IController {
 	private void updateGameStatus(GameStatus phaseToSet) {
 		phase = phaseToSet;
 		userOptions.update();
-		actorRef.tell(new ActorMessage("update", this), null);
+		actorRef.tell(new ActorMessage("update", this, phase), null);
 	}
 
 	/**
