@@ -12,9 +12,6 @@ import java.util.Collection;
  */
 @SuppressWarnings("PMD.UnusedPrivateField") 
 public class PersistencePlayer extends CouchDbDocument{
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = -8872737973382516790L;
 	@Getter
     @Setter
