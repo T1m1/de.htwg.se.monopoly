@@ -548,10 +548,12 @@ public class Controller extends Observable implements IController {
 				phase, name, parkingMoney, getMessage(), diceFlag,
 				drawCardFlag, dice);
 
-		context.makeReady();
+		context.makeReady(false);
 
 		// save the game to database
 		database.saveGame(context);
+		
+		context.makeReady(true);
 
 		updateGameStatus(phase);
 	}
@@ -563,7 +565,7 @@ public class Controller extends Observable implements IController {
 	public void loadGameFromDB(String id) {
 		IMonopolyGame gameById = database.getGameById(id);
 
-		gameById.makeReady();
+		gameById.makeReady(true);
 
 		// re-initialize all instance values
 		this.field = gameById.getPlayfield();

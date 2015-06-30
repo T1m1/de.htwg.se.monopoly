@@ -91,9 +91,7 @@ public interface IPlayfield {
 	 */
 	ChanceCardsStack getChanStack();
 
-	/**
-	 * 
-	 */
-	void switchResourceBundle();
+
+	void switchResourceBundle(boolean toSet);
 
 }

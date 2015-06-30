@@ -144,9 +144,9 @@ public class MonopolyGame implements IMonopolyGame {
     }
 
     @Override
-    public void makeReady() {
+    public void makeReady(boolean bool) {
         // set the Resource bundle to null or other way round
-        this.field.switchResourceBundle();
+        this.field.switchResourceBundle(bool);
     }
 
     @Override

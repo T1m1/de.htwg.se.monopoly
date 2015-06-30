@@ -278,8 +278,8 @@ public class Playfield implements IPlayfield {
 	}
 
 	@Override
-	public void switchResourceBundle() {
-		if (bundle == null) {
+	public void switchResourceBundle(boolean set) {
+		if(set == true) {
 			bundle = ResourceBundle.getBundle("Messages", Locale.GERMAN);
 		} else {
 			bundle = null;
