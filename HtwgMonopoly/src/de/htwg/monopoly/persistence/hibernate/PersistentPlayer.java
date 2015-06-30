@@ -28,7 +28,7 @@ public class PersistentPlayer implements Serializable {
 	@Column(name = "id")
 	private Integer id;
 	
-	private Integer value = 0; // TODO: what? why?
+	private Integer value = 0;
 	
 	@ManyToOne
 	@JoinColumn(name = "gameid")

@@ -72,7 +72,7 @@ public class Controller extends Observable implements IController {
 		this.factory = controllerFactory;
 		this.database = database;
 
-		// create Dice and usercontroller with factory
+		// create Dice and user controller with factory
 		this.dice = factory.createDice();
 		this.userOptions = new UserOptionsController(this);
 

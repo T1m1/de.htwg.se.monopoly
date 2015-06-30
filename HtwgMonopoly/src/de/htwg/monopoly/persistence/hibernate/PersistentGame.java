@@ -34,7 +34,7 @@ public class PersistentGame implements Serializable {
 
 	@OneToMany(mappedBy = "game")
 	@Column(name = "player")
-	List<PersistentPlayer> players;
+	private List<PersistentPlayer> players;
 
 	private String name;
 

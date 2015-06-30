@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.net.URI;
 import java.util.Set;
 
+
 public class MenuBar extends JMenuBar implements ActionListener {
 
 	private final Logger logger = LogManager.getLogger("MenuBar");
@@ -76,7 +77,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 		miRule = new JMenuItem("Monopoly Rules");
 		miRule.addActionListener(this);
 		mHelp.add(miRule);
-
+		
 		// add plugin checkboxes
 		if (!plugins.isEmpty()) {
 			JMenu pluginMenu = new JMenu("Plugins");
@@ -85,6 +86,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 			}
 			menuBar.add(pluginMenu);
 		}
+		
 
 		this.add(menuBar);
 
@@ -95,7 +97,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 				plugin.getName());
 
 		checkbox.addActionListener(new ActionListener() {
-
+			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (checkbox.isSelected()) {
@@ -107,7 +109,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 				}
 			}
 		});
-
+		
 		// add to plugin menu
 		pluginMenu.add(checkbox);
 	}

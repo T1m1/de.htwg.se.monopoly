@@ -3,7 +3,7 @@ package de.htwg.monopoly.persistence.util;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
-public class HibernateUtil {
+public final class HibernateUtil {
 
 	private static final SessionFactory SESSIONFACTORY;
 

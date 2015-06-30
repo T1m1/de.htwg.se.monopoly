@@ -25,8 +25,8 @@ public class MonopolyFactory implements IControllerFactory {
 	private int fieldSize;
 
 	@Inject
-	public MonopolyFactory(@Named("FieldSize") int fieldsize) {
-		this.fieldSize = fieldsize;
+	public MonopolyFactory(@Named("FieldSize") int fieldSize) {
+		this.fieldSize = fieldSize;
 	}
 
 	/**
