@@ -7,6 +7,7 @@ import akka.actor.Props;
 import com.google.inject.Inject;
 
 import de.htwg.monopoly.actor.Actor;
+import de.htwg.monopoly.actor.ActorMessage;
 import de.htwg.monopoly.context.IMonopolyGame;
 import de.htwg.monopoly.context.impl.MonopolyGame;
 import de.htwg.monopoly.controller.IController;
@@ -413,7 +414,7 @@ public class Controller extends Observable implements IController {
 	private void updateGameStatus(GameStatus phaseToSet) {
 		phase = phaseToSet;
 		userOptions.update();
-		notifyObservers(phase);
+		actorRef.tell(new ActorMessage("update", this), null);
 	}
 
 	/**
