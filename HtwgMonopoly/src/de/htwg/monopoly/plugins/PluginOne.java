@@ -32,7 +32,7 @@ public class PluginOne extends JFrame implements MonopolyPlugin {
 
     @Override
     public String getName() {
-        return "DummyPlugin 1";
+        return "Internal Game Status Plugin";
     }
 
     @Override

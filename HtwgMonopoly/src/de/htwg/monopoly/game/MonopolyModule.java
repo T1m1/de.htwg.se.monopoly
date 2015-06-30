@@ -36,7 +36,6 @@ public class MonopolyModule extends AbstractModule {
 		
 		// hibernate
 		//bind(IMonopolyDAO.class).to(de.htwg.monopoly.persistence.hibernate.MonopolyHibernateDAO.class);
-		bind(IMonopolyDAO.class).to(de.htwg.monopoly.persistence.hibernate.MonopolyHibernateDAO.class);
 
 		// couchdb
 		// bind(IMonopolyDAO.class).to(de.htwg.monopoly.persistence.couchdb.MonopolyCouchdbDAO.class);
