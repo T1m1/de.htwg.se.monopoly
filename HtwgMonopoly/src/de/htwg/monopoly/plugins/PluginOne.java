@@ -20,12 +20,15 @@ import de.htwg.monopoly.util.GameStatus;
  * @author Steffen
  *
  */
-public class DummyOnePlugin extends JFrame implements MonopolyPlugin {
+public class PluginOne extends JFrame implements MonopolyPlugin {
 
-	private IController controller;
+    public static final int WIDTH = 200;
+    public static final int HEIGHT = 200;
+    public static final int SIZE = 30;
+    private IController controller;
 	private final Logger logger = LogManager.getLogger("DummyOne");
 
-	protected JLabel label;
+	private JLabel label;
 	@Override
 	public void update(GameStatus e) {
 		label.setText("Internal Game Status: " + e);
@@ -41,7 +44,7 @@ public class DummyOnePlugin extends JFrame implements MonopolyPlugin {
 		/** frame options **/
 		setTitle("HTWG Monopoly");
 		/* set minimum size */
-		Dimension dimension = new Dimension(200,200);
+		Dimension dimension = new Dimension(WIDTH, HEIGHT);
 		setMaximumSize(dimension);
 		setMinimumSize(dimension);
 		setPreferredSize(dimension);
@@ -52,7 +55,7 @@ public class DummyOnePlugin extends JFrame implements MonopolyPlugin {
 		
 		label = new JLabel();
 
-	    label.setFont( new Font("Arial", Font.CENTER_BASELINE, 30));
+	    label.setFont( new Font("Arial", Font.CENTER_BASELINE, SIZE));
 		
 		add(label, BorderLayout.CENTER);
 		
