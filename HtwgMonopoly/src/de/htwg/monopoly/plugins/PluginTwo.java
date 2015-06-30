@@ -11,13 +11,14 @@ import javax.swing.JPanel;
 import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.util.GameStatus;
 
-public class DummyTwoPlugin extends JFrame implements MonopolyPlugin {
+public class PluginTwo extends JFrame implements MonopolyPlugin {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
+    public static final int MONEY = 100;
 
-	private IController controller;
+    private IController controller;
 
-	protected JLabel label;
+	private JLabel label;
 
 	@Override
 	public void update(GameStatus e) {
@@ -39,18 +40,18 @@ public class DummyTwoPlugin extends JFrame implements MonopolyPlugin {
 
 		JPanel panel = new JPanel();
 		 
-        // JButton mit Text "Drück mich" wird erstellt
+        // JButton mit Text "Drï¿½ck mich" wird erstellt
         JButton button = new JButton("Gib mir 100 GELD");
         
         button.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DummyTwoPlugin.this.controller.cheatAndGetMoney(100);
+				PluginTwo.this.controller.cheatAndGetMoney(MONEY);
 			}
 		});
  
-        // JButton wird dem Panel hinzugefügt
+        // JButton wird dem Panel hinzugefï¿½gt
         panel.add(button);
  
         this.add(panel);
