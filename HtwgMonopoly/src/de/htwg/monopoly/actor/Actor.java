@@ -3,6 +3,7 @@
  */
 package de.htwg.monopoly.actor;
 
+import de.htwg.monopoly.util.GameStatus;
 import akka.actor.UntypedActor;
 
 /**
@@ -10,11 +11,20 @@ import akka.actor.UntypedActor;
  *
  */
 public class Actor extends UntypedActor {
+	
+	public Actor() {
+		
+	}
 
 	@Override
-	public void onReceive(Object arg0) throws Exception {
-		// TODO Auto-generated method stub
-		
+	public void onReceive(Object msg) throws Exception {
+
+		if (msg instanceof ActorMessage &&
+				"update" == ((ActorMessage) msg).getMessage()) {
+			
+			GameStatus phase = ((ActorMessage) msg).getGameStatus();
+			((ActorMessage) msg).getController().notifyObservers(phase);
+		}
 	}
 
 }
