@@ -609,4 +609,17 @@ public class Controller extends Observable implements IController {
 		updateGameStatus(phase);
 		
 	}
+
+	@Override
+	public String[][] getAllSavedGames() {
+		List<IMonopolyGame> allGames = database.getAllGames();
+		String[][] data = new String[allGames.size()][2];
+		
+		for (int i = 0; i < allGames.size(); i++) {
+			IMonopolyGame current = allGames.get(i);
+			data[i][0] = current.getName();
+			data[i][1] = current.getId();
+		}
+		return data;
+	}
 }
