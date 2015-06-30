@@ -22,8 +22,7 @@ import de.htwg.monopoly.util.GameStatus;
  */
 public class DummyOnePlugin extends JFrame implements MonopolyPlugin {
 
-	private IController controller;
-	private final Logger logger = LogManager.getLogger("DummyOne");
+	private static final long serialVersionUID = 6912071065040165699L;
 
 	protected JLabel label;
 	@Override
@@ -33,7 +32,7 @@ public class DummyOnePlugin extends JFrame implements MonopolyPlugin {
 
 	@Override
 	public String getName() {
-		return "DummyPlugin 1";
+		return "Spiel Status Plugin";
 	}
 	
 	@Override

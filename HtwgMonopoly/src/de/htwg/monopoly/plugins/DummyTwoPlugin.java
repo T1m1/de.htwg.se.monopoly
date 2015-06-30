@@ -26,7 +26,7 @@ public class DummyTwoPlugin extends JFrame implements MonopolyPlugin {
 
 	@Override
 	public String getName() {
-		return "DummyPlugin 1";
+		return "Cheat Plugin";
 	}
 
 	@Override
