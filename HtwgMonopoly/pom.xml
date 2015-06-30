@@ -120,6 +120,14 @@
 			<version>1.2.2</version>
 		</dependency>
 		
+		<!-- akka -->
+		<dependency>
+			<groupId>com.typesafe.akka</groupId>
+			<version>2.3.11</version>
+			<artifactId>akka-actor_2.10</artifactId>
+		</dependency>
+		
+		
 
     </dependencies>
 
