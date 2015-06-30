@@ -9,6 +9,7 @@ import de.htwg.monopoly.controller.IController;
 import de.htwg.monopoly.persistence.IMonopolyDAO;
 import de.htwg.monopoly.plugins.MonopolyPlugin;
 import de.htwg.monopoly.factory.IControllerFactory;
+import de.htwg.monopoly.plugins.PluginTwo;
 
 public class MonopolyModule extends AbstractModule {
 
@@ -28,14 +29,15 @@ public class MonopolyModule extends AbstractModule {
 		
 		// define Plugins
 		Multibinder<MonopolyPlugin> plugins = Multibinder.newSetBinder(binder(), MonopolyPlugin.class);
-		plugins.addBinding().to(de.htwg.monopoly.plugins.DummyOnePlugin.class);
-		plugins.addBinding().to(de.htwg.monopoly.plugins.DummyTwoPlugin.class);
+		plugins.addBinding().to(de.htwg.monopoly.plugins.PluginOne.class);
+		plugins.addBinding().to(de.htwg.monopoly.plugins.PluginTwo.class);
 		
 		
 		/** define the database of the game **/
 		
 		// hibernate
 		//bind(IMonopolyDAO.class).to(de.htwg.monopoly.persistence.hibernate.MonopolyHibernateDAO.class);
+		bind(IMonopolyDAO.class).to(de.htwg.monopoly.persistence.hibernate.MonopolyHibernateDAO.class);
 
 		// couchdb
 		// bind(IMonopolyDAO.class).to(de.htwg.monopoly.persistence.couchdb.MonopolyCouchdbDAO.class);
@@ -43,6 +45,7 @@ public class MonopolyModule extends AbstractModule {
 		// db40
 		bind(IMonopolyDAO.class).to(de.htwg.monopoly.persistence.db4o.MonopolyDb4oDAO.class);
 
+        //	bind(IMonopolyDAO.class).to(de.htwg.monopoly.persistence.db4o.MonopolyDb4oDAO.class);
 	}
 
 }
