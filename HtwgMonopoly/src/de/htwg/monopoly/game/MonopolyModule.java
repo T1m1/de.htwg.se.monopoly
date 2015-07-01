@@ -42,8 +42,6 @@ public class MonopolyModule extends AbstractModule {
 
 		// db40
 		bind(IMonopolyDAO.class).to(de.htwg.monopoly.persistence.db4o.MonopolyDb4oDAO.class);
-
-        //	bind(IMonopolyDAO.class).to(de.htwg.monopoly.persistence.db4o.MonopolyDb4oDAO.class);
 	}
 
 }
