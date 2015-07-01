@@ -19,24 +19,26 @@ import de.htwg.monopoly.util.GameStatus;
 public class PluginOne extends JFrame implements MonopolyPlugin {
 
 	private static final long serialVersionUID = 1L;
-	public static final int WIDTH = 200;
+	public static final int WIDTH = 400;
     public static final int HEIGHT = 200;
     public static final int SIZE = 30;
 
     private JLabel label;
+	private IController controller;
 
     @Override
     public void update(GameStatus e) {
-        label.setText("Internal Game Status: " + e);
+        label.setText("<html><body>" + controller.getMessage()+ "</body></html>");
     }
 
     @Override
     public String getName() {
-        return "Internal Game Status Plugin";
+        return "Größere Ausgabe";
     }
 
     @Override
     public void enable(IController controller) {
+    	this.controller = controller;
         /** frame options **/
         setTitle("HTWG Monopoly");
         /* set minimum size */
@@ -55,7 +57,7 @@ public class PluginOne extends JFrame implements MonopolyPlugin {
 
         add(label, BorderLayout.CENTER);
 
-        label.setText("Start Plugin 1");
+        label.setText("Text in schön groß");
 
         setVisible(true);
 
