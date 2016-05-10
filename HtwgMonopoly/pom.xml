@@ -126,8 +126,15 @@
 			<version>2.3.11</version>
 			<artifactId>akka-actor_2.10</artifactId>
 		</dependency>
-		
-		
+
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-multibindings</artifactId>
+            <version>4.0</version>
+        </dependency>
+
+
+
 
     </dependencies>
 
