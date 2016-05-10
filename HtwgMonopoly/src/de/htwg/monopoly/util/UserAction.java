@@ -79,7 +79,7 @@ public enum UserAction {
 	/**
 	 * Used for deleting a previously saved game in the database.
 	 */
-	DELETE_GAME("Spiel löschen");
+	DELETE_GAME("Spiel lÃ¶schen");
 
 	private final String description;
 

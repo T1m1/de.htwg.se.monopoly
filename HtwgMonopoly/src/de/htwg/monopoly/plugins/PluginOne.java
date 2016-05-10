@@ -33,7 +33,7 @@ public class PluginOne extends JFrame implements MonopolyPlugin {
 
     @Override
     public String getName() {
-        return "Grˆﬂere Ausgabe";
+        return "Gr√∂√üere Ausgabe";
     }
 
     @Override
@@ -57,7 +57,7 @@ public class PluginOne extends JFrame implements MonopolyPlugin {
 
         add(label, BorderLayout.CENTER);
 
-        label.setText("Text in schˆn groﬂ");
+        label.setText("Text in sch√∂n gro√ü");
 
         setVisible(true);
 

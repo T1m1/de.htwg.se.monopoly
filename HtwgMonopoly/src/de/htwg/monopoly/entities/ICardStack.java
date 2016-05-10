@@ -7,7 +7,7 @@ public interface ICardStack {
 	
 	/**
 	 * Return the first Card off a cardstack and put it back under the
-	 * stack. Not yet implemented: "Du kommst aus dem Gefängnis frei"-Karte 
+	 * stack. Not yet implemented: "Du kommst aus dem GefÃ¤ngnis frei"-Karte
 	 * 
 	 * @return Card
 	 */
